@@ -1,11 +1,24 @@
 import React, {Component} from 'react'
 import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom'
 import './index.css';
-import Login from './containers/Login.js';
-import Register from './containers/Register.js';
-import Home from './containers/Home.js';
 import firebase from 'firebase';
+import Loadable from 'react-loadable';
 
+const Login = Loadable({
+  loader: () => import('./containers/Login.js'),
+	loading: () => null,
+
+});
+const Register = Loadable({
+  loader: () => import('./containers/Register.js'),
+	loading: () => null,
+
+});
+const Home = Loadable({
+  loader: () => import('./containers/Home.js'),
+	loading: () => null,
+
+});
 
 function PrivateRoute({
 	component: Component,

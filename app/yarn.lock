@@ -2867,7 +2867,7 @@ he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-history@^4.5.1, history@^4.6.0:
+history@^4.5.1, history@^4.6.0, history@^4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/history/-/history-4.6.3.tgz#6d723a8712c581d6bef37e8c26f4aedc6eb86967"
   dependencies:
@@ -3026,6 +3026,10 @@ ieee754@^1.1.4:
 ignore@^3.2.0:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
+
+import-inspector@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/import-inspector/-/import-inspector-2.0.0.tgz#ce75fdb6a277d2800effe097e2295bc8690b2923"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -3341,6 +3345,10 @@ is-typedarray@~1.0.0:
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
+
+is-webpack-bundle@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-webpack-bundle/-/is-webpack-bundle-1.0.0.tgz#576a50bb7c53d1d6a5c1647939c93ae2cbb90eea"
 
 is-wsl@^1.1.0:
   version "1.1.0"
@@ -5085,6 +5093,14 @@ react-form@^1.2.8:
     classnames "^2.2.5"
     prop-types "^15.5.8"
 
+react-loadable@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-4.0.3.tgz#296c5cdfba3d402d66d2120d52fc08c2ca1f3088"
+  dependencies:
+    import-inspector "^2.0.0"
+    is-webpack-bundle "^1.0.0"
+    webpack-require-weak "^1.0.0"
+
 react-router-dom@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.1.1.tgz#3021ade1f2c160af97cf94e25594c5f294583025"
@@ -6342,6 +6358,12 @@ webpack-manifest-plugin@1.1.0:
   dependencies:
     fs-extra "^0.30.0"
     lodash ">=3.5 <5"
+
+webpack-require-weak@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/webpack-require-weak/-/webpack-require-weak-1.0.1.tgz#a6a8e60871bebbe5b085a915ab0af633a412433f"
+  dependencies:
+    is-webpack-bundle "^1.0.0"
 
 webpack-sources@^0.2.3:
   version "0.2.3"
