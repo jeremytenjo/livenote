@@ -1,7 +1,8 @@
 import React from 'react';
-// import styled from 'styled-components'
+import styled from 'styled-components'
+import Folder_img from '../images/icons/Folder.svg';
 
-export default class Files extends React.Component {
+export default class Folder_Link extends React.Component {
 
 	//initial state
 	constructor(props) {
@@ -12,18 +13,16 @@ export default class Files extends React.Component {
 	}
 
 	//Methods
-	componentWillMount() {
-		
-	}
+
 	render() {
 		//Properties
 
-		//Style
+   //Style
 
 		//Template
 		return (
 			<div>
-				Files
+
 			</div>
 		);
 	}

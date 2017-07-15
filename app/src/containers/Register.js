@@ -99,21 +99,23 @@ grid-template-rows: repeat(4, auto);
 
 		const SubTitle = styled.p `
 color: #9E9E9E;
-text-align: center;
+text-align: right;
 height: 18px;
 
  `;
 
 		const SignupCont = styled.div `
 display: grid;
-grid-template-columns: 1fr 1fr ;
+grid-template-columns: 1fr 1.2fr ;
+grid-column-gap: 10px;
+
 width: 280px;
 margin: 0 auto;
  height: 95px;
 	 `;
 		const SocialButtons = styled.img `
 	 width: 50px;
-	 margin-left: 20px;
+	 margin-left: 10px;
 	 cursor: pointer;
  `;
 		const ErrorMessage = styled.p `

@@ -83,7 +83,7 @@ class RegForm extends React.Component {
 			background: 'transparent',
 			color: 'white',
 			textDecoration: 'none',
-			fontSize: '14px',
+			fontSize: '16px',
 			borderColor: 'transparent',
 			outline: 'none'
 		};
