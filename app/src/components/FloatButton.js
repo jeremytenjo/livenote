@@ -28,6 +28,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
  border-radius: 50%;
  display: inline-block;
   margin-right: 20px;
+	cursor: pointer;
  	`;
 		const FlatIconBtn = styled.button `
  		border: 10px; box-sizing:

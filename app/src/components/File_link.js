@@ -7,7 +7,8 @@ export default class File extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			width: this.props.width
+
 		}
 	}
 
@@ -19,8 +20,10 @@ export default class File extends React.Component {
    //Style
 	 const Wrapper = styled.div `
 	 height: 100px;
-	 width: 150px;
+	 width: ${props => this.state.width};
 	 background: #F5F5F5;
+	 border-radius: 2px;
+	 cursor: pointer;
 	 `;
 		//Template
 		return (

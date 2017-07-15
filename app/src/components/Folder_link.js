@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Folder_img from '../images/icons/Folder.svg';
+import Options_img from '../images/icons/Options.svg';
 
 export default class Folder_Link extends React.Component {
 
@@ -17,13 +18,33 @@ export default class Folder_Link extends React.Component {
 	render() {
 		//Properties
 
-   //Style
+		//Style
+		const Wrapper = styled.div `
+display: grid;
+grid-template-columns: 40px 2fr .1fr;
+background: white;
+height: 40px;
+border-radius: 2px;
+cursor: pointer;
+ `;
+		const Img = styled.img `
+   width: 18px;
+	 padding: 10px;
+  `;
+		const Title = styled.p `
+		margin: 0;
+		margin-top: 11px;
 
+color: #212121;
+	 `;
 		//Template
 		return (
-			<div>
+			<Wrapper>
+				<Img src={Folder_img} alt="foler icon"/>
+				<Title>Name</Title>
+				<Img src={Options_img} alt="options icon"/>
 
-			</div>
+			</Wrapper>
 		);
 	}
 

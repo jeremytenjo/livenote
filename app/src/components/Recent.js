@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import File from '../components/File.js';
+import File from '../components/File_link.js';
 export default class Recent extends React.Component {
 
 	//initial state
@@ -35,13 +35,12 @@ height: 100px;
 			<div>
 				<Title>Recent</Title>
 				<Container>
-					<File/>
-					<File/>
-					<File/>
-					<File/>
-					<File/>
-					<File/>
-					<File/>
+					<File width="150px"/>
+					<File width="150px"/>
+					<File width="150px"/>
+					<File width="150px"/>
+					<File width="150px"/>
+					<File width="150px"/>
 				</Container>
 			</div>
 		);

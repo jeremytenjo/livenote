@@ -3,9 +3,10 @@ import styled from 'styled-components'
 // import firebase from 'firebase';
 import Menu_icon from '../images/icons/menu.svg';
 import Search_icon from '../images/icons/search.svg';
-import FloatingButton from '../components/FloatButton.js';
-import Recent from '../components/Recent.js';
-import Folders from '../components/Folders.js';
+import {Route, BrowserRouter, Switch} from 'react-router-dom'
+import Directory from '../containers/Directory.js';
+import Record from '../containers/Record.js';
+
 export default class Home extends React.Component {
 
 	//initial state
@@ -17,7 +18,9 @@ export default class Home extends React.Component {
 	}
 
 	//Methods
-
+new  = () => {
+	this.props.history.push(`/record`);
+}
 	render() {
 		//Properties
 
@@ -40,6 +43,7 @@ export default class Home extends React.Component {
 	overflow-y: scroll;
 	padding-left: 15px;
 	padding-right: 15px;
+	padding-bottom: 90px;
   `;
 		const TitlePage = styled.p `
 font-size: 22px;
@@ -53,11 +57,7 @@ margin-top: 13px;
 			margin-top: 15px;
 			cursor: pointer;
 	`;
-		const FloatingButtonCon = styled.span `
-position: absolute;
-bottom: 20px;
-right: 0;
- `;
+
 		//Template
 		return (
 			<div>
@@ -67,14 +67,16 @@ right: 0;
 						<TitlePage>Notes</TitlePage>
 						<Icon src={Search_icon} alt="Search Icon"/>
 					</TopBar>
-					<Content>
-						<Recent/>
-						<Folders/>
-					</Content>
+					<BrowserRouter>
+						<Content>
+									<Switch>
+										<Route exact path='/' component={Directory}/>
+										<Route exact path='/record' component={Record}/>
+									</Switch>
+						</Content>
+					</BrowserRouter>
 				</HomeContainer>
-				<FloatingButtonCon>
-					<FloatingButton/>
-				</FloatingButtonCon>
+
 
 			</div>
 		);
