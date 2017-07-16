@@ -1,32 +1,36 @@
 import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
-
+import FolderMenu from '../components/Folder_Menu.js';
 class Record extends React.Component {
 
 	//initial state
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			showMenu: true
 		}
 	}
 
 	//Methods
-
+	showMenu = () => {
+	this.setState({
+		showMenu: true
+	});
+// console.log(this.state.showMenu);
+	}
 	render() {
 		//Properties
 
 		//Style
 		const InitWrapper = styled.div `
-		border: 3px solid black;
-			position: absolute;
+		position: absolute;
 left: 0;
 right: 0;
 bottom: 0;
 top: 0;
 margin:auto;
-width: 200px;
+width: 100%;
 height: 200px;
  `;
 		const Input = styled.input `
@@ -39,9 +43,11 @@ height: 200px;
 	outline: none;
 	font-size: 20px;
 	textDecoration: none;
-border-color: transparent;
+	border-color: transparent;
 border-width:0px;
-border:none;
+border:none
+width: 243px;
+
 &:focus {
 	 outline: none;
 }
@@ -54,16 +60,23 @@ cursor: pointer;
 display: block;
 margin: 0 auto;
 	 `;
+
+		const Circle = styled.circle `
+&:active {
+	stroke-width: 30;
+}
+	  `;
 		//Template
 		return (
 			<div>
 				<InitWrapper>
 					<Input type="text" placeholder="NAME"/>
-					<Selection>SELECT FOLDER</Selection>
+					<Selection onClick={this.showMenu}>SELECT FOLDER</Selection>
 					<InitBtn width="100" height="100">
-						<circle cx="50" cy="50" r="35" stroke="rgba(234, 67, 78, .5)" strokeWidth="20" fill="#EA424D"/>
+						<Circle cx="50" cy="50" r="35" stroke="rgba(234, 67, 78, .5)" strokeWidth="20" fill="#EA424D"/>
 					</InitBtn>
 				</InitWrapper>
+				<FolderMenu showMenu={this.state.showMenu}/>
 			</div>
 		);
 	}
