@@ -4,9 +4,18 @@ import styled from 'styled-components'
 import Menu_icon from '../images/icons/menu.svg';
 import Search_icon from '../images/icons/search.svg';
 import {Route, BrowserRouter, Switch} from 'react-router-dom'
-import Directory from '../containers/Directory.js';
-import Record from '../containers/Record.js';
+import Loadable from 'react-loadable';
 
+const Record = Loadable({
+  loader: () => import('./Record.js'),
+	loading: () => null,
+
+});
+const Directory = Loadable({
+  loader: () => import('./Directory.js'),
+	loading: () => null,
+
+});
 export default class Home extends React.Component {
 
 	//initial state
