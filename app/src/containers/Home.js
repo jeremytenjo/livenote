@@ -36,35 +36,38 @@ new  = () => {
 		//Style
 		const HomeContainer = styled.div `
 		  display: grid;
-			grid-template-rows: 56px 1fr;
+			grid-template-rows: 45px 1fr;
 			height: 100vh;
+      padding-left: 10px;
+    	padding-right: 10px;
 		 `;
 		const TopBar = styled.div `
   width: 100%;
 	max-width: 600px;
-	height: 56px;
+	height: auto;
 	margin: 0;
 	display: grid;
-	grid-template-columns: 50px 1fr 50px;
+	grid-template-columns: 20px 1fr 20px;
+  margin-top: 10px;
+
  `;
 		const Content = styled.div `
 	overflow-x: hidden;
 	overflow-y: scroll;
-	padding-left: 15px;
-	padding-right: 15px;
+
 	padding-bottom: 90px;
   `;
 		const TitlePage = styled.p `
-font-size: 22px;
+font-size: 20px;
 font-weight: bold;
 outline: none;
-margin-top: 13px;
+margin: 0;
+margin-left: 10px;
 `;
 		const Icon = styled.img `
 			width: 20px;
-			margin-left: 15px;
-			margin-top: 15px;
 			cursor: pointer;
+      margin-top: 2px;
 	`;
 
 		//Template

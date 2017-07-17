@@ -25,7 +25,7 @@ class Directory extends React.Component {
 
    //Style
 	 const FloatingButtonCon = styled.span `
-position: absolute;
+position: fixed;
 bottom: 20px;
 right: 0;
 `;

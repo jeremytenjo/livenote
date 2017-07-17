@@ -31,6 +31,7 @@ margin: 0 auto;
 outline: none;
 margin-top: 15px;
 font-weight: bold;
+font-size: 15px;
  `;
 		//Template
 		return (

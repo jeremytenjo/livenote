@@ -3,6 +3,7 @@ import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom'
 import './index.css';
 import firebase from 'firebase';
 import Loadable from 'react-loadable';
+import styled from 'styled-components'
 
 const Login = Loadable({
   loader: () => import('./containers/Login.js'),
@@ -69,11 +70,19 @@ export default class App extends Component {
 		this.removeListener()
 	}
 	render() {
+    //Style
+     const MasterWrapper = styled.div `
+     position: fixed;
+     max-width: 600px;
+     left: 0;
+     right: 0;
+     margin: auto;
+     `;
 		return this.state.loading === true
 			? <h1>Loading</h1>
 			: (
 				<BrowserRouter>
-					<div>
+					<MasterWrapper>
 								<Switch>
 									<PrivateRoute authed={this.state.authed} exact path='/' component={Home}/>
 									<PrivateRoute authed={this.state.authed} exact path='/record' component={Home}/>
@@ -82,7 +91,7 @@ export default class App extends Component {
 									<PublicRoute authed={this.state.authed} path='/register' component={Register}/>
 									<Route render={() => <h3>No Match 404</h3>}/>
 								</Switch>
-					</div>
+					</MasterWrapper>
 				</BrowserRouter>
 			);
 	}

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Button from '../components/Button.js';
+// import Button from '../components/Button.js';
+import FolderLink from '../components/Folder_link_menu.js';
+// import FolderSubLink from '../components/Folder_Sublink_menu.js';
 export default class FolderMenu extends React.Component {
 
 	//initial state
@@ -17,6 +19,12 @@ export default class FolderMenu extends React.Component {
 		nextState.showMenu = nextProps.showMenu;
 	}
 
+	hideFolderSelection = () => {
+		console.log(this.state.showMenu);
+		this.setState({showMenu: false});
+		console.log(this.state.showMenu);
+
+	}
 	render() {
 		//Properties
 
@@ -25,8 +33,8 @@ export default class FolderMenu extends React.Component {
 	background: white;
 	position: fixed;
 	display: ${props => this.state.showMenu === false
-			? 'none'
-			: 'block'};
+			? 'none !important'
+			: 'block !important'};
 	bottom: 0;
 	${ ''/* top: 100%; */}
 	top: 0;
@@ -38,22 +46,27 @@ export default class FolderMenu extends React.Component {
 	grid-template-rows:  1fr 80px;
  `;
 		const Content = styled.div `
-${'' /* background: green; */}
+${ ''/* background: green; */}
 overflow-y: scroll;
+padding: 20px;
   `;
-		const ButtonContainer = styled.div `
-	 ${'' /* background: blue; */}
-display: grid;
-grid-template-columns:  1fr 1fr;
-	 `;
+		// 		const ButtonContainer = styled.div `
+		// 	 ${'' /* background: blue; */}
+		// display: grid;
+		// grid-template-columns:  1fr 1fr;
+		// 	 `;
 		//Template
 		return (
 			<Wrapper >
-				<Content></Content>
-				<ButtonContainer>
+				<Content>
+					<span onClick={this.hideFolderSelection}>
+						<FolderLink/>
+					</span>
+				</Content>
+				{/* <ButtonContainer>
 					<Button text="Cancel" color=" #95989A"/>
 					<Button text="Select" color=" #42EA9C"/>
-				</ButtonContainer>
+				</ButtonContainer> */}
 			</Wrapper>
 		);
 	}
