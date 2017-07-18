@@ -73,6 +73,7 @@ export default class App extends Component {
     //Style
      const MasterWrapper = styled.div `
      position: fixed;
+     height: 100%;
      max-width: 600px;
      left: 0;
      right: 0;
