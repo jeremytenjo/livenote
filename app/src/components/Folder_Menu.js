@@ -38,7 +38,6 @@ class FolderMenu extends React.Component {
 	// }
 
 	hideFolderSelection = (name) => {
-		console.log(this.props.status);
 		this.props.FolderSelection_Name(name);
 		this.props.folderSelection(false);
 

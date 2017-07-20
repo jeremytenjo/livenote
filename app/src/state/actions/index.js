@@ -7,7 +7,6 @@ export const folderSelection = (e) => {
 }
 
 export const FolderSelection_Name = (e) => {
-  console.log(e);
   return {
     type: 'CHANGE_NAME',
     data: e
