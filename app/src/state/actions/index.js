@@ -12,3 +12,9 @@ export const FolderSelection_Name = (e) => {
     data: e
   }
 }
+export const Note_Name = (e) => {
+  return {
+    type: 'CHANGE_NOTE_NAME',
+    data: e
+  }
+}

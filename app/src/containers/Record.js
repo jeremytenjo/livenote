@@ -25,7 +25,7 @@ class Record extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			showMenu: 'false'
+			noteName: ''
 		}
 	}
 
@@ -37,62 +37,19 @@ class Record extends React.Component {
 	initRecording = () => {
 		this.props.history.push(`/recording`);
 	}
+	handleNameInput = (e) => {
+		this.setState({noteName: e.target.value})
+
+	}
+
 	render() {
 		//Properties
 
-		//Style
-		const InitWrapper = styled.div `
-		position: absolute;
-left: 0;
-right: 0;
-bottom: 0;
-top: 0;
-margin:auto;
-width: 100%;
-height: 200px;
- `;
-		const Input = styled.input `
-	margin: 0 auto;
-	text-align: center;
-	display: block;
-	margin-bottom: 10px;
-	background: transparent;
-	color: white;
-	outline: none;
-	font-size: 20px;
-	textDecoration: none;
-	border-color: transparent;
-border-width:0px;
-border:none
-width: 243px;
-
-&:focus {
-	 outline: none;
-}
-  `;
-		const Selection = styled.p `
-text-align: center;
-cursor: pointer;
-outline: none;
-&:focus {
-	outline: none;
-}
-	 `;
-		const InitBtn = styled.svg `
-display: block;
-margin: 0 auto;
-	 `;
-
-		const Circle = styled.circle `
-&:active {
-	stroke-width: 30;
-}
-	  `;
 		//Template
 		return (
 			<div>
 				<InitWrapper>
-					<Input type="text" placeholder="NAME"/>
+					<Input type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} name="email"/>
 					<Selection onClick={this.showMenu}>{this.props.name}</Selection>
 					<InitBtn width="100" height="100" onClick={this.initRecording}>
 						<Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
@@ -105,4 +62,52 @@ margin: 0 auto;
 
 }
 
+//Style
+const InitWrapper = styled.div `
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+top: 0;
+margin:auto;
+width: 100%;
+height: 200px;
+`;
+const Input = styled.input `
+margin: 0 auto;
+text-align: center;
+display: block;
+margin-bottom: 10px;
+background: transparent;
+color: white;
+outline: none;
+font-size: 20px;
+textDecoration: none;
+border-color: transparent;
+border-width:0px;
+border:none
+width: 243px;
+
+&:focus {
+outline: none;
+}
+`;
+const Selection = styled.p `
+text-align: center;
+cursor: pointer;
+outline: none;
+&:focus {
+outline: none;
+}
+`;
+const InitBtn = styled.svg `
+display: block;
+margin: 0 auto;
+`;
+
+const Circle = styled.circle `
+&:active {
+stroke-width: 30;
+}
+`;
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Record));
