@@ -3,27 +3,36 @@ import styled from 'styled-components'
 // import Button from '../components/Button.js';
 import FolderLink from '../components/Folder_link_menu.js';
 // import FolderSubLink from '../components/Folder_Sublink_menu.js';
-export default class FolderMenu extends React.Component {
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {triggerAction} from '../state/actions/index';
+
+class FolderMenu extends React.Component {
 
 	//initial state
 	constructor(props) {
 		super(props)
 		this.state = {
-			showMenu: this.props.showMenu
+			// showMenu: this.props.showMenu
+			showMenu: this.props.status
 		}
 	}
 
 	//Methods
 	//update compnent state from parent
-	componentWillUpdate(nextProps, nextState) {
-		nextState.showMenu = nextProps.showMenu;
+	// componentWillUpdate(nextProps, nextState) {
+	// 	nextState.showMenu = nextProps.showMenu;
+	// }
+
+	//Receiver
+
+	componentWillMount = () => {
+	//  console.log(this.props.status);
+
 	}
 
 	hideFolderSelection = () => {
-		console.log(this.state.showMenu);
-		this.setState({showMenu: false});
-		console.log(this.state.showMenu);
-
+		return this.props.triggerAction(false);
 	}
 	render() {
 		//Properties
@@ -32,7 +41,7 @@ export default class FolderMenu extends React.Component {
 		const Wrapper = styled.div `
 	background: white;
 	position: fixed;
-	display: ${props => this.state.showMenu === false
+	display: ${props => !this.props.status
 			? 'none !important'
 			: 'block !important'};
 	bottom: 0;
@@ -72,3 +81,16 @@ padding: 20px;
 	}
 
 }
+
+//define what information to get from store and listen to changes, eg sets status as a component prop
+function mapStateToProps(state) {
+	return {status: state.Modals}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		triggerAction
+	}, dispatch)
+}
+//set store data in components state
+export default connect(mapStateToProps, mapDispatchToProps)(FolderMenu);

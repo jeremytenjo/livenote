@@ -7,18 +7,15 @@ import styled from 'styled-components'
 
 const Login = Loadable({
   loader: () => import('./containers/Login.js'),
-	loading: () => null,
-
+	loading: () => null
 });
 const Register = Loadable({
   loader: () => import('./containers/Register.js'),
-	loading: () => null,
-
+	loading: () => null
 });
 const Home = Loadable({
   loader: () => import('./containers/Home.js'),
-	loading: () => null,
-
+	loading: () => null
 });
 
 function PrivateRoute({

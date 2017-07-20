@@ -1,0 +1,44 @@
+[debug] [2017-07-20T20:52:56.049Z] ----------------------------------------------------------------------
+[debug] [2017-07-20T20:52:56.051Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-07-20T20:52:56.051Z] CLI Version:  3.9.1
+[debug] [2017-07-20T20:52:56.051Z] Platform:     win32
+[debug] [2017-07-20T20:52:56.051Z] Node Version: v8.0.0
+[debug] [2017-07-20T20:52:56.051Z] Time:         Thu Jul 20 2017 16:52:56 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-07-20T20:52:56.051Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-07-20T20:52:56.114Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-07-20T20:52:56.114Z] > authorizing via signed-in user
+[debug] [2017-07-20T20:52:56.116Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-07-20T20:52:56.116Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/rR-UsMxd4Ck48z9PWxqsHMxuoSCLxUQUGgFjGvQP2vBOj69mBxS3o_5VA3dlmTVx',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Thu Jul 20 2017 16:52:56 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-07-20T20:52:56.454Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-20T20:52:56.483Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Thu Jul 20 2017 16:52:56 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-07-20T20:52:57.181Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-20T20:52:57.181Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/live-note-ce62c/tokens  
+ Thu Jul 20 2017 16:52:57 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-07-20T20:52:57.727Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'live-note-ce62c'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] +  database: rules ready to deploy.
+[debug] [2017-07-20T20:52:58.614Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-07-20T20:52:58.619Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Thu Jul 20 2017 16:52:58 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-07-20T20:52:58.620Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Thu Jul 20 2017 16:52:58 GMT-0400 (Eastern Daylight Time)

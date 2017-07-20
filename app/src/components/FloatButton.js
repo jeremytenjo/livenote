@@ -38,7 +38,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
 		 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 		 cursor: pointer; text-decoration: none;
 		  margin: 0px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; position: relative; vertical-align: bottom; z-index: 1;
-			 background-color: #F44336;
+			 background-color: #F71735;
 			  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 			 height: 56px; width: 56px; overflow: hidden; border-radius: 50%; text-align: center;
  	 `;
