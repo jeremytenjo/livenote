@@ -5,7 +5,20 @@ import FolderLink from '../components/Folder_link_menu.js';
 // import FolderSubLink from '../components/Folder_Sublink_menu.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {triggerAction} from '../state/actions/index';
+import {folderSelection} from '../state/actions/index';
+import {FolderSelection_Name} from '../state/actions/index';
+
+//define what information to get from store and listen to changes, eg sets status as a component prop
+function mapStateToProps(state) {
+	return {status: state.FolderSelection}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		folderSelection,
+		FolderSelection_Name
+	}, dispatch)
+}
 
 class FolderMenu extends React.Component {
 
@@ -24,15 +37,11 @@ class FolderMenu extends React.Component {
 	// 	nextState.showMenu = nextProps.showMenu;
 	// }
 
-	//Receiver
+	hideFolderSelection = (name) => {
+		console.log(this.props.status);
+		this.props.FolderSelection_Name(name);
+		this.props.folderSelection(false);
 
-	componentWillMount = () => {
-	//  console.log(this.props.status);
-
-	}
-
-	hideFolderSelection = () => {
-		return this.props.triggerAction(false);
 	}
 	render() {
 		//Properties
@@ -41,7 +50,7 @@ class FolderMenu extends React.Component {
 		const Wrapper = styled.div `
 	background: white;
 	position: fixed;
-	display: ${props => !this.props.status
+	display: ${props => this.props.status === false
 			? 'none !important'
 			: 'block !important'};
 	bottom: 0;
@@ -68,8 +77,15 @@ padding: 20px;
 		return (
 			<Wrapper >
 				<Content>
-					<span onClick={this.hideFolderSelection}>
-						<FolderLink/>
+					<span onClick={() => {
+						this.hideFolderSelection('Root')
+					}}>
+						<FolderLink name="Root"/>
+					</span>
+					<span onClick={() => {
+						this.hideFolderSelection('Name')
+					}}>
+						<FolderLink name="Name"/>
 					</span>
 				</Content>
 				{/* <ButtonContainer>
@@ -82,15 +98,5 @@ padding: 20px;
 
 }
 
-//define what information to get from store and listen to changes, eg sets status as a component prop
-function mapStateToProps(state) {
-	return {status: state.Modals}
-}
-
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		triggerAction
-	}, dispatch)
-}
 //set store data in components state
 export default connect(mapStateToProps, mapDispatchToProps)(FolderMenu);

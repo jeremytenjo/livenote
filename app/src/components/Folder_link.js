@@ -9,7 +9,7 @@ export default class Folder_Link extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			name: props.name
 		}
 	}
 
@@ -41,7 +41,7 @@ color: #212121;
 		return (
 			<Wrapper>
 				<Img src={Folder_img} alt="foler icon"/>
-				<Title>Name</Title>
+				<Title>{this.state.name}</Title>
 				<Img src={Options_img} alt="options icon"/>
 
 			</Wrapper>

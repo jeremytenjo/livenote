@@ -16,6 +16,11 @@ const Directory = Loadable({
 	loading: () => null,
 
 });
+const Recording = Loadable({
+  loader: () => import('./Recording.js'),
+	loading: () => null,
+
+});
 export default class Home extends React.Component {
 
 	//initial state
@@ -84,6 +89,7 @@ margin-left: 10px;
 									<Switch>
 										<Route exact path='/' component={Directory}/>
 										<Route exact path='/record' component={Record}/>
+										<Route exact path='/recording' component={Recording}/>
 									</Switch>
 						</Content>
 					</BrowserRouter>

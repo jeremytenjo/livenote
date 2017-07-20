@@ -8,7 +8,7 @@ export default class FolderMenu extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			name: props.name
 		}
 	}
 
@@ -44,7 +44,7 @@ margin-left: 5px;
 		return (
 			<Wrapper>
 				<Img src={Folder_icon} alt="Folder Icon"/>
-				<Title>Name</Title>
+				<Title>{this.state.name}</Title>
 				{/* <Img src={Arrow_icon} alt="Arrow Icon"/> */}
 			</Wrapper>
 		);

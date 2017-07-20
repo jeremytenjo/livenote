@@ -50,10 +50,10 @@ grid-row-gap: 5px;
 					<Img src={Plus_img} alt="add icon"/>
 				</TitleWrappper>
 				<FolderWrapper>
-					<FolderLink/>
-					<FolderLink/>
-					<FolderLink/>
-					<FolderLink/>
+					<FolderLink name="Name"/>
+					<FolderLink name="Name"/>
+					<FolderLink name="Name"/>
+					<FolderLink name="Name"/>
 				</FolderWrapper>
 			</Wrapper>
 		);

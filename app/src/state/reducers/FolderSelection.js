@@ -5,8 +5,9 @@ let initial_value = false;
 export default function(state = initial_value, action) {
 	switch (action.type) {
 		case "TRIGGER_CLICKED":
-			return action.data;
-			break;
+			return action.data
+
+			default:
+      return state
 	}
-	return state;
 }
