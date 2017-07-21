@@ -29,12 +29,16 @@ class Recording extends React.Component {
 		//Template
 		return (
 			<div>
-Recording
+					Recording
 			</div>
 		);
 	}
 
 }
+
+//Styles
+
+
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Recording);
 export default Recording

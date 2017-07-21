@@ -18,3 +18,9 @@ export const Note_Name = (e) => {
     data: e
   }
 }
+export const Change_TopBar_Title = (e) => {
+  return {
+    type: 'CHANGE_TOPBAR_TITLE',
+    data: e
+  }
+}

@@ -69,12 +69,13 @@ export default class App extends Component {
 	render() {
     //Style
      const MasterWrapper = styled.div `
-     position: fixed;
+     position: absolute;
      height: 100%;
      max-width: 600px;
      left: 0;
      right: 0;
      margin: auto;
+     overflow-x: hidden;
      `;
 		return this.state.loading === true
 			? <h1>Loading</h1>

@@ -6,6 +6,15 @@ import Search_icon from '../images/icons/search.svg';
 import {Route, BrowserRouter, Switch} from 'react-router-dom'
 import Loadable from 'react-loadable';
 
+//State
+import {connect} from 'react-redux';
+
+//Set global state to prop
+function mapStateToProps(state) {
+  return {title: state.TopBar_Title}
+ }
+//define actions
+
 const Record = Loadable({
   loader: () => import('./Record.js'),
 	loading: () => null,
@@ -21,7 +30,7 @@ const Recording = Loadable({
 	loading: () => null,
 
 });
-export default class Home extends React.Component {
+class Home extends React.Component {
 
 	//initial state
 	constructor(props) {
@@ -81,7 +90,7 @@ margin-left: 10px;
 				<HomeContainer>
 					<TopBar>
 						<Icon src={Menu_icon} alt="Menu Icon"/>
-						<TitlePage>Notes</TitlePage>
+						<TitlePage>{this.props.title}</TitlePage>
 						<Icon src={Search_icon} alt="Search Icon"/>
 					</TopBar>
 					<BrowserRouter>
@@ -101,3 +110,5 @@ margin-left: 10px;
 	}
 
 }
+
+export default connect(mapStateToProps)(Home);
