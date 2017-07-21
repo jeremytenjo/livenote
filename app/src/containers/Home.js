@@ -46,12 +46,7 @@ class Home extends React.Component {
 
 		//Style
 		const HomeContainer = styled.div `
-		  ${ ''/* display: grid; */}
-			${ ''/* grid-template-rows: 45px 1fr; */}
-      ${ ''/* height: calc(100vh - 60px); */}
-
-      ${ ''/* padding-left: 10px; */}
-    	${ ''/* padding-right: 10px; */}
+		 
 		 `;
 		const TopBar = styled.div `
 	max-width: 600px;
@@ -68,7 +63,6 @@ background: #263238;
  `;
 		const Content = styled.div `
 	overflow-x: hidden;
-	overflow-y: scroll;
   margin-top: 46px;
   `;
 		const TitlePage = styled.p `

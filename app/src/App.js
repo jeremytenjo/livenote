@@ -6,15 +6,15 @@ import Loadable from 'react-loadable';
 import styled from 'styled-components'
 
 const Login = Loadable({
-  loader: () => import('./containers/Login.js'),
+	loader: () => import ('./containers/Login.js'),
 	loading: () => null
 });
 const Register = Loadable({
-  loader: () => import('./containers/Register.js'),
+	loader: () => import ('./containers/Register.js'),
 	loading: () => null
 });
 const Home = Loadable({
-  loader: () => import('./containers/Home.js'),
+	loader: () => import ('./containers/Home.js'),
 	loading: () => null
 });
 
@@ -31,8 +31,7 @@ function PrivateRoute({
 				state: {
 					from: props.location
 				}
-			}}/>
-		}/>
+			}}/>}/>
 	)
 }
 
@@ -67,30 +66,29 @@ export default class App extends Component {
 		this.removeListener()
 	}
 	render() {
-    //Style
-     const MasterWrapper = styled.div `
+		//Style
+		const MasterWrapper = styled.div `
      position: absolute;
      height: 100%;
      max-width: 600px;
      left: 0;
      right: 0;
      margin: auto;
-     overflow-x: hidden;
      `;
 		return this.state.loading === true
 			? <h1>Loading</h1>
 			: (
 				<BrowserRouter>
 					<MasterWrapper>
-								<Switch>
-									<PrivateRoute authed={this.state.authed} exact path='/' component={Home}/>
-									<PrivateRoute authed={this.state.authed} exact path='/record' component={Home}/>
-									<PrivateRoute authed={this.state.authed} exact path='/recording' component={Home}/>
-									<PrivateRoute authed={this.state.authed} exact path='/files' component={Home}/>
-									<PublicRoute authed={this.state.authed} path='/login' component={Login}/>
-									<PublicRoute authed={this.state.authed} path='/register' component={Register}/>
-									<Route render={() => <h3>No Match 404</h3>}/>
-								</Switch>
+						<Switch>
+							<PrivateRoute authed={this.state.authed} exact path='/' component={Home}/>
+							<PrivateRoute authed={this.state.authed} exact path='/record' component={Home}/>
+							<PrivateRoute authed={this.state.authed} exact path='/recording' component={Home}/>
+							<PrivateRoute authed={this.state.authed} exact path='/files' component={Home}/>
+							<PublicRoute authed={this.state.authed} path='/login' component={Login}/>
+							<PublicRoute authed={this.state.authed} path='/register' component={Register}/>
+							<Route render={() => <h3>No Match 404</h3>}/>
+						</Switch>
 					</MasterWrapper>
 				</BrowserRouter>
 			);
