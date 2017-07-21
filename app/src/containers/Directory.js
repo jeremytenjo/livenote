@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Recent from '../components/Recent.js';
-import Folders from '../components/Folders.js';
-import Notes from '../components/Notes.js';
+import Recent from '../groups/Recent.js';
+import Folders from '../groups/Folders.js';
+import Notes from '../groups/Notes.js';
 import FloatingButton from '../components/FloatButton.js';
 import {withRouter} from 'react-router-dom'
 

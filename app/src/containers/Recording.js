@@ -1,5 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -24,21 +24,35 @@ class Recording extends React.Component {
 	render() {
 		//Properties
 
-   //Style
+		//Style
 
 		//Template
 		return (
-			<div>
-					Recording
-			</div>
+			<Wrapper>
+				<ItemViewContainer></ItemViewContainer>
+				<TimeBarContainer></TimeBarContainer>
+				<OptionsContainer></OptionsContainer>
+			</Wrapper>
 		);
 	}
 
 }
 
 //Styles
-
-
+const Wrapper = styled.div `
+	display: grid;
+	height: 100%;
+	grid-template-rows: 1fr 200px 200px;
+ `;
+const ItemViewContainer = styled.div `
+background: red;
+ `;
+const TimeBarContainer = styled.div `
+background: blue;
+  `;
+const OptionsContainer = styled.div `
+background: green;
+	 `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Recording);
 export default Recording
