@@ -48,7 +48,6 @@ class NewNote extends React.Component {
 
 //Style
 const Wrapper = styled.form `
-
 background: white;
 position: fixed;
 display: ${props => props.display === 'none' ? 'none' : 'grid'};

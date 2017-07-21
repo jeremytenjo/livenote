@@ -44,40 +44,6 @@ class Home extends React.Component {
 	render() {
 		//Properties
 
-		//Style
-		const HomeContainer = styled.div `
-		 
-		 `;
-		const TopBar = styled.div `
-	max-width: 600px;
-  position: fixed;
-	height: 25px;
-  top: 0;
-  right: 0;
-  left: 0;
-	margin: auto;
-	display: grid;
-	grid-template-columns: 20px 1fr 20px;
-   padding: 10px;
-background: #263238;
- `;
-		const Content = styled.div `
-	overflow-x: hidden;
-  margin-top: 46px;
-  `;
-		const TitlePage = styled.p `
-font-size: 20px;
-font-weight: bold;
-outline: none;
-margin: 0;
-margin-left: 10px;
-`;
-		const Icon = styled.img `
-			width: 20px;
-			cursor: pointer;
-      margin-top: 2px;
-	`;
-
 		//Template
 		return (
 			<div>
@@ -104,4 +70,37 @@ margin-left: 10px;
 
 }
 
+//Style
+const HomeContainer = styled.div `
+
+ `;
+const TopBar = styled.div `
+max-width: 600px;
+position: fixed;
+height: 25px;
+top: 0;
+right: 0;
+left: 0;
+margin: auto;
+display: grid;
+grid-template-columns: 20px 1fr 20px;
+padding: 10px;
+background: #263238;
+`;
+const Content = styled.div `
+overflow-x: hidden;
+margin-top: 46px;
+`;
+const TitlePage = styled.p `
+font-size: 20px;
+font-weight: bold;
+outline: none;
+margin: 0;
+margin-left: 10px;
+`;
+const Icon = styled.img `
+	width: 20px;
+	cursor: pointer;
+	margin-top: 2px;
+`;
 export default connect(mapStateToProps)(Home);

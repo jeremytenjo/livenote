@@ -57,13 +57,20 @@ class Recording extends React.Component {
 //Styles
 const Wrapper = styled.div `
 	display: grid;
-	${'' /* height: calc(100vh - 45px); */}
-	height: calc(100vh - 95px);
+	height: 100%;
+	position: fixed;
+	max-width: 600px;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
 	grid-template-rows: 1fr 100px 100px;
 	overflow: hidden;
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* background: red; */}
+padding-top: 40px;
  `;
 const TimeBarContainer = styled.div `
 background: blue;
