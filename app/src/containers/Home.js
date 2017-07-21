@@ -11,24 +11,21 @@ import {connect} from 'react-redux';
 
 //Set global state to prop
 function mapStateToProps(state) {
-  return {title: state.TopBar_Title}
- }
+	return {title: state.TopBar_Title}
+}
 //define actions
 
 const Record = Loadable({
-  loader: () => import('./Record.js'),
-	loading: () => null,
-
+	loader: () => import ('./Record.js'),
+	loading: () => null
 });
 const Directory = Loadable({
-  loader: () => import('./Directory.js'),
-	loading: () => null,
-
+	loader: () => import ('./Directory.js'),
+	loading: () => null
 });
 const Recording = Loadable({
-  loader: () => import('./Recording.js'),
-	loading: () => null,
-
+	loader: () => import ('./Recording.js'),
+	loading: () => null
 });
 class Home extends React.Component {
 
@@ -41,20 +38,20 @@ class Home extends React.Component {
 	}
 
 	//Methods
-new  = () => {
-	this.props.history.push(`/record`);
-}
+	new = () => {
+		this.props.history.push(`/record`);
+	}
 	render() {
 		//Properties
 
 		//Style
 		const HomeContainer = styled.div `
-		  ${'' /* display: grid; */}
-			${'' /* grid-template-rows: 45px 1fr; */}
-      ${'' /* height: calc(100vh - 60px); */}
+		  ${ ''/* display: grid; */}
+			${ ''/* grid-template-rows: 45px 1fr; */}
+      ${ ''/* height: calc(100vh - 60px); */}
 
-      ${'' /* padding-left: 10px; */}
-    	${'' /* padding-right: 10px; */}
+      ${ ''/* padding-left: 10px; */}
+    	${ ''/* padding-right: 10px; */}
 		 `;
 		const TopBar = styled.div `
 	max-width: 600px;
@@ -98,15 +95,14 @@ margin-left: 10px;
 					</TopBar>
 					<BrowserRouter>
 						<Content>
-									<Switch>
-										<Route exact path='/' component={Directory}/>
-										<Route exact path='/record' component={Record}/>
-										<Route exact path='/recording' component={Recording}/>
-									</Switch>
+							<Switch>
+								<Route exact path='/' component={Directory}/>
+								<Route exact path='/record' component={Record}/>
+								<Route exact path='/recording' component={Recording}/>
+							</Switch>
 						</Content>
 					</BrowserRouter>
 				</HomeContainer>
-
 
 			</div>
 		);

@@ -16,7 +16,7 @@ class NewNote extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			display: props.display
 		}
 	}
 
@@ -30,7 +30,7 @@ class NewNote extends React.Component {
 
 		//Template
 		return (
-			<Wrapper onSubmit={this.handleSubmit}>
+			<Wrapper onSubmit={this.handleSubmit} display={this.state.display}>
 
 				<Top>
 					<CloseIcon src={Close_Icon}/>
@@ -48,9 +48,10 @@ class NewNote extends React.Component {
 
 //Style
 const Wrapper = styled.form `
+
 background: white;
 position: fixed;
-display: grid;
+display: ${props => props.display === 'none' ? 'none' : 'grid'};
 grid-template-rows: 30px 50px 1fr 80px;
 height: 100%;
 width: 100%;

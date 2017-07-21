@@ -46,7 +46,7 @@ class Recording extends React.Component {
 					<RecOptions/>
 				</OptionsContainer>
 
-					<NewNote/>
+					<NewNote display="none"/>
 
 			</Wrapper>
 		);
@@ -57,7 +57,8 @@ class Recording extends React.Component {
 //Styles
 const Wrapper = styled.div `
 	display: grid;
-	height: 100%;
+	${'' /* height: calc(100vh - 45px); */}
+	height: calc(100vh - 95px);
 	grid-template-rows: 1fr 100px 100px;
 	overflow: hidden;
  `;
@@ -70,6 +71,6 @@ background: blue;
 const OptionsContainer = styled.div `
 ${ ''/* background: green; */}
 	 `;
- 
+
 //export default connect(mapStateToProps, mapDispatchToProps)(Recording);
 export default Recording

@@ -75,7 +75,6 @@ export default class App extends Component {
      left: 0;
      right: 0;
      margin: auto;
-     padding: 10px;
      overflow-x: hidden;
      `;
 		return this.state.loading === true
