@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Recent from '../groups/Recent.js';
-import Folders from '../groups/Folders.js';
-import Notes from '../groups/Notes.js';
+import Recent from '../components/groups/Recent.js';
+import Folders from '../components/groups/Folders.js';
+import Notes from '../components/groups/Notes.js';
 import FloatingButton from '../components/FloatButton.js';
 import {withRouter} from 'react-router-dom'
 
@@ -25,7 +25,7 @@ class Directory extends React.Component {
 
    //Style
 	 const FloatingButtonCon = styled.span `
-position: absolute;
+position: fixed;
 bottom: 20px;
 right: 0;
 `;

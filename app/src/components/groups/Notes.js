@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import File from '../components/File_link.js';
+import File from '../File_link.js';
 
 export default class Notes extends React.Component {
 
@@ -20,7 +20,7 @@ export default class Notes extends React.Component {
 		//Style
 		const Wrapper = styled.div `
 		margin-top: 15px;
-
+padding-bottom: 90px;
 	  `;
 		const Title = styled.p `
 	 margin-top: 5px;

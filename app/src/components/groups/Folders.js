@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import Plus_img from '../images/icons/plus.svg';
-import FolderLink from '../components/Folder_link.js';
+import Plus_img from '../../images/icons/plus.svg';
+import FolderLink from '../Folder_link.js';
 export default class Folder extends React.Component {
 
 	//initial state

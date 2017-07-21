@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
+import RecItemView from '../components/groups/RecItemView.js';
+import RecTimteBar from '../components/groups/RecTimteBar.js';
+import RecOptions from '../components/groups/RecOptions.js';
+import NewNote from '../components/groups/NewNote.js';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -29,9 +33,21 @@ class Recording extends React.Component {
 		//Template
 		return (
 			<Wrapper>
-				<ItemViewContainer></ItemViewContainer>
-				<TimeBarContainer></TimeBarContainer>
-				<OptionsContainer></OptionsContainer>
+
+				<ItemViewContainer>
+					<RecItemView/>
+				</ItemViewContainer>
+
+				<TimeBarContainer>
+					<RecTimteBar/>
+				</TimeBarContainer>
+
+				<OptionsContainer>
+					<RecOptions/>
+				</OptionsContainer>
+
+					<NewNote/>
+
 			</Wrapper>
 		);
 	}
@@ -42,17 +58,18 @@ class Recording extends React.Component {
 const Wrapper = styled.div `
 	display: grid;
 	height: 100%;
-	grid-template-rows: 1fr 200px 200px;
+	grid-template-rows: 1fr 100px 100px;
+	overflow: hidden;
  `;
 const ItemViewContainer = styled.div `
-background: red;
+${ ''/* background: red; */}
  `;
 const TimeBarContainer = styled.div `
 background: blue;
   `;
 const OptionsContainer = styled.div `
-background: green;
+${ ''/* background: green; */}
 	 `;
-
+ 
 //export default connect(mapStateToProps, mapDispatchToProps)(Recording);
 export default Recording

@@ -49,27 +49,30 @@ new  = () => {
 
 		//Style
 		const HomeContainer = styled.div `
-		  display: grid;
-			grid-template-rows: 45px 1fr;
-			height: 100vh;
-      padding-left: 10px;
-    	padding-right: 10px;
+		  ${'' /* display: grid; */}
+			${'' /* grid-template-rows: 45px 1fr; */}
+      ${'' /* height: calc(100vh - 60px); */}
+
+      ${'' /* padding-left: 10px; */}
+    	${'' /* padding-right: 10px; */}
 		 `;
 		const TopBar = styled.div `
-  width: 100%;
 	max-width: 600px;
-	height: auto;
-	margin: 0;
+  position: fixed;
+	height: 25px;
+  top: 0;
+  right: 0;
+  left: 0;
+	margin: auto;
 	display: grid;
 	grid-template-columns: 20px 1fr 20px;
-  margin-top: 10px;
-
+   padding: 10px;
+background: #263238;
  `;
 		const Content = styled.div `
 	overflow-x: hidden;
 	overflow-y: scroll;
-
-	padding-bottom: 90px;
+  margin-top: 46px;
   `;
 		const TitlePage = styled.p `
 font-size: 20px;

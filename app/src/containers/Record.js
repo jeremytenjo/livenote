@@ -100,6 +100,30 @@ width: 243px;
 &:focus {
 outline: none;
 }
+
+::-webkit-input-placeholder {
+	/* Chrome/Opera/Safari */
+	color: #9E9E9E;
+	text-align: center;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #9E9E9E;
+	text-align: center;
+}
+
+:-ms-input-placeholder {
+	/* IE 10+ */
+	color: #9E9E9E;
+	text-align: center;
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	color: #9E9E9E;
+	text-align: center;
+}
 `;
 const Selection = styled.p `
 text-align: center;

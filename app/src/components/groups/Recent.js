@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import File from '../components/File_link.js';
+import File from '../File_link.js';
 export default class Recent extends React.Component {
 
 	//initial state
