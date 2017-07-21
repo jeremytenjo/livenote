@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import Close_Icon from '../../images/icons/close.svg';
 import Button from '../Button.js';
 //State
-//import {bindActionCreators} from 'redux';
-//import {connect} from 'react-redux';
-//import {triggerAction} from '../state/actions/index';
+import {connect} from 'react-redux';
+// import {triggerAction} from '../state/actions/index';
 
 //Set global state to prop
+function mapStateToProps(state) {
+  return {status: state.NewNoteToggle}
+ }
 //define actions
 
 class NewNote extends React.Component {
@@ -30,7 +32,7 @@ class NewNote extends React.Component {
 
 		//Template
 		return (
-			<Wrapper onSubmit={this.handleSubmit} display={this.state.display}>
+			<Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
 
 				<Top>
 					<CloseIcon src={Close_Icon}/>
@@ -100,5 +102,4 @@ const ButtonCon = styled.div `
 	margin: 0 auto;
 	padding-top: 10px;
 				 `;
-//export default connect(mapStateToProps, mapDispatchToProps)(NewNote);
-export default NewNote
+export default connect(mapStateToProps)(NewNote);

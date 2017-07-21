@@ -24,3 +24,9 @@ export const Change_TopBar_Title = (e) => {
     data: e
   }
 }
+export const Toggle_NewNote = (e) => {
+  return {
+    type: 'CHANGE_TOPBAR_TITLE',
+    data: e
+  }
+}
