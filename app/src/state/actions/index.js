@@ -30,3 +30,21 @@ export const Toggle_NewNote = (e) => {
     data: e
   }
 }
+export const Stop_Toggle = (e) => {
+  return {
+    type: 'STOP_TOGGLE',
+    data: e
+  }
+}
+export const Play_Toggle = (e) => {
+  return {
+    type: 'PLAY_TOGGLE',
+    data: e
+  }
+}
+export const Pause_Toggle = (e) => {
+  return {
+    type: 'PAUSE_TOGGLE',
+    data: e
+  }
+}

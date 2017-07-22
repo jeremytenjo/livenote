@@ -9,8 +9,7 @@ import {connect} from 'react-redux';
 import {folderSelection, Change_TopBar_Title, Note_Name} from '../state/actions/index';
 
 function mapStateToProps(state) {
-	return {name: state.FolderSelection_Name,
-					noteName: state.Note_Name}
+	return {name: state.FolderSelection_Name, noteName: state.Note_Name}
 }
 
 //define actions to use
@@ -33,7 +32,7 @@ class Record extends React.Component {
 	}
 
 	//Methods
-	componentWillMount(){
+	componentWillMount() {
 		this.props.Change_TopBar_Title('Notes');
 	}
 	showMenu = () => {
@@ -51,6 +50,7 @@ class Record extends React.Component {
 
 	}
 
+
 	render() {
 		//Properties
 
@@ -58,6 +58,8 @@ class Record extends React.Component {
 		return (
 			<div>
 				<InitWrapper>
+
+
 					<Input type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} name="email"/>
 					<Selection onClick={this.showMenu}>{this.props.name}</Selection>
 					<InitBtn width="100" height="100" onClick={this.initRecording}>
@@ -136,7 +138,6 @@ outline: none;
 const InitBtn = styled.svg `
 display: block;
 margin: 0 auto;
-cursor: pointer;
 
 `;
 

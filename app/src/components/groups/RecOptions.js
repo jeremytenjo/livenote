@@ -4,17 +4,24 @@ import Note_icon from '../../images/icons/Note.svg';
 import Camera_icon from '../../images/icons/Camara.svg';
 import Stop_icon from '../../images/icons/Stop.svg';
 import Pause_icon from '../../images/icons/Pause.svg';
+import Play_icon from '../../images/icons/Play.svg';
 
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_NewNote} from '../../state/actions/index';
+import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle} from '../../state/actions/index';
 
 //Set global state to prop
+function mapStateToProps(state) {
+	return {stopStatus: state.Stop_Toggle, playStatus: state.Play_Toggle, pauseStatus: state.Pause_Toggle}
+}
 //define actions
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		Toggle_NewNote
+		Toggle_NewNote,
+		Stop_Toggle,
+		Play_Toggle,
+		Pause_Toggle
 	}, dispatch)
 }
 
@@ -32,9 +39,46 @@ class RecOptions extends React.Component {
 	showNote = () => {
 		this.props.Toggle_NewNote('show');
 	}
+	stop = () => {
+		this.props.Stop_Toggle(true);
+		this.props.Play_Toggle(true);
+		this.props.Pause_Toggle(false);
+	}
+	play = () => {
+		this.props.Stop_Toggle(false);
+		this.props.Play_Toggle(false);
+		this.props.Pause_Toggle(false);
+	}
+	pause = () => {
+		this.props.Play_Toggle(true);
+		this.props.Pause_Toggle(true);
+		this.props.Stop_Toggle(false);
+	}
 	render() {
 		//Properties
 
+		//Reactive Styles
+		const StopIcon = styled.img `
+		display: ${props => this.props.stopStatus === false
+			? 'block'
+			: 'none'};
+		 width: 40px;
+		 cursor: pointer;
+		 	 `;
+		const PlayIcon = styled.img `
+		display: ${props => this.props.playStatus === false
+			? 'none'
+			: 'block'};
+			  width: 40px;
+			  cursor: pointer;
+			  `;
+		const PauseIcon = styled.img `
+		display: ${props => this.props.pauseStatus === false
+			? 'block'
+			: 'none'};
+				 width: 40px;
+				 cursor: pointer;
+				 `;
 		//Template
 		return (
 			<Wrapper>
@@ -43,8 +87,10 @@ class RecOptions extends React.Component {
 					<Top>0:00</Top>
 					<Bottom>
 						<BottomIconCon>
-							<CenterIcon src={Stop_icon} alt="Stop icon"/>
-							<CenterIcon src={Pause_icon} alt="Pause icon"/>
+							<StopIcon onClick={this.stop} src={Stop_icon} alt="Stop icon"/>
+							<PlayIcon onClick={this.play} src={Play_icon} alt="Play icon"/>
+							<PauseIcon onClick={this.pause} src={Pause_icon} alt="Pause icon"/>
+
 						</BottomIconCon>
 					</Bottom>
 				</Center>
@@ -87,7 +133,7 @@ ${ ''/* background: white; */}
 	 `;
 const Icon = styled.img `
 	margin: 15px;
-	
+
  `;
 const BottomIconCon = styled.div `
 	max-width: 100px;
@@ -96,12 +142,9 @@ const BottomIconCon = styled.div `
 	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 20px;
   `;
-const CenterIcon = styled.img `
-width: 40px;
-cursor: pointer;
-	 `;
+
 const FileInput = styled.input `
 display: none;
 	  `;
 
-export default connect(null, mapDispatchToProps)(RecOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(RecOptions);
