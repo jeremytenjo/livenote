@@ -3,15 +3,20 @@ import styled from 'styled-components'
 import Close_Icon from '../../images/icons/close.svg';
 import Button from '../Button.js';
 //State
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-// import {triggerAction} from '../state/actions/index';
+import {Toggle_NewNote} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-  return {status: state.NewNoteToggle}
- }
+	return {status: state.NewNoteToggle}
+}
 //define actions
-
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    Toggle_NewNote
+      }, dispatch)
+ }
 class NewNote extends React.Component {
 
 	//initial state
@@ -27,6 +32,9 @@ class NewNote extends React.Component {
 		e.preventDefault();
 
 	}
+	hide = () => {
+		this.props.Toggle_NewNote('none');
+	}
 	render() {
 		//Properties
 
@@ -35,7 +43,7 @@ class NewNote extends React.Component {
 			<Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
 
 				<Top>
-					<CloseIcon src={Close_Icon}/>
+					<CloseIcon onClick={this.hide} src={Close_Icon}/>
 					New Comment
 				</Top>
 				<Title placeholder="Title" type="text"/>
@@ -52,7 +60,9 @@ class NewNote extends React.Component {
 const Wrapper = styled.form `
 background: white;
 position: fixed;
-display: ${props => props.display === 'none' ? 'none' : 'grid'};
+display: ${props => props.display === 'none'
+	? 'none'
+	: 'grid'};
 grid-template-rows: 30px 50px 1fr 80px;
 height: 100%;
 width: 100%;
@@ -66,6 +76,8 @@ width: 17px;
 position: fixed;
 top: 15px;
 right: 15px;
+cursor: pointer;
+
 			  `;
 const Top = styled.div `
 text-align: center;
@@ -102,4 +114,4 @@ const ButtonCon = styled.div `
 	margin: 0 auto;
 	padding-top: 10px;
 				 `;
-export default connect(mapStateToProps)(NewNote);
+export default connect(mapStateToProps, mapDispatchToProps)(NewNote);

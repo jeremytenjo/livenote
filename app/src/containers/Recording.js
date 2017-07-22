@@ -67,6 +67,8 @@ const Wrapper = styled.div `
 	margin: auto;
 	grid-template-rows: 1fr 100px 100px;
 	overflow: hidden;
+	padding: 10px;
+
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* background: red; */}

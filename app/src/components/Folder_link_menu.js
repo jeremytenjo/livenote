@@ -24,6 +24,8 @@ ${'' /* grid-template-columns: 20px 1fr 20px; */}
 grid-template-columns: 20px 1fr;
 border-radius: 2px;
 padding: 10px;
+cursor: pointer;
+
 &:active {
 	background-color: #42EA9C;
 }

@@ -6,12 +6,17 @@ import Stop_icon from '../../images/icons/Stop.svg';
 import Pause_icon from '../../images/icons/Pause.svg';
 
 //State
-//import {bindActionCreators} from 'redux';
-//import {connect} from 'react-redux';
-//import {triggerAction} from '../state/actions/index';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {Toggle_NewNote} from '../../state/actions/index';
 
 //Set global state to prop
 //define actions
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		Toggle_NewNote
+	}, dispatch)
+}
 
 class RecOptions extends React.Component {
 
@@ -25,7 +30,7 @@ class RecOptions extends React.Component {
 
 	//Methods
 	showNote = () => {
-		console.log("HERE!");
+		this.props.Toggle_NewNote('show');
 	}
 	render() {
 		//Properties
@@ -82,6 +87,7 @@ ${ ''/* background: white; */}
 	 `;
 const Icon = styled.img `
 	margin: 15px;
+	
  `;
 const BottomIconCon = styled.div `
 	max-width: 100px;
@@ -92,10 +98,10 @@ const BottomIconCon = styled.div `
   `;
 const CenterIcon = styled.img `
 width: 40px;
+cursor: pointer;
 	 `;
 const FileInput = styled.input `
 display: none;
 	  `;
 
-//export default connect(mapStateToProps, mapDispatchToProps)(RecOptions);
-export default RecOptions
+export default connect(null, mapDispatchToProps)(RecOptions);

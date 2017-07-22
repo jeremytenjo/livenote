@@ -90,6 +90,8 @@ background: #263238;
 const Content = styled.div `
 overflow-x: hidden;
 margin-top: 46px;
+padding: 10px;
+
 `;
 const TitlePage = styled.p `
 font-size: 20px;

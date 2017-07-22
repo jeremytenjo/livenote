@@ -136,6 +136,8 @@ outline: none;
 const InitBtn = styled.svg `
 display: block;
 margin: 0 auto;
+cursor: pointer;
+
 `;
 
 const Circle = styled.circle `
