@@ -65,14 +65,16 @@ const Wrapper = styled.div `
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	grid-template-rows: 1fr 100px 100px;
+	grid-template-rows: 1fr 80px 100px;
 	overflow: hidden;
 	padding: 10px;
 
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* background: red; */}
-padding-top: 40px;
+margin-top: 40px;
+margin-bottom: 10px;
+overflow: scroll;
  `;
 const TimeBarContainer = styled.div `
 background: blue;

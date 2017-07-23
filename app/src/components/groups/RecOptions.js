@@ -40,16 +40,19 @@ class RecOptions extends React.Component {
 		this.props.Toggle_NewNote('show');
 	}
 	stop = () => {
+		//Handle display
 		this.props.Stop_Toggle(true);
 		this.props.Play_Toggle(true);
 		this.props.Pause_Toggle(false);
 	}
 	play = () => {
+		//Handle display
 		this.props.Stop_Toggle(false);
 		this.props.Play_Toggle(false);
 		this.props.Pause_Toggle(false);
 	}
 	pause = () => {
+		//Handle display
 		this.props.Play_Toggle(true);
 		this.props.Pause_Toggle(true);
 		this.props.Stop_Toggle(false);

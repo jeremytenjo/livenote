@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-
+import ItemOnlyText from '../Item_OnlyText.js';
+import ItemOnlyImage from '../Item_OnlyImage.js';
+import ItemTextImage from '../Item_TextImage.js';
 //State
 //import {bindActionCreators} from 'redux';
 //import {connect} from 'react-redux';
@@ -27,7 +29,13 @@ class RecItemView extends React.Component {
 		//Template
 		return (
 			<Wrapper>
-				<NothingTitle>Nothing Added</NothingTitle>
+				<ItemOnlyText/>
+				<ItemOnlyImage/>
+				<ItemOnlyText/>
+				<ItemTextImage/>
+				<ItemOnlyImage/>
+				<ItemTextImage/>
+				<ItemTextImage/>
 			</Wrapper>
 		);
 	}
@@ -36,13 +44,9 @@ class RecItemView extends React.Component {
 
 //Style
 const Wrapper = styled.div `
-	
+display: grid;
+grid-row-gap: 10px;
 `;
-const NothingTitle = styled.p `
-margin-top: 100px;
-text-align: center;
-	color: #9E9E9E;
-	font-size: 20px;
-`;
+
 //export default connect(mapStateToProps, mapDispatchToProps)(RecItemView);
 export default RecItemView
