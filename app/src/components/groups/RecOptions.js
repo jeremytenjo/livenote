@@ -13,7 +13,7 @@ import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle} from '../../stat
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {stopStatus: state.Stop_Toggle, playStatus: state.Play_Toggle, pauseStatus: state.Pause_Toggle}
+	return {recSeconds: state.RecSeconds, stopStatus: state.Stop_Toggle, playStatus: state.Play_Toggle, pauseStatus: state.Pause_Toggle}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -31,7 +31,7 @@ class RecOptions extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			sd: '0'
 		}
 	}
 
@@ -56,6 +56,13 @@ class RecOptions extends React.Component {
 		this.props.Play_Toggle(true);
 		this.props.Pause_Toggle(true);
 		this.props.Stop_Toggle(false);
+	}
+
+	getSeconds = () => {
+		console.log(this);
+		let time = 0 + this.props.recSeconds % 60;
+		console.log(time);
+		return time;
 	}
 	render() {
 		//Properties
@@ -87,7 +94,7 @@ class RecOptions extends React.Component {
 			<Wrapper>
 				<Left><Icon onClick={this.showNote} src={Note_icon} alt="Note icon"/></Left>
 				<Center>
-					<Top>0:00</Top>
+					<Top>{this.getSeconds()}</Top>
 					<Bottom>
 						<BottomIconCon>
 							<StopIcon onClick={this.stop} src={Stop_icon} alt="Stop icon"/>

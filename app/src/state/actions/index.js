@@ -48,3 +48,10 @@ export const Pause_Toggle = (e) => {
     data: e
   }
 }
+
+export const Seconds_Change = (e) => {
+  return {
+    type: 'INCREASE_TIME',
+    data: e
+  }
+}
