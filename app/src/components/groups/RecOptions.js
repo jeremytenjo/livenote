@@ -9,11 +9,11 @@ import Play_icon from '../../images/icons/Play.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle} from '../../state/actions/index';
+import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle, Start_Time} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {recSeconds: state.RecSeconds, recMinutes: state.RecMinutes, stopStatus: state.Stop_Toggle, playStatus: state.Play_Toggle, pauseStatus: state.Pause_Toggle}
+	return {recTime: state.RecTime, stopStatus: state.Stop_Toggle, playStatus: state.Play_Toggle, pauseStatus: state.Pause_Toggle}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -21,7 +21,8 @@ function mapDispatchToProps(dispatch) {
 		Toggle_NewNote,
 		Stop_Toggle,
 		Play_Toggle,
-		Pause_Toggle
+		Pause_Toggle,
+		Start_Time
 	}, dispatch)
 }
 
@@ -36,6 +37,14 @@ class RecOptions extends React.Component {
 	}
 
 	//Methods
+	componentWillMount() {
+		//Start Timer
+		let number = 0;
+		this.incrementer = setInterval(() => {
+			number++;
+			this.props.Start_Time(number);
+		}, 1000)
+	}
 	showNote = () => {
 		this.props.Toggle_NewNote('show');
 	}
@@ -44,27 +53,38 @@ class RecOptions extends React.Component {
 		this.props.Stop_Toggle(true);
 		this.props.Play_Toggle(true);
 		this.props.Pause_Toggle(false);
+
+		//Stop Timer
+		clearInterval(this.incrementer);
 	}
 	play = () => {
 		//Handle display
 		this.props.Stop_Toggle(false);
 		this.props.Play_Toggle(false);
 		this.props.Pause_Toggle(false);
+
+		//Resume Timer
+		let number = this.props.recTime;
+		this.incrementer = setInterval(() => {
+			number++;
+			this.props.Start_Time(number);
+		}, 1000)
 	}
 	pause = () => {
 		//Handle display
 		this.props.Play_Toggle(true);
 		this.props.Pause_Toggle(true);
 		this.props.Stop_Toggle(false);
+
+		//Pause Timer
+		clearInterval(this.incrementer);
+
 	}
 
-	getMinutes = () => {
-		return Math.floor('0' + this.props.recSeconds % 60);
+	getMinutes = () => Math.floor(this.props.recTime / 60);
 
-	}
-	getSeconds = () => {
-		return ('0' + this.props.recSeconds % 60).slice(-2);
-	}
+	getSeconds = () => ('0' + this.props.recTime % 60).slice(-2);
+
 	render() {
 		//Properties
 

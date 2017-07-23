@@ -4,8 +4,8 @@
 let initial_value = 0;
 export default function(state = initial_value, action) {
 	switch (action.type) {
-		case "INCREASE_SECONDS":
-			return action.data
+		case "START_TIMER":
+			return action.data;
 
 			default:
       return state
