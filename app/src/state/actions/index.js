@@ -55,3 +55,8 @@ export const Start_Time = (e) => {
     data: e
   }
 }
+export const Reset_Timer = () => {
+  return {
+    type: 'RESET_TIMER'
+  }
+}

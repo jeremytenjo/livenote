@@ -45,6 +45,14 @@ class RecOptions extends React.Component {
 			this.props.Start_Time(number);
 		}, 1000)
 	}
+	componentWillUnmount() {
+		//Stop Timer
+		clearInterval(this.incrementer);
+
+		//Reset Timer
+		this.props.Start_Time(0);
+
+	}
 	showNote = () => {
 		this.props.Toggle_NewNote('show');
 	}

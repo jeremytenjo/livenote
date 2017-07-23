@@ -7,6 +7,9 @@ export default function(state = initial_value, action) {
 		case "START_TIMER":
 			return action.data;
 
+		case "RESET_TIMER":
+			return 0;
+
 			default:
       return state
 	}
