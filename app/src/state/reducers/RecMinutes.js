@@ -4,7 +4,7 @@
 let initial_value = 0;
 export default function(state = initial_value, action) {
 	switch (action.type) {
-		case "INCREASE_SECONDS":
+		case "INCREASE_MINUTES":
 			return action.data
 
 			default:
