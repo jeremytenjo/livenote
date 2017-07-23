@@ -48,7 +48,10 @@ class RecOptions extends React.Component {
 	componentWillUnmount() {
 		//Stop Timer
 		clearInterval(this.incrementer);
-
+		this.props.Stop_Toggle(true);
+		this.props.Play_Toggle(true);
+		this.props.Pause_Toggle(false);
+		
 		//Reset Timer
 		this.props.Start_Time(0);
 
