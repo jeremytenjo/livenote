@@ -75,6 +75,7 @@ ${ ''/* background: red; */}
 margin-top: 40px;
 margin-bottom: 10px;
 overflow: scroll;
+overflow-x: hidden;
  `;
 const TimeBarContainer = styled.div `
 background: blue;

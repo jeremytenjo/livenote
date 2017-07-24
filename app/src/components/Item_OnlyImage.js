@@ -15,7 +15,9 @@ class ItemOnlyImage extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			time: props.time,
+			title: props.title,
+			image: props.image
 		}
 	}
 
@@ -29,10 +31,10 @@ class ItemOnlyImage extends React.Component {
 		return (
 			<Wrapper>
 				<ItemCon>
-					<ItemTime>00:00</ItemTime>
+					<ItemTime>{this.state.time}</ItemTime>
 					<ItemDescCon>
 						<ItemTitle>
-							Title
+							{this.state.title}
 						</ItemTitle>
 						<ItemImage src={SampleImg} alt="sample image"/>
 					</ItemDescCon>

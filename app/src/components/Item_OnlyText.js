@@ -15,7 +15,9 @@ class ItemOnlyText extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			time: props.time,
+			title: props.title,
+			desc: props.desc
 		}
 	}
 
@@ -29,13 +31,13 @@ class ItemOnlyText extends React.Component {
 		return (
 			<Wrapper>
 				<ItemCon>
-					<ItemTime>00:00</ItemTime>
+					<ItemTime>{this.state.time}</ItemTime>
 					<ItemDescCon>
 						<ItemTitle>
-							Title
+							{this.state.title}
 						</ItemTitle>
 						<ItemDesc>
-							Description sdfsdfsdfdf sdfsdf dfsdf sfdsdf sdfsdf sdf sdf sdf fsdf fsdfsd dsfs dfsd fs df Description sdfsdfsdfdf sdfsdf dfsdf sfdsdf sdfsdf sdf sdf sdf fsdf fsdfsd dsfs dfsd fs df
+							{this.state.desc}
 						</ItemDesc>
 					</ItemDescCon>
 				</ItemCon>
@@ -82,6 +84,7 @@ const ItemDesc = styled.p `
 				margin-top: 5px;
 				margin-bottom: 5px;
 overflow: scroll;
+overflow-x: hidden;
 height: 100%;
 				  `;
 

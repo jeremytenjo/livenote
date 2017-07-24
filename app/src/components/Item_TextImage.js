@@ -16,7 +16,10 @@ class ItemTextImage extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			time: props.time,
+			title: props.title,
+			desc: props.desc,
+			image: props.image
 		}
 	}
 
@@ -30,13 +33,13 @@ class ItemTextImage extends React.Component {
 		return (
 			<Wrapper>
 				<ItemCon>
-					<ItemTime>00:00</ItemTime>
+					<ItemTime>{this.state.time}</ItemTime>
 					<ItemDescCon>
 						<ItemTitle>
-							Title
+							{this.state.title}
 						</ItemTitle>
 						<ItemDesc>
-							Description sdfsdfsdfdf sdfsdf dfsdf sfdsdf sdfsdf sdf sdf
+							{this.state.desc}
 						</ItemDesc>
 					</ItemDescCon>
 					<ItemImg src={SampleImg}/>
@@ -83,6 +86,7 @@ cursor: pointer;
 				margin-top: 5px;
 				margin-bottom: 5px;
 				overflow: scroll;
+				overflow-x: hidden;
 				height: 100%;
 				  `;
 				const ItemImg = styled.img `

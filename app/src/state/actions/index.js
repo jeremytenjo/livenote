@@ -60,3 +60,9 @@ export const Reset_Timer = () => {
     type: 'RESET_TIMER'
   }
 }
+
+export const Get_Current_Time = () => {
+  return {
+    type: 'GET_CURRENT_TIME'
+  }
+}

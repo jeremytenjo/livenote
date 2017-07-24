@@ -10,6 +10,7 @@ import Stop_Toggle from './Stop_Toggle.js';
 import Play_Toggle from './Play_Toggle.js';
 import Pause_Toggle from './Pause_Toggle.js';
 import RecTime from './RecTime.js';
+import NewNote_Items from './NewNote_Items.js';
 
 const Reducers = combineReducers({
  FolderSelection,
@@ -21,6 +22,7 @@ const Reducers = combineReducers({
  Play_Toggle,
  Pause_Toggle,
  RecTime,
+ NewNote_Items
 })
 
 export default Reducers;
