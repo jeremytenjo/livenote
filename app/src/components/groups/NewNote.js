@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Close_Icon from '../../images/icons/close.svg';
 import Button from '../Button.js';
+
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -79,7 +80,9 @@ class NewNote extends React.Component {
 				</Top>
 				<Title placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
-				<ButtonCon><Button type="submit" color="#42EA9C" text="Add"/></ButtonCon>
+				<ButtonCon>
+						<Button type="submit" color="#42EA9C" text="Add"/>
+				</ButtonCon>
 
 			</Wrapper>
 		);

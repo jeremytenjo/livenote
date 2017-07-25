@@ -67,7 +67,7 @@ class RecItemView extends React.Component {
 	}
 
 	render() {
-		//Properties 
+		//Properties
 
 		//Template
 		return (

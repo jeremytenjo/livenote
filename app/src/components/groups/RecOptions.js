@@ -59,9 +59,6 @@ class RecOptions extends React.Component {
 
 	}
 	showNote = () => {
-		//get current time
-		console.log(this.props.recTime);
-
 		//set current time
 		this.props.Set_Current_Time(this.props.recTime);
 		this.props.Toggle_NewNote('show');
