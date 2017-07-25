@@ -50,6 +50,7 @@ class NewNote extends React.Component {
 		item.image = '';
 
 		//Insert Item
+		this.props.Toggle_NewNote('none');
 		this.props.Insert_Item(item);
 	}
 	hide = () => {

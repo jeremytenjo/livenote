@@ -21,11 +21,10 @@ let Items = [];
 export default function(state = Items, action) {
 	switch (action.type) {
 		case "INSERT_ITEM":
-			console.log(state);
-			state.push(action.data);
-			console.log(state);
-
-			return state.set(state);
+			let newState = state.slice();
+			newState.splice(action.index, 0, action.data);
+			console.log(newState);
+			return newState
 
 		default:
 			return state
