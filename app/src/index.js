@@ -4,7 +4,7 @@ import App from './App';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import Reducers from './state/reducers';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 //Firebase Configuration
 var firebase = require("firebase/app");
@@ -27,4 +27,4 @@ ReactDOM.render(
 	<Provider store={store}>
 	<App/>
 </Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

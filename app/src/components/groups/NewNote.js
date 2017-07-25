@@ -44,7 +44,10 @@ class NewNote extends React.Component {
 
 		//Create new object
 		let item = {};
-		item.time = this.props.currentTime;
+		let getMinutes = Math.floor(this.props.currentTime / 60);
+		let getSeconds = ('0' + this.props.currentTime % 60).slice(-2);
+		let time = getMinutes + ':' + getSeconds;
+		item.time = time;
 		item.title = this.state.title;
 		item.desc = this.state.desc;
 		item.image = '';
