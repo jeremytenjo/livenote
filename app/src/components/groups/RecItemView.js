@@ -37,12 +37,15 @@ class RecItemView extends React.Component {
 	//Methods
 	getItems = () => {
 		//Listen to items Array
+		let items = '',
+			list = '',
+			itemList = '';
 
-		let items = this.props.items;
-		console.log(items);
-		let list = '';
-		let itemList = '';
-		 itemList = items.map((item, i) => {
+		items = this.props.items;
+		// console.log(items);
+		list = '';
+		itemList = '';
+		itemList = items.map((item, i) => {
 
 			// console.log(item);
 			if (item.desc && item.image !== '') {
@@ -64,22 +67,7 @@ class RecItemView extends React.Component {
 	}
 
 	render() {
-		//Properties
-
-		// //Listen to items Array
-		// let items = this.props.items;
-		// let itemList = items.map((item, i) => {
-		// 	// console.log(item);
-		//
-		// 	if (item.desc && item.image !== '') {
-		// 		return <span key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc}/></span>
-		// 	} else if (item.desc === '') {
-		// 		return <span key={i}><ItemOnlyImage time={item.time} title={item.title}/></span>
-		// 	} else if (item.image === '') {
-		// 		return <span key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>
-		// 	}
-		// 	return ''
-		// });
+		//Properties 
 
 		//Template
 		return (

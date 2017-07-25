@@ -4,17 +4,8 @@
 let initial_value = 0;
 export default function(state = initial_value, action) {
 	switch (action.type) {
-		case "START_TIMER":
+		case "SET_CURRENT_TIME":
 			return action.data;
-
-		case "RESET_TIMER":
-			return 0;
-
-
-		case "GET_CURRENT_TIME":
-			return state;
-
-
 
 		default:
 			return state

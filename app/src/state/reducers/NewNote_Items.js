@@ -23,8 +23,7 @@ export default function(state = Items, action) {
 		case "INSERT_ITEM":
 			let newState = '';
 			newState = state.slice();
-			newState.splice(action.index, 0, action.data);
-			// console.log(newState);
+			newState.push(action.data);
 			return newState
 
 		default:

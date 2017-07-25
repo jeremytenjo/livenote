@@ -9,7 +9,7 @@ import {Toggle_NewNote, Insert_Item} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {status: state.NewNoteToggle, currentTime: state.RecTime}
+	return {status: state.NewNoteToggle, time: state.CurrentTime}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -43,10 +43,10 @@ class NewNote extends React.Component {
 		e.preventDefault();
 
 		//Create new object
-		let item = {};		 
+		let item = {};
 
-		let getMinutes = Math.floor(this.props.currentTime / 60);
-		let getSeconds = ('0' + this.props.currentTime % 60).slice(-2);
+		let getMinutes = Math.floor(this.props.time / 60);
+		let getSeconds = ('0' + this.props.time % 60).slice(-2);
 		let time = getMinutes + ':' + getSeconds;
 		item.time = time;
 		item.title = this.state.title;

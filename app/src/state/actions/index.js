@@ -61,9 +61,10 @@ export const Reset_Timer = () => {
   }
 }
 
-export const Get_Current_Time = () => {
+export const Set_Current_Time = (e) => {
   return {
-    type: 'GET_CURRENT_TIME'
+    type: 'SET_CURRENT_TIME',
+    data: e    
   }
 }
 
