@@ -43,7 +43,8 @@ class NewNote extends React.Component {
 		e.preventDefault();
 
 		//Create new object
-		let item = {};
+		let item = {};		 
+
 		let getMinutes = Math.floor(this.props.currentTime / 60);
 		let getSeconds = ('0' + this.props.currentTime % 60).slice(-2);
 		let time = getMinutes + ':' + getSeconds;
@@ -55,6 +56,12 @@ class NewNote extends React.Component {
 		//Insert Item
 		this.props.Toggle_NewNote('none');
 		this.props.Insert_Item(item);
+
+		//reset vlaues
+		this.setState({title: ""});
+		this.setState({desc: ""});
+		time = "";
+
 	}
 	hide = () => {
 		this.props.Toggle_NewNote('none');

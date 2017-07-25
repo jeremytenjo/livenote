@@ -38,12 +38,11 @@ class RecItemView extends React.Component {
 	getItems = () => {
 		//Listen to items Array
 
-
 		let items = this.props.items;
 		console.log(items);
 		let list = '';
-
-		let itemList = items.map((item, i) => {
+		let itemList = '';
+		 itemList = items.map((item, i) => {
 
 			// console.log(item);
 			if (item.desc && item.image !== '') {
