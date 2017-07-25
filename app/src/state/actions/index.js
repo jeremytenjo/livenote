@@ -66,3 +66,10 @@ export const Get_Current_Time = () => {
     type: 'GET_CURRENT_TIME'
   }
 }
+
+export const Insert_Item = (e) => {
+  return {
+    type: 'INSERT_ITEM',
+    data: e
+  }
+}

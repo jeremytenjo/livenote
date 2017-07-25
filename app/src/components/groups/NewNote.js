@@ -5,32 +5,52 @@ import Button from '../Button.js';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_NewNote} from '../../state/actions/index';
+import {Toggle_NewNote, Insert_Item} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {status: state.NewNoteToggle}
+	return {status: state.NewNoteToggle, currentTime: state.RecTime}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    Toggle_NewNote
-      }, dispatch)
- }
+	return bindActionCreators({
+		Toggle_NewNote,
+		Insert_Item
+	}, dispatch)
+}
 class NewNote extends React.Component {
 
 	//initial state
 	constructor(props) {
 		super(props)
 		this.state = {
-			display: props.display
+			display: props.display,
+			title: '',
+			desc: ''
 		}
 	}
 
 	//Methods
+	handleTitle = (e) => {
+		// console.log(e.target.value);
+		this.setState({title: e.target.value})
+	}
+	handleDesc = (e) => {
+		// console.log(e.target.value);
+		this.setState({desc: e.target.value})
+	}
 	handleSubmit = (e) => {
 		e.preventDefault();
 
+		//Create new object
+		let item = {};
+		item.time = this.props.currentTime;
+		item.title = this.state.title;
+		item.desc = this.state.desc;
+		item.image = '';
+
+		//Insert Item
+		this.props.Insert_Item(item);
 	}
 	hide = () => {
 		this.props.Toggle_NewNote('none');
@@ -46,8 +66,8 @@ class NewNote extends React.Component {
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
 					New Comment
 				</Top>
-				<Title placeholder="Title" type="text"/>
-				<Comment placeholder="Write comment..."/>
+				<Title placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 				<ButtonCon><Button type="submit" color="#42EA9C" text="Add"/></ButtonCon>
 
 			</Wrapper>

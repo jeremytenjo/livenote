@@ -10,8 +10,7 @@ export default function(state = initial_value, action) {
 		case "RESET_TIMER":
 			return 0;
 
-		case "GET_CURRENT_TIME":
-			return state;
+		 
 
 		default:
 			return state
