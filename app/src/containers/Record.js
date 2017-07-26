@@ -47,7 +47,11 @@ class Record extends React.Component {
 		this.props.Note_Name(this.state.noteName);
 		this.props.Change_TopBar_Title(this.state.noteName);
 
+		//hide noie
 		this.props.Toggle_NewNote('none');
+
+		//reset notes
+		// this.props.Insert_Item([]);
 
 
 		//Redirect
