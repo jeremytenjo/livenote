@@ -30,6 +30,12 @@ export const Toggle_NewNote = (e) => {
     data: e
   }
 }
+export const Toggle_NewNote_Image = (e) => {
+  return {
+    type: 'NEWNOTE_TOGGLE_IMAGE',
+    data: e
+  }
+}
 export const Stop_Toggle = (e) => {
   return {
     type: 'STOP_TOGGLE',

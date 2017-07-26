@@ -6,20 +6,20 @@ import Button from '../Button.js';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_NewNote, Insert_Item} from '../../state/actions/index';
+import {Toggle_NewNote_Image, Insert_Item} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {status: state.NewNoteToggle, time: state.CurrentTime}
+	return {status: state.NewNoteToggleImage, time: state.CurrentTime}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		Toggle_NewNote,
+		Toggle_NewNote_Image,
 		Insert_Item
 	}, dispatch)
 }
-class NewNote extends React.Component {
+class NewNote_Image extends React.Component {
 
 	//initial state
 	constructor(props) {
@@ -55,7 +55,7 @@ class NewNote extends React.Component {
 		item.image = '';
 
 		//Insert Item
-		this.props.Toggle_NewNote('none');
+		this.props.Toggle_NewNote_Image('none');
 		this.props.Insert_Item(item);
 
 		//reset vlaues
@@ -67,7 +67,7 @@ class NewNote extends React.Component {
 
 	}
 	hide = () => {
-		this.props.Toggle_NewNote('none');
+		this.props.Toggle_NewNote_Image('none');
 	}
 	render() {
 		//Properties
@@ -150,4 +150,4 @@ const ButtonCon = styled.div `
 	margin: 0 auto;
 	padding-top: 10px;
 				 `;
-export default connect(mapStateToProps, mapDispatchToProps)(NewNote);
+export default connect(mapStateToProps, mapDispatchToProps)(NewNote_Image);

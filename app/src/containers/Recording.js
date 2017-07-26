@@ -4,6 +4,7 @@ import RecItemView from '../components/groups/RecItemView.js';
 import RecTimteBar from '../components/groups/RecTimteBar.js';
 import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
+import NewNoteImage from '../components/groups/NewNote_Image.js';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -47,6 +48,7 @@ class Recording extends React.Component {
 				</OptionsContainer>
 
 					<NewNote display="none"/>
+					<NewNoteImage display="none"/>
 
 			</Wrapper>
 		);

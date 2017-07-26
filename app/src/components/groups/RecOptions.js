@@ -9,7 +9,16 @@ import Play_icon from '../../images/icons/Play.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle, Start_Time, Set_Current_Time, Reset_Items} from '../../state/actions/index';
+import {
+	Toggle_NewNote,
+	Toggle_NewNote_Image,
+	Stop_Toggle,
+	Play_Toggle,
+	Pause_Toggle,
+	Start_Time,
+	Set_Current_Time,
+	Reset_Items
+} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
@@ -19,11 +28,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		Toggle_NewNote,
+		Toggle_NewNote_Image,
 		Stop_Toggle,
 		Play_Toggle,
 		Pause_Toggle,
 		Start_Time,
-		Set_Current_Time, Reset_Items
+		Set_Current_Time,
+		Reset_Items
 
 	}, dispatch)
 }
@@ -101,6 +112,11 @@ class RecOptions extends React.Component {
 		clearInterval(this.incrementer);
 
 	}
+	imageSelected = (event) => {
+		 //Preview image
+		 this.props.Toggle_NewNote_Image('show');
+
+	}
 
 	getMinutes = () => Math.floor(this.props.recTime / 60);
 
@@ -151,7 +167,7 @@ class RecOptions extends React.Component {
 					<label htmlFor="file-input">
 						<Icon src={Camera_icon}/>
 					</label>
-					<FileInput id="file-input" type="file" accept="image/*"/>
+					<FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
 				</Right>
 
 			</Wrapper>
