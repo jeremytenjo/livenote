@@ -37,7 +37,6 @@ class RecItemView extends React.Component {
 	//Methods
 	getItems = () => {
 		//Listen to items Array
-
 		let items = '',
 			list = '',
 			itemList = '';
@@ -47,16 +46,15 @@ class RecItemView extends React.Component {
 		list = '';
 		itemList = '';
 		itemList = items.map((item, i) => {
-
 			// console.log(item);
 			if (item.desc && item.image !== '') {
-				list = <span key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc}/></span>;
+				list = <span  key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc}/></span>;
 				return list
 			} else if (item.desc === '') {
-				list = <span key={i}><ItemOnlyImage time={item.time} title={item.title}/></span>;
+				list = <span  key={i}><ItemOnlyImage time={item.time} title={item.title}/></span>;
 				return list
 			} else if (item.image === '') {
-				list = <span key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>;
+				list = <span  key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>;
 				return list
 			}
 
@@ -64,20 +62,18 @@ class RecItemView extends React.Component {
 			return itemList
 		});
 
-		// console.log(itemList);
+		//Scroll to end
+
+
+		setTimeout(function() {
+			var item = document.getElementById("ItemViewCon");
+  		if (item != null) {
+  			item.scrollIntoView(false);
+  		}
+		}, 50);
+
 
 		return itemList
-
-
-
-
-		//Scroll to end
-		// var elmnt = document.getElementById("viewDown");
-		// elmnt.scrollIntoView();
-
-
-
-
 	}
 
 	render() {
@@ -85,9 +81,8 @@ class RecItemView extends React.Component {
 
 		//Template
 		return (
-			<Wrapper>
+			<Wrapper id="ItemViewCon">
 				{this.getItems()}
-				<span id="viewDown"></span>
 			</Wrapper>
 		);
 	}
@@ -98,7 +93,6 @@ class RecItemView extends React.Component {
 const Wrapper = styled.div `
 display: grid;
 grid-row-gap: 10px;
-
 `;
 
 export default connect(mapStateToProps)(RecItemView);
