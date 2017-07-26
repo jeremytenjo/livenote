@@ -63,8 +63,6 @@ class NewNote_Image extends React.Component {
 		this.setState({desc: ""});
 		time = "";
 
-
-
 	}
 	hide = () => {
 		this.props.Toggle_NewNote_Image('none');
@@ -81,9 +79,10 @@ class NewNote_Image extends React.Component {
 					New Comment
 				</Top>
 				<Title placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+				<ImgPreview id="PreviewImage" src="" />
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 				<ButtonCon>
-						<Button type="submit" color="#42EA9C" text="Add"/>
+					<Button type="submit" color="#42EA9C" text="Add"/>
 				</ButtonCon>
 
 			</Wrapper>
@@ -99,7 +98,7 @@ position: fixed;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px 50px 1fr 80px;
+grid-template-rows: 30px 50px 200px  1fr 80px;
 height: 100%;
 width: 100%;
 color: #212121;
@@ -119,6 +118,9 @@ const Top = styled.div `
 text-align: center;
 font-size: 20px;
 			  `;
+const ImgPreview = styled.img `
+	width: 100%;
+				 `;
 const Title = styled.input `
 &:focus {
 outline: none;
@@ -130,6 +132,7 @@ border-width:0px;
 padding-left: 10px;
 font-size: 17px;
 padding-right: 10px;
+margin-bottom: 10px;
 font-weight: bold;
 				 `;
 const Comment = styled.textarea `
@@ -143,6 +146,7 @@ border-width:0px;
 font-size: 15px;
 padding-left: 10px;
 padding-right: 10px;
+margin-top: 10px;
 				 `;
 const ButtonCon = styled.div `
 	width: 200px;

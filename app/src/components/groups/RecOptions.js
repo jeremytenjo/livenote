@@ -113,9 +113,25 @@ class RecOptions extends React.Component {
 
 	}
 	imageSelected = (event) => {
-		 //Preview image
-		 this.props.Toggle_NewNote_Image('show');
+		//Preview image
+		if (event.target.value !== '') {
+			this.props.Toggle_NewNote_Image('show');
 
+			var preview = document.querySelector('#PreviewImage');
+			var file = event.target.files[0]
+			var reader = new FileReader();
+
+			reader.addEventListener("load", function() {
+				console.log(preview);
+				preview.src = reader.result;
+			}, false);
+
+			if (file) {
+				reader.readAsDataURL(file);
+			}
+
+		}
+		event.target.value = '';
 	}
 
 	getMinutes = () => Math.floor(this.props.recTime / 60);
