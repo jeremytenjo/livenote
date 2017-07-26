@@ -122,7 +122,6 @@ class RecOptions extends React.Component {
 			var reader = new FileReader();
 
 			reader.addEventListener("load", function() {
-				console.log(preview);
 				preview.src = reader.result;
 			}, false);
 
@@ -130,6 +129,7 @@ class RecOptions extends React.Component {
 				reader.readAsDataURL(file);
 			}
 
+			//Upload to fireabse temporarily
 		}
 		event.target.value = '';
 	}

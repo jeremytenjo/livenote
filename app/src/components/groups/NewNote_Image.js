@@ -79,8 +79,8 @@ class NewNote_Image extends React.Component {
 					New Comment
 				</Top>
 				<Title placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
-				<ImgPreview id="PreviewImage" src="" />
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
+				<ImgPreview id="PreviewImage" src="" alt="Loading..." />
 				<ButtonCon>
 					<Button type="submit" color="#42EA9C" text="Add"/>
 				</ButtonCon>
@@ -98,7 +98,7 @@ position: fixed;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px 50px 200px  1fr 80px;
+grid-template-rows: 30px 50px 250px  1fr 80px;
 height: 100%;
 width: 100%;
 color: #212121;
