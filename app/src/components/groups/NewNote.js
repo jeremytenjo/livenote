@@ -63,6 +63,8 @@ class NewNote extends React.Component {
 		this.setState({desc: ""});
 		time = "";
 
+	
+
 	}
 	hide = () => {
 		this.props.Toggle_NewNote('none');

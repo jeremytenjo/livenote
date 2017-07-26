@@ -9,7 +9,7 @@ import Play_icon from '../../images/icons/Play.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle, Start_Time, Set_Current_Time} from '../../state/actions/index';
+import {Toggle_NewNote, Stop_Toggle, Play_Toggle, Pause_Toggle, Start_Time, Set_Current_Time, Reset_Items} from '../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
@@ -23,7 +23,7 @@ function mapDispatchToProps(dispatch) {
 		Play_Toggle,
 		Pause_Toggle,
 		Start_Time,
-		Set_Current_Time
+		Set_Current_Time, Reset_Items
 
 	}, dispatch)
 }
@@ -74,6 +74,9 @@ class RecOptions extends React.Component {
 
 		//Reset Timer
 		this.props.Start_Time(0);
+
+		//reset notes
+		this.props.Reset_Items();
 	}
 	play = () => {
 		//Handle display

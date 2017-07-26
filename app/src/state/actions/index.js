@@ -64,7 +64,7 @@ export const Reset_Timer = () => {
 export const Set_Current_Time = (e) => {
   return {
     type: 'SET_CURRENT_TIME',
-    data: e    
+    data: e
   }
 }
 
@@ -72,5 +72,11 @@ export const Insert_Item = (e) => {
   return {
     type: 'INSERT_ITEM',
     data: e
+  }
+}
+
+export const Reset_Items = () => {
+  return {
+    type: 'RESET_ITEM'
   }
 }

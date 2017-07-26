@@ -37,6 +37,7 @@ class RecItemView extends React.Component {
 	//Methods
 	getItems = () => {
 		//Listen to items Array
+
 		let items = '',
 			list = '',
 			itemList = '';
@@ -59,11 +60,24 @@ class RecItemView extends React.Component {
 				return list
 			}
 
+
 			return itemList
 		});
 
 		// console.log(itemList);
+
 		return itemList
+
+
+
+
+		//Scroll to end
+		// var elmnt = document.getElementById("viewDown");
+		// elmnt.scrollIntoView();
+
+
+
+
 	}
 
 	render() {
@@ -73,6 +87,7 @@ class RecItemView extends React.Component {
 		return (
 			<Wrapper>
 				{this.getItems()}
+				<span id="viewDown"></span>
 			</Wrapper>
 		);
 	}

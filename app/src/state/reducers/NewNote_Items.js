@@ -26,6 +26,10 @@ export default function(state = Items, action) {
 			newState.push(action.data);
 			return newState
 
+		case "RESET_ITEM":
+			let newState2 = [];
+			return newState2
+
 		default:
 			return state
 	}
