@@ -6,7 +6,8 @@ import FolderMenu from '../components/Folder_Menu.js';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {folderSelection, Change_TopBar_Title, Note_Name, Reset_Timer} from '../state/actions/index';
+import {folderSelection, Change_TopBar_Title, Note_Name, Reset_Timer,
+Toggle_NewNote} from '../state/actions/index';
 
 function mapStateToProps(state) {
 	return {name: state.FolderSelection_Name, noteName: state.Note_Name}
@@ -18,7 +19,8 @@ function mapDispatchToProps(dispatch) {
 		folderSelection,
 		Change_TopBar_Title,
 		Note_Name,
-		Reset_Timer
+		Reset_Timer,
+		Toggle_NewNote
 	}, dispatch)
 }
 
@@ -45,7 +47,8 @@ class Record extends React.Component {
 		this.props.Note_Name(this.state.noteName);
 		this.props.Change_TopBar_Title(this.state.noteName);
 
-		//Reset Timer
+		this.props.Toggle_NewNote('none');
+
 
 		//Redirect
 		this.props.history.push(`/recording`);
