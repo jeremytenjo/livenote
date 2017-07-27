@@ -62,7 +62,7 @@ const ItemTime = styled.div `
 				font-size: 20px;
 				text-align: center;
 				padding-top: 35px;
-				color: #263238;
+				color: #0F2331;
 				font-weight: bold;
 				 `;
 const ItemDescCon = styled.div `
@@ -72,7 +72,7 @@ const ItemDescCon = styled.div `
 				 `;
 const ItemTitle = styled.p `
 				font-weight: bold;
-				color: #263238;
+				color: #0F2331;
 				margin: 0;
 				margin-top: 5px;
 

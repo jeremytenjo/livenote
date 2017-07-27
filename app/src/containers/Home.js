@@ -85,7 +85,7 @@ margin: auto;
 display: grid;
 grid-template-columns: 20px 1fr 20px;
 padding: 10px;
-background: #263238;
+background: #0F2331;
 `;
 const Content = styled.div `
 overflow-x: hidden;

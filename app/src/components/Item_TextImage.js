@@ -67,7 +67,7 @@ cursor: pointer;
 				font-size: 23px;
 				text-align: center;
 				padding-top: 35px;
-				color: #263238;
+				color: #0F2331;
 				font-weight: bold;
 				 `;
 				const ItemDescCon = styled.div `
@@ -76,13 +76,13 @@ cursor: pointer;
 				 `;
 				const ItemTitle = styled.p `
 				font-weight: bold;
-				color: #263238;
+				color: #0F2331;
 				margin: 0;
 				margin-top: 5px;
 
 				  `;
 				const ItemDesc = styled.p `
-				color: #263238;
+				color: #0F2331;
 				margin-top: 5px;
 				margin-bottom: 5px;
 				overflow: scroll;
