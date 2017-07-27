@@ -107,6 +107,7 @@ class NewNote_Image extends React.Component {
 const Wrapper = styled.form `
 background: white;
 position: fixed;
+overflow-y: scroll;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
