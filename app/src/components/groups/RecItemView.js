@@ -48,10 +48,10 @@ class RecItemView extends React.Component {
 		itemList = items.map((item, i) => {
 			// console.log(item);
 			if (item.desc && item.image !== '') {
-				list = <span  key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc}/></span>;
+				list = <span  key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.image}/></span>;
 				return list
 			} else if (item.desc === '') {
-				list = <span  key={i}><ItemOnlyImage time={item.time} title={item.title}/></span>;
+				list = <span  key={i}><ItemOnlyImage time={item.time} title={item.title} image={item.image}/></span>;
 				return list
 			} else if (item.image === '') {
 				list = <span  key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>;

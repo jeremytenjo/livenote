@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import SampleImg from '../images/sample.jpg';
+// import SampleImg from '../images/sample.jpg';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -42,7 +42,7 @@ class ItemTextImage extends React.Component {
 							{this.state.desc}
 						</ItemDesc>
 					</ItemDescCon>
-					<ItemImg src={SampleImg}/>
+					<ItemImg src={this.state.image} alt="note image"/>
 				</ItemCon>
 			</Wrapper>
 		);

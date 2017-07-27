@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import SampleImg from '../images/sample.jpg';
+// import SampleImg from '../images/sample.jpg';
 //State
 //import {bindActionCreators} from 'redux';
 //import {connect} from 'react-redux';
@@ -36,7 +36,7 @@ class ItemOnlyImage extends React.Component {
 						<ItemTitle>
 							{this.state.title}
 						</ItemTitle>
-						<ItemImage src={SampleImg} alt="sample image"/>
+						<ItemImage src={this.state.image} alt="note image"/>
 					</ItemDescCon>
 				</ItemCon>
 			</Wrapper>

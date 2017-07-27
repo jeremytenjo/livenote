@@ -52,8 +52,20 @@ class NewNote_Image extends React.Component {
 		item.time = time;
 		item.title = this.state.title;
 		item.desc = this.state.desc;
-		item.image = '';
 
+		//Get image info
+		var preview = document.querySelector('#PreviewImage');
+		var reader = new FileReader();
+		reader.addEventListener("load", () => {
+			preview.src = reader.result;
+		}, false);
+		// console.log(preview);
+
+		item.image = preview.src;
+
+		preview.src = '';
+
+		// console.log(item);
 		//Insert Item
 		this.props.Toggle_NewNote_Image('none');
 		this.props.Insert_Item(item);
@@ -80,7 +92,7 @@ class NewNote_Image extends React.Component {
 				</Top>
 				<Title placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
-				<ImgPreview id="PreviewImage" src="" alt="Loading..." />
+				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 				<ButtonCon>
 					<Button type="submit" color="#42EA9C" text="Add"/>
 				</ButtonCon>

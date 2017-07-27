@@ -1,88 +1,49 @@
 //defoine what to change in store
 export const folderSelection = (e) => {
-  return {
-    type: 'TRIGGER_CLICKED',
-    data: e
-  }
+	return {type: 'TRIGGER_CLICKED', data: e}
 }
 
 export const FolderSelection_Name = (e) => {
-  return {
-    type: 'CHANGE_NAME',
-    data: e
-  }
+	return {type: 'CHANGE_NAME', data: e}
 }
 export const Note_Name = (e) => {
-  return {
-    type: 'CHANGE_NOTE_NAME',
-    data: e
-  }
+	return {type: 'CHANGE_NOTE_NAME', data: e}
 }
 export const Change_TopBar_Title = (e) => {
-  return {
-    type: 'CHANGE_TOPBAR_TITLE',
-    data: e
-  }
+	return {type: 'CHANGE_TOPBAR_TITLE', data: e}
 }
 export const Toggle_NewNote = (e) => {
-  return {
-    type: 'NEWNOTE_TOGGLE',
-    data: e
-  }
+	return {type: 'NEWNOTE_TOGGLE', data: e}
 }
 export const Toggle_NewNote_Image = (e) => {
-  return {
-    type: 'NEWNOTE_TOGGLE_IMAGE',
-    data: e
-  }
+	return {type: 'NEWNOTE_TOGGLE_IMAGE', data: e}
 }
 export const Stop_Toggle = (e) => {
-  return {
-    type: 'STOP_TOGGLE',
-    data: e
-  }
+	return {type: 'STOP_TOGGLE', data: e}
 }
 export const Play_Toggle = (e) => {
-  return {
-    type: 'PLAY_TOGGLE',
-    data: e
-  }
+	return {type: 'PLAY_TOGGLE', data: e}
 }
 export const Pause_Toggle = (e) => {
-  return {
-    type: 'PAUSE_TOGGLE',
-    data: e
-  }
+	return {type: 'PAUSE_TOGGLE', data: e}
 }
 
 export const Start_Time = (e) => {
-  return {
-    type: 'START_TIMER',
-    data: e
-  }
+	return {type: 'START_TIMER', data: e}
 }
 export const Reset_Timer = () => {
-  return {
-    type: 'RESET_TIMER'
-  }
+	return {type: 'RESET_TIMER'}
 }
 
 export const Set_Current_Time = (e) => {
-  return {
-    type: 'SET_CURRENT_TIME',
-    data: e
-  }
+	return {type: 'SET_CURRENT_TIME', data: e}
 }
 
 export const Insert_Item = (e) => {
-  return {
-    type: 'INSERT_ITEM',
-    data: e
-  }
+	return {type: 'INSERT_ITEM', data: e}
 }
 
 export const Reset_Items = () => {
-  return {
-    type: 'RESET_ITEM'
-  }
+	return {type: 'RESET_ITEM'}
 }
+ 

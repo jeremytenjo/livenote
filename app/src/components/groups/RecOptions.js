@@ -113,15 +113,18 @@ class RecOptions extends React.Component {
 
 	}
 	imageSelected = (event) => {
+
 		//Preview image
 		if (event.target.value !== '') {
+			//set current time
+			this.props.Set_Current_Time(this.props.recTime);
 			this.props.Toggle_NewNote_Image('show');
 
 			var preview = document.querySelector('#PreviewImage');
 			var file = event.target.files[0]
 			var reader = new FileReader();
 
-			reader.addEventListener("load", function() {
+			reader.addEventListener("load", () => {
 				preview.src = reader.result;
 			}, false);
 
@@ -129,9 +132,8 @@ class RecOptions extends React.Component {
 				reader.readAsDataURL(file);
 			}
 
-			//Upload to fireabse temporarily
+
 		}
-		event.target.value = '';
 	}
 
 	getMinutes = () => Math.floor(this.props.recTime / 60);
