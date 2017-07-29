@@ -22,7 +22,15 @@ import {
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {data: state.NewNote_Items, recTime: state.RecTime, stopStatus: state.Stop_Toggle, playStatus: state.Play_Toggle, pauseStatus: state.Pause_Toggle, noteName: state.Note_Name}
+	return {
+		data: state.NewNote_Items,
+		recTime: state.RecTime,
+		stopStatus: state.Stop_Toggle,
+		playStatus: state.Play_Toggle,
+		pauseStatus: state.Pause_Toggle,
+		noteName: state.Note_Name,
+		FolderSelection_Name: state.FolderSelection_Name
+	}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -90,10 +98,11 @@ class RecOptions extends React.Component {
 		// console.log(firebase.auth());
 		this.props.data.map((d) => {
 			//upload image
-
+			firebase.storage().ref().putString(d.image,'data_url').then(function(snapshot) {
+				console.log('Uploaded a blob or file!');
+			});
 			//write to database
-			return firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-				name: this.props.noteName, title: d.title, comment: d.desc});
+			return firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({name: this.props.noteName, title: d.title, comment: d.desc, folderName: this.props.FolderSelection_Name});
 		});
 
 		//Reset Folder Selected
@@ -102,7 +111,6 @@ class RecOptions extends React.Component {
 		this.props.Reset_Items();
 
 		//confimration aniamtion
-
 
 		//redirect to Directory
 	}

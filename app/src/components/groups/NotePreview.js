@@ -62,7 +62,7 @@ class NotePreview extends React.Component {
 				</Top>
 				<Title>{this.props.data.title}</Title>
 				<Comment>{this.props.data.desc}</Comment>
-				<ImgPreview id="PreviewImage" src={this.props.data.image} alt="Loading..."/>
+				<ImgPreview id="PreviewImage" src={this.props.data.image} alt=""/>
 				{/* <ButtonCon>
 					<Button type="submit" color="#42EA9C" text="Add"/>
 				</ButtonCon> */}

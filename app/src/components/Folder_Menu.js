@@ -34,6 +34,7 @@ class FolderMenu extends React.Component {
 	//Methods
 
 	hideFolderSelection = (name) => {
+		console.log(name);
 		this.props.FolderSelection_Name(name);
 		this.props.folderSelection(false);
 
@@ -42,9 +43,9 @@ class FolderMenu extends React.Component {
 		// console.log(this.props.folders);
 		let list = this.props.folders.map((folder, i) => {
 			// return statement goes here:
-			console.log(folder);
+			// console.log(folder);
 			return <span  key={i} onClick={() => {
-				this.hideFolderSelection('Name')
+				this.hideFolderSelection(folder.name)
 			}}>
 				<FolderLink name={folder.name}/>
 			</span>
