@@ -1,6 +1,4 @@
-import {
- combineReducers
-} from 'redux';
+import {combineReducers} from 'redux';
 import FolderSelection from './FolderSelection.js';
 import FolderSelection_Name from './FolderSelection_Name.js';
 import Note_Name from './Note_Name.js';
@@ -13,20 +11,24 @@ import Pause_Toggle from './Pause_Toggle.js';
 import RecTime from './RecTime.js';
 import NewNote_Items from './NewNote_Items.js';
 import CurrentTime from './CurrentTime.js';
+import NotePreview_Toggle from './NotePreview_Toggle.js';
+import NotePreview from './NotePreview.js';
 
 const Reducers = combineReducers({
- FolderSelection,
- FolderSelection_Name,
- Note_Name,
- TopBar_Title,
- NewNoteToggle,
- NewNoteToggleImage,
- Stop_Toggle,
- Play_Toggle,
- Pause_Toggle,
- RecTime,
- NewNote_Items,
-CurrentTime
+	FolderSelection,
+	FolderSelection_Name,
+	Note_Name,
+	TopBar_Title,
+	NewNoteToggle,
+	NewNoteToggleImage,
+	Stop_Toggle,
+	Play_Toggle,
+	Pause_Toggle,
+	RecTime,
+	NewNote_Items,
+	CurrentTime,
+	NotePreview_Toggle,
+	NotePreview
 })
 
 export default Reducers;

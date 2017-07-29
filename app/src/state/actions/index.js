@@ -46,4 +46,12 @@ export const Insert_Item = (e) => {
 export const Reset_Items = () => {
 	return {type: 'RESET_ITEM'}
 }
- 
+export const NotePreview_Show = () => {
+	return {type: 'SHOW_NOTE_PREVIEW'}
+}
+export const NotePreview_Hide = () => {
+	return {type: 'HIDE_NOTE_PREVIEW'}
+}
+export const NotePreview_Set = (e) => {
+	return {type: 'SET_NOTE_PREVIEW', data: e}
+}

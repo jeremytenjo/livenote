@@ -5,6 +5,7 @@ import RecTimteBar from '../components/groups/RecTimteBar.js';
 import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
+import NotePreview from '../components/groups/NotePreview.js';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -47,8 +48,9 @@ class Recording extends React.Component {
 					<RecOptions/>
 				</OptionsContainer>
 
-					<NewNote display="none"/>
-					<NewNoteImage display="none"/>
+					<NewNote />
+					<NewNoteImage />
+					<NotePreview />
 
 			</Wrapper>
 		);
