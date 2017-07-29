@@ -94,27 +94,27 @@ class RecOptions extends React.Component {
 		//Reset Timer
 		this.props.Start_Time(0);
 
+		//reset notes
+		this.props.Reset_Items();
+
 		//upload items
 		// console.log(firebase.auth());
 		this.props.data.map((d) => {
 			//upload image
 			// Create a root reference
-			var storageRef = firebase.storage().ref();
+			let storageRef = firebase.storage().ref();
+			let mountainsRef = storageRef.child(d.title + 'file');
 
-			// Create a reference to 'mountains.jpg'
-			var mountainsRef = storageRef.child('mountains.jpg');
-
-			mountainsRef.putString(d.image, 'data_url').then(function(snapshot) {
-				console.log('Uploaded a blob or file!');
+			mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
+				console.log(snapshot.metadata.downloadURLs[0]);
+				//write to database
+				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({name: this.props.noteName, title: d.title, comment: d.desc, folderName: this.props.FolderSelection_Name, imageUrl: snapshot.metadata.downloadURLs[0]});
 			});
-			//write to database
-			return firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({name: this.props.noteName, title: d.title, comment: d.desc, folderName: this.props.FolderSelection_Name});
+			return ''
 		});
 
 		//Reset Folder Selected
 
-		//reset notes
-		this.props.Reset_Items();
 
 		//confimration aniamtion
 
