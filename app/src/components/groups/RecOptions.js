@@ -98,7 +98,13 @@ class RecOptions extends React.Component {
 		// console.log(firebase.auth());
 		this.props.data.map((d) => {
 			//upload image
-			firebase.storage().ref().putString(d.image,'data_url').then(function(snapshot) {
+			// Create a root reference
+			var storageRef = firebase.storage().ref();
+
+			// Create a reference to 'mountains.jpg'
+			var mountainsRef = storageRef.child('mountains.jpg');
+
+			mountainsRef.putString(d.image, 'data_url').then(function(snapshot) {
 				console.log('Uploaded a blob or file!');
 			});
 			//write to database
