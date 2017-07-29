@@ -2,12 +2,19 @@ import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
 import FolderMenu from '../components/Folder_Menu.js';
-
+import firebase from 'firebase';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {folderSelection, Change_TopBar_Title, Note_Name, Reset_Timer,
-Toggle_NewNote, Reset_Items} from '../state/actions/index';
+import {
+	folderSelection,
+	Change_TopBar_Title,
+	Note_Name,
+	Reset_Timer,
+	Toggle_NewNote,
+	Reset_Items,
+	Folders_Set
+} from '../state/actions/index';
 
 function mapStateToProps(state) {
 	return {name: state.FolderSelection_Name, noteName: state.Note_Name}
@@ -20,7 +27,9 @@ function mapDispatchToProps(dispatch) {
 		Change_TopBar_Title,
 		Note_Name,
 		Reset_Timer,
-		Toggle_NewNote, Reset_Items
+		Toggle_NewNote,
+		Reset_Items,
+		Folders_Set
 	}, dispatch)
 }
 
@@ -39,6 +48,14 @@ class Record extends React.Component {
 		this.props.Change_TopBar_Title('Notes');
 	}
 	showMenu = () => {
+		//get folders from database
+		let userId = firebase.auth().currentUser.uid;
+		 firebase.database().ref('/users/' + userId + '/folders').once('value').then((snapshot, prevChildKey) => {
+			// console.log(snapshot.val());
+			this.props.Folders_Set(snapshot.val());
+		});
+
+		//show menu
 		this.props.folderSelection(true);
 	}
 
@@ -48,8 +65,7 @@ class Record extends React.Component {
 			this.props.Note_Name('Title');
 			this.props.Change_TopBar_Title('Title');
 
-		}
-		else {
+		} else {
 			this.props.Note_Name(this.state.noteName);
 			this.props.Change_TopBar_Title(this.state.noteName);
 
@@ -60,7 +76,6 @@ class Record extends React.Component {
 
 		//reset notes
 		this.props.Reset_Items();
-
 
 		//Redirect
 		this.props.history.push(`/recording`);

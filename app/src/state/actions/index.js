@@ -55,3 +55,6 @@ export const NotePreview_Hide = () => {
 export const NotePreview_Set = (e) => {
 	return {type: 'SET_NOTE_PREVIEW', data: e}
 }
+export const Folders_Set = (e) => {
+	return {type: 'SET_FOLDERS', data: e}
+}

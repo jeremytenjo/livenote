@@ -13,6 +13,7 @@ import NewNote_Items from './NewNote_Items.js';
 import CurrentTime from './CurrentTime.js';
 import NotePreview_Toggle from './NotePreview_Toggle.js';
 import NotePreview from './NotePreview.js';
+import FolderList from './FolderList.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -28,7 +29,8 @@ const Reducers = combineReducers({
 	NewNote_Items,
 	CurrentTime,
 	NotePreview_Toggle,
-	NotePreview
+	NotePreview,
+	FolderList
 })
 
 export default Reducers;

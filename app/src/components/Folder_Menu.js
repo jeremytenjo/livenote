@@ -10,7 +10,7 @@ import {FolderSelection_Name} from '../state/actions/index';
 
 //define what information to get from store and listen to changes, eg sets status as a component prop
 function mapStateToProps(state) {
-	return {status: state.FolderSelection}
+	return {status: state.FolderSelection, folders: state.FolderList}
 }
 
 function mapDispatchToProps(dispatch) {
@@ -32,14 +32,24 @@ class FolderMenu extends React.Component {
 	}
 
 	//Methods
-	//update compnent state from parent
-	// componentWillUpdate(nextProps, nextState) {
-	// 	nextState.showMenu = nextProps.showMenu;
-	// }
 
 	hideFolderSelection = (name) => {
 		this.props.FolderSelection_Name(name);
 		this.props.folderSelection(false);
+
+	}
+	loadFolders = () => {
+		// console.log(this.props.folders);
+		let list = this.props.folders.map((folder, i) => {
+			// return statement goes here:
+			console.log(folder);
+			return <span  key={i} onClick={() => {
+				this.hideFolderSelection('Name')
+			}}>
+				<FolderLink name={folder.name}/>
+			</span>
+		});
+		return list;
 
 	}
 	render() {
@@ -81,11 +91,8 @@ padding: 20px;
 					}}>
 						<FolderLink name="Root"/>
 					</span>
-					<span onClick={() => {
-						this.hideFolderSelection('Name')
-					}}>
-						<FolderLink name="Name"/>
-					</span>
+
+					{this.loadFolders()}
 				</Content>
 				{/* <ButtonContainer>
 					<Button text="Cancel" color=" #95989A"/>
