@@ -4,6 +4,8 @@ import App from './App';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import Reducers from './state/reducers';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // import registerServiceWorker from './registerServiceWorker';
 
 //Firebase Configuration
@@ -25,6 +27,8 @@ const store = createStore(Reducers);
 
 ReactDOM.render(
 	<Provider store={store}>
-	<App/>
+	<MuiThemeProvider>
+		<App/>
+	</MuiThemeProvider>
 </Provider>, document.getElementById('root'));
 // registerServiceWorker();

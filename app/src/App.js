@@ -4,6 +4,7 @@ import './index.css';
 import firebase from 'firebase';
 import Loadable from 'react-loadable';
 import styled from 'styled-components'
+import CircularProgress from 'material-ui/CircularProgress';
 
 const Login = Loadable({
 	loader: () => import ('./containers/Login.js'),
@@ -75,8 +76,20 @@ export default class App extends Component {
      right: 0;
      margin: auto;
      `;
+
+		const LoadingCon = styled.div `
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			width: 80px;
+			height: 80px;
+		  `;
 		return this.state.loading === true
-			? <h1>Loading</h1>
+			? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/></LoadingCon>
+
 			: (
 				<BrowserRouter>
 					<MasterWrapper>
