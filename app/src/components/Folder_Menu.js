@@ -34,7 +34,7 @@ class FolderMenu extends React.Component {
 	//Methods
 
 	hideFolderSelection = (name) => {
-		console.log(name);
+		// console.log(name);
 		this.props.FolderSelection_Name(name);
 		this.props.folderSelection(false);
 
@@ -95,10 +95,7 @@ padding: 20px;
 
 					{this.loadFolders()}
 				</Content>
-				{/* <ButtonContainer>
-					<Button text="Cancel" color=" #95989A"/>
-					<Button text="Select" color=" #42EA9C"/>
-				</ButtonContainer> */}
+
 			</Wrapper>
 		);
 	}

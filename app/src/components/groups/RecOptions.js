@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
+import {withRouter} from 'react-router-dom'
 import Note_icon from '../../images/icons/Note.svg';
 import Camera_icon from '../../images/icons/Camara.svg';
 import Stop_icon from '../../images/icons/Stop.svg';
 import Pause_icon from '../../images/icons/Pause.svg';
 import Play_icon from '../../images/icons/Play.svg';
 import firebase from 'firebase';
+
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -17,7 +19,8 @@ import {
 	Pause_Toggle,
 	Start_Time,
 	Set_Current_Time,
-	Reset_Items
+	Reset_Items,
+	FolderSelection_Name
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -29,7 +32,7 @@ function mapStateToProps(state) {
 		playStatus: state.Play_Toggle,
 		pauseStatus: state.Pause_Toggle,
 		noteName: state.Note_Name,
-		FolderSelection_Name: state.FolderSelection_Name
+		FolderSelectionName: state.FolderSelection_Name
 	}
 }
 //define actions
@@ -42,7 +45,8 @@ function mapDispatchToProps(dispatch) {
 		Pause_Toggle,
 		Start_Time,
 		Set_Current_Time,
-		Reset_Items
+		Reset_Items,
+		FolderSelection_Name
 
 	}, dispatch)
 }
@@ -97,28 +101,56 @@ class RecOptions extends React.Component {
 		//reset notes
 		this.props.Reset_Items();
 
+		//get date
+		let d = new Date();
+		let months = [
+			'Jan',
+			'Feb',
+			'March',
+			'Apr',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+		let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate();
+		let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+
 		//upload items
 		// console.log(firebase.auth());
 		this.props.data.map((d) => {
 			//upload image
+			// console.log(this.props.noteName);
 			// Create a root reference
 			let storageRef = firebase.storage().ref();
-			let mountainsRef = storageRef.child(d.title + 'file');
+			let mountainsRef = storageRef.child(d.title + 'Title');
 
 			mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
-				console.log(snapshot.metadata.downloadURLs[0]);
+				// console.log(snapshot.metadata.downloadURLs[0]);
 				//write to database
-				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({name: this.props.noteName, title: d.title, comment: d.desc, folderName: this.props.FolderSelection_Name, imageUrl: snapshot.metadata.downloadURLs[0]});
+				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+					name: this.props.noteName,
+					title: d.title,
+					comment: d.desc,
+					folderName: this.props.FolderSelectionName,
+					imageUrl: snapshot.metadata.downloadURLs[0],
+					dateAddedSort: currentDateSort,
+					dateAdded: currentDateString
+				});
 			});
 			return ''
 		});
 
 		//Reset Folder Selected
-
-
+		this.props.FolderSelection_Name('SELECT FOLDER');
 		//confimration aniamtion
 
 		//redirect to Directory
+		this.props.history.push(`/`);
 	}
 	play = () => {
 		//Handle display
@@ -263,4 +295,4 @@ const FileInput = styled.input `
 display: none;
 	  `;
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RecOptions));
