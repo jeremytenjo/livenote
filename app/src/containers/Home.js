@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 // import firebase from 'firebase';
-import Menu_icon from '../images/icons/menu.svg';
+import Menu_icon from '../images/icons/home.svg';
 import Search_icon from '../images/icons/search.svg';
 import {Route, BrowserRouter, Switch} from 'react-router-dom'
 import Loadable from 'react-loadable';
