@@ -90,17 +90,17 @@ class Record extends React.Component {
 
 		//Template
 		return (
-			<form autocomplete="off">
+			<div>
 				<InitWrapper>
 
-					<Input type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autocomplete="off" autofocus/>
+					<Input type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off" autofocus/>
 					<Selection onClick={this.showMenu}>{this.props.name}</Selection>
 					<InitBtn width="100" height="100" onClick={this.initRecording}>
 						<Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
 					</InitBtn>
 				</InitWrapper>
 				<FolderMenu/>
-			</form>
+			</div>
 		);
 	}
 
