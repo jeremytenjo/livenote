@@ -90,7 +90,7 @@ class Record extends React.Component {
 
 		//Template
 		return (
-			<div>
+			<form autocomplete="off">
 				<InitWrapper>
 
 					<Input type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autocomplete="off"/>
@@ -100,7 +100,7 @@ class Record extends React.Component {
 					</InitBtn>
 				</InitWrapper>
 				<FolderMenu/>
-			</div>
+			</form>
 		);
 	}
 
