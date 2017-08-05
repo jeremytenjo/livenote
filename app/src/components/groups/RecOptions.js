@@ -35,7 +35,8 @@ function mapStateToProps(state) {
 		playStatus: state.Play_Toggle,
 		pauseStatus: state.Pause_Toggle,
 		noteName: state.Note_Name,
-		FolderSelectionName: state.FolderSelection_Name
+		FolderSelectionName: state.FolderSelection_Name,
+		MasterNote_ID: state.MasterNote_ID
 	}
 }
 //define actions
@@ -140,10 +141,10 @@ class RecOptions extends React.Component {
 					// console.log(snapshot.metadata.downloadURLs[0]);
 					//write to database
 					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+						masterNote_id: this.props.MasterNote_ID,
 						name: this.props.noteName,
 						title: d.title,
 						comment: d.desc,
-						folderName: this.props.FolderSelectionName,
 						imageUrl: snapshot.metadata.downloadURLs[0],
 						dateAddedSort: currentDateSort,
 						dateAdded: currentDateString
@@ -151,10 +152,10 @@ class RecOptions extends React.Component {
 				});
 			} else {
 				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+					masterNote_id: this.props.MasterNote_ID,
 					name: this.props.noteName,
 					title: d.title,
 					comment: d.desc,
-					folderName: this.props.FolderSelectionName,
 					imageUrl: 'none',
 					dateAddedSort: currentDateSort,
 					dateAdded: currentDateString

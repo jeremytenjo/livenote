@@ -65,3 +65,6 @@ export const Show_Snackbar = () => {
 export const Set_Snackbar_Name = (e) => {
 	return {type: 'SNACKBAR_NAME', data: e}
 }
+export const Set_MasterNote_id = (e) => {
+	return {type: 'SET_MASTERNOTE_ID', data: e}
+}

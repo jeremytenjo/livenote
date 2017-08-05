@@ -16,6 +16,7 @@ import NotePreview from './NotePreview.js';
 import FolderList from './FolderList.js';
 import SnackBar_Toggle from './SnackBar_Toggle.js';
 import SnackBar_Message from './SnackBar_Message.js';
+import MasterNote_ID from './MasterNote_ID.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -34,7 +35,8 @@ const Reducers = combineReducers({
 	NotePreview,
 	FolderList,
 	SnackBar_Toggle,
-	SnackBar_Message
+	SnackBar_Message,
+	MasterNote_ID
 })
 
 export default Reducers;
