@@ -131,19 +131,32 @@ class RecOptions extends React.Component {
 			let storageRef = firebase.storage().ref();
 			let mountainsRef = storageRef.child(d.title + 'Title');
 
-			mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
-				// console.log(snapshot.metadata.downloadURLs[0]);
-				//write to database
+			if (d.image !== '') {
+				mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
+					// console.log(snapshot.metadata.downloadURLs[0]);
+					//write to database
+					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+						name: this.props.noteName,
+						title: d.title,
+						comment: d.desc,
+						folderName: this.props.FolderSelectionName,
+						imageUrl: snapshot.metadata.downloadURLs[0],
+						dateAddedSort: currentDateSort,
+						dateAdded: currentDateString
+					});
+				});
+			} else {
 				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
 					name: this.props.noteName,
 					title: d.title,
 					comment: d.desc,
 					folderName: this.props.FolderSelectionName,
-					imageUrl: snapshot.metadata.downloadURLs[0],
+					imageUrl: 'none',
 					dateAddedSort: currentDateSort,
 					dateAdded: currentDateString
 				});
-			});
+			}
+
 			return ''
 		});
 
@@ -152,6 +165,7 @@ class RecOptions extends React.Component {
 
 		//Reset Folder Selected
 		this.props.FolderSelection_Name('SELECT FOLDER');
+
 		//confimration aniamtion
 
 		//redirect to Directory
