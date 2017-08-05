@@ -41,7 +41,7 @@ class Record extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			noteName: ''
+			noteNameee: ''
 		}
 	}
 
@@ -53,7 +53,7 @@ class Record extends React.Component {
 	showMenu = () => {
 		//get folders from database
 		let userId = firebase.auth().currentUser.uid;
-		 firebase.database().ref('/users/' + userId + '/folders').once('value').then((snapshot, prevChildKey) => {
+		firebase.database().ref('/users/' + userId + '/folders').once('value').then((snapshot, prevChildKey) => {
 			// console.log(snapshot.val());
 			this.props.Folders_Set(snapshot.val());
 		});
@@ -63,29 +63,25 @@ class Record extends React.Component {
 	}
 
 	initRecording = () => {
-		console.log(this.state.noteName);
-
-		if (this.state.noteName === '') {
+		// console.log(this.state.noteNameee);
+		// let note_name;
+		if (this.state.noteNameee === '') {
 			this.props.Note_Name('Title');
 			this.props.Change_TopBar_Title('Title');
+			// note_name = 'Title';
 
 		} else {
-			this.props.Note_Name(this.state.noteName);
-			this.props.Change_TopBar_Title(this.state.noteName);
+			this.props.Note_Name(this.state.noteNameee);
+			this.props.Change_TopBar_Title(this.state.noteNameee);
+			// note_name = this.state.noteNameee;
 
 		}
-		
-		console.log(this.props.noteName);
 
-		//upload master
-		let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
-			name: this.props.noteName,
-			folderName: this.props.FolderSelectionName,
-			folderID: 'folderid'
-		});
-
-		//get master note id
-		this.props.Set_MasterNote_id(newRef.path.o[3])
+		// //upload master
+		// let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({name: note_name, folderName: this.props.FolderSelectionName, folderID: 'folderid', dateAdded: ''});
+		//
+		// //get master note id
+		// this.props.Set_MasterNote_id(newRef.path.o[3])
 
 		//hide note
 		this.props.Toggle_NewNote('none');
@@ -95,9 +91,10 @@ class Record extends React.Component {
 
 		//Redirect
 		this.props.history.push(`/recording`);
+
 	}
 	handleNameInput = (e) => {
-		this.setState({noteName: e.target.value})
+		this.setState({noteNameee: e.target.value})
 
 	}
 
@@ -109,7 +106,7 @@ class Record extends React.Component {
 			<div>
 				<InitWrapper>
 
-					<Input autoFocus type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off" />
+					<Input autoFocus type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off"/>
 					<Selection onClick={this.showMenu}>{this.props.name}</Selection>
 					<InitBtn width="100" height="100" onClick={this.initRecording}>
 						<Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>

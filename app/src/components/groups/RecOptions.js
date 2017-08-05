@@ -23,7 +23,8 @@ import {
 	FolderSelection_Name,
 	Change_TopBar_Title,
 	Show_Snackbar,
-	Set_Snackbar_Name
+	Set_Snackbar_Name,
+	Set_MasterNote_id
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -53,7 +54,8 @@ function mapDispatchToProps(dispatch) {
 		FolderSelection_Name,
 		Change_TopBar_Title,
 		Show_Snackbar,
-		Set_Snackbar_Name
+		Set_Snackbar_Name,
+		Set_MasterNote_id
 
 	}, dispatch)
 }
@@ -124,11 +126,13 @@ class RecOptions extends React.Component {
 			'November',
 			'December'
 		];
-		let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate();
+		let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getMinutes() + d.getHours() + d.getMilliseconds();
 		let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 
-		//upload items
-		// console.log(firebase.auth());
+		//upload master note
+		let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({name: this.props.noteName, folderName: this.props.FolderSelectionName, folderID: 'folderid',dateAddedSort: currentDateSort, dateAdded: currentDateString});
+
+		//upload sub notes
 		this.props.data.map((d) => {
 			//upload image
 			// console.log(this.props.noteName);
@@ -141,28 +145,28 @@ class RecOptions extends React.Component {
 					// console.log(snapshot.metadata.downloadURLs[0]);
 					//write to database
 					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-						masterNote_id: this.props.MasterNote_ID,
+						masterNote_id: newRef.path.o[3],
 						name: this.props.noteName,
 						title: d.title,
 						comment: d.desc,
-						imageUrl: snapshot.metadata.downloadURLs[0],
-						dateAddedSort: currentDateSort,
-						dateAdded: currentDateString
+						imageUrl: snapshot.metadata.downloadURLs[0]
+
 					});
 				});
 			} else {
 				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-					masterNote_id: this.props.MasterNote_ID,
+					masterNote_id: newRef.path.o[3],
 					name: this.props.noteName,
 					title: d.title,
 					comment: d.desc,
-					imageUrl: 'none',
-					dateAddedSort: currentDateSort,
-					dateAdded: currentDateString
+					imageUrl: 'none'
 				});
 			}
 			return ''
 		});
+
+		//update master note with date
+		// firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.MasterNote_ID}`).update({dateAdded: currentDateString});
 
 		//Reset Top Bar Title
 		this.props.Change_TopBar_Title('Notes');
