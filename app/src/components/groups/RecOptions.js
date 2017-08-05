@@ -20,7 +20,8 @@ import {
 	Start_Time,
 	Set_Current_Time,
 	Reset_Items,
-	FolderSelection_Name
+	FolderSelection_Name,
+	Change_TopBar_Title
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -46,7 +47,8 @@ function mapDispatchToProps(dispatch) {
 		Start_Time,
 		Set_Current_Time,
 		Reset_Items,
-		FolderSelection_Name
+		FolderSelection_Name,
+		Change_TopBar_Title
 
 	}, dispatch)
 }
@@ -144,6 +146,9 @@ class RecOptions extends React.Component {
 			});
 			return ''
 		});
+
+		//Reset Top Bar Title
+		this.props.Change_TopBar_Title('Notes');
 
 		//Reset Folder Selected
 		this.props.FolderSelection_Name('SELECT FOLDER');
