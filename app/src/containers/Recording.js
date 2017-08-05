@@ -76,7 +76,7 @@ const Wrapper = styled.div `
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* background: red; */}
-margin-top: 40px;
+margin-top: 50px;
 margin-bottom: 10px;
 overflow: scroll;
 overflow-x: hidden;
