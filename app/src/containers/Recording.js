@@ -82,7 +82,7 @@ overflow: scroll;
 overflow-x: hidden;
  `;
 const TimeBarContainer = styled.div `
-background: blue;
+${'' /* background: blue; */}
   `;
 const OptionsContainer = styled.div `
 ${ ''/* background: green; */}
