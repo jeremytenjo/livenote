@@ -5,13 +5,13 @@ import Menu_icon from '../images/icons/home.svg';
 import Search_icon from '../images/icons/search.svg';
 import {Route, BrowserRouter, Switch} from 'react-router-dom'
 import Loadable from 'react-loadable';
-
+import Snackbar from 'material-ui/Snackbar';
 //State
 import {connect} from 'react-redux';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {title: state.TopBar_Title}
+	return {title: state.TopBar_Title, snackbarToggle: state.SnackBar_Toggle, snackbarName: state.SnackBar_Message}
 }
 //define actions
 
@@ -63,7 +63,10 @@ class Home extends React.Component {
 						</Content>
 					</BrowserRouter>
 				</HomeContainer>
-
+				<Snackbar open={this.props.snackbarToggle} message={this.props.snackbarName} autoHideDuration={3000} style={{
+					background: '#0F2331',
+					textAlign: 'center'
+				}}/>
 			</div>
 		);
 	}

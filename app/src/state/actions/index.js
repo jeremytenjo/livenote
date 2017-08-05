@@ -58,3 +58,10 @@ export const NotePreview_Set = (e) => {
 export const Folders_Set = (e) => {
 	return {type: 'SET_FOLDERS', data: e}
 }
+
+export const Show_Snackbar = () => {
+	return {type: 'SHOW_SNACKBAR'}
+}
+export const Set_Snackbar_Name = (e) => {
+	return {type: 'SNACKBAR_NAME', data: e}
+}

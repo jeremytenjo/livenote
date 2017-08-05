@@ -21,7 +21,9 @@ import {
 	Set_Current_Time,
 	Reset_Items,
 	FolderSelection_Name,
-	Change_TopBar_Title
+	Change_TopBar_Title,
+	Show_Snackbar,
+	Set_Snackbar_Name
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -48,7 +50,9 @@ function mapDispatchToProps(dispatch) {
 		Set_Current_Time,
 		Reset_Items,
 		FolderSelection_Name,
-		Change_TopBar_Title
+		Change_TopBar_Title,
+		Show_Snackbar,
+		Set_Snackbar_Name
 
 	}, dispatch)
 }
@@ -156,7 +160,6 @@ class RecOptions extends React.Component {
 					dateAdded: currentDateString
 				});
 			}
-
 			return ''
 		});
 
@@ -167,6 +170,8 @@ class RecOptions extends React.Component {
 		this.props.FolderSelection_Name('SELECT FOLDER');
 
 		//confimration aniamtion
+		this.props.Set_Snackbar_Name('Note Added');
+		this.props.Show_Snackbar();
 
 		//redirect to Directory
 		this.props.history.push(`/`);

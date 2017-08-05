@@ -14,6 +14,8 @@ import CurrentTime from './CurrentTime.js';
 import NotePreview_Toggle from './NotePreview_Toggle.js';
 import NotePreview from './NotePreview.js';
 import FolderList from './FolderList.js';
+import SnackBar_Toggle from './SnackBar_Toggle.js';
+import SnackBar_Message from './SnackBar_Message.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -30,7 +32,9 @@ const Reducers = combineReducers({
 	CurrentTime,
 	NotePreview_Toggle,
 	NotePreview,
-	FolderList
+	FolderList,
+	SnackBar_Toggle,
+	SnackBar_Message
 })
 
 export default Reducers;
