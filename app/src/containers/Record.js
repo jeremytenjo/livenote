@@ -14,7 +14,8 @@ import {
 	Toggle_NewNote,
 	Reset_Items,
 	Folders_Set,
-	Set_MasterNote_id
+	Set_MasterNote_id,
+	Hide_Snackbar
 } from '../state/actions/index';
 
 function mapStateToProps(state) {
@@ -31,7 +32,8 @@ function mapDispatchToProps(dispatch) {
 		Toggle_NewNote,
 		Reset_Items,
 		Folders_Set,
-		Set_MasterNote_id
+		Set_MasterNote_id,
+		Hide_Snackbar
 	}, dispatch)
 }
 
@@ -48,6 +50,8 @@ class Record extends React.Component {
 	//Methods
 	componentWillMount() {
 		this.props.Change_TopBar_Title('Notes');
+		this.props.Hide_Snackbar();
+
 	}
 
 	showMenu = () => {
@@ -68,20 +72,12 @@ class Record extends React.Component {
 		if (this.state.noteNameee === '') {
 			this.props.Note_Name('Title');
 			this.props.Change_TopBar_Title('Title');
-			// note_name = 'Title';
 
 		} else {
 			this.props.Note_Name(this.state.noteNameee);
 			this.props.Change_TopBar_Title(this.state.noteNameee);
-			// note_name = this.state.noteNameee;
 
 		}
-
-		// //upload master
-		// let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({name: note_name, folderName: this.props.FolderSelectionName, folderID: 'folderid', dateAdded: ''});
-		//
-		// //get master note id
-		// this.props.Set_MasterNote_id(newRef.path.o[3])
 
 		//hide note
 		this.props.Toggle_NewNote('none');
@@ -95,7 +91,6 @@ class Record extends React.Component {
 	}
 	handleNameInput = (e) => {
 		this.setState({noteNameee: e.target.value})
-
 	}
 
 	render() {

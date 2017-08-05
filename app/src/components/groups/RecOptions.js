@@ -165,8 +165,6 @@ class RecOptions extends React.Component {
 			return ''
 		});
 
-		//update master note with date
-		// firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.MasterNote_ID}`).update({dateAdded: currentDateString});
 
 		//Reset Top Bar Title
 		this.props.Change_TopBar_Title('Notes');

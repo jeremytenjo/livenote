@@ -62,6 +62,9 @@ export const Folders_Set = (e) => {
 export const Show_Snackbar = () => {
 	return {type: 'SHOW_SNACKBAR'}
 }
+export const Hide_Snackbar = () => {
+	return {type: 'HIDE_SNACKBAR'}
+}
 export const Set_Snackbar_Name = (e) => {
 	return {type: 'SNACKBAR_NAME', data: e}
 }

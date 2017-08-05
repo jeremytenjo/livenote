@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // import firebase from 'firebase';
 import Menu_icon from '../images/icons/home.svg';
 import Search_icon from '../images/icons/search.svg';
-import {Route, BrowserRouter, Switch} from 'react-router-dom'
+import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Snackbar from 'material-ui/Snackbar';
 //State
@@ -41,6 +41,10 @@ class Home extends React.Component {
 	new = () => {
 		this.props.history.push(`/record`);
 	}
+	toHome = () => {
+		//redirect to Directory
+		// this.props.history.push(`/`);
+	}
 	render() {
 		//Properties
 
@@ -49,7 +53,7 @@ class Home extends React.Component {
 			<div>
 				<HomeContainer>
 					<TopBar>
-						<Icon src={Menu_icon} alt="Menu Icon"/>
+						<Icon src={Menu_icon} alt="Menu Icon" onClick={this.toHome}/>
 						<TitlePage>{this.props.title}</TitlePage>
 						<Icon src={Search_icon} alt="Search Icon"/>
 					</TopBar>
@@ -109,4 +113,4 @@ const Icon = styled.img `
 	cursor: pointer;
 	margin-top: 2px;
 `;
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(withRouter(Home));

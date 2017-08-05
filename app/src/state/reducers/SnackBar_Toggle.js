@@ -5,6 +5,8 @@ export default function(state = false, action) {
 	switch (action.type) {
 		case "SHOW_SNACKBAR":
 			return true
+		case "HIDE_SNACKBAR":
+			return false
 
 			default:
       return state
