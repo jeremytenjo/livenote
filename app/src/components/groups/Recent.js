@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
-import File from '../File_link.js';
+// import File from '../File_link.js';
 import {connect} from 'react-redux';
-import CircularProgress from 'material-ui/CircularProgress';
+// import firebase from 'firebase';
+// import CircularProgress from 'material-ui/CircularProgress';
 
 function mapStateToProps(state) {
 	return {notes: state.RecentNotes}
@@ -19,21 +20,8 @@ class Recent extends React.Component {
 
 	//Methods
 	itemList = () => {
-		let data = this.props.notes,
-			list;
 
-		// console.log(data);
-		if (data.length < 1) {
-			return <CircularProgress size={80} thickness={5} color="#42EA9C"/>
-
-		} else {
-			console.log(data);
-			list = data.map((item, i) => {
-				return <File key={i} width="150px"/>
-			});
-		}
-
-		return list
+		
 	}
 	render() {
 		//Properties

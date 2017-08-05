@@ -5,7 +5,7 @@ import Folders from '../components/groups/Folders.js';
 import Notes from '../components/groups/Notes.js';
 import FloatingButton from '../components/FloatButton.js';
 import {withRouter} from 'react-router-dom'
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Set_RecentNotes} from '../state/actions/index';
@@ -33,12 +33,12 @@ class Directory extends React.Component {
 
 	componentWillMount() {
 
-		//Get recent files
-		let userId = firebase.auth().currentUser.uid;
-		firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).on('child_added', (snapshot) => {
-			// console.log(snapshot.val());
-			this.props.Set_RecentNotes(snapshot.val())
-		});
+		// //Get recent files
+		// let userId = firebase.auth().currentUser.uid;
+		// firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snapshot) => {
+		// 	console.log(snapshot.val());
+		// 	this.props.Set_RecentNotes(snapshot.val());
+		// });
 	}
 	new = () => {
 		this.props.history.push(`/record`);
