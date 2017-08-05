@@ -71,3 +71,6 @@ export const Set_Snackbar_Name = (e) => {
 export const Set_MasterNote_id = (e) => {
 	return {type: 'SET_MASTERNOTE_ID', data: e}
 }
+export const Set_RecentNotes = (e) => {
+	return {type: 'SET_RECENT_NOTES', data: e}
+}

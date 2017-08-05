@@ -5,7 +5,20 @@ import Folders from '../components/groups/Folders.js';
 import Notes from '../components/groups/Notes.js';
 import FloatingButton from '../components/FloatButton.js';
 import {withRouter} from 'react-router-dom'
+import firebase from 'firebase';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {Set_RecentNotes} from '../state/actions/index';
 
+function mapStateToProps(state) {
+	return {status: state.RecentNotes}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		Set_RecentNotes
+	}, dispatch)
+}
 class Directory extends React.Component {
 
 	//initial state
@@ -17,14 +30,24 @@ class Directory extends React.Component {
 	}
 
 	//Methods
-	new  = () => {
+
+	componentWillMount() {
+
+		//Get recent files
+		let userId = firebase.auth().currentUser.uid;
+		firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).on('child_added', (snapshot) => {
+			// console.log(snapshot.val());
+			this.props.Set_RecentNotes(snapshot.val())
+		});
+	}
+	new = () => {
 		this.props.history.push(`/record`);
 	}
 	render() {
 		//Properties
 
-   //Style
-	 const FloatingButtonCon = styled.span `
+		//Style
+		const FloatingButtonCon = styled.span `
 position: fixed;
 bottom: 20px;
 right: 0;
@@ -43,4 +66,4 @@ right: 0;
 	}
 
 }
-export default withRouter(Directory)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Directory));

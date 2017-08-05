@@ -126,7 +126,7 @@ class RecOptions extends React.Component {
 			'November',
 			'December'
 		];
-		let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getMinutes() + d.getHours() + d.getMilliseconds();
+		let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getMilliseconds();
 		let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 
 		//upload master note
