@@ -2,20 +2,45 @@ import React from 'react';
 import styled from 'styled-components'
 import Plus_img from '../../images/icons/plus.svg';
 import FolderLink from '../Folder_link.js';
+import firebase from 'firebase';
+
 export default class Folder extends React.Component {
 
 	//initial state
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			list: []
 		}
 	}
 
 	//Methods
+	componentWillMount() {
+		let userId = firebase.auth().currentUser.uid;
+		let array = [];
 
+		return firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
+			let list = {},
+				snapValue = snap.val();
+			// console.log(snapValue);
+
+			for (var prop in snapValue) {
+				// console.log(snapValue[prop]);
+				list.id = prop;
+				list.name = snapValue[prop].name;
+
+				// console.log(list);
+				array.push(list);
+				list = {};
+			}
+			// console.log(array);
+			this.setState({list: array});
+		});
+
+	}
 	render() {
 		//Properties
+		let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} width="140px"/>);
 
 		//Style
 		const Wrapper = styled.div `
@@ -50,10 +75,7 @@ grid-row-gap: 5px;
 					<Img src={Plus_img} alt="add icon"/>
 				</TitleWrappper>
 				<FolderWrapper>
-					<FolderLink name="Name"/>
-					<FolderLink name="Name"/>
-					<FolderLink name="Name"/>
-					<FolderLink name="Name"/>
+					{list}
 				</FolderWrapper>
 			</Wrapper>
 		);
