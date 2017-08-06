@@ -5,7 +5,6 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import Reducers from './state/reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 // import registerServiceWorker from './registerServiceWorker';
 
 //Firebase Configuration
