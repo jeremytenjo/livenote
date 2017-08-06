@@ -49,7 +49,7 @@ class Recent extends React.Component {
 
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <File key={item.id} width="auto"/>);
+		let list = this.state.list.map((item, i) => <File key={item.id} width="140px"/>);
 
 		//Style
 		const Title = styled.p `
