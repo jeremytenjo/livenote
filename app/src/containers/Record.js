@@ -55,11 +55,25 @@ class Record extends React.Component {
 	}
 
 	showMenu = () => {
+
 		//get folders from database
+		let array = [];
+
 		let userId = firebase.auth().currentUser.uid;
-		firebase.database().ref('/users/' + userId + '/folders').once('value').then((snapshot, prevChildKey) => {
+		firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
 			// console.log(snapshot.val());
-			this.props.Folders_Set(snapshot.val());
+			let list = {},
+				snapValue = snap.val();
+
+
+ 		for (var prop in snapValue) {
+			// console.log(snapValue[prop]);
+					list.name = snapValue[prop].name;
+					array.push(list);
+					list = {};
+				}
+
+			this.props.Folders_Set(array);
 		});
 
 		//show menu

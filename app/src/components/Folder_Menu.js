@@ -40,18 +40,20 @@ class FolderMenu extends React.Component {
 
 	}
 	loadFolders = () => {
-		console.log(this.props.folders);
-		let array = [];
-		array.push(this.props.folders);
-		let list = array.map((folder, i) => {
+		// console.log(this.props.folders);
+		// let array = [];
+		// array.push(this.props.folders);
+
+		let list = this.props.folders.map((folder, i) => {
 			// return statement goes here:
-			console.log(folder);
-			return <span  key={i} onClick={() => {
+			// console.log(folder);
+			return <span key={i} onClick={() => {
 				this.hideFolderSelection(folder.name)
 			}}>
 				<FolderLink name={folder.name}/>
 			</span>
 		});
+
 		return list;
 
 	}
@@ -94,7 +96,6 @@ padding: 20px;
 					}}>
 						<FolderLink name="Root"/>
 					</span>
-
 					{this.loadFolders()}
 				</Content>
 
