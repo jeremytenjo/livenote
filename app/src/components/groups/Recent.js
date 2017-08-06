@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-// import File from '../File_link.js';
+import File from '../File_link.js';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 // import CircularProgress from 'material-ui/CircularProgress';
@@ -14,7 +14,7 @@ class Recent extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			listOfPositions: []
+			list: []
 		}
 	}
 
@@ -23,22 +23,38 @@ class Recent extends React.Component {
 		let userId = firebase.auth().currentUser.uid;
 		let array = [];
 
-		return firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).on('child_added', (snap) => {
-			let list = {};
-			list.key = snap.val().id;
-			list.name = snap.val().name;
-			array.push(list);
-			console.log(array);
-			this.setState({listOfPositions: array});
+		return firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snap) => {
+			let list = {},
+			snapValue = snap.val();
+			// console.log(snapValue);
 
+			for (var prop in snapValue) {
+				// console.log(snapValue[prop]);
+				list.id = prop;
+				list.dateAdded = snapValue[prop].dateAdded;
+				list.dateAddedSort = snapValue[prop].dateAddedSort;
+				list.folderID = snapValue[prop].folderID;
+				list.folderName = snapValue[prop].folderName;
+				list.name = snapValue[prop].name;
+
+				// console.log(list);
+				array.push(list);
+				list = {};
+			}
+			// console.log(array);
+			this.setState({list: array});
 		});
+
+
+
 	}
 
 	render() {
 		//Properties
-		const listOfPositions = this.state.listOfPositions.map(position => <div>
-			<h1 key={position.id}>{position.name}</h1>
-		</div>);
+		let list = this.state.list.map((item, i) =>
+			<File key={item.id}/>
+		);
+
 		//Style
 		const Title = styled.p `
 margin-top: 5px;
@@ -58,7 +74,7 @@ height: 100px;
 			<div>
 				<Title>Recent</Title>
 				<Container>
-					{listOfPositions}
+					{list}
 				</Container>
 			</div>
 		);
