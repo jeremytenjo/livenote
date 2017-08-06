@@ -5,8 +5,7 @@ import FolderLink from '../components/Folder_link_menu.js';
 // import FolderSubLink from '../components/Folder_Sublink_menu.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderSelection} from '../state/actions/index';
-import {FolderSelection_Name} from '../state/actions/index';
+import {folderSelection, FolderSelection_Name, FolderSelection_ID} from '../state/actions/index';
 
 //define what information to get from store and listen to changes, eg sets status as a component prop
 function mapStateToProps(state) {
@@ -16,7 +15,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		folderSelection,
-		FolderSelection_Name
+		FolderSelection_Name,
+		FolderSelection_ID
 	}, dispatch)
 }
 
@@ -33,22 +33,23 @@ class FolderMenu extends React.Component {
 
 	//Methods
 
-	hideFolderSelection = (name) => {
-		// console.log(name);
-		this.props.FolderSelection_Name(name);
+	hideFolderSelection = (e) => {
+		// console.log(e);
+		this.props.FolderSelection_Name(e.name);
+		this.props.FolderSelection_ID(e.id);
 		this.props.folderSelection(false);
-
 	}
 	loadFolders = () => {
-		// console.log(this.props.folders);
-		// let array = [];
-		// array.push(this.props.folders);
 
 		let list = this.props.folders.map((folder, i) => {
-			// return statement goes here:
 			// console.log(folder);
-			return <span key={i} onClick={() => {
-				this.hideFolderSelection(folder.name)
+			return <span data-id={folder.id} data-name={folder.name} key={i} onClick={(e) => {
+				// console.log(e.currentTarget);
+				let data = {
+					id: e.currentTarget.dataset.id,
+					name: e.currentTarget.dataset.name
+				}
+				this.hideFolderSelection(data)
 			}}>
 				<FolderLink name={folder.name}/>
 			</span>

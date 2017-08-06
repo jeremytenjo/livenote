@@ -24,7 +24,8 @@ import {
 	Change_TopBar_Title,
 	Show_Snackbar,
 	Set_Snackbar_Name,
-	Set_MasterNote_id
+	Set_MasterNote_id,
+	FolderSelection_ID
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -37,7 +38,8 @@ function mapStateToProps(state) {
 		pauseStatus: state.Pause_Toggle,
 		noteName: state.Note_Name,
 		FolderSelectionName: state.FolderSelection_Name,
-		MasterNote_ID: state.MasterNote_ID
+		MasterNote_ID: state.MasterNote_ID,
+		FolderSelection_ID_Name: state.FolderSelection_ID
 	}
 }
 //define actions
@@ -55,7 +57,8 @@ function mapDispatchToProps(dispatch) {
 		Change_TopBar_Title,
 		Show_Snackbar,
 		Set_Snackbar_Name,
-		Set_MasterNote_id
+		Set_MasterNote_id,
+		FolderSelection_ID
 
 	}, dispatch)
 }
@@ -130,7 +133,7 @@ class RecOptions extends React.Component {
 		let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 
 		//upload master note
-		let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({name: this.props.noteName, folderName: this.props.FolderSelectionName, folderID: 'folderid',dateAddedSort: currentDateSort, dateAdded: currentDateString});
+		let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({name: this.props.noteName, folderName: this.props.FolderSelectionName, folderID: this.props.FolderSelection_ID_Name, dateAddedSort: currentDateSort, dateAdded: currentDateString});
 
 		//upload sub notes
 		this.props.data.map((d) => {
@@ -160,7 +163,7 @@ class RecOptions extends React.Component {
 					title: d.title,
 					comment: d.desc,
 					imageUrl: 'none'
-				});
+			});
 			}
 			return ''
 		});
@@ -171,6 +174,9 @@ class RecOptions extends React.Component {
 
 		//Reset Folder Selected
 		this.props.FolderSelection_Name('SELECT FOLDER');
+
+		//Reset Folder ID
+		this.props.FolderSelection_ID('');
 
 		//confimration aniamtion
 		this.props.Set_Snackbar_Name('Note Added');

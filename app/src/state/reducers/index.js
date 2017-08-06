@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import FolderSelection from './FolderSelection.js';
 import FolderSelection_Name from './FolderSelection_Name.js';
+import FolderSelection_ID from './FolderSelection_ID.js';
 import Note_Name from './Note_Name.js';
 import TopBar_Title from './TopBar_Title.js';
 import NewNoteToggle from './NewNoteToggle.js';
@@ -38,7 +39,8 @@ const Reducers = combineReducers({
 	SnackBar_Toggle,
 	SnackBar_Message,
 	MasterNote_ID,
-	RecentNotes
+	RecentNotes,
+	FolderSelection_ID
 })
 
 export default Reducers;

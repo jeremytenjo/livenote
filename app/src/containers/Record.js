@@ -68,6 +68,7 @@ class Record extends React.Component {
 
  		for (var prop in snapValue) {
 			// console.log(snapValue[prop]);
+					list.id = prop;
 					list.name = snapValue[prop].name;
 					array.push(list);
 					list = {};

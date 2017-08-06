@@ -6,6 +6,9 @@ export const folderSelection = (e) => {
 export const FolderSelection_Name = (e) => {
 	return {type: 'CHANGE_NAME', data: e}
 }
+export const FolderSelection_ID = (e) => {
+	return {type: 'SET_FOLDER_ID', data: e}
+}
 export const Note_Name = (e) => {
 	return {type: 'CHANGE_NOTE_NAME', data: e}
 }
