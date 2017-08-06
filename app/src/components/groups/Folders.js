@@ -16,26 +16,39 @@ export default class Folder extends React.Component {
 
 	//Methods
 	componentWillMount() {
-		let userId = firebase.auth().currentUser.uid;
-		let array = [];
+this.fetchData();
+	}
+	  fetchData = () => {
+			let userId = firebase.auth().currentUser.uid;
+	 		let array = [];
 
-		return firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
-			let list = {},
-				snapValue = snap.val();
-			// console.log(snapValue);
+	 		return firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
+	 			let list = {},
+	 				snapValue = snap.val();
+	 			// console.log(snapValue);
 
-			for (var prop in snapValue) {
-				// console.log(snapValue[prop]);
-				list.id = prop;
-				list.name = snapValue[prop].name;
+	 			for (var prop in snapValue) {
+	 				// console.log(snapValue[prop]);
+	 				list.id = prop;
+	 				list.name = snapValue[prop].name;
 
-				// console.log(list);
-				array.push(list);
-				list = {};
-			}
-			// console.log(array);
-			this.setState({list: array});
-		});
+	 				// console.log(list);
+	 				array.push(list);
+	 				list = {};
+	 			}
+
+	 			// console.log(array);
+	 			this.setState({list: array});
+	 		});
+	  }
+	addFolder = () => {
+
+firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders`).push({name: 'United'});
+
+
+
+
+		this.fetchData();
 
 	}
 	render() {
@@ -72,7 +85,7 @@ grid-row-gap: 5px;
 			<Wrapper>
 				<TitleWrappper>
 					<Title>Folders</Title>
-					<Img src={Plus_img} alt="add icon"/>
+					<Img onClick={this.addFolder} src={Plus_img} alt="add icon"/>
 				</TitleWrappper>
 				<FolderWrapper>
 					{list}

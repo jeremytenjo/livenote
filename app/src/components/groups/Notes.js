@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import File from '../File_link.js';
+import firebase from 'firebase';
 
 export default class Notes extends React.Component {
 
@@ -8,14 +9,41 @@ export default class Notes extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			list: []
 		}
 	}
 
 	//Methods
+	componentWillMount() {
+		let userId = firebase.auth().currentUser.uid;
+		let array = [];
 
+		return firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snap) => {
+			let list = {},
+				snapValue = snap.val();
+			// console.log(snapValue);
+
+			for (var prop in snapValue) {
+				// console.log(snapValue[prop]);
+				list.id = prop;
+				list.dateAdded = snapValue[prop].dateAdded;
+				list.dateAddedSort = snapValue[prop].dateAddedSort;
+				list.folderID = snapValue[prop].folderID;
+				list.folderName = snapValue[prop].folderName;
+				list.name = snapValue[prop].name;
+
+				// console.log(list);
+				array.push(list);
+				list = {};
+			}
+			// console.log(array);
+			this.setState({list: array});
+		});
+
+	}
 	render() {
 		//Properties
+		let list = this.state.list.map((item, i) => <File key={item.id} width="auto"/>);
 
 		//Style
 		const Wrapper = styled.div `
@@ -36,33 +64,7 @@ padding-bottom: 90px;
 			<Wrapper>
 				<Title>Notes</Title>
 				<Container>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
-					<File width="auto"/>
+					{list}
 				</Container>
 			</Wrapper>
 		);
