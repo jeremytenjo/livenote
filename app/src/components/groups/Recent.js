@@ -25,7 +25,7 @@ class Recent extends React.Component {
 
 		return firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snap) => {
 			let list = {},
-			snapValue = snap.val();
+				snapValue = snap.val();
 			// console.log(snapValue);
 
 			for (var prop in snapValue) {
@@ -45,15 +45,11 @@ class Recent extends React.Component {
 			this.setState({list: array});
 		});
 
-
-
 	}
 
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) =>
-			<File key={item.id}/>
-		);
+		let list = this.state.list.map((item, i) => <File key={item.id}/>);
 
 		//Style
 		const Title = styled.p `
