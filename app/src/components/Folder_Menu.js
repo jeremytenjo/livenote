@@ -40,10 +40,12 @@ class FolderMenu extends React.Component {
 
 	}
 	loadFolders = () => {
-		// console.log(this.props.folders);
-		let list = this.props.folders.map((folder, i) => {
+		console.log(this.props.folders);
+		let array = [];
+		array.push(this.props.folders);
+		let list = array.map((folder, i) => {
 			// return statement goes here:
-			// console.log(folder);
+			console.log(folder);
 			return <span  key={i} onClick={() => {
 				this.hideFolderSelection(folder.name)
 			}}>

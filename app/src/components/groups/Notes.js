@@ -18,7 +18,7 @@ export default class Notes extends React.Component {
 		let userId = firebase.auth().currentUser.uid;
 		let array = [];
 
-		return firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snap) => {
+		return firebase.database().ref('/users/' + userId + '/masterNotes').once('value').then((snap) => {
 			let list = {},
 				snapValue = snap.val();
 			// console.log(snapValue);
