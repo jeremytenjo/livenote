@@ -2,8 +2,18 @@ import React from 'react';
 import styled from 'styled-components'
 import Folder_img from '../images/icons/Folder.svg';
 import Options_img from '../images/icons/Options.svg';
+import {bindActionCreators} from 'redux';
 
-export default class Folder_Link extends React.Component {
+import {connect} from 'react-redux';
+
+import {Toggle_OptinsMenuShow} from '../state/actions/index';
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		Toggle_OptinsMenuShow
+	}, dispatch)
+}
+class Folder_Link extends React.Component {
 
 	//initial state
 	constructor(props) {
@@ -14,7 +24,9 @@ export default class Folder_Link extends React.Component {
 	}
 
 	//Methods
-
+	showOptions = () => {
+		this.props.Toggle_OptinsMenuShow()
+	}
 	render() {
 		//Properties
 
@@ -42,10 +54,12 @@ color: #212121;
 			<Wrapper>
 				<Img src={Folder_img} alt="foler icon"/>
 				<Title>{this.state.name}</Title>
-				<Img src={Options_img} alt="options icon"/>
+				<Img onClick={this.showOptions} src={Options_img} alt="options icon"/>
 
 			</Wrapper>
 		);
 	}
 
 }
+
+export default connect(null, mapDispatchToProps)(Folder_Link);

@@ -1,10 +1,24 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import Plus_img from '../../images/icons/plus.svg';
 import FolderLink from '../Folder_link.js';
 import firebase from 'firebase';
 import Button from '../Button.js';
+import Close_Icon from '../../images/icons/close.svg';
 
+//State
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {Toggle_OptinsMenuHide} from '../../state/actions/index';
+
+function mapStateToProps(state) {
+	return {options: state.OtionsMenu_Toggle}
+}
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		Toggle_OptinsMenuHide
+	}, dispatch)
+}
 class Folder extends React.Component {
 
 	//initial state
@@ -61,11 +75,13 @@ class Folder extends React.Component {
 	}
 	handleClose = (e) => {
 		this.setState({open: false});
-		this.setState({title: ''});
+		// this.setState({title: ''});
 		e.preventDefault();
 
 	};
-
+	hideOptions = () => {
+		this.props.Toggle_OptinsMenuHide();
+	}
 	render() {
 		//Properties
 		let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} width="140px"/>);
@@ -91,6 +107,44 @@ class Folder extends React.Component {
 			borderColor: 'transparent',
 			borderWidth: '0px'
 		}
+		const OptionsMenuWrapper = styled.form `
+		display: ${props => this.props.options
+			? 'block'
+			: 'none'};
+		position: fixed;
+		background: rgba(0, 0, 0, 0.73);
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		`;
+
+		const rotate360 = keyframes `
+			 from {
+				 bottom: -300px;
+			 }
+
+			 to {
+				 bottom: 0;
+			 }
+			`;
+		const OptionsMenuInner = styled.div `
+		position: fixed;
+		background: white;
+		height: 300px;
+		width: 100%;
+		max-width: 600px;
+		left: 0;
+		right: 0;
+		margin: auto;
+		bottom: 0;
+			animation: ${rotate360} .1s linear;
+      display: grid;
+      grid-template-rows: 50px 250px;
+
+		 `;
+
 		//Template
 		return (
 			<Wrapper>
@@ -101,6 +155,7 @@ class Folder extends React.Component {
 				<FolderWrapper>
 					{list}
 				</FolderWrapper>
+
 				<Dialog onSubmit={this.submit}>
 					<InnerDialog>
 						<SubTitle>Name folder</SubTitle>
@@ -116,6 +171,13 @@ class Folder extends React.Component {
 						</ButtonCon>
 					</InnerDialog>
 				</Dialog>
+				<OptionsMenuWrapper>
+					<OptionsMenuInner>
+						<CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
+
+					</OptionsMenuInner>
+				</OptionsMenuWrapper>
+
 			</Wrapper>
 		);
 	}
@@ -178,5 +240,11 @@ const ButtonCon = styled.div `
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	`;
+const CloseIcon = styled.img `
+width: 20px;
+position: absolute;
+right: 10px;
+top: 10px;
+ `;
 
-export default(Folder);
+export default connect(mapStateToProps, mapDispatchToProps)(Folder);

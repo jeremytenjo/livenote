@@ -77,4 +77,9 @@ export const Set_MasterNote_id = (e) => {
 export const Set_RecentNotes = (e) => {
 	return {type: 'SET_RECENT_NOTES', data: e}
 }
- 
+export const Toggle_OptinsMenuShow = () => {
+	return {type: 'SHOW_MENU_OPTIONS'}
+}
+export const Toggle_OptinsMenuHide = () => {
+	return {type: 'HIDE_MENU_OPTIONS'}
+}
