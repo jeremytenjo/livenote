@@ -5,7 +5,7 @@ import FolderLink from '../Folder_link.js';
 import firebase from 'firebase';
 import Button from '../Button.js';
 
-export default class Folder extends React.Component {
+class Folder extends React.Component {
 
 	//initial state
 	constructor(props) {
@@ -13,7 +13,7 @@ export default class Folder extends React.Component {
 		this.state = {
 			list: [],
 			open: true,
-			name: ''
+			title: ''
 		}
 	}
 
@@ -61,39 +61,15 @@ export default class Folder extends React.Component {
 
 	};
 
-	handleName = (e) => {
+	handleTitle = (e) => {
 		console.log(e.target.value);
-		this.setState({name: e.target.value})
+		this.setState({title: e.target.value})
+
 	}
 	render() {
 		//Properties
 		let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} width="140px"/>);
 
-		//Style
-		const Wrapper = styled.div `
-
-	  `;
-		const TitleWrappper = styled.div `
-display: grid;
-grid-template-columns: 1fr 15px;
-		 `;
-		const Title = styled.div `
- margin-top: 15px;
- `;
-		const Img = styled.img `
-		margin-top: 15px;
-cursor: pointer;
-width: 15px;
-right: 15px;
-  `;
-		const FolderWrapper = styled.div `
-		margin-top: 15px;
-
-display: grid;
-grid-template-columns: 1fr 1fr;
-grid-column-gap: 5px;
-grid-row-gap: 5px;
-	 `;
 		const Dialog = styled.div `
 			display: ${props => this.state.open
 			? 'block'
@@ -105,48 +81,8 @@ grid-row-gap: 5px;
 		top: 0;
 		left: 0;
 		z-index: 20;
-	  `;
-		const InnerDialog = styled.div `
-			border-radius: 2px;
-position: absolute;
-background: white;
-height: 220px;
-max-width: 600px;
-width: 75%;
-left: 0;
-right: 0;
-top: 0;
-bottom: 0;
-margin: auto;
-display: grid;
-grid-template-rows: 50px 50px 50px;
-grid-row-gap: 24px;
-		 `;
-		const Input = styled.input `
-		&:focus {
-		outline: none;
-		}
-		width: 80%;
-		display: block;
-		margin: auto;
-		height: 30px;
-		font-size: 16px;
-		border-color: transparent;
-    border-width: 0px;
-	  `;
-		const SubTitle = styled.h2 `
-		  color: #0F2331;
-			margin: 0px;
-padding: 24px 36px 20px;
-font-size: 20px;
-line-height: 32px;
-font-weight: 400;
-		 `;
+		`;
 
-		const ButtonCon = styled.div `
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-		  `;
 		//Template
 		return (
 			<Wrapper>
@@ -160,7 +96,8 @@ font-weight: 400;
 				<Dialog>
 					<InnerDialog>
 						<SubTitle>Name folder</SubTitle>
-						<Input autoFocus type="text" placeholder="Type here..." value={this.state.name} onChange={this.handleName}/>
+						<Input autoFocus placeholder="Type here..." type="text" value={this.state.title} onChange={this.handleTitle}/>
+
 						<ButtonCon>
 							<span onClick={this.handleClose}>
 								<Button text="Cancel" color="#9E9E9E"/>
@@ -176,3 +113,73 @@ font-weight: 400;
 	}
 
 }
+
+//Style
+const Wrapper = styled.div `
+
+`;
+const TitleWrappper = styled.div `
+display: grid;
+grid-template-columns: 1fr 15px;
+ `;
+const Title = styled.div `
+margin-top: 15px;
+`;
+const Img = styled.img `
+margin-top: 15px;
+cursor: pointer;
+width: 15px;
+right: 15px;
+`;
+const FolderWrapper = styled.div `
+margin-top: 15px;
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-column-gap: 5px;
+grid-row-gap: 5px;
+`;
+
+const InnerDialog = styled.div `
+	border-radius: 2px;
+position: absolute;
+background: white;
+height: 220px;
+max-width: 600px;
+width: 75%;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+margin: auto;
+display: grid;
+grid-template-rows: 50px 50px 50px;
+grid-row-gap: 24px;
+ `;
+const Input = styled.input `
+&:focus {
+outline: none;
+}
+width: 80%;
+display: block;
+margin: auto;
+height: 30px;
+font-size: 16px;
+border-color: transparent;
+border-width: 0px;
+`;
+const SubTitle = styled.h2 `
+	color: #0F2331;
+	margin: 0px;
+padding: 24px 36px 20px;
+font-size: 20px;
+line-height: 32px;
+font-weight: 400;
+ `;
+
+const ButtonCon = styled.div `
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	`;
+
+export default(Folder);
