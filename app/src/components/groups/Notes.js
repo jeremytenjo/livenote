@@ -43,7 +43,7 @@ export default class Notes extends React.Component {
 	}
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <File key={item.id} width="auto"/>);
+		let list = this.state.list.map((item, i) => <File key={item.id} width="auto" title={item.name}/>);
 
 		//Style
 		const Wrapper = styled.div `

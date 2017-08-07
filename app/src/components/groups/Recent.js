@@ -23,7 +23,7 @@ class Recent extends React.Component {
 		let userId = firebase.auth().currentUser.uid;
 		let array = [];
 
-		return firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snap) => {
+		return firebase.database().ref('/users/' + userId + '/masterNotes').orderByKey().limitToFirst(6).once('value').then((snap) => {
 			let list = {},
 				snapValue = snap.val();
 			// console.log(snapValue);
@@ -49,7 +49,7 @@ class Recent extends React.Component {
 
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <File key={item.id} width="140px"/>);
+		let list = this.state.list.map((item, i) => <File key={item.id} width="140px" title={item.name}/>);
 
 		//Style
 		const Title = styled.p `
