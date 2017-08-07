@@ -22,7 +22,7 @@ export default class File extends React.Component {
 	 height: 100px;
 	 width: ${props => this.state.width};
 	 background: #F5F5F5;
-	 border-radius: 2px;
+	 border-radius: 2px 0 2px 2px;
 	 cursor: pointer;
 	 `;
 		//Template

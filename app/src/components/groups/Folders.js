@@ -90,7 +90,6 @@ class Folder extends React.Component {
 			fontSize: '16px',
 			borderColor: 'transparent',
 			borderWidth: '0px'
-
 		}
 		//Template
 		return (
