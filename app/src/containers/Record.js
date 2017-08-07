@@ -105,6 +105,7 @@ class Record extends React.Component {
 
 	}
 	handleNameInput = (e) => {
+		// console.log(e.target.value);
 		this.setState({noteNameee: e.target.value})
 	}
 

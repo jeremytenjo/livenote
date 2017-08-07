@@ -77,3 +77,4 @@ export const Set_MasterNote_id = (e) => {
 export const Set_RecentNotes = (e) => {
 	return {type: 'SET_RECENT_NOTES', data: e}
 }
+ 

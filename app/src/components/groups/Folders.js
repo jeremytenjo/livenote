@@ -12,7 +12,7 @@ class Folder extends React.Component {
 		super(props)
 		this.state = {
 			list: [],
-			open: true,
+			open: false,
 			title: ''
 		}
 	}
@@ -21,6 +21,7 @@ class Folder extends React.Component {
 	componentWillMount() {
 		this.fetchData();
 	}
+
 	fetchData = () => {
 		let userId = firebase.auth().currentUser.uid;
 		let array = [];
@@ -44,33 +45,32 @@ class Folder extends React.Component {
 			this.setState({list: array});
 		});
 	}
-	addFolder = () => {
 
+	addFolder = () => {
 		this.setState({open: true});
 
+	}
+	submit = (e) => {
+		// console.log(this.input.value);
+		e.preventDefault();
+		this.setState({open: false});
+		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders`).push({name: this.input.value});
+		// this.setState({title: ''});
 		this.fetchData();
 
 	}
-	submit = () => {
+	handleClose = (e) => {
 		this.setState({open: false});
-		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders`).push({name: this.state.name});
-	}
-	handleClose = () => {
-		this.setState({open: false});
-		this.setState({name: ''})
+		this.setState({title: ''});
+		e.preventDefault();
 
 	};
 
-	handleTitle = (e) => {
-		console.log(e.target.value);
-		this.setState({title: e.target.value})
-
-	}
 	render() {
 		//Properties
 		let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} width="140px"/>);
 
-		const Dialog = styled.div `
+		const Dialog = styled.form `
 			display: ${props => this.state.open
 			? 'block'
 			: 'none'};
@@ -82,7 +82,16 @@ class Folder extends React.Component {
 		left: 0;
 		z-index: 20;
 		`;
+		let inputStyle = {
+			width: '80%',
+			display: 'block',
+			margin: 'auto',
+			height: '30px',
+			fontSize: '16px',
+			borderColor: 'transparent',
+			borderWidth: '0px'
 
+		}
 		//Template
 		return (
 			<Wrapper>
@@ -93,17 +102,17 @@ class Folder extends React.Component {
 				<FolderWrapper>
 					{list}
 				</FolderWrapper>
-				<Dialog>
+				<Dialog onSubmit={this.submit}>
 					<InnerDialog>
 						<SubTitle>Name folder</SubTitle>
-						<Input autoFocus placeholder="Type here..." type="text" value={this.state.title} onChange={this.handleTitle}/>
+						<input autoFocus style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
 
 						<ButtonCon>
 							<span onClick={this.handleClose}>
 								<Button text="Cancel" color="#9E9E9E"/>
 							</span>
-							<span onClick={this.submit}>
-								<Button text="Create" color="#44F6A3"/>
+							<span >
+								<Button type="submit" text="Create" color="#44F6A3"/>
 							</span>
 						</ButtonCon>
 					</InnerDialog>
@@ -156,18 +165,7 @@ display: grid;
 grid-template-rows: 50px 50px 50px;
 grid-row-gap: 24px;
  `;
-const Input = styled.input `
-&:focus {
-outline: none;
-}
-width: 80%;
-display: block;
-margin: auto;
-height: 30px;
-font-size: 16px;
-border-color: transparent;
-border-width: 0px;
-`;
+
 const SubTitle = styled.h2 `
 	color: #0F2331;
 	margin: 0px;
