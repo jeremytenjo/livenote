@@ -31,16 +31,7 @@ class Directory extends React.Component {
 
 	//Methods
 
-	componentWillMount() {
-
-		// //Get recent files
-		// let userId = firebase.auth().currentUser.uid;
-		// firebase.database().ref('/users/' + userId + '/masterNotes').limitToFirst(6).once('value').then((snapshot) => {
-		// 	console.log(snapshot.val());
-		// 	this.props.Set_RecentNotes(snapshot.val());
-		// });
-	}
-	new = () => {
+	openRecord = () => {
 		this.props.history.push(`/record`);
 	}
 	render() {
@@ -58,7 +49,7 @@ right: 0;
 				<Recent/>
 				<Folders/>
 				<Notes/>
-				<FloatingButtonCon onClick={this.new}>
+				<FloatingButtonCon onClick={this.openRecord}>
 					<FloatingButton/>
 				</FloatingButtonCon>
 			</div>

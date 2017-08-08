@@ -64,6 +64,8 @@ grid-template-columns: repeat(5, 1fr);
 grid-column-gap: 10px;
 white-space: nowrap;
 height: 100px;
+z-index: -2;
+position: relative;
  `;
 
 		//Template

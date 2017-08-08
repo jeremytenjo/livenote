@@ -144,13 +144,16 @@ class Folder extends React.Component {
       grid-template-rows: 50px 250px;
 
 		 `;
-     const OptionsMenuTop = styled.div `
+		const OptionsMenuTop = styled.div `
      position: fixed;
      background: rgba(0, 0, 0, 0.73);
       bottom: 300px;
       height: 100%;
       width: 100%;
       max-width: 600px;
+			left: 0;
+			right: 0;
+			margin: auto;
      `;
 		//Template
 		return (
