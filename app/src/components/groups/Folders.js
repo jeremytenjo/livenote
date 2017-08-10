@@ -201,12 +201,12 @@ padding: 15px;
 						<CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
 						<OtopnsWrapper>
 
-							<OptionsItemCon>
-								<OptionsItem onClick={this.hideOptions} src={Rename_img} alt="rename Icon"/>
+							<OptionsItemCon onClick={this.hideOptions}>
+								<OptionsItem  src={Rename_img} alt="rename Icon"/>
 								<p>Rename</p>
 							</OptionsItemCon>
-							<OptionsItemCon>
-								<OptionsItem onClick={this.hideOptions} src={Remove_img} alt="rename Icon"/>
+							<OptionsItemCon onClick={this.hideOptions}>
+								<OptionsItem  src={Remove_img} alt="rename Icon"/>
 								<p>Remove</p>
 							</OptionsItemCon>
 
@@ -267,7 +267,7 @@ grid-row-gap: 24px;
 const SubTitle = styled.h2 `
 	color: #0F2331;
 	margin: 0px;
-padding: 24px 36px 20px;
+padding: 24px 32px;
 font-size: 20px;
 line-height: 32px;
 font-weight: 400;
