@@ -111,7 +111,7 @@ class Folder extends React.Component {
 		}
 		const OptionsMenuWrapper = styled.form `
 		display: ${props => this.props.options
-			? 'block'
+			? 'none'
 			: 'block'};
 		position: fixed;
 		background: rgba(0, 0, 0, 0.73);
