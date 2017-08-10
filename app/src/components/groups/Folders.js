@@ -266,8 +266,10 @@ grid-row-gap: 24px;
 
 const SubTitle = styled.h2 `
 	color: #0F2331;
-	margin: 0px;
-padding: 24px 32px;
+width: 80%;
+display: block;
+margin: auto;
+margin-top: 20px;
 font-size: 20px;
 line-height: 32px;
 font-weight: 400;
