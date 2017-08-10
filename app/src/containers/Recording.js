@@ -6,7 +6,6 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
-import Recorder from 'react-recorder';
 //State
 //import {bindActionCreators} from 'redux';
 //import {connect} from 'react-redux';
@@ -45,10 +44,10 @@ class Recording extends React.Component {
 		// navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(handleSuccess);
 
 	}
-	stop = () => {}
-	onStop = (blob) => {
-		console.log(blob);
+	stop = () => {
+		
 	}
+
 	render() {
 		//Properties
 
@@ -58,8 +57,7 @@ class Recording extends React.Component {
 		return (
 			<Wrapper>
 				<button onClick={this.stop}>Stop</button>
-				
-				<Recorder onStop={this.onStop} />
+
 
 				<ItemViewContainer>
 					<RecItemView/>
