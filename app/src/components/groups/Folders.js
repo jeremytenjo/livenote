@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, {keyframes} from 'styled-components'
 import Plus_img from '../../images/icons/plus.svg';
+import Rename_img from '../../images/icons/rename.svg';
+import Remove_img from '../../images/icons/rubbish-bin.svg';
 import FolderLink from '../Folder_link.js';
 import firebase from 'firebase';
 import Button from '../Button.js';
@@ -110,7 +112,7 @@ class Folder extends React.Component {
 		const OptionsMenuWrapper = styled.form `
 		display: ${props => this.props.options
 			? 'block'
-			: 'none'};
+			: 'block'};
 		position: fixed;
 		background: rgba(0, 0, 0, 0.73);
 		height: 100%;
@@ -122,7 +124,7 @@ class Folder extends React.Component {
 
 		const rotate360 = keyframes `
 			 from {
-				 bottom: -300px;
+				 bottom: -150px;
 			 }
 
 			 to {
@@ -132,7 +134,7 @@ class Folder extends React.Component {
 		const OptionsMenuInner = styled.div `
 		position: fixed;
 		background: white;
-		height: 300px;
+		height: 150px;
 		width: 100%;
 		max-width: 600px;
 		left: 0;
@@ -147,7 +149,7 @@ class Folder extends React.Component {
 		const OptionsMenuTop = styled.div `
      position: fixed;
      background: rgba(0, 0, 0, 0.73);
-      bottom: 300px;
+      bottom: 150px;
       height: 100%;
       width: 100%;
       max-width: 600px;
@@ -155,6 +157,18 @@ class Folder extends React.Component {
 			right: 0;
 			margin: auto;
      `;
+		const OtopnsWrapper = styled.div `
+margin-top: 40px;
+		  `;
+		const OptionsItemCon = styled.div `
+display: grid;
+grid-template-columns: 50px 1fr;
+color: #0F2331;
+		  `;
+		const OptionsItem = styled.img `
+width: 20px;
+padding: 15px;
+			 `;
 		//Template
 		return (
 			<Wrapper>
@@ -185,6 +199,18 @@ class Folder extends React.Component {
 					<OptionsMenuTop onClick={this.hideOptions}/>
 					<OptionsMenuInner>
 						<CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
+						<OtopnsWrapper>
+
+							<OptionsItemCon>
+								<OptionsItem onClick={this.hideOptions} src={Rename_img} alt="rename Icon"/>
+								<p>Rename</p>
+							</OptionsItemCon>
+							<OptionsItemCon>
+								<OptionsItem onClick={this.hideOptions} src={Remove_img} alt="rename Icon"/>
+								<p>Remove</p>
+							</OptionsItemCon>
+
+						</OtopnsWrapper>
 
 					</OptionsMenuInner>
 				</OptionsMenuWrapper>
