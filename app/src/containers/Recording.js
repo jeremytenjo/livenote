@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
 import RecItemView from '../components/groups/RecItemView.js';
-import RecTimteBar from '../components/groups/RecTimteBar.js';
+// import RecTimteBar from '../components/groups/RecTimteBar.js';
 import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
-
+import Recorder from 'react-recorder';
 //State
 //import {bindActionCreators} from 'redux';
 //import {connect} from 'react-redux';
@@ -21,12 +21,34 @@ class Recording extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			data: 'initial'
+			stop: false
 		}
 	}
 
 	//Methods
+	componentWillMount = () => {
+		this.startRecording();
+	}
+	startRecording = () => {
 
+		//Start Recording
+		// var handleSuccess =  (stream) => {
+		//
+		// 	//Handle recirder data
+		// 	const options = {mimeType: 'video/webm;codecs=vp9'};
+		// 	const recordedChunks = [];
+		//
+		//
+		//
+		// };
+		//
+		// navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(handleSuccess);
+
+	}
+	stop = () => {}
+	onStop = (blob) => {
+		console.log(blob);
+	}
 	render() {
 		//Properties
 
@@ -35,22 +57,21 @@ class Recording extends React.Component {
 		//Template
 		return (
 			<Wrapper>
+				<button onClick={this.stop}>Stop</button>
+				
+				<Recorder onStop={this.onStop} />
 
 				<ItemViewContainer>
 					<RecItemView/>
 				</ItemViewContainer>
 
-				<TimeBarContainer>
-					<RecTimteBar/>
-				</TimeBarContainer>
-
 				<OptionsContainer>
 					<RecOptions/>
 				</OptionsContainer>
 
-					<NewNote />
-					<NewNoteImage />
-					<NotePreview />
+				<NewNote/>
+				<NewNoteImage/>
+				<NotePreview/>
 
 			</Wrapper>
 		);
@@ -69,7 +90,7 @@ const Wrapper = styled.div `
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	grid-template-rows: 1fr 80px 100px;
+	grid-template-rows: 1fr 100px;
 	overflow: hidden;
 	padding: 10px;
 
@@ -81,9 +102,9 @@ margin-bottom: 10px;
 overflow: scroll;
 overflow-x: hidden;
  `;
-const TimeBarContainer = styled.div `
-${'' /* background: blue; */}
-  `;
+// const TimeBarContainer = styled.div `
+// ${ ''/* background: blue; */}
+// `;
 const OptionsContainer = styled.div `
 ${ ''/* background: green; */}
 	 `;

@@ -94,6 +94,7 @@ display: grid;
 grid-template-columns: 20px 1fr 20px;
 padding: 10px;
 background: #0F2331;
+z-index: 99;
 `;
 const Content = styled.div `
 overflow-x: hidden;
