@@ -70,7 +70,7 @@ class Recording extends React.Component {
 			var mountainsRef = storageRef.child('audioFile');
 
 			var metadata = {
-				contentType: 'image/jpeg'
+				contentType: 'video/webm;codecs=vp9'
 			};
 
 			mountainsRef.put(audioFile, metadata).then(function(snapshot) {
