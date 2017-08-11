@@ -83,3 +83,9 @@ export const Toggle_OptinsMenuShow = () => {
 export const Toggle_OptinsMenuHide = () => {
 	return {type: 'HIDE_MENU_OPTIONS'}
 }
+export const Start_Reording = () => {
+	return {type: 'START_RECORDING'}
+}
+export const Stop_Reording = () => {
+	return {type: 'STOP_RECORDING'}
+}

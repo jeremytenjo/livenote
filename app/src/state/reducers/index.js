@@ -20,6 +20,7 @@ import SnackBar_Message from './SnackBar_Message.js';
 import MasterNote_ID from './MasterNote_ID.js';
 import RecentNotes from './RecentNotes.js';
 import OtionsMenu_Toggle from './OtionsMenu_Toggle.js';
+import RecordingState from './RecordingState.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -42,7 +43,8 @@ const Reducers = combineReducers({
 	MasterNote_ID,
 	RecentNotes,
 	FolderSelection_ID,
-	OtionsMenu_Toggle
+	OtionsMenu_Toggle,
+	RecordingState
 })
 
 export default Reducers;

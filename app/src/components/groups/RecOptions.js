@@ -25,7 +25,9 @@ import {
 	Show_Snackbar,
 	Set_Snackbar_Name,
 	Set_MasterNote_id,
-	FolderSelection_ID
+	FolderSelection_ID,
+	Start_Reording,
+	Stop_Reording
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -58,7 +60,9 @@ function mapDispatchToProps(dispatch) {
 		Show_Snackbar,
 		Set_Snackbar_Name,
 		Set_MasterNote_id,
-		FolderSelection_ID
+		FolderSelection_ID,
+		Start_Reording,
+		Stop_Reording
 
 	}, dispatch)
 }
@@ -191,6 +195,10 @@ class RecOptions extends React.Component {
 		this.props.Play_Toggle(false);
 		this.props.Pause_Toggle(false);
 
+		//start audio Recording
+		this.props.Start_Reording();
+
+
 		//Resume Timer
 		let number = this.props.recTime;
 		this.incrementer = setInterval(() => {
@@ -206,6 +214,9 @@ class RecOptions extends React.Component {
 
 		//Pause Timer
 		clearInterval(this.incrementer);
+
+		//pause audio Recording
+		this.props.Stop_Reording();
 
 	}
 	imageSelected = (event) => {
