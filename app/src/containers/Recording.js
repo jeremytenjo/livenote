@@ -32,8 +32,8 @@ class Recording extends React.Component {
 		this.startRecording();
 	}
 	startRecording = () => {
-		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(function(stream) {
-			/* use the stream */
+		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => {
+			this.setState({inputText: stream});
 		}).catch(function(err) {
 			/* handle the error */
 		});
@@ -61,6 +61,7 @@ class Recording extends React.Component {
 			<Wrapper>
 				<button onClick={this.stop}>Stop</button>
 
+				<input type="text" value={this.state.inputText}/>
 				<ItemViewContainer>
 					<RecItemView/>
 				</ItemViewContainer>
