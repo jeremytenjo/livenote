@@ -27,56 +27,49 @@ class Recording extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			recData: [],
+			theRecorder: '',
+			recordedChunks: [],
 			data: 's'
 		}
 	}
 	//Methods
-	componentWillMount() {
-		this.initRecording();
+	componentWillMount = () => {
+		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => this.initRecording(stream));
+	}
+
+	initRecording = (stream) => {
+
+		var recorder = new MediaRecorder(stream, {mimeType: "video/webm;codecs=vp9"});
+
+		this.setState({theRecorder: recorder});
+
+		recorder.start()
+
+		recorder.dataavailable = (e) => {
+			if (e.data.size > 0) {
+
+				var newArray = this.state.recordedChunks.slice();
+				newArray.push(e.data);
+				this.setState({recordedChunks: newArray})
+			}
+		}
+
+		recorder.onstop = (e) => {
+			console.log('STOPPED');
+			console.log(this.state.recordedChunks);
+			this.setState({data:this.state.recordedChunks});
+		}
 
 	}
-	initRecording = () => {
 
-		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => {
-			const options = {
-				mimeType: 'video/webm;codecs=vp9'
-			};
-			const recordedChunks = [];
-			const mediaRecorder = new MediaRecorder(stream, options);
-			console.log(this.props.record);
+	stopRec = () => this.state.theRecorder.stop();
 
-			mediaRecorder.dataavailable = (e) => {
-				this.setState({data: 'l'});
-				if (e.data.size > 0) {
-					recordedChunks.push(e.data);
-				}
-
-				console.log(this.props.record);
-				if (this.props.record === true) {
-					mediaRecorder.stop();
-
-				}
-			};
-
-			mediaRecorder.addEventListener('stop', function() {
-				let downloadLink = URL.createObjectURL(new Blob(recordedChunks));
-				console.log("Stopped");
-				console.log(downloadLink);
-			});
-
-			mediaRecorder.start();
-
-		})
-	}
 	render() {
-		//Properties
-		//Style
 
 		//Template
 		return (
 			<Wrapper>
-
+				<button onClick={this.stopRec}>Stop</button>
 				{this.state.data}
 
 				<ItemViewContainer>
