@@ -40,13 +40,14 @@ class Recording extends React.Component {
 
 	initRecording = (stream) => {
 
-		var recorder = new MediaRecorder(stream, {mimeType: "video/webm;codecs=vp9"});
+		var recorder = new MediaRecorder(stream, {mimeType: 'video/webm;codecs=vp9'});
 
 		this.setState({theRecorder: recorder});
 
 		recorder.start()
 
 		recorder.dataavailable = (e) => {
+
 			if (e.data.size > 0) {
 				var newArray = this.state.recordedChunks.slice();
 				newArray.push(e.data);
@@ -55,6 +56,7 @@ class Recording extends React.Component {
 		}
 
 		recorder.onstop = (e) => {
+			this.setState({data: e});
 			console.log('STOPPED');
 			console.log(this.state.recordedChunks);
 
