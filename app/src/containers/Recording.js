@@ -67,7 +67,7 @@ class Recording extends React.Component {
 			var storageRef = firebase.storage().ref();
 
 			// Create a reference to 'mountains.jpg'
-			var mountainsRef = storageRef.child('audioFile');
+			var mountainsRef = storageRef.child('audio/audioFile');
 
 			var metadata = {
 				contentType: 'video/webm;codecs=vp9'
