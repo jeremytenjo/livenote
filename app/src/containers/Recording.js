@@ -6,6 +6,7 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
+import firebase from 'firebase';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -47,7 +48,6 @@ class Recording extends React.Component {
 
 		recorder.dataavailable = (e) => {
 			if (e.data.size > 0) {
-
 				var newArray = this.state.recordedChunks.slice();
 				newArray.push(e.data);
 				this.setState({recordedChunks: newArray})
@@ -57,7 +57,27 @@ class Recording extends React.Component {
 		recorder.onstop = (e) => {
 			console.log('STOPPED');
 			console.log(this.state.recordedChunks);
-			this.setState({data:this.state.recordedChunks});
+
+			//upload audio
+			// let audioFile = URL.createObjectURL(new Blob(this.state.recordedChunks));
+			let audioFile = new Blob(this.state.recordedChunks);
+			console.log(audioFile);
+
+			// Create a root reference
+			var storageRef = firebase.storage().ref();
+
+			// Create a reference to 'mountains.jpg'
+			var mountainsRef = storageRef.child('audioFile');
+
+			var metadata = {
+				contentType: 'image/jpeg'
+			};
+
+			mountainsRef.put(audioFile, metadata).then(function(snapshot) {
+				console.log(snapshot);
+				console.log('Uploaded an array!');
+			});
+
 		}
 
 	}
