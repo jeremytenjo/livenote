@@ -27,7 +27,8 @@ class Recording extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			recData: []
+			recData: [],
+			data: 's'
 		}
 	}
 	//Methods
@@ -42,28 +43,41 @@ class Recording extends React.Component {
 				mimeType: 'video/webm;codecs=vp9'
 			};
 			const recordedChunks = [];
-
 			const mediaRecorder = new MediaRecorder(stream, options);
-			mediaRecorder.addEventListener('dataavailable', (e) =>{
-				if (e.data.size > 0) {
-					this.state.recData.push(e.data);
+			console.log(this.props.record);
 
+			mediaRecorder.dataavailable = (e) => {
+				this.setState({data: 'l'});
+				if (e.data.size > 0) {
+					recordedChunks.push(e.data);
 				}
 
+				console.log(this.props.record);
+				if (this.props.record === true) {
+					mediaRecorder.stop();
+
+				}
+			};
+
+			mediaRecorder.addEventListener('stop', function() {
+				let downloadLink = URL.createObjectURL(new Blob(recordedChunks));
+				console.log("Stopped");
+				console.log(downloadLink);
 			});
+
+			mediaRecorder.start();
 
 		})
 	}
 	render() {
 		//Properties
-
 		//Style
 
 		//Template
 		return (
 			<Wrapper>
 
-{this.state.recData}
+				{this.state.data}
 
 				<ItemViewContainer>
 					<RecItemView/>
