@@ -18,6 +18,8 @@
     "react-speech": "^0.3.2",
     "react-speech-recognition": "^1.0.4",
     "react-tap-event-plugin": "^2.0.1",
+    "react-voice-components": "^1.0.0",
+    "react-voice-input": "0.0.4",
     "redux": "^3.7.2",
     "styled-components": "^2.1.1"
   },

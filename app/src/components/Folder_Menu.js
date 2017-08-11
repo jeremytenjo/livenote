@@ -77,6 +77,7 @@ class FolderMenu extends React.Component {
 	height: 100%;
 	display: grid;
 	grid-template-rows:  1fr 80px;
+	overflow-y: scroll;
  `;
 		const Content = styled.div `
 ${ ''/* background: green; */}

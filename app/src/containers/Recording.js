@@ -6,6 +6,9 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
+import ReactVoiceInput from 'react-voice-input'
+
+
 //State
 //import {bindActionCreators} from 'redux';
 //import {connect} from 'react-redux';
@@ -20,7 +23,8 @@ class Recording extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			stop: false
+			inputText: ''
+
 		}
 	}
 
@@ -30,35 +34,40 @@ class Recording extends React.Component {
 	}
 	startRecording = () => {
 
-		//Start Recording
-		// var handleSuccess =  (stream) => {
-		//
-		// 	//Handle recirder data
-		// 	const options = {mimeType: 'video/webm;codecs=vp9'};
-		// 	const recordedChunks = [];
-		//
-		//
-		//
-		// };
-		//
-		// navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(handleSuccess);
+
 
 	}
-	stop = () => {
-		
-	}
+	stop = () => {}
 
+	  onInputChange = (event) => {
+	    this.setState({
+	      inputText: event.target.value
+	    })
+	  }
+
+	  onResult = (result)  =>{
+	    this.setState({
+	      inputText: result
+	    })
+	  }
 	render() {
 		//Properties
+		const onEnd = () => {
+		      console.log('on end')
+		    }
 
 		//Style
 
 		//Template
 		return (
 			<Wrapper>
-				<button onClick={this.stop}>Stop</button>
-
-
+				<button  onClick={this.stop}>Stop</button>
+				<ReactVoiceInput
+			           onResult={this.onResult}
+			           onEnd={onEnd}
+			         >
+			           <input type='text' value={this.state.inputText} onChange={this.onInputChange} />
+			         </ReactVoiceInput>
 				<ItemViewContainer>
 					<RecItemView/>
 				</ItemViewContainer>

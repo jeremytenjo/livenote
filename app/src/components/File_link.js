@@ -26,6 +26,7 @@ export default class File extends React.Component {
 	 border-radius: 2px 0 2px 2px;
 	 cursor: pointer;
 	 position: relative;
+	 z-index: -1; 
 	 `;
 		const Image = styled.img `
 		width: 20px;
