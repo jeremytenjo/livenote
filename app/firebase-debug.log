@@ -1,0 +1,17 @@
+[debug] [2017-08-11T15:07:58.538Z] ----------------------------------------------------------------------
+[debug] [2017-08-11T15:07:58.540Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-08-11T15:07:58.540Z] CLI Version:   3.9.2
+[debug] [2017-08-11T15:07:58.540Z] Platform:      win32
+[debug] [2017-08-11T15:07:58.540Z] Node Version:  v8.0.0
+[debug] [2017-08-11T15:07:58.541Z] Time:          Fri Aug 11 2017 11:07:58 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-08-11T15:07:58.541Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-11T15:07:58.556Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-11T15:07:58.556Z] > authorizing via signed-in user
+[debug] [2017-08-11T15:07:58.558Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Fri Aug 11 2017 11:07:58 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-08-11T15:08:09.650Z] Error: getaddrinfo ENOTFOUND admin.firebase.com admin.firebase.com:443
+    at errnoException (dns.js:50:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:95:26)
+[error] 
+[error] Error: Server Error. getaddrinfo ENOTFOUND admin.firebase.com admin.firebase.com:443
