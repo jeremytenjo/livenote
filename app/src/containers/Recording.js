@@ -40,7 +40,7 @@ class Recording extends React.Component {
 
 	initRecording = (stream) => {
 
-		var recorder = new MediaRecorder(stream, {mimeType: 'video/webm;codecs=vp9'});
+		var recorder = new MediaRecorder(stream);
 
 		this.setState({theRecorder: recorder});
 
@@ -70,11 +70,7 @@ class Recording extends React.Component {
 			// Create a reference to 'mountains.jpg'
 			var mountainsRef = storageRef.child('audio/audioFile');
 
-			var metadata = {
-				contentType: 'video/webm;codecs=vp9'
-			};
-
-			mountainsRef.put(audioFile, metadata).then(function(snapshot) {
+			mountainsRef.put(audioFile).then(function(snapshot) {
 				console.log(snapshot);
 				console.log('Uploaded an array!');
 			});
