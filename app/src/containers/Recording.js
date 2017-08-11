@@ -6,6 +6,7 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
+import { ReactMic } from 'react-mic';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -22,7 +23,9 @@ class Recording extends React.Component {
 		super(props)
 		this.state = {
 			inputText: '',
-			finalTranscript: ''
+			finalTranscript: '',
+			record: false
+
 
 		}
 	}
@@ -32,25 +35,41 @@ class Recording extends React.Component {
 		this.startRecording();
 	}
 	startRecording = () => {
-		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => {
-			this.setState({inputText: stream});
-		}).catch(function(err) {
-			/* handle the error */
-		});
+		// navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => {
+		//
+		// 	const options = {
+		// 		mimeType: 'video/webm;codecs=vp9'
+		// 	};
+		// 	const recordedChunks = [];
+		// 	const mediaRecorder = new MediaRecorder(stream, options);
+		//
+		// 	if (this.state.inputText === true) {
+		// 		console.log("HERE!");
+		// 	}
+		//
+		// 	console.log(this.state.inputText);
+		//
+		// }).catch(function(err) {});
+		//
+	}
 
-	}
-	stop = () => {}
+	startRecording = () => {
+    this.setState({
+      record: true
+    });
+  }
 
-	onInputChange = (event) => {
-		this.setState({inputText: event.target.value})
-	}
+  stopRecording = () => {
+    this.setState({
+      record: false
+    });
+  }
 
-	onResult = (result) => {
-		this.setState({inputText: result})
-	}
-	onEnd = () => {
-		this.setState({finalTranscript: this.state.inputText})
-	}
+  onStop(recordedBlob) {
+    console.log('recordedBlob is: ', recordedBlob);
+  }
+
+
 	render() {
 		//Properties
 
@@ -59,9 +78,16 @@ class Recording extends React.Component {
 		//Template
 		return (
 			<Wrapper>
-				<button onClick={this.stop}>Stop</button>
 
 				<input type="text" value={this.state.inputText}/>
+				<ReactMic
+				          record={this.state.record}
+				          className="sound-wave"
+				          onStop={this.onStop}
+				          strokeColor="#000000"
+				          backgroundColor="#FF4081" />
+				        <button onClick={this.startRecording} type="button">Start</button>
+				        <button onClick={this.stopRecording} type="button">Stop</button>
 				<ItemViewContainer>
 					<RecItemView/>
 				</ItemViewContainer>
