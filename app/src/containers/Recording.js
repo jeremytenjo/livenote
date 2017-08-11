@@ -6,8 +6,6 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
-import ReactVoiceInput from 'react-voice-input'
-
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -34,46 +32,35 @@ class Recording extends React.Component {
 		this.startRecording();
 	}
 	startRecording = () => {
-
-
+		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(function(stream) {
+			/* use the stream */
+		}).catch(function(err) {
+			/* handle the error */
+		});
 
 	}
 	stop = () => {}
 
-	  onInputChange = (event) => {
-	    this.setState({
-	      inputText: event.target.value
-	    })
-	  }
+	onInputChange = (event) => {
+		this.setState({inputText: event.target.value})
+	}
 
-	  onResult = (result)  =>{
-	    this.setState({
-	      inputText: result
-	    })
-	  }
-	 onEnd = () => {
-		 this.setState({
-			 finalTranscript: this.state.inputText
-		 })
-		    }
+	onResult = (result) => {
+		this.setState({inputText: result})
+	}
+	onEnd = () => {
+		this.setState({finalTranscript: this.state.inputText})
+	}
 	render() {
 		//Properties
-
 
 		//Style
 
 		//Template
 		return (
 			<Wrapper>
-				<button  onClick={this.stop}>Stop</button>
-				<ReactVoiceInput
-			           onResult={this.onResult}
-			           onEnd={this.onEnd}
-			         >
-			           <input type='text' value={this.state.inputText} onChange={this.onInputChange} />
-			           <input type='text' value={this.state.finalTranscript} />
+				<button onClick={this.stop}>Stop</button>
 
-			         </ReactVoiceInput>
 				<ItemViewContainer>
 					<RecItemView/>
 				</ItemViewContainer>
