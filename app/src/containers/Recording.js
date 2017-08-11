@@ -62,6 +62,7 @@ class Recording extends React.Component {
 			//upload audio
 			// let audioFile = URL.createObjectURL(new Blob(this.state.recordedChunks));
 			let audioFile = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
+			
 			console.log(audioFile);
 
 			// Create a root reference
