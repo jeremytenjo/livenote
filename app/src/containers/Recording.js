@@ -23,7 +23,8 @@ class Recording extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			inputText: ''
+			inputText: '',
+			finalTranscript: ''
 
 		}
 	}
@@ -50,11 +51,14 @@ class Recording extends React.Component {
 	      inputText: result
 	    })
 	  }
+	 onEnd = () => {
+		 this.setState({
+			 finalTranscript: this.state.inputText
+		 })
+		    }
 	render() {
 		//Properties
-		const onEnd = () => {
-		      console.log('on end')
-		    }
+
 
 		//Style
 
@@ -64,9 +68,11 @@ class Recording extends React.Component {
 				<button  onClick={this.stop}>Stop</button>
 				<ReactVoiceInput
 			           onResult={this.onResult}
-			           onEnd={onEnd}
+			           onEnd={this.onEnd}
 			         >
 			           <input type='text' value={this.state.inputText} onChange={this.onInputChange} />
+			           <input type='text' value={this.state.finalTranscript} />
+
 			         </ReactVoiceInput>
 				<ItemViewContainer>
 					<RecItemView/>
