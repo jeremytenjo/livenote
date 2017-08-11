@@ -56,13 +56,12 @@ class Recording extends React.Component {
 		}
 
 		recorder.onstop = (e) => {
-			this.setState({data: e});
-			console.log('STOPPED');
+
 			console.log(this.state.recordedChunks);
 
 			//upload audio
 			// let audioFile = URL.createObjectURL(new Blob(this.state.recordedChunks));
-			let audioFile = new Blob(this.state.recordedChunks);
+			let audioFile = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
 			console.log(audioFile);
 
 			// Create a root reference
