@@ -6,7 +6,7 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
-// import firebase from 'firebase';
+import firebase from 'firebase';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -52,16 +52,17 @@ class Recording extends React.Component {
 		}
 
 		recorder.onstop = (e) => {
-			// console.log(this.state.recordedChunks);
-			let blob = new Blob(this.state.recordedChunks, {'type' : 'audio/ogg; codecs=opus'});
+			let blob = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
 			this.setState({recordedChunks: []})
 
-			console.log(blob);
+			// console.log(blob);
 
-		}
-
-		recorder.error = (e) => {
-			console.log(e);
+			//upload to firease
+			let storageRef = firebase.storage().ref();
+			let ref = storageRef.child('audio/1');
+			ref.put(blob).then((snapshot) => {
+				console.log('Uploaded a blob or file!');
+			});
 		}
 
 	}
