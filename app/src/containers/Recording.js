@@ -45,13 +45,23 @@ class Recording extends React.Component {
 
 		recorder.start()
 
-		recorder.dataavailable = (e) => {
-
+		recorder.ondataavailable = (e) => {
+			let newData = this.state.recordedChunks.slice();
+			newData.push(e.data);
+			this.setState({recordedChunks: newData})
 		}
 
 		recorder.onstop = (e) => {
 			// console.log(this.state.recordedChunks);
+			let blob = new Blob(this.state.recordedChunks, {'type' : 'audio/ogg; codecs=opus'});
+			this.setState({recordedChunks: []})
 
+			console.log(blob);
+
+		}
+
+		recorder.error = (e) => {
+			console.log(e);
 		}
 
 	}
@@ -59,7 +69,6 @@ class Recording extends React.Component {
 	stopRec = () => this.state.theRecorder.stop();
 
 	render() {
-
 
 		//Template
 		return (
