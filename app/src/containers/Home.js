@@ -3,6 +3,7 @@ import styled from 'styled-components'
 // import firebase from 'firebase';
 import Menu_icon from '../images/icons/home.svg';
 import Search_icon from '../images/icons/search.svg';
+import Options_icon from '../images/icons/OptionsWhite.svg';
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Snackbar from 'material-ui/Snackbar';
@@ -25,6 +26,11 @@ const Directory = Loadable({
 });
 const Recording = Loadable({
 	loader: () => import ('./Recording.js'),
+	loading: () => null
+});
+
+const Playback = Loadable({
+	loader: () => import ('./Playback.js'),
 	loading: () => null
 });
 class Home extends React.Component {
@@ -56,6 +62,7 @@ class Home extends React.Component {
 						<Icon src={Menu_icon} alt="Menu Icon" onClick={this.toHome}/>
 						<TitlePage>{this.props.title}</TitlePage>
 						<Icon src={Search_icon} alt="Search Icon"/>
+						<Icon src={Options_icon} alt="Options Icon"/>
 					</TopBar>
 					<BrowserRouter>
 						<Content>
@@ -63,6 +70,7 @@ class Home extends React.Component {
 								<Route exact path='/' component={Directory}/>
 								<Route exact path='/record' component={Record}/>
 								<Route exact path='/recording' component={Recording}/>
+								<Route exact path='/playback' component={Playback}/>
 							</Switch>
 						</Content>
 					</BrowserRouter>
@@ -91,7 +99,7 @@ right: 0;
 left: 0;
 margin: auto;
 display: grid;
-grid-template-columns: 20px 1fr 20px;
+grid-template-columns: 20px 1fr 40px 16px;
 padding: 10px;
 background: #0F2331;
 `;
@@ -111,6 +119,8 @@ margin-left: 10px;
 const Icon = styled.img `
 	width: 20px;
 	cursor: pointer;
+	display: block;
+	margin: auto;
 	margin-top: 2px;
 `;
 export default connect(mapStateToProps)(withRouter(Home));

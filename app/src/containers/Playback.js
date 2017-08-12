@@ -27,7 +27,7 @@ class Playback extends React.Component {
 
 		//Template
 		return (
-			<Wrapper></Wrapper>
+			<Wrapper>Playback</Wrapper>
 		);
 	}
 

@@ -6,7 +6,7 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -29,8 +29,7 @@ class Recording extends React.Component {
 		super(props)
 		this.state = {
 			theRecorder: '',
-			recordedChunks: [],
-			data: 's'
+			recordedChunks: []
 		}
 	}
 	//Methods
@@ -48,35 +47,10 @@ class Recording extends React.Component {
 
 		recorder.dataavailable = (e) => {
 
-			if (e.data.size > 0) {
-				var newArray = this.state.recordedChunks.slice();
-				newArray.push(e.data);
-				this.setState({recordedChunks: newArray})
-
-				this.chuinks.push(e.data)
-			}
 		}
 
 		recorder.onstop = (e) => {
 			// console.log(this.state.recordedChunks);
-			console.log(this.chuinks); 
-			//
-			// //upload audio
-			// // let audioFile = URL.createObjectURL(new Blob(this.state.recordedChunks));
-			// let audioFile = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
-			//
-			// console.log(audioFile);
-			//
-			// // Create a root reference
-			// var storageRef = firebase.storage().ref();
-			//
-			// // Create a reference to 'mountains.jpg'
-			// var mountainsRef = storageRef.child('audio/audioFile');
-			//
-			// mountainsRef.put(audioFile).then(function(snapshot) {
-			// 	console.log(snapshot);
-			// 	console.log('Uploaded an array!');
-			// });
 
 		}
 
@@ -85,14 +59,12 @@ class Recording extends React.Component {
 	stopRec = () => this.state.theRecorder.stop();
 
 	render() {
-let chuinks = [];
 
 
 		//Template
 		return (
 			<Wrapper>
 				<button onClick={this.stopRec}>Stop</button>
-				{this.state.data}
 
 				<ItemViewContainer>
 					<RecItemView/>

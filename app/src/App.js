@@ -19,6 +19,7 @@ const Home = Loadable({
 	loading: () => null
 });
 
+
 function PrivateRoute({
 	component: Component,
 	authed,
@@ -97,6 +98,7 @@ export default class App extends Component {
 							<PrivateRoute authed={this.state.authed} exact path='/' component={Home}/>
 							<PrivateRoute authed={this.state.authed} exact path='/record' component={Home}/>
 							<PrivateRoute authed={this.state.authed} exact path='/recording' component={Home}/>
+							<PrivateRoute authed={this.state.authed} exact path='/playback' component={Home}/>
 							<PrivateRoute authed={this.state.authed} exact path='/files' component={Home}/>
 							<PublicRoute authed={this.state.authed} path='/login' component={Login}/>
 							<PublicRoute authed={this.state.authed} path='/register' component={Register}/>

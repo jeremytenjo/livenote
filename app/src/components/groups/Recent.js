@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import File from '../File_link.js';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
+import {withRouter} from 'react-router-dom'
+
 // import CircularProgress from 'material-ui/CircularProgress';
 
 function mapStateToProps(state) {
@@ -48,9 +50,13 @@ class Recent extends React.Component {
 
 	}
 
+	openPlayback = () => {
+		this.props.history.push(`/playback`);
+	}
+
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <File key={item.id} width="140px" title={item.name}/>);
+		let list = this.state.list.map((item, i) => <span key={item.id} onClick={this.openPlayback}><File width="140px" title={item.name}/></span>);
 
 		//Style
 		const Title = styled.p `
@@ -79,4 +85,4 @@ height: 100px;
 
 }
 
-export default connect(mapStateToProps)(Recent);
+export default connect(mapStateToProps)(withRouter(Recent));

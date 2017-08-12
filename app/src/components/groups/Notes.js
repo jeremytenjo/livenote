@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components'
 import File from '../File_link.js';
 import firebase from 'firebase';
+import {withRouter} from 'react-router-dom'
 
-export default class Notes extends React.Component {
+ class Notes extends React.Component {
 
 	//initial state
 	constructor(props) {
@@ -41,9 +42,14 @@ export default class Notes extends React.Component {
 		});
 
 	}
+
+
+		openPlayback = () => {
+			this.props.history.push(`/playback`);
+		}
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <File key={item.id} width="auto" title={item.name}/>);
+		let list = this.state.list.map((item, i) =>  <span key={item.id} onClick={this.openPlayback}><File key={item.id} width="auto" title={item.name}/></span>);
 
 		//Style
 		const Wrapper = styled.div `
@@ -71,3 +77,6 @@ padding-bottom: 90px;
 	}
 
 }
+
+
+export default withRouter(Notes)
