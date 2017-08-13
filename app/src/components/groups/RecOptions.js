@@ -25,9 +25,7 @@ import {
 	Show_Snackbar,
 	Set_Snackbar_Name,
 	Set_MasterNote_id,
-	FolderSelection_ID,
-	Start_Reording,
-	Stop_Reording
+	FolderSelection_ID
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -60,10 +58,7 @@ function mapDispatchToProps(dispatch) {
 		Show_Snackbar,
 		Set_Snackbar_Name,
 		Set_MasterNote_id,
-		FolderSelection_ID,
-		Start_Reording,
-		Stop_Reording
-
+		FolderSelection_ID
 	}, dispatch)
 }
 
@@ -73,12 +68,19 @@ class RecOptions extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			sd: '0'
+			theRecorder: '',
+			theRecognition: '',
+			recordedChunks: [],
+			transcript: '',
+			newMasterNoteKey: ''
+
 		}
 	}
 
 	//Methods
 	componentWillMount() {
+		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => this.recControl(stream));
+
 		//Start Timer
 		let number = 0;
 		this.incrementer = setInterval(() => {
@@ -97,107 +99,158 @@ class RecOptions extends React.Component {
 		this.props.Start_Time(0);
 
 	}
+	recControl = (stream) => {
+
+		var recorder = new MediaRecorder(stream);
+
+		var recognition = new window.webkitSpeechRecognition();
+
+		recognition.continuous = true;
+
+		//hadnle transcript
+		recognition.onresult = (event) => {
+			// console.log(event.results);
+
+			this.setState({transcript: event.results})
+		}
+		recognition.start();
+
+		this.setState({theRecorder: recorder});
+		this.setState({theRecognition: recognition});
+
+		//start recording
+		recorder.start()
+
+		recorder.ondataavailable = (e) => {
+			let newData = this.state.recordedChunks.slice();
+			newData.push(e.data);
+			this.setState({recordedChunks: newData})
+		}
+
+		recorder.onstop = (e) => {
+			//stop recognition
+			this.state.theRecognition.stop();
+
+			//handle transcript
+			let transcript = this.state.transcript;
+			let partialTranscript = [];
+			if (transcript) {
+				for (var prop in transcript) {
+					if (transcript.hasOwnProperty(prop)) {
+						partialTranscript.push(transcript[prop][0].transcript);
+					}
+				}
+			}
+			let finalTranscript = partialTranscript.join(" ");
+			this.setState({transcript: finalTranscript});
+			// console.log(this.state.transcript);
+
+			//Handle display
+			this.props.Stop_Toggle(true);
+			this.props.Play_Toggle(true);
+			this.props.Pause_Toggle(false);
+
+			//Stop Timer
+			clearInterval(this.incrementer);
+
+			//Reset Timer
+			this.props.Start_Time(0);
+
+			//reset notes
+			this.props.Reset_Items();
+
+			//get date
+			let d = new Date();
+			let months = [
+				'Jan',
+				'Feb',
+				'March',
+				'Apr',
+				'May',
+				'June',
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
+				'December'
+			];
+			let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getMilliseconds();
+			let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+
+			//upload master note
+			let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
+				name: this.props.noteName,
+				folderName: this.props.FolderSelectionName,
+				folderID: this.props.FolderSelection_ID_Name,
+				dateAddedSort: currentDateSort,
+				dateAdded: currentDateString,
+				transcript: this.state.transcript
+			}).then((snap) => {
+				const key = snap.key
+
+				//upload audio file to firease
+				let blob = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
+				this.setState({recordedChunks: []})
+				let storageRef = firebase.storage().ref();
+				let ref = storageRef.child('audio/' + key);
+				ref.put(blob).then((snapshot) => {
+					// console.log('Audio Uploaded');
+				});
+			});
+
+			//upload sub notes
+			this.props.data.map((d) => {
+				//upload image
+				// console.log(this.props.noteName);
+				let storageRef = firebase.storage().ref();
+				let mountainsRef = storageRef.child(d.title + 'Title');
+
+				if (d.image !== '') {
+					mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
+						// console.log(snapshot.metadata.downloadURLs[0]);
+						//write to database
+						firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: newRef.path.o[3], name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: snapshot.metadata.downloadURLs[0]});
+					});
+				} else {
+					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: newRef.path.o[3], name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: 'none'});
+				}
+				return ''
+			});
+
+			//Reset Top Bar Title
+			this.props.Change_TopBar_Title('Notes');
+
+			//Reset Folder Selected
+			this.props.FolderSelection_Name('SELECT FOLDER');
+
+			//Reset Folder ID
+			this.props.FolderSelection_ID('');
+
+			//confimration aniamtion
+			this.props.Set_Snackbar_Name('Note Added');
+			this.props.Show_Snackbar();
+
+			//redirect to Directory
+			// this.props.history.push(`/`);
+		}
+
+	}
 	showNote = () => {
 		//set current time
 		this.props.Set_Current_Time(this.props.recTime);
 		this.props.Toggle_NewNote('show');
 	}
-	stop = () => {
-		//Handle display
-		this.props.Stop_Toggle(true);
-		this.props.Play_Toggle(true);
-		this.props.Pause_Toggle(false);
+	stop = () => this.state.theRecorder.stop();
 
-		//Stop Timer
-		clearInterval(this.incrementer);
-
-		//Reset Timer
-		this.props.Start_Time(0);
-
-		//reset notes
-		this.props.Reset_Items();
-
-		//get date
-		let d = new Date();
-		let months = [
-			'Jan',
-			'Feb',
-			'March',
-			'Apr',
-			'May',
-			'June',
-			'July',
-			'August',
-			'September',
-			'October',
-			'November',
-			'December'
-		];
-		let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getMilliseconds();
-		let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-
-		//upload master note
-		let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({name: this.props.noteName, folderName: this.props.FolderSelectionName, folderID: this.props.FolderSelection_ID_Name, dateAddedSort: currentDateSort, dateAdded: currentDateString});
-
-		//upload sub notes
-		this.props.data.map((d) => {
-			//upload image
-			// console.log(this.props.noteName);
-			// Create a root reference
-			let storageRef = firebase.storage().ref();
-			let mountainsRef = storageRef.child(d.title + 'Title');
-
-			if (d.image !== '') {
-				mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
-					// console.log(snapshot.metadata.downloadURLs[0]);
-					//write to database
-					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-						masterNote_id: newRef.path.o[3],
-						name: this.props.noteName,
-						title: d.title,
-						comment: d.desc,
-						imageUrl: snapshot.metadata.downloadURLs[0]
-
-					});
-				});
-			} else {
-				firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-					masterNote_id: newRef.path.o[3],
-					name: this.props.noteName,
-					title: d.title,
-					comment: d.desc,
-					imageUrl: 'none'
-			});
-			}
-			return ''
-		});
-
-
-		//Reset Top Bar Title
-		this.props.Change_TopBar_Title('Notes');
-
-		//Reset Folder Selected
-		this.props.FolderSelection_Name('SELECT FOLDER');
-
-		//Reset Folder ID
-		this.props.FolderSelection_ID('');
-
-		//confimration aniamtion
-		this.props.Set_Snackbar_Name('Note Added');
-		this.props.Show_Snackbar();
-
-		//redirect to Directory
-		this.props.history.push(`/`);
-	}
 	play = () => {
 		//Handle display
 		this.props.Stop_Toggle(false);
 		this.props.Play_Toggle(false);
 		this.props.Pause_Toggle(false);
 
-		//start audio Recording
-		this.props.Start_Reording();
-
+		//resume audio Recording
+		this.state.theRecorder.resume();
 
 		//Resume Timer
 		let number = this.props.recTime;
@@ -212,11 +265,11 @@ class RecOptions extends React.Component {
 		this.props.Pause_Toggle(true);
 		this.props.Stop_Toggle(false);
 
+		//pause audio Recording
+		this.state.theRecorder.pause();
+
 		//Pause Timer
 		clearInterval(this.incrementer);
-
-		//pause audio Recording
-		this.props.Stop_Reording();
 
 	}
 	imageSelected = (event) => {
@@ -282,7 +335,6 @@ class RecOptions extends React.Component {
 							<StopIcon onClick={this.stop} src={Stop_icon} alt="Stop icon"/>
 							<PlayIcon onClick={this.play} src={Play_icon} alt="Play icon"/>
 							<PauseIcon onClick={this.pause} src={Pause_icon} alt="Pause icon"/>
-
 						</BottomIconCon>
 					</Bottom>
 				</Center>

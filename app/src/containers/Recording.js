@@ -6,75 +6,17 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
-import firebase from 'firebase';
 
-//State
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Start_Reording, Stop_Reording} from '../state/actions/index';
 
-//Set global state to prop
-function mapStateToProps(state) {
-	return {record: state.RecordingState}
-}
-//define actions
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		Start_Reording,
-		Stop_Reording
-	}, dispatch)
-}
 class Recording extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			theRecorder: '',
-			recordedChunks: []
-		}
-	}
+
 	//Methods
-	componentWillMount = () => {
-		navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => this.initRecording(stream));
-	}
-
-	initRecording = (stream) => {
-
-		var recorder = new MediaRecorder(stream);
-
-		this.setState({theRecorder: recorder});
-
-		recorder.start()
-
-		recorder.ondataavailable = (e) => {
-			let newData = this.state.recordedChunks.slice();
-			newData.push(e.data);
-			this.setState({recordedChunks: newData})
-		}
-
-		recorder.onstop = (e) => {
-			let blob = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
-			this.setState({recordedChunks: []})
-
-			// console.log(blob);
-
-			//upload to firease
-			let storageRef = firebase.storage().ref();
-			let ref = storageRef.child('audio/1');
-			ref.put(blob).then((snapshot) => {
-				console.log('Uploaded a blob or file!');
-			});
-		}
-
-	}
-
-	stopRec = () => this.state.theRecorder.stop();
 
 	render() {
 
 		//Template
 		return (
 			<Wrapper>
-				<button onClick={this.stopRec}>Stop</button>
 
 				<ItemViewContainer>
 					<RecItemView/>
@@ -128,4 +70,4 @@ const OptionsContainer = styled.div `
 ${ ''/* background: green; */}
 	 `;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recording);
+export default Recording;
