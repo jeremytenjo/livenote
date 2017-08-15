@@ -95,3 +95,9 @@ export const Set_Delete_Folder_ID = (e) => {
 export const Set_Delete_Folder_Name = (e) => {
 	return {type: 'SET_FOLDER_DELETE_NAME', data: e}
 }
+export const Set_Folder_Link_Id = (e) => {
+	return {type: 'SET_FOLDER_LINK_ID', data: e}
+}
+export const Set_Folder_Link_Name = (e) => {
+	return {type: 'SET_FOLDER_LINK_NAME', data: e}
+}

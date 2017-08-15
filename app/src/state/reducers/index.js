@@ -23,6 +23,8 @@ import OtionsMenu_Toggle from './OtionsMenu_Toggle.js';
 import RecordingState from './RecordingState.js';
 import Folder_Delete_ID from './Folder_Delete_ID.js';
 import FolderSelection_Rename from './FolderSelection_Rename.js';
+import FolderLink_ID from './FolderLink_ID.js';
+import FolderLink_Name from './FolderLink_Name.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -48,7 +50,9 @@ const Reducers = combineReducers({
 	OtionsMenu_Toggle,
 	RecordingState,
 	Folder_Delete_ID,
-	FolderSelection_Rename
+	FolderSelection_Rename,
+	FolderLink_ID,
+	FolderLink_Name
 })
 
 export default Reducers;

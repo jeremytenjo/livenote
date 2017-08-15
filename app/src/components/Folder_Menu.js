@@ -94,7 +94,11 @@ padding: 20px;
 			<Wrapper >
 				<Content>
 					<span onClick={() => {
-						this.hideFolderSelection('Root')
+						let data = {
+							id: 'Root',
+							name: 'Root'
+						}
+						this.hideFolderSelection(data)
 					}}>
 						<FolderLink name="Root"/>
 					</span>

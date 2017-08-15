@@ -77,7 +77,8 @@ class Folder extends React.Component {
 		this.setState({open: false});
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders`).push({name: this.input.value});
 		// this.setState({title: ''});
-
+		this.props.Set_Snackbar_Name('Folder Added');
+		this.props.Show_Snackbar();
 		this.fetchData();
 
 	}
@@ -240,7 +241,7 @@ padding: 15px;
 				<Dialog onSubmit={this.submit}>
 					<InnerDialog>
 						<SubTitle>Name folder</SubTitle>
-						<input autoFocus maxLength="15" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
+						<input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
 
 						<ButtonCon>
 							<span onClick={this.handleClose}>
@@ -275,7 +276,7 @@ padding: 15px;
 				<DialogRename onSubmit={this.submitnewName}>
 					<InnerDialog>
 						<SubTitle>Rename folder</SubTitle>
-						<input autoFocus maxLength="15" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
+						<input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
 						<ButtonCon>
 							<span onClick={this.handleCloseRename}>

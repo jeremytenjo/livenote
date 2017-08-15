@@ -33,6 +33,10 @@ const Playback = Loadable({
 	loader: () => import ('./Playback.js'),
 	loading: () => null
 });
+const Folder = Loadable({
+	loader: () => import ('./Folder.js'),
+	loading: () => null
+});
 class Home extends React.Component {
 
 	//initial state
@@ -70,6 +74,7 @@ class Home extends React.Component {
 								<Route exact path='/record' component={Record}/>
 								<Route exact path='/recording' component={Recording}/>
 								<Route exact path='/playback' component={Playback}/>
+								<Route exact path='/folder' component={Folder}/>
 							</Switch>
 						</Content>
 					</BrowserRouter>

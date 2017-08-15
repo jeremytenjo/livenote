@@ -134,6 +134,7 @@ class RecOptions extends React.Component {
 			let newData = this.state.recordedChunks.slice();
 			newData.push(e.data);
 			this.setState({recordedChunks: newData})
+
 		}
 
 		recorder.onstop = (e) => {
@@ -187,11 +188,23 @@ class RecOptions extends React.Component {
 			let currentDateSort = "" + d.getFullYear() + d.getMonth() + d.getDate() + d.getHours() + d.getMinutes() + d.getMilliseconds();
 			let currentDateString = '' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 
+			//default folder name
+			let folderName,
+				folderID;
+
+			if (this.props.FolderSelectionName === "SELECT FOLDER" && this.props.FolderSelection_ID_Name === '') {
+				folderName = 'Root';
+				folderID = 'Root';
+			} else {
+				folderName = this.props.FolderSelectionName;
+				folderID = this.props.FolderSelection_ID_Name;
+			}
+
 			//upload master note
 			let newRef = firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
 				name: this.props.noteName,
-				folderName: this.props.FolderSelectionName,
-				folderID: this.props.FolderSelection_ID_Name,
+				folderName: folderName,
+				folderID: folderID,
 				dateAddedSort: currentDateSort,
 				dateAdded: currentDateString,
 				transcript: this.state.transcript
