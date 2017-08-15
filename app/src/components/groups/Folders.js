@@ -14,7 +14,7 @@ import {connect} from 'react-redux';
 import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name} from '../../state/actions/index';
 
 function mapStateToProps(state) {
-	return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID}
+	return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename}
 }
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
@@ -275,7 +275,7 @@ padding: 15px;
 				<DialogRename onSubmit={this.submitnewName}>
 					<InnerDialog>
 						<SubTitle>Rename folder</SubTitle>
-						<input autoFocus maxLength="15" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.inputRename = input}/>
+						<input autoFocus maxLength="15" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
 						<ButtonCon>
 							<span onClick={this.handleCloseRename}>

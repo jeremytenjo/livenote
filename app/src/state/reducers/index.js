@@ -22,6 +22,7 @@ import RecentNotes from './RecentNotes.js';
 import OtionsMenu_Toggle from './OtionsMenu_Toggle.js';
 import RecordingState from './RecordingState.js';
 import Folder_Delete_ID from './Folder_Delete_ID.js';
+import FolderSelection_Rename from './FolderSelection_Rename.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -46,7 +47,8 @@ const Reducers = combineReducers({
 	FolderSelection_ID,
 	OtionsMenu_Toggle,
 	RecordingState,
-	Folder_Delete_ID
+	Folder_Delete_ID,
+	FolderSelection_Rename
 })
 
 export default Reducers;

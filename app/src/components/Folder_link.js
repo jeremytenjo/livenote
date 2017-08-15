@@ -6,11 +6,11 @@ import {bindActionCreators} from 'redux';
 
 import {connect} from 'react-redux';
 
-import {Toggle_OptinsMenuShow, Set_Delete_Folder_ID} from '../state/actions/index';
+import {Toggle_OptinsMenuShow, Set_Delete_Folder_ID, Set_Delete_Folder_Name} from '../state/actions/index';
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		Toggle_OptinsMenuShow, Set_Delete_Folder_ID
+		Toggle_OptinsMenuShow, Set_Delete_Folder_ID, Set_Delete_Folder_Name
 	}, dispatch)
 }
 class Folder_Link extends React.Component {
@@ -28,6 +28,7 @@ class Folder_Link extends React.Component {
 	showOptions = () => {
 		//set ref id
 		this.props.Set_Delete_Folder_ID(this.state.id);
+		this.props.Set_Delete_Folder_Name(this.state.name);
 		this.props.Toggle_OptinsMenuShow()
 	}
 	render() {
