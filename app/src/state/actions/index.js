@@ -89,3 +89,6 @@ export const Start_Reording = () => {
 export const Stop_Reording = () => {
 	return {type: 'STOP_RECORDING'}
 }
+export const Set_Delete_Folder_ID = (e) => {
+	return {type: 'SET_FOLDER_DELETE_ID', data: e}
+}

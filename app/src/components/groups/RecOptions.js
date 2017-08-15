@@ -9,6 +9,8 @@ import Play_icon from '../../images/icons/Play.svg';
 import firebase from 'firebase';
 
 //State
+
+//State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {
@@ -103,17 +105,24 @@ class RecOptions extends React.Component {
 
 		var recorder = new MediaRecorder(stream);
 
-		var recognition = new window.webkitSpeechRecognition();
+		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition || window.oSpeechRecognition;
+
+		if (SpeechRecognition === null) {
+			alert('Speech Recognition not Supported, Please try Chrome.');
+		}
+
+		let recognition = new SpeechRecognition();
 
 		recognition.continuous = true;
+		recognition.interimResults = false;
+		recognition.lang = 'en-US';
+		recognition.start();
 
 		//hadnle transcript
 		recognition.onresult = (event) => {
 			// console.log(event.results);
-
 			this.setState({transcript: event.results})
 		}
-		recognition.start();
 
 		this.setState({theRecorder: recorder});
 		this.setState({theRecognition: recognition});
@@ -232,7 +241,7 @@ class RecOptions extends React.Component {
 			this.props.Show_Snackbar();
 
 			//redirect to Directory
-			// this.props.history.push(`/`);
+			this.props.history.push(`/`);
 		}
 
 	}

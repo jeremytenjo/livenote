@@ -6,11 +6,11 @@ import {bindActionCreators} from 'redux';
 
 import {connect} from 'react-redux';
 
-import {Toggle_OptinsMenuShow} from '../state/actions/index';
+import {Toggle_OptinsMenuShow, Set_Delete_Folder_ID} from '../state/actions/index';
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		Toggle_OptinsMenuShow
+		Toggle_OptinsMenuShow, Set_Delete_Folder_ID
 	}, dispatch)
 }
 class Folder_Link extends React.Component {
@@ -19,12 +19,15 @@ class Folder_Link extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: props.name
+			name: props.name,
+			id: props.id
 		}
 	}
 
 	//Methods
 	showOptions = () => {
+		//set ref id
+		this.props.Set_Delete_Folder_ID(this.state.id);
 		this.props.Toggle_OptinsMenuShow()
 	}
 	render() {
@@ -51,11 +54,10 @@ color: #212121;
 	 `;
 		//Template
 		return (
-			<Wrapper>
+			<Wrapper >
 				<Img src={Folder_img} alt="foler icon"/>
 				<Title>{this.state.name}</Title>
 				<Img onClick={this.showOptions} src={Options_img} alt="options icon"/>
-
 			</Wrapper>
 		);
 	}

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 // import firebase from 'firebase';
-import Menu_icon from '../images/icons/home.svg';
+// import Menu_icon from '../images/icons/home.svg';
 import Search_icon from '../images/icons/search.svg';
-import Options_icon from '../images/icons/OptionsWhite.svg';
+// import Options_icon from '../images/icons/OptionsWhite.svg';
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Snackbar from 'material-ui/Snackbar';
@@ -59,10 +59,9 @@ class Home extends React.Component {
 			<div>
 				<HomeContainer>
 					<TopBar>
-						<Icon src={Menu_icon} alt="Menu Icon" onClick={this.toHome}/>
+						{/* <Icon src={Menu_icon} alt="Menu Icon" onClick={this.toHome}/> */}
 						<TitlePage>{this.props.title}</TitlePage>
-						<Icon src={Search_icon} alt="Search Icon"/>
-						<Icon src={Options_icon} alt="Options Icon"/>
+						<Icon src={Search_icon} alt="Search Icon"/> {/* <Icon src={Options_icon} alt="Options Icon"/> */}
 					</TopBar>
 					<BrowserRouter>
 						<Content>
@@ -99,7 +98,8 @@ right: 0;
 left: 0;
 margin: auto;
 display: grid;
-grid-template-columns: 20px 1fr 40px 16px;
+${ ''/* grid-template-columns: 20px 1fr 40px 16px; */}
+grid-template-columns:  1fr 40px ;
 padding: 10px;
 background: #0F2331;
 `;
@@ -114,7 +114,7 @@ font-size: 20px;
 font-weight: bold;
 outline: none;
 margin: 0;
-margin-left: 10px;
+${'' /* margin-left: 10px; */}
 `;
 const Icon = styled.img `
 	width: 20px;
