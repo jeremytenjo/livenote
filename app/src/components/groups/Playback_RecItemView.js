@@ -24,7 +24,7 @@ const ItemTextImage = Loadable({
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {items: state.NewNote_Items}
+	return {items: state.NewNote_Items, id: state.PlaybackSelection_ID}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -66,7 +66,7 @@ class RecItemView extends React.Component {
 			array = [],
 			userId = firebase.auth().currentUser.uid;
 
-		firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo('-KrmAja-0z9mCnupLdGR').once('value').then((snap) => {
+		firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(this.props.id).once('value').then((snap) => {
 			let snapValue = snap.val();
 			// console.log(snapValue);
 
@@ -94,15 +94,12 @@ class RecItemView extends React.Component {
 			// console.log(item);
 			if (item.desc && item.image !== '') {
 				list = <span data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.image}/></span>;
-				// return list
 
 			} else if (item.desc === '') {
 				list = <span data-time={item.time} data-title={item.title} data-image={item.image} onClick={this.showPreview} key={i}><ItemOnlyImage time={item.time} title={item.title} image={item.image}/></span>;
-				// return list
 
 			} else if (item.image === '') {
 				list = <span data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>;
-				// return list
 			}
 			return list
 

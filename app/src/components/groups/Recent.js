@@ -4,9 +4,15 @@ import File from '../File_link.js';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
+import {bindActionCreators} from 'redux';
+import {Set_Playback_Id} from '../../state/actions/index';
 
 // import CircularProgress from 'material-ui/CircularProgress';
-
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    Set_Playback_Id
+      }, dispatch)
+ }
 function mapStateToProps(state) {
 	return {notes: state.RecentNotes}
 }
@@ -50,13 +56,15 @@ class Recent extends React.Component {
 
 	}
 
-	openPlayback = () => {
+	openPlayback = (e) => {
+		// console.log(e);
+		this.props.Set_Playback_Id(e);
 		this.props.history.push(`/playback`);
 	}
 
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <span key={item.id} onClick={this.openPlayback}><File width="140px" title={item.name}/></span>);
+		let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id)}><File width="140px" title={item.name}/></span>);
 
 		//Style
 		const Title = styled.p `
@@ -85,4 +93,4 @@ height: 100px;
 
 }
 
-export default connect(mapStateToProps)(withRouter(Recent));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Recent));

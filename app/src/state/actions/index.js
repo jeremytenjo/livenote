@@ -101,3 +101,6 @@ export const Set_Folder_Link_Id = (e) => {
 export const Set_Folder_Link_Name = (e) => {
 	return {type: 'SET_FOLDER_LINK_NAME', data: e}
 }
+export const Set_Playback_Id = (e) => {
+	return {type: 'SET_PLAYBACK_ID', data: e}
+}

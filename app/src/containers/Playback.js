@@ -4,10 +4,7 @@ import RecItemView from '../components/groups/Playback_RecItemView.js';
 
 //State
 //import {bindActionCreators} from 'redux';
-//import {connect} from 'react-redux';
-//import {triggerAction} from '../state/actions/index';
 
-//Set global state to prop
 //define actions
 
 class Playback extends React.Component {
