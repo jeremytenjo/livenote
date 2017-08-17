@@ -72,7 +72,8 @@ class RecOptions extends React.Component {
 			theRecognition: '',
 			recordedChunks: [],
 			transcript: '',
-			newMasterNoteKey: ''
+			newMasterNoteKey: '',
+			data: ''
 		}
 	}
 
@@ -135,7 +136,7 @@ class RecOptions extends React.Component {
 		}
 
 		recorder.onstop = (e) => {
-
+			this.setState({data: this.props.data});
 			//stop recognition
 			this.state.theRecognition.stop();
 
@@ -215,48 +216,48 @@ class RecOptions extends React.Component {
 				let storageRef = firebase.storage().ref();
 				let ref = storageRef.child('audio/' + key);
 				ref.put(blob).then((snapshot) => {
-					
+
+					//upload sub notes
+					this.state.data.map((d) => {
+						//upload image
+						console.log(d);
+						let storageRef = firebase.storage().ref();
+						let mountainsRef = storageRef.child(d.title + 'Title');
+
+
+						if (d.image !== '') {
+
+							mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
+								// console.log(snapshot.metadata.downloadURLs[0]);
+								//write to database
+								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: key, name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: snapshot.metadata.downloadURLs[0], time: d.time});
+							});
+
+						} else {
+
+							firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: key, name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: 'none', time: d.time});
+						}
+
+						return ''
+					});
+
+					//Reset Top Bar Title
+					this.props.Change_TopBar_Title('Notes');
+
+					//Reset Folder Selected
+					this.props.FolderSelection_Name('SELECT FOLDER');
+
+					//Reset Folder ID
+					this.props.FolderSelection_ID('');
+
 					//confimration aniamtion
 					this.props.Set_Snackbar_Name('Note Added');
 					this.props.Show_Snackbar();
 
 					//redirect to Directory
-				 this.props.history.push(`/`);
+					this.props.history.push(`/`);
 				});
 			});
-
-			//upload sub notes
-			this.props.data.map((d) => {
-				//upload image
-
-				let storageRef = firebase.storage().ref();
-				let mountainsRef = storageRef.child(d.title + 'Title');
-
-				if (d.image !== '') {
-
-					mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
-						// console.log(snapshot.metadata.downloadURLs[0]);
-						//write to database
-						firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: newRef.path.o[3], name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: snapshot.metadata.downloadURLs[0]});
-					});
-
-				} else {
-
-					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: newRef.path.o[3], name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: 'none'});
-				}
-
-				return ''
-			});
-
-			//Reset Top Bar Title
-			this.props.Change_TopBar_Title('Notes');
-
-			//Reset Folder Selected
-			this.props.FolderSelection_Name('SELECT FOLDER');
-
-			//Reset Folder ID
-			this.props.FolderSelection_ID('');
-
 		}
 
 	}
