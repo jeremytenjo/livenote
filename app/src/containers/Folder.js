@@ -5,14 +5,13 @@ import {connect} from 'react-redux';
 import File from '../components/File_link.js';
 import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
-import {
-	Change_TopBar_Title,
-} from '../state/actions/index';
+import {Change_TopBar_Title, Hide_Snackbar} from '../state/actions/index';
 
 //define actions to use
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		Change_TopBar_Title,
+		Hide_Snackbar
 	}, dispatch)
 }
 function mapStateToProps(state) {
@@ -32,6 +31,7 @@ class Folder extends React.Component {
 	//Methods
 	componentWillMount() {
 		this.props.Change_TopBar_Title(this.props.name);
+		this.props.Hide_Snackbar();
 
 		if (this.props.id === '') {
 			this.setState({alert: 'No Notes in this folder'});
