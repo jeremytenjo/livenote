@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import RecItemView from '../components/groups/Playback_RecItemView.js';
+import NotePreview from '../components/groups/NotePreview.js';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -27,7 +28,7 @@ class Playback extends React.Component {
 		return (
 			<Wrapper>
 				<ItemViewContainer>
-					<RecItemView />
+					<RecItemView/>
 				</ItemViewContainer>
 
 				<TimeBarContainer>
@@ -36,7 +37,10 @@ class Playback extends React.Component {
 
 				<OptionsContainer>
 					jhasdhfpshdgfpshdfhg
-				</OptionsContainer></Wrapper>
+				</OptionsContainer>
+
+				<NotePreview/>
+			</Wrapper>
 		);
 	}
 
