@@ -3,6 +3,15 @@ import styled from 'styled-components'
 import File from '../File_link.js';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Set_Playback_Id} from '../../state/actions/index';
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		Set_Playback_Id
+	}, dispatch)
+}
 
 class Notes extends React.Component {
 
@@ -43,12 +52,13 @@ class Notes extends React.Component {
 
 	}
 
-	openPlayback = () => {
+	openPlayback = (e) => {
+		this.props.Set_Playback_Id(e);
 		this.props.history.push(`/playback`);
 	}
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <span key={item.id} onClick={this.openPlayback}><File key={item.id} width="auto" title={item.name}/></span>);
+		let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id)}><File key={item.id} width="auto" title={item.name}/></span>);
 
 		//Style
 		const Wrapper = styled.div `
@@ -77,4 +87,4 @@ padding-bottom: 90px;
 
 }
 
-export default withRouter(Notes)
+export default connect(null, mapDispatchToProps)(withRouter(Notes));

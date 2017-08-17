@@ -5,13 +5,14 @@ import {connect} from 'react-redux';
 import File from '../components/File_link.js';
 import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
-import {Change_TopBar_Title, Hide_Snackbar} from '../state/actions/index';
+import {Change_TopBar_Title, Hide_Snackbar, Set_Playback_Id} from '../state/actions/index';
 
 //define actions to use
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		Change_TopBar_Title,
-		Hide_Snackbar
+		Hide_Snackbar,
+		Set_Playback_Id
 	}, dispatch)
 }
 function mapStateToProps(state) {
@@ -63,9 +64,13 @@ class Folder extends React.Component {
 		});
 
 	}
+	openPlayback = (e) => {
+		this.props.Set_Playback_Id(e);
+		this.props.history.push(`/playback`);
+	}
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <span key={item.id} onClick={this.openPlayback}><File key={item.id} width="auto" title={item.name}/></span>);
+		let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id)}><File key={item.id} width="auto" title={item.name}/></span>);
 
 		//Template
 		return (

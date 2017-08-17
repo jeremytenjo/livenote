@@ -9,10 +9,10 @@ import {Set_Playback_Id} from '../../state/actions/index';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    Set_Playback_Id
-      }, dispatch)
- }
+	return bindActionCreators({
+		Set_Playback_Id
+	}, dispatch)
+}
 function mapStateToProps(state) {
 	return {notes: state.RecentNotes}
 }
