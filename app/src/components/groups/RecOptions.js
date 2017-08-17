@@ -9,8 +9,6 @@ import Play_icon from '../../images/icons/Play.svg';
 import firebase from 'firebase';
 
 //State
-
-//State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {
@@ -75,7 +73,6 @@ class RecOptions extends React.Component {
 			recordedChunks: [],
 			transcript: '',
 			newMasterNoteKey: ''
-
 		}
 	}
 
@@ -138,6 +135,7 @@ class RecOptions extends React.Component {
 		}
 
 		recorder.onstop = (e) => {
+
 			//stop recognition
 			this.state.theRecognition.stop();
 
@@ -217,26 +215,36 @@ class RecOptions extends React.Component {
 				let storageRef = firebase.storage().ref();
 				let ref = storageRef.child('audio/' + key);
 				ref.put(blob).then((snapshot) => {
-					// console.log('Audio Uploaded');
+					
+					//confimration aniamtion
+					this.props.Set_Snackbar_Name('Note Added');
+					this.props.Show_Snackbar();
+
+					//redirect to Directory
+				 this.props.history.push(`/`);
 				});
 			});
 
 			//upload sub notes
 			this.props.data.map((d) => {
 				//upload image
-				// console.log(this.props.noteName);
+
 				let storageRef = firebase.storage().ref();
 				let mountainsRef = storageRef.child(d.title + 'Title');
 
 				if (d.image !== '') {
+
 					mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
 						// console.log(snapshot.metadata.downloadURLs[0]);
 						//write to database
 						firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: newRef.path.o[3], name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: snapshot.metadata.downloadURLs[0]});
 					});
+
 				} else {
+
 					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: newRef.path.o[3], name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: 'none'});
 				}
+
 				return ''
 			});
 
@@ -249,12 +257,6 @@ class RecOptions extends React.Component {
 			//Reset Folder ID
 			this.props.FolderSelection_ID('');
 
-			//confimration aniamtion
-			this.props.Set_Snackbar_Name('Note Added');
-			this.props.Show_Snackbar();
-
-			//redirect to Directory
-			this.props.history.push(`/`);
 		}
 
 	}
