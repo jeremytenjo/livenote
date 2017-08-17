@@ -32,11 +32,11 @@ class Playback extends React.Component {
 				</ItemViewContainer>
 
 				<TimeBarContainer>
-					jhasdhfpshdgfpshdfhg
+					Timebar
 				</TimeBarContainer>
 
 				<OptionsContainer>
-					jhasdhfpshdgfpshdfhg
+					Options
 				</OptionsContainer>
 
 				<NotePreview/>

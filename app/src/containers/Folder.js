@@ -5,14 +5,15 @@ import {connect} from 'react-redux';
 import File from '../components/File_link.js';
 import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
-import {Change_TopBar_Title, Hide_Snackbar, Set_Playback_Id} from '../state/actions/index';
+import {Change_TopBar_Title, Hide_Snackbar, Set_Playback_Id, FolderSelection_ID, FolderSelection_Name} from '../state/actions/index';
+import FloatingButton from '../components/FloatButton.js';
 
 //define actions to use
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		Change_TopBar_Title,
 		Hide_Snackbar,
-		Set_Playback_Id
+		Set_Playback_Id, FolderSelection_ID, FolderSelection_Name
 	}, dispatch)
 }
 function mapStateToProps(state) {
@@ -65,8 +66,14 @@ class Folder extends React.Component {
 
 	}
 	openPlayback = (e) => {
+		this.props.FolderSelection_Name(e.name);
 		this.props.Set_Playback_Id(e);
 		this.props.history.push(`/playback`);
+	}
+	openRecord = (e) => {
+		this.props.FolderSelection_Name(this.props.name);
+		this.props.FolderSelection_ID(e);
+		this.props.history.push(`/record`);
 	}
 	render() {
 		//Properties
@@ -74,9 +81,14 @@ class Folder extends React.Component {
 
 		//Template
 		return (
+			<div>
 			<Wrapper>
 				{list}
 			</Wrapper>
+			<FloatingButtonCon onClick={this.openRecord}>
+				<FloatingButton/>
+			</FloatingButtonCon>
+			</div>
 		);
 	}
 
@@ -91,5 +103,9 @@ grid-row-gap: 10px;
 padding-bottom: 90px;
 
 `;
-
+const FloatingButtonCon = styled.span `
+position: fixed;
+bottom: 20px;
+right: 0;
+`;
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Folder));
