@@ -17,7 +17,7 @@ function mapDispatchToProps(dispatch) {
 	}, dispatch)
 }
 function mapStateToProps(state) {
-	return {id: state.FolderLink_ID, name: state.FolderLink_Name}
+	return {id: state.FolderLink_ID, name: state.FolderLink_Name, folderID: state.FolderLink_ID, folderName: state.TopBar_Title}
 }
 class Folder extends React.Component {
 
@@ -65,19 +65,20 @@ class Folder extends React.Component {
 		});
 
 	}
-	openPlayback = (e) => {
-		this.props.FolderSelection_Name(e.name);
+	openPlayback = (e, n) => {
+		this.props.FolderSelection_Name(n);
+		this.props.Change_TopBar_Title(n);
 		this.props.Set_Playback_Id(e);
 		this.props.history.push(`/playback`);
 	}
-	openRecord = (e) => {
-		this.props.FolderSelection_Name(this.props.name);
-		this.props.FolderSelection_ID(e);
+	openRecord = () => {
+		this.props.FolderSelection_Name(this.props.folderName);
+		this.props.FolderSelection_ID(this.props.folderID);
 		this.props.history.push(`/record`);
 	}
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id)}><File key={item.id} width="auto" title={item.name}/></span>);
+		let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)}><File key={item.id} width="auto" title={item.name}/></span>);
 
 		//Template
 		return (

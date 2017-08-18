@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {folderSelection, FolderSelection_Name, FolderSelection_ID} from '../state/actions/index';
 
-//define what information to get from store and listen to changes, eg sets status as a component prop
 function mapStateToProps(state) {
 	return {status: state.FolderSelection, folders: state.FolderList}
 }
@@ -32,7 +31,6 @@ class FolderMenu extends React.Component {
 	}
 
 	//Methods
-
 	hideFolderSelection = (e) => {
 		// console.log(e);
 		this.props.FolderSelection_Name(e.name);
