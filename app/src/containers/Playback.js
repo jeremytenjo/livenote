@@ -32,12 +32,8 @@ class Playback extends React.Component {
 					<RecItemView/>
 				</ItemViewContainer>
 
-				<TimeBarContainer>
-					Timebar
-				</TimeBarContainer>
-
 				<OptionsContainer>
-					<PlaybackOptions />
+					<PlaybackOptions/>
 				</OptionsContainer>
 
 				<NotePreview/>
@@ -49,32 +45,28 @@ class Playback extends React.Component {
 
 //Styles
 const Wrapper = styled.div `
-	display: grid;
-	height: 100%;
-	position: fixed;
 	max-width: 600px;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	margin: auto;
-	grid-template-rows: 1fr 70px 60px;
-	overflow: hidden;
+	margin: 0 auto;
 	padding: 10px;
 
  `;
 const ItemViewContainer = styled.div `
-${ ''/* background: red; */}
 margin-top: 50px;
-margin-bottom: 10px;
-overflow: scroll;
+margin-bottom: 100px;
 overflow-x: hidden;
  `;
-const TimeBarContainer = styled.div `
-${ ''/* background: blue; */}
-`;
+
 const OptionsContainer = styled.div `
-${ ''/* background: green; */}
+max-width: 600px;
+border: 3px solid red;
+ margin: 0 auto;
+ padding: 0;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ height: 100px;
 	 `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Playback);
