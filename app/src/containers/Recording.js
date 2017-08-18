@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import RecItemView from '../components/groups/RecItemView.js';
-import RecTimteBar from '../components/groups/RecTimteBar.js';
+// import RecTimteBar from '../components/groups/RecTimteBar.js';
 import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
@@ -22,9 +22,9 @@ class Recording extends React.Component {
 					<RecItemView/>
 				</ItemViewContainer>
 
-				<TimeBarContainer>
+				{/* <TimeBarContainer>
 					<RecTimteBar/>
-				</TimeBarContainer>
+				</TimeBarContainer> */}
 
 				<OptionsContainer>
 					<RecOptions/>
@@ -42,32 +42,38 @@ class Recording extends React.Component {
 
 //Styles
 const Wrapper = styled.div `
-	display: grid;
-	height: 100%;
-	position: fixed;
+	${'' /* display: grid; */}
+	${'' /* height: 100%; */}
+	${'' /* position: fixed; */}
 	max-width: 600px;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
+	${'' /* left: 0; */}
+	${'' /* top: 0; */}
+	${'' /* bottom: 0; */}
+	${'' /* right: 0; */}
 	margin: auto;
-	grid-template-rows: 1fr 70px 100px;
-	overflow: hidden;
+	${'' /* grid-template-rows: 1fr 70px 100px; */}
+	${'' /* overflow: hidden; */}
 	padding: 10px;
 
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* background: red; */}
-margin-top: 50px;
-margin-bottom: 10px;
-overflow: scroll;
+${'' /* margin-top: 50px; */}
+margin-bottom: 105px;
 overflow-x: hidden;
  `;
-const TimeBarContainer = styled.div `
-${ ''/* background: blue; */}
-`;
+// const TimeBarContainer = styled.div `
+// ${ ''/* background: blue; */}
+// `;
 const OptionsContainer = styled.div `
-${ ''/* background: green; */}
+${'' /* background: green; */}
+position: fixed;
+bottom: 0;
+max-width: 600px;
+width: 100%;
+left: 0;
+right: 0;
+margin: auto;
 	 `;
 
 export default Recording;

@@ -58,7 +58,7 @@ overflow-x: hidden;
 
 const OptionsContainer = styled.div `
 max-width: 600px;
-border: 3px solid red;
+${'' /* border: 3px solid red; */}
  margin: 0 auto;
  padding: 0;
  position: fixed;

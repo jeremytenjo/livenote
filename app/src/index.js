@@ -5,6 +5,8 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import Reducers from './state/reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 // import registerServiceWorker from './registerServiceWorker';
 
 //Firebase Configuration
@@ -24,9 +26,15 @@ firebase.initializeApp(config);
 //State
 const store = createStore(Reducers);
 
+const muiTheme = getMuiTheme({
+  slider: {
+    selectionColor: '#69f0ae',
+    handleFillColor: '#69f0ae'
+  }
+});
 ReactDOM.render(
 	<Provider store={store}>
-	<MuiThemeProvider>
+	<MuiThemeProvider muiTheme={muiTheme}>
 		<App/>
 	</MuiThemeProvider>
 </Provider>, document.getElementById('root'));

@@ -51,15 +51,15 @@ class PlaybackOptions extends React.Component {
 
 	resume = () => {
 		this.setState({playToggle: false, pauseToggle: true});
-		let audioControl = this.state.audioControl;
-		audioControl.play()
+		// let audioControl = this.state.audioControl;
+		// audioControl.play()
 
 	}
 
 	pause = () => {
 		this.setState({playToggle: true, pauseToggle: false});
-		let audioControl = this.state.audioControl;
-		audioControl.pause()
+		// let audioControl = this.state.audioControl;
+		// audioControl.pause()
 	}
 	render() {
 		//Properties
@@ -81,6 +81,9 @@ class PlaybackOptions extends React.Component {
 			: 'none'};
 			cursor: pointer;
 			margin: 0 auto;
+			${'' /* &:svg{
+				fill: white;
+			} */}
 
 		`;
 
@@ -89,7 +92,7 @@ class PlaybackOptions extends React.Component {
 			<Wrapper>
 				<TimeBar>
 					<SliderCon>
-						<Slider   value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
+						<Slider  value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
 		</SliderCon>
 					<StartTime>0:00</StartTime>
 					<EndTime>3:00</EndTime>
