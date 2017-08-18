@@ -26,13 +26,14 @@ export default class File extends React.Component {
 	 border-radius: 2px 0 2px 2px;
 	 cursor: pointer;
 	 position: relative;
-	 z-index: -1; 
+	 z-index: -1;
 	 `;
 		const Image = styled.img `
 		width: 20px;
 		position: absolute;
 		right: 0;
-		top: 0;
+    bottom: 0;
+    transform: rotate(810deg);
 	  `;
 		const Title = styled.p `
 	margin-left: 5px;
