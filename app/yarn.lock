@@ -5273,6 +5273,10 @@ react-loadable@^4.0.3:
     is-webpack-bundle "^1.0.0"
     webpack-require-weak "^1.0.0"
 
+react-media-slider@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-media-slider/-/react-media-slider-0.2.0.tgz#f696cb56d4671838de1497a188ad7f70cc851080"
+
 react-mic@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/react-mic/-/react-mic-8.0.0.tgz#b8405be59654892da4637da363ce7bae3cd9b023"
@@ -5365,6 +5369,14 @@ react-scripts@1.0.10:
   optionalDependencies:
     fsevents "1.1.2"
 
+react-sound@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-sound/-/react-sound-0.8.0.tgz#39706a68bdbc1b04cf2fc6f01d8af40f5a30f818"
+  dependencies:
+    prop-types "^15.5.7"
+    react ">=15.3.0 <16.0.0"
+    soundmanager2 "^2.97.20150601-a"
+
 react-speech-recognition@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-speech-recognition/-/react-speech-recognition-1.0.4.tgz#b2748681b69cf6c05763f310f1b6f70b38ecd931"
@@ -5407,14 +5419,7 @@ react-voice-input@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/react-voice-input/-/react-voice-input-0.0.4.tgz#3c977005b7d8a900d726043f12501cf8b770a933"
 
-react@^0.14.6:
-  version "0.14.9"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.14.9.tgz#9110a6497c49d44ba1c0edd317aec29c2e0d91d1"
-  dependencies:
-    envify "^3.0.0"
-    fbjs "^0.6.1"
-
-react@^15.4.1, react@^15.6.1:
+"react@>=15.3.0 <16.0.0", react@^15.4.1, react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:
@@ -5423,6 +5428,13 @@ react@^15.4.1, react@^15.6.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
+
+react@^0.14.6:
+  version "0.14.9"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.14.9.tgz#9110a6497c49d44ba1c0edd317aec29c2e0d91d1"
+  dependencies:
+    envify "^3.0.0"
+    fbjs "^0.6.1"
 
 read-all-stream@^3.0.0:
   version "3.1.0"
@@ -5961,6 +5973,10 @@ sort-keys@^1.0.0:
   resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"
   dependencies:
     is-plain-obj "^1.0.0"
+
+soundmanager2@^2.97.20150601-a:
+  version "2.97.20170602"
+  resolved "https://registry.yarnpkg.com/soundmanager2/-/soundmanager2-2.97.20170602.tgz#fe3bc731bfc4d54c1364e71980263e6816981879"
 
 source-list-map@^0.1.7:
   version "0.1.8"

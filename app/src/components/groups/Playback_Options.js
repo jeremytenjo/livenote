@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Pause_icon from '../../images/icons/Pause.svg';
 import Play_icon from '../../images/icons/Play.svg';
 import firebase from 'firebase';
+import Slider from 'material-ui/Slider';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -22,7 +23,10 @@ class PlaybackOptions extends React.Component {
 		this.state = {
 			pauseToggle: true,
 			playToggle: false,
-			audioControl: ''
+			audioControl: '',
+			sliderPos: 20,
+			min: 0,
+			max: 100
 		}
 		this.initPlayback = this.initPlayback.bind(this);
 	}
@@ -33,14 +37,17 @@ class PlaybackOptions extends React.Component {
 	}
 
 	async initPlayback(id) {
-		const audio = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
+		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 
-		let audioControl = new Audio([audio]);
+		let audioControl = new Audio([audioUrl]);
 		this.setState({audioControl: audioControl});
 
 		audioControl.play()
 
 	}
+	handleSlider = (event, value) => {
+		this.setState({sliderPos: value});
+	};
 
 	resume = () => {
 		this.setState({playToggle: false, pauseToggle: true});
@@ -81,7 +88,9 @@ class PlaybackOptions extends React.Component {
 		return (
 			<Wrapper>
 				<TimeBar>
-
+					<SliderCon>
+						<Slider   value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
+		</SliderCon>
 					<StartTime>0:00</StartTime>
 					<EndTime>3:00</EndTime>
 				</TimeBar>
@@ -102,13 +111,18 @@ const Wrapper = styled.div `
 `;
 const TimeBar = styled.div `
 position: relative;
+bottom: 23px;
  `;
+const SliderCon = styled.div `
+   ${ ''/* background: green; */}
+  `;
 const OptionsCon = styled.div `
 
  `;
 const StartTime = styled.p `
 position: absolute;
 left: 0;
+top: 50px;
 bottom: 0;
 font-size: 16px;
 margin: 0;
@@ -116,6 +130,7 @@ margin: 0;
 const EndTime = styled.p `
 position: absolute;
 right: 0;
+top: 50px;
 bottom: 0;
 font-size: 16px;
 margin: 0;
