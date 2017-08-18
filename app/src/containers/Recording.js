@@ -66,7 +66,7 @@ overflow-x: hidden;
 // ${ ''/* background: blue; */}
 // `;
 const OptionsContainer = styled.div `
-${'' /* background: green; */}
+ background: #0F2331; 
 position: fixed;
 bottom: 0;
 max-width: 600px;
