@@ -31,7 +31,7 @@ class Directory extends React.Component {
 
 	//Methods
 componentWillMount(){
-	this.props.Change_TopBar_Title('Notes');
+	this.props.Change_TopBar_Title('Directory');
 	this.props.Hide_Snackbar();
 
 }

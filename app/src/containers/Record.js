@@ -49,7 +49,7 @@ class Record extends React.Component {
 
 	//Methods
 	componentWillMount() {
-		this.props.Change_TopBar_Title('Notes');
+		this.props.Change_TopBar_Title('Record');
 		this.props.Hide_Snackbar();
 
 	}

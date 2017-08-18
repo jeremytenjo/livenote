@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import RecItemView from '../components/groups/Playback_RecItemView.js';
+import RecItemView from '../components/groups/Playback_ItemView.js';
+import PlaybackOptions from '../components/groups/Playback_Options.js';
 import NotePreview from '../components/groups/NotePreview.js';
 
 //State
@@ -36,7 +37,7 @@ class Playback extends React.Component {
 				</TimeBarContainer>
 
 				<OptionsContainer>
-					Options
+					<PlaybackOptions />
 				</OptionsContainer>
 
 				<NotePreview/>
@@ -57,7 +58,7 @@ const Wrapper = styled.div `
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	grid-template-rows: 1fr 70px 100px;
+	grid-template-rows: 1fr 70px 60px;
 	overflow: hidden;
 	padding: 10px;
 
