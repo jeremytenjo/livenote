@@ -61,10 +61,15 @@ class PlaybackOptions extends React.Component {
 				}
 			}
 		}
+		audioControl.ontimeupdate = (e) => {
+			console.log("HERE!");
+		}
 
 	}
 	handleSlider = (event, value) => {
 		this.setState({sliderPos: value});
+		let audioControl = this.state.audioControl;
+		audioControl.currentTime = value;
 	};
 
 	resume = () => {
@@ -115,7 +120,7 @@ class PlaybackOptions extends React.Component {
 						}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
 					</SliderCon>
 					<StartTime>0:00</StartTime>
-					<EndTime>3:00</EndTime>
+					<EndTime>{this.state.max}</EndTime>
 				</TimeBar>
 				<OptionsCon>
 					<PauseIcon onClick={this.pause} src={Pause_icon}/>
