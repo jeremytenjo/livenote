@@ -31,7 +31,8 @@ class Notes extends React.Component {
 		super(props)
 		this.state = {
 			list: [],
-			renameInput: false
+			renameInput: false,
+			open: false
 		}
 	}
 
@@ -67,10 +68,7 @@ class Notes extends React.Component {
 		});
 	}
 
-	// openPlayback = (e) => {
-	// 	this.props.Set_Playback_Id(e);
-	// 	this.props.history.push(`/playback`);
-	// }
+
 
 	handleCloseRename = (e) => {
 		this.setState({renameInput: false});
@@ -276,7 +274,7 @@ padding: 15px;
 				</Container>
 				<Dialog onSubmit={this.submit}>
 					<InnerDialog>
-						<SubTitle>Name folder</SubTitle>
+						<SubTitle>Name file</SubTitle>
 						<input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
 
 						<ButtonCon>
@@ -310,7 +308,7 @@ padding: 15px;
 				</OptionsMenuWrapper>
 				<DialogRename onSubmit={this.submitnewName}>
 					<InnerDialog>
-						<SubTitle>Rename folder</SubTitle>
+						<SubTitle>Rename file</SubTitle>
 						<input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
 						<ButtonCon>
