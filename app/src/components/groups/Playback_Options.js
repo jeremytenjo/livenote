@@ -61,6 +61,8 @@ class PlaybackOptions extends React.Component {
 					// alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
 				}
+			}else {
+				alert(';itworks!')
 			}
 		}
 
