@@ -44,12 +44,10 @@ class PlaybackOptions extends React.Component {
 		this.setState({audioControl: audioControl});
 
 		audioControl.play()
-		alert('d0'+ audioControl)
 
 		audioControl.onloadedmetadata = (e) => {
 			if (audioControl.duration === Infinity) {
 				let self = this;
-				alert('1')
 
 				audioControl.currentTime = 1e101;
 				audioControl.ontimeupdate = function() {
@@ -62,9 +60,7 @@ class PlaybackOptions extends React.Component {
 					// alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
 				}
-			}else {
-				alert('2')
-			}
+			} 
 		}
 
 
