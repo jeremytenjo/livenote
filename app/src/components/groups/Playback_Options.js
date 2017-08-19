@@ -57,6 +57,7 @@ class PlaybackOptions extends React.Component {
 					}
 					audioControl.currentTime = 0;
 					console.log(audioControl.duration);
+					alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
 				}
 			}
