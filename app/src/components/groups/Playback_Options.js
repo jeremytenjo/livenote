@@ -33,7 +33,7 @@ class PlaybackOptions extends React.Component {
 
 	//Methods
 	componentWillMount() {
-		// this.initPlayback(this.props.noteID);
+		this.initPlayback(this.props.noteID);
 	}
 
 	async initPlayback(id) {
@@ -44,6 +44,9 @@ class PlaybackOptions extends React.Component {
 
 		audioControl.play()
 
+		 
+
+
 	}
 	handleSlider = (event, value) => {
 		this.setState({sliderPos: value});
@@ -52,14 +55,14 @@ class PlaybackOptions extends React.Component {
 	resume = () => {
 		this.setState({playToggle: false, pauseToggle: true});
 		let audioControl = this.state.audioControl;
-		// audioControl.play()
+		audioControl.play()
 
 	}
 
 	pause = () => {
 		this.setState({playToggle: true, pauseToggle: false});
 		let audioControl = this.state.audioControl;
-		// audioControl.pause()
+		audioControl.pause()
 	}
 	render() {
 		//Properties
