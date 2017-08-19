@@ -38,7 +38,7 @@ class PlaybackOptions extends React.Component {
 
 	async initPlayback(id) {
 
-		id = '-KrrzP5bU_jGvuv5OLFc';
+		id = '-KrvthH7z84Or5AQr1ah';
 		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 
 		let audioControl = new Audio([audioUrl]);
@@ -46,12 +46,23 @@ class PlaybackOptions extends React.Component {
 
 		audioControl.play()
 
-		audioControl.onloadedmetadata  = (e) => {
-			audioControl.duration;
-			console.log(audioControl.duration);
+		audioControl.onloadedmetadata = (e) => {
+			if (audioControl.duration === Infinity) {
+				let self = this.state;
+				console.log(self);
+
+				audioControl.currentTime = 1e101;
+				audioControl.ontimeupdate = function(self) {
+					this.ontimeupdate = () => {
+						return;
+					}
+					audioControl.currentTime = 0;
+					console.log(self);
+					  
+					// self.setState({max: audioControl.duration});
+				}
+			}
 		}
-
-
 
 	}
 	handleSlider = (event, value) => {

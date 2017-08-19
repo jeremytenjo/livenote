@@ -224,18 +224,31 @@ class RecOptions extends React.Component {
 						let storageRef = firebase.storage().ref();
 						let mountainsRef = storageRef.child(d.title + 'Title');
 
-
 						if (d.image !== '') {
 
 							mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
 								// console.log(snapshot.metadata.downloadURLs[0]);
 								//write to database
-								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: key, name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: snapshot.metadata.downloadURLs[0], time: d.time});
+								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+									masterNote_id: key,
+									name: this.props.noteName,
+									title: d.title,
+									comment: d.desc,
+									imageUrl: snapshot.metadata.downloadURLs[0],
+									time: d.time
+								});
 							});
 
 						} else {
 
-							firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({masterNote_id: key, name: this.props.noteName, title: d.title, comment: d.desc, imageUrl: 'none', time: d.time});
+							firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+								masterNote_id: key,
+								name: this.props.noteName,
+								title: d.title,
+								comment: d.desc,
+								imageUrl: 'none',
+								time: d.time
+							});
 						}
 
 						return ''
