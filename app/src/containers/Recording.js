@@ -42,31 +42,19 @@ class Recording extends React.Component {
 
 //Styles
 const Wrapper = styled.div `
-	${'' /* display: grid; */}
-	${'' /* height: 100%; */}
-	${'' /* position: fixed; */}
 	max-width: 600px;
-	${'' /* left: 0; */}
-	${'' /* top: 0; */}
-	${'' /* bottom: 0; */}
-	${'' /* right: 0; */}
 	margin: auto;
-	${'' /* grid-template-rows: 1fr 70px 100px; */}
-	${'' /* overflow: hidden; */}
 	padding: 10px;
 
  `;
 const ItemViewContainer = styled.div `
-${ ''/* background: red; */}
-${'' /* margin-top: 50px; */}
 margin-bottom: 105px;
 overflow-x: hidden;
  `;
 // const TimeBarContainer = styled.div `
-// ${ ''/* background: blue; */}
 // `;
 const OptionsContainer = styled.div `
- background: #0F2331; 
+ background: #0F2331;
 position: fixed;
 bottom: 0;
 max-width: 600px;

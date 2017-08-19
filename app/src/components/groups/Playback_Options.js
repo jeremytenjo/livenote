@@ -33,7 +33,7 @@ class PlaybackOptions extends React.Component {
 
 	//Methods
 	componentWillMount() {
-		// this.initPlayback(this.props.noteID);
+		this.initPlayback(this.props.noteID);
 	}
 
 	async initPlayback(id) {
@@ -51,15 +51,15 @@ class PlaybackOptions extends React.Component {
 
 	resume = () => {
 		this.setState({playToggle: false, pauseToggle: true});
-		// let audioControl = this.state.audioControl;
-		// audioControl.play()
+		let audioControl = this.state.audioControl;
+		audioControl.play()
 
 	}
 
 	pause = () => {
 		this.setState({playToggle: true, pauseToggle: false});
-		// let audioControl = this.state.audioControl;
-		// audioControl.pause()
+		let audioControl = this.state.audioControl;
+		audioControl.pause()
 	}
 	render() {
 		//Properties
@@ -81,7 +81,7 @@ class PlaybackOptions extends React.Component {
 			: 'none'};
 			cursor: pointer;
 			margin: 0 auto;
-			${'' /* &:svg{
+			${ ''/* &:svg{
 				fill: white;
 			} */}
 
@@ -92,8 +92,11 @@ class PlaybackOptions extends React.Component {
 			<Wrapper>
 				<TimeBar>
 					<SliderCon>
-						<Slider style={{paddingLeft:'10px',paddingRight:'10px'}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
-		</SliderCon>
+						<Slider style={{
+							paddingLeft: '10px',
+							paddingRight: '10px'
+						}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
+					</SliderCon>
 					<StartTime>0:00</StartTime>
 					<EndTime>3:00</EndTime>
 				</TimeBar>
@@ -110,7 +113,7 @@ class PlaybackOptions extends React.Component {
 //Style
 const Wrapper = styled.div `
 	display: grid;
-	grid-template-rows: 50px 50px;
+	grid-template-rows: 50px 70px;
 `;
 const TimeBar = styled.div `
 position: relative;

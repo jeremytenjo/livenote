@@ -8,7 +8,7 @@ import {withRouter} from 'react-router-dom'
 // import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Set_RecentNotes, Change_TopBar_Title, Hide_Snackbar} from '../state/actions/index';
+import {Set_RecentNotes, Change_TopBar_Title, Hide_Snackbar, folderSelection} from '../state/actions/index';
 
 function mapStateToProps(state) {
 	return {status: state.RecentNotes}
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		Set_RecentNotes, Change_TopBar_Title, Hide_Snackbar
+		Set_RecentNotes, Change_TopBar_Title, Hide_Snackbar, folderSelection
 	}, dispatch)
 }
 class Directory extends React.Component {
@@ -33,6 +33,8 @@ class Directory extends React.Component {
 componentWillMount(){
 	this.props.Change_TopBar_Title('Directory');
 	this.props.Hide_Snackbar();
+	this.props.folderSelection(false);
+
 
 }
 	openRecord = () => {

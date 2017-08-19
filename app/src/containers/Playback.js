@@ -66,7 +66,7 @@ ${'' /* border: 3px solid red; */}
  left: 0;
  right: 0;
  width: 100%;
- height: 100px;
+ height: 120px;
 	 `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Playback);
