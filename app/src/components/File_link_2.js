@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import {Toggle_OptinsMenuShow, Set_Delete_File_ID, Set_Delete_File_Name, Set_File_Link_Id, Set_File_Link_Name, Set_Playback_Id, Toggle_OptinsMenuShowFile} from '../state/actions/index';
+import {Toggle_OptinsMenuShow, Set_Delete_File_ID, Set_Delete_File_Name, Set_File_Link_Id, Set_File_Link_Name, Set_Playback_Id, Toggle_OptinsMenuShowFile, Change_TopBar_Title} from '../state/actions/index';
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
 		Set_Delete_File_ID,
 		Set_Delete_File_Name,
 		Set_File_Link_Id,
-		Set_File_Link_Name, Set_Playback_Id, Toggle_OptinsMenuShowFile
+		Set_File_Link_Name, Set_Playback_Id, Toggle_OptinsMenuShowFile, Change_TopBar_Title
 	}, dispatch)
 }
 class Folder_Link extends React.Component {
@@ -39,6 +39,7 @@ class Folder_Link extends React.Component {
 	redirect = () => {
 		this.props.Set_File_Link_Name(this.state.name);
 		this.props.Set_File_Link_Id(this.state.id);
+		this.props.Change_TopBar_Title(this.state.name);
 		this.props.Set_Playback_Id(this.state.id);
 		this.props.history.push(`/playback`);
 	}

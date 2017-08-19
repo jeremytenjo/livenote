@@ -10,6 +10,7 @@ import styled, {keyframes} from 'styled-components'
 import Rename_img from '../../images/icons/rename.svg';
 import Remove_img from '../../images/icons/rubbish-bin.svg';
 import Close_Icon from '../../images/icons/close.svg';
+import Button from '../Button.js';
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
@@ -29,7 +30,8 @@ class Notes extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			list: []
+			list: [],
+			renameInput: false
 		}
 	}
 
@@ -38,32 +40,32 @@ class Notes extends React.Component {
 		this.fetchData()
 	}
 
-	 fetchData = () => {
-			let userId = firebase.auth().currentUser.uid;
-			let array = [];
+	fetchData = () => {
+		let userId = firebase.auth().currentUser.uid;
+		let array = [];
 
-			return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('folderID').equalTo('Root').once('value').then((snap) => {
-				let list = {},
-					snapValue = snap.val();
-				// console.log(snapValue);
+		return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('folderID').equalTo('Root').once('value').then((snap) => {
+			let list = {},
+				snapValue = snap.val();
+			// console.log(snapValue);
 
-				for (var prop in snapValue) {
-					// console.log(snapValue[prop]);
-					list.id = prop;
-					list.dateAdded = snapValue[prop].dateAdded;
-					list.dateAddedSort = snapValue[prop].dateAddedSort;
-					list.folderID = snapValue[prop].folderID;
-					list.folderName = snapValue[prop].folderName;
-					list.name = snapValue[prop].name;
+			for (var prop in snapValue) {
+				// console.log(snapValue[prop]);
+				list.id = prop;
+				list.dateAdded = snapValue[prop].dateAdded;
+				list.dateAddedSort = snapValue[prop].dateAddedSort;
+				list.folderID = snapValue[prop].folderID;
+				list.folderName = snapValue[prop].folderName;
+				list.name = snapValue[prop].name;
 
-					// console.log(list);
-					array.push(list);
-					list = {};
-				}
-				// console.log(array);
-				this.setState({list: array});
-			});
-	  }
+				// console.log(list);
+				array.push(list);
+				list = {};
+			}
+			// console.log(array);
+			this.setState({list: array});
+		});
+	}
 
 	// openPlayback = (e) => {
 	// 	this.props.Set_Playback_Id(e);
@@ -100,7 +102,7 @@ class Notes extends React.Component {
 
 	render() {
 		//Properties
-		let list = this.state.list.map((item, i) => <span key={item.id} ><File key={item.id} id={item.id} width="auto" name={item.name}/></span>);
+		let list = this.state.list.map((item, i) => <span key={item.id}><File key={item.id} id={item.id} width="auto" name={item.name}/></span>);
 
 		//Style
 		const Wrapper = styled.div `
@@ -116,7 +118,39 @@ padding-bottom: 90px;
 	 grid-column-gap: 10px;
 	 grid-row-gap: 10px;
 	 `;
-
+		const Dialog = styled.form `
+	 	display: ${props => this.state.open
+			? 'block'
+			: 'none'};
+	 position: fixed;
+	 background: rgba(0, 0, 0, 0.73);
+	 height: 100%;
+	 width: 100%;
+	 top: 0;
+	 left: 0;
+	 z-index: 20;
+	 `;
+		const DialogRename = styled.form `
+	 	display: ${props => this.state.renameInput
+			? 'block'
+			: 'none'};
+	 position: fixed;
+	 background: rgba(0, 0, 0, 0.73);
+	 height: 100%;
+	 width: 100%;
+	 top: 0;
+	 left: 0;
+	 z-index: 20;
+	 `;
+		let inputStyle = {
+			width: '80%',
+			display: 'block',
+			margin: 'auto',
+			height: '30px',
+			fontSize: '16px',
+			borderColor: 'transparent',
+			borderWidth: '0px'
+		}
 		const OptionsMenuWrapper = styled.form `
 	 display: ${props => this.props.options
 			? 'block'
@@ -177,12 +211,47 @@ color: #0F2331;
 width: 20px;
 padding: 15px;
 			`;
+
 		const CloseIcon = styled.img `
 			width: 20px;
 			position: absolute;
 			right: 10px;
 			top: 10px;
 			 `;
+		const InnerDialog = styled.div `
+			 	border-radius: 2px;
+			 position: absolute;
+			 background: white;
+			 height: 220px;
+			 max-width: 600px;
+			 width: 75%;
+			 left: 0;
+			 right: 0;
+			 top: 0;
+			 bottom: 0;
+			 margin: auto;
+			 display: grid;
+			 grid-template-rows: 50px 50px 50px;
+			 grid-row-gap: 24px;
+			  `;
+
+		const SubTitle = styled.h2 `
+			 	color: #0F2331;
+			 width: 80%;
+			 display: block;
+			 margin: auto;
+			 margin-top: 20px;
+			 font-size: 20px;
+			 line-height: 32px;
+			 font-weight: 400;
+			  `;
+
+		const ButtonCon = styled.div `
+			 	display: grid;
+			 	grid-template-columns: 1fr 1fr;
+			 	`;
+
+		 
 
 		//Template
 		return (
@@ -191,7 +260,21 @@ padding: 15px;
 				<Container>
 					{list}
 				</Container>
+				<Dialog onSubmit={this.submit}>
+					<InnerDialog>
+						<SubTitle>Name folder</SubTitle>
+						<input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
 
+						<ButtonCon>
+							<span onClick={this.handleClose}>
+								<Button text="Cancel" color="#9E9E9E"/>
+							</span>
+							<span >
+								<Button type="submit" text="Create" color="#44F6A3"/>
+							</span>
+						</ButtonCon>
+					</InnerDialog>
+				</Dialog>
 				<OptionsMenuWrapper>
 					<OptionsMenuTop onClick={this.hideOptions}/>
 					<OptionsMenuInner>
