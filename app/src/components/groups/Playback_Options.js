@@ -37,7 +37,7 @@ class PlaybackOptions extends React.Component {
 	}
 
 	async initPlayback(id) {
-
+alert(id)
 		id = '-KrvthH7z84Or5AQr1ah';
 		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 
