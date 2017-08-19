@@ -137,6 +137,7 @@ class Folder extends React.Component {
 		// this.setState({title: ''});
 		this.props.Set_Snackbar_Name('File Renamed');
 		this.props.Show_Snackbar();
+		this.setState({list: []});
 
 		this.fetchData();
 

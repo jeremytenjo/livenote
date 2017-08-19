@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import Folder_img from '../images/icons/Folder.svg';
 import Options_img from '../images/icons/Options.svg';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom'
