@@ -46,8 +46,12 @@ class PlaybackOptions extends React.Component {
 
 		audioControl.play()
 
+		audioControl.onloadedmetadata  = (e) => {
+			audioControl.duration;
+			console.log(audioControl.duration);
+		}
 
-		console.log(audioControl.currentTime);
+
 
 	}
 	handleSlider = (event, value) => {
