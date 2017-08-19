@@ -53,18 +53,17 @@ class PlaybackOptions extends React.Component {
 				audioControl.currentTime = 1e101;
 				audioControl.ontimeupdate = function() {
 					this.ontimeupdate = () => {
+						self.setState({sliderPos: audioControl.currentTime});
+						// self.setState({min: audioControl.currentTime});
 						return;
 					}
 					audioControl.currentTime = 0;
-					console.log(audioControl.duration);
-					alert(audioControl.duration)
+					// alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
 				}
 			}
 		}
-		audioControl.ontimeupdate = (e) => {
-			console.log("HERE!");
-		}
+
 
 	}
 	handleSlider = (event, value) => {
