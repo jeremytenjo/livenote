@@ -49,6 +49,7 @@ class PlaybackOptions extends React.Component {
 		audioControl.onloadedmetadata = (e) => {
 			if (audioControl.duration === Infinity) {
 				let self = this;
+				alert('1')
 
 				audioControl.currentTime = 1e101;
 				audioControl.ontimeupdate = function() {
@@ -62,7 +63,7 @@ class PlaybackOptions extends React.Component {
 					self.setState({max: audioControl.duration});
 				}
 			}else {
-				alert(';itworks!')
+				alert('2')
 			}
 		}
 
