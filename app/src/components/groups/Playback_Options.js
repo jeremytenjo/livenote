@@ -92,7 +92,7 @@ class PlaybackOptions extends React.Component {
 			<Wrapper>
 				<TimeBar>
 					<SliderCon>
-						<Slider  value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
+						<Slider style={{paddingLeft:'10px',paddingRight:'10px'}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
 		</SliderCon>
 					<StartTime>0:00</StartTime>
 					<EndTime>3:00</EndTime>
@@ -129,6 +129,7 @@ top: 50px;
 bottom: 0;
 font-size: 16px;
 margin: 0;
+left: 10px;
  `;
 const EndTime = styled.p `
 position: absolute;
@@ -137,5 +138,6 @@ top: 50px;
 bottom: 0;
 font-size: 16px;
 margin: 0;
+right: 10px
  `;
 export default connect(mapStateToProps)(PlaybackOptions);
