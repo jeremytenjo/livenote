@@ -82,7 +82,7 @@ class Notes extends React.Component {
 		this.props.Toggle_OptinsMenuHideFile();
 	}
 
-	removeFolder = () => {
+	removeFile = () => {
 		//remove folder
 		// console.log(this.props.folderID);
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).remove();
@@ -93,13 +93,27 @@ class Notes extends React.Component {
 
 	}
 
-	renameFolder = () => {
+	renameFile = () => {
 		//show rename input
 		this.props.Toggle_OptinsMenuHideFile();
 		this.setState({renameInput: true});
 
 	}
+	submitnewName = (e) => {
+		// console.log(this.inputRename.value);
+		e.preventDefault();
+		// console.log(this.props.folderID);
+		this.setState({renameInput: false});
+		this.props.Toggle_OptinsMenuHideFile();
 
+		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).update({name: this.inputRename.value});
+		// this.setState({title: ''});
+		this.props.Set_Snackbar_Name('File Renamed');
+		this.props.Show_Snackbar();
+
+		this.fetchData();
+
+	}
 	render() {
 		//Properties
 		let list = this.state.list.map((item, i) => <span key={item.id}><File key={item.id} id={item.id} width="auto" name={item.name}/></span>);
@@ -140,7 +154,7 @@ padding-bottom: 90px;
 	 width: 100%;
 	 top: 0;
 	 left: 0;
-	 z-index: 20;
+	 z-index: 40;
 	 `;
 		let inputStyle = {
 			width: '80%',
@@ -251,7 +265,7 @@ padding: 15px;
 			 	grid-template-columns: 1fr 1fr;
 			 	`;
 
-		 
+
 
 		//Template
 		return (
@@ -281,11 +295,11 @@ padding: 15px;
 						<CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
 						<OtopnsWrapper>
 
-							<OptionsItemCon onClick={this.renameFolder}>
+							<OptionsItemCon onClick={this.renameFile}>
 								<OptionsItem src={Rename_img} alt="rename Icon"/>
 								<p>Rename</p>
 							</OptionsItemCon>
-							<OptionsItemCon onClick={this.removeFolder}>
+							<OptionsItemCon onClick={this.removeFile}>
 								<OptionsItem src={Remove_img} alt="rename Icon"/>
 								<p>Remove</p>
 							</OptionsItemCon>
@@ -294,7 +308,21 @@ padding: 15px;
 
 					</OptionsMenuInner>
 				</OptionsMenuWrapper>
+				<DialogRename onSubmit={this.submitnewName}>
+					<InnerDialog>
+						<SubTitle>Rename folder</SubTitle>
+						<input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
+						<ButtonCon>
+							<span onClick={this.handleCloseRename}>
+								<Button text="Cancel" color="#9E9E9E"/>
+							</span>
+							<span >
+								<Button type="submit" text="Rename" color="#44F6A3"/>
+							</span>
+						</ButtonCon>
+					</InnerDialog>
+				</DialogRename>
 			</Wrapper>
 		);
 	}
