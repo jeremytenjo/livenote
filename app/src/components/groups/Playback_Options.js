@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Pause_icon from '../../images/icons/Pause.svg';
-import Play_icon from '../../images/icons/Play.svg';
+import Play_icon from '../../images/icons/PlayWhite.svg';
 import firebase from 'firebase';
 import Slider from 'material-ui/Slider';
 
@@ -33,7 +33,7 @@ class PlaybackOptions extends React.Component {
 
 	//Methods
 	componentWillMount() {
-		this.initPlayback(this.props.noteID);
+		// this.initPlayback(this.props.noteID);
 	}
 
 	async initPlayback(id) {
@@ -52,21 +52,21 @@ class PlaybackOptions extends React.Component {
 	resume = () => {
 		this.setState({playToggle: false, pauseToggle: true});
 		let audioControl = this.state.audioControl;
-		audioControl.play()
+		// audioControl.play()
 
 	}
 
 	pause = () => {
 		this.setState({playToggle: true, pauseToggle: false});
 		let audioControl = this.state.audioControl;
-		audioControl.pause()
+		// audioControl.pause()
 	}
 	render() {
 		//Properties
 
 		//Reactive Styles
 		const PauseIcon = styled.img `
-		width: 40px;
+		width: 35px;
 		display: ${props => this.state.pauseToggle
 			? 'block'
 			: 'none'};
@@ -75,15 +75,13 @@ class PlaybackOptions extends React.Component {
 
 		`;
 		const PlayIcon = styled.img `
-		width: 40px;
+		width: 35px;
 		display: ${props => this.state.playToggle
 			? 'block'
 			: 'none'};
 			cursor: pointer;
 			margin: 0 auto;
-			${ ''/* &:svg{
 				fill: white;
-			} */}
 
 		`;
 
