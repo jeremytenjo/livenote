@@ -29,7 +29,6 @@ class Playback extends React.Component {
 	//Methods
 	componentWillMount() {
 		this.props.Hide_Snackbar();
-
 	}
 	render() {
 		//Properties

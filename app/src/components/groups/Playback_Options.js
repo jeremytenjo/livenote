@@ -37,6 +37,8 @@ class PlaybackOptions extends React.Component {
 	}
 
 	async initPlayback(id) {
+
+		id = '-KrrzP5bU_jGvuv5OLFc';
 		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 
 		let audioControl = new Audio([audioUrl]);
@@ -45,7 +47,7 @@ class PlaybackOptions extends React.Component {
 		audioControl.play()
 
 
-
+		console.log(audioControl.currentTime);
 
 	}
 	handleSlider = (event, value) => {
