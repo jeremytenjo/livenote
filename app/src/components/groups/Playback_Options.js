@@ -44,7 +44,7 @@ class PlaybackOptions extends React.Component {
 
 		audioControl.play()
 
-		 
+
 
 
 	}
@@ -75,6 +75,7 @@ class PlaybackOptions extends React.Component {
 			: 'none'};
 			cursor: pointer;
 			margin: 0 auto;
+			margin-top: 15px;
 
 		`;
 		const PlayIcon = styled.img `
@@ -84,7 +85,7 @@ class PlaybackOptions extends React.Component {
 			: 'none'};
 			cursor: pointer;
 			margin: 0 auto;
-				fill: white;
+			margin-top: 15px;
 
 		`;
 

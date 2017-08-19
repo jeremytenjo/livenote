@@ -83,11 +83,29 @@ export const Toggle_OptinsMenuShow = () => {
 export const Toggle_OptinsMenuHide = () => {
 	return {type: 'HIDE_MENU_OPTIONS'}
 }
+export const Toggle_OptinsMenuShowFile = () => {
+	return {type: 'SHOW_MENU_OPTIONS_FILE'}
+}
+export const Toggle_OptinsMenuHideFile = () => {
+	return {type: 'HIDE_MENU_OPTIONS_FILE'}
+}
 export const Start_Reording = () => {
 	return {type: 'START_RECORDING'}
 }
 export const Stop_Reording = () => {
 	return {type: 'STOP_RECORDING'}
+}
+export const Set_Delete_File_ID = (e) => {
+	return {type: 'SET_FILE_DELETE_ID', data: e}
+}
+export const Set_Delete_File_Name = (e) => {
+	return {type: 'SET_FILE_DELETE_NAME', data: e}
+}
+export const Set_File_Link_Id = (e) => {
+	return {type: 'SET_FILE_LINK_ID', data: e}
+}
+export const Set_File_Link_Name = (e) => {
+	return {type: 'SET_FILE_LINK_NAME', data: e}
 }
 export const Set_Delete_Folder_ID = (e) => {
 	return {type: 'SET_FOLDER_DELETE_ID', data: e}
