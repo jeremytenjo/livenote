@@ -26,7 +26,8 @@ class PlaybackOptions extends React.Component {
 			audioControl: '',
 			sliderPos: 0,
 			min: 0,
-			max: 100
+			minValue: 0,
+			max: 10000
 		}
 		this.initPlayback = this.initPlayback.bind(this);
 	}
@@ -43,8 +44,6 @@ class PlaybackOptions extends React.Component {
 		let audioControl = new Audio([audioUrl]);
 		this.setState({audioControl: audioControl});
 		audioControl.autoplay = true;
-let ee = this.state.audioControl;
-ee.autoplay = true;
 
 		audioControl.onloadedmetadata = (e) => {
 			if (audioControl.duration === Infinity) {
@@ -53,8 +52,7 @@ ee.autoplay = true;
 				audioControl.currentTime = 1e101;
 				audioControl.ontimeupdate = function() {
 					this.ontimeupdate = () => {
-						self.setState({sliderPos: audioControl.currentTime});
-						// self.setState({min: audioControl.currentTime});
+						self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
 						return;
 					}
 					audioControl.currentTime = 0;
@@ -63,7 +61,6 @@ ee.autoplay = true;
 				}
 			}
 		}
-
 
 	}
 	handleSlider = (event, value) => {
@@ -119,7 +116,7 @@ ee.autoplay = true;
 							paddingRight: '10px'
 						}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
 					</SliderCon>
-					<StartTime>0:00</StartTime>
+					<StartTime>{this.state.minValue}</StartTime>
 					<EndTime>{this.state.max}</EndTime>
 				</TimeBar>
 				<OptionsCon>
