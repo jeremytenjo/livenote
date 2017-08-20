@@ -43,8 +43,7 @@ class PlaybackOptions extends React.Component {
 		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 		let audioControl = new Audio([audioUrl]);
 		this.setState({audioControl: audioControl});
-		audioControl.autoplay = true;
-		audioControl.pause();
+
 
 		audioControl.onloadedmetadata = (e) => {
 			if (audioControl.duration === Infinity) {
@@ -56,7 +55,7 @@ class PlaybackOptions extends React.Component {
 						self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
 						return;
 					}
-					audioControl.currentTime = 0;
+					audioControl.currentTime = 0.1;
 					// alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
 
