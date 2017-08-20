@@ -39,7 +39,7 @@ class PlaybackOptions extends React.Component {
 
 	async initPlayback(id) {
 
-		id = '-KrvthH7z84Or5AQr1ah';
+		id = '-KrxBWfyDmFqUBsjX-UV';
 		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 		let audioControl = new Audio([audioUrl]);
 		this.setState({audioControl: audioControl});
@@ -55,7 +55,7 @@ class PlaybackOptions extends React.Component {
 						self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
 						return;
 					}
-					audioControl.currentTime = 0.1;
+					audioControl.currentTime = 1;
 					// alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
 
@@ -82,6 +82,14 @@ class PlaybackOptions extends React.Component {
 		let audioControl = this.state.audioControl;
 		audioControl.pause()
 	}
+	getMinutes = () => Math.floor(this.state.sliderPos / 60);
+
+	getSeconds = () => ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2);
+
+	getMinutesFinal = () => Math.floor(this.state.max / 60);
+
+	getSecondsFinal = () => ('0' + Math.floor(this.state.max) % 60).slice(-2);
+
 	render() {
 		//Properties
 
@@ -117,8 +125,8 @@ class PlaybackOptions extends React.Component {
 							paddingRight: '10px'
 						}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
 					</SliderCon>
-					<StartTime>{this.state.minValue}</StartTime>
-					<EndTime>{this.state.max}</EndTime>
+					<StartTime>{this.getMinutes()}:{this.getSeconds()}</StartTime>
+					<EndTime>{this.getMinutesFinal()}:{this.getSecondsFinal()}</EndTime>
 				</TimeBar>
 				<OptionsCon>
 					<PauseIcon onClick={this.pause} src={Pause_icon}/>
