@@ -30,6 +30,9 @@ export const Play_Toggle = (e) => {
 export const Pause_Toggle = (e) => {
 	return {type: 'PAUSE_TOGGLE', data: e}
 }
+export const Set_Audio_Control = (e) => {
+	return {type: 'SET_AUDIO_CONTROL', data: e}
+}
 
 export const Start_Time = (e) => {
 	return {type: 'START_TIMER', data: e}

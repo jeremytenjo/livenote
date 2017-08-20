@@ -4,17 +4,17 @@ import Pause_icon from '../../images/icons/Pause.svg';
 import Play_icon from '../../images/icons/PlayWhite.svg';
 import firebase from 'firebase';
 import Slider from 'material-ui/Slider';
+import {withRouter} from 'react-router-dom'
 
 //State
-//import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-//import {triggerAction} from '../state/actions/index';
 
 //define actions
 // Set global state to prop
 function mapStateToProps(state) {
 	return {noteID: state.PlaybackSelection_ID}
 }
+
 class PlaybackOptions extends React.Component {
 
 	//initial state
@@ -36,35 +36,42 @@ class PlaybackOptions extends React.Component {
 	componentWillMount() {
 		this.initPlayback(this.props.noteID);
 	}
+	componentWillUnmount() {
+		let audioControl = this.state.audioControl;
+		audioControl.pause();
+	}
 
 	async initPlayback(id) {
+		if (id === '') {
+			this.props.history.push(`/`);
+		} else {
+			const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
+			let audioControl = new Audio([audioUrl]);
+			this.setState({audioControl: audioControl});
 
-		id = '-KrxBWfyDmFqUBsjX-UV';
-		const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
-		let audioControl = new Audio([audioUrl]);
-		this.setState({audioControl: audioControl});
+			audioControl.onended = (e) => {
+				this.setState({playToggle: true, pauseToggle: false});
+				audioControl.currentTime = 0;
+			}
 
-		audioControl.onended = (e) => {
-			this.setState({playToggle: true, pauseToggle: false});
-			audioControl.currentTime = 0;
-		}
+			audioControl.onloadedmetadata = (e) => {
+				if (audioControl.duration === Infinity) {
+					let self = this;
 
-		audioControl.onloadedmetadata = (e) => {
-			if (audioControl.duration === Infinity) {
-				let self = this;
+					audioControl.currentTime = 1e101;
+					audioControl.ontimeupdate = function() {
+						this.ontimeupdate = () => {
+							self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+							return;
+						}
+						audioControl.currentTime = 1;
+						// alert(audioControl.duration)
+						self.setState({max: audioControl.duration});
 
-				audioControl.currentTime = 1e101;
-				audioControl.ontimeupdate = function() {
-					this.ontimeupdate = () => {
-						self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
-						return;
 					}
-					audioControl.currentTime = 1;
-					// alert(audioControl.duration)
-					self.setState({max: audioControl.duration});
-
 				}
 			}
+
 		}
 
 	}
@@ -175,4 +182,4 @@ font-size: 16px;
 margin: 0;
 right: 10px
  `;
-export default connect(mapStateToProps)(PlaybackOptions);
+export default connect(mapStateToProps)(withRouter(PlaybackOptions));

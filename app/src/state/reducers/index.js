@@ -31,6 +31,7 @@ import FileSelection_Rename from './FileSelection_Rename.js';
 import FileLink_ID from './FileLink_ID.js';
 import FileLink_Name from './FileLink_Name.js';
 import OtionsMenu_ToggleFile from './OtionsMenu_ToggleFile.js';
+import AudioControl from './AudioControl.js';
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -64,7 +65,8 @@ const Reducers = combineReducers({
 	FileSelection_Rename,
 	FileLink_ID,
 	FileLink_Name,
-	OtionsMenu_ToggleFile
+	OtionsMenu_ToggleFile,
+	AudioControl
 })
 
 export default Reducers;
