@@ -21,8 +21,8 @@ class PlaybackOptions extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			pauseToggle: true,
-			playToggle: false,
+			pauseToggle: false,
+			playToggle: true,
 			audioControl: '',
 			sliderPos: 0,
 			min: 0,
@@ -44,6 +44,7 @@ class PlaybackOptions extends React.Component {
 		let audioControl = new Audio([audioUrl]);
 		this.setState({audioControl: audioControl});
 		audioControl.autoplay = true;
+		audioControl.pause();
 
 		audioControl.onloadedmetadata = (e) => {
 			if (audioControl.duration === Infinity) {
@@ -58,6 +59,7 @@ class PlaybackOptions extends React.Component {
 					audioControl.currentTime = 0;
 					// alert(audioControl.duration)
 					self.setState({max: audioControl.duration});
+
 				}
 			}
 		}
