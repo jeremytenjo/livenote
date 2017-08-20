@@ -44,6 +44,10 @@ class PlaybackOptions extends React.Component {
 		let audioControl = new Audio([audioUrl]);
 		this.setState({audioControl: audioControl});
 
+		audioControl.onended = (e) => {
+			this.setState({playToggle: true, pauseToggle: false});
+			audioControl.currentTime = 0;
+		}
 
 		audioControl.onloadedmetadata = (e) => {
 			if (audioControl.duration === Infinity) {
