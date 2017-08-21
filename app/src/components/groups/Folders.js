@@ -114,7 +114,16 @@ class Folder extends React.Component {
 	}
 
 	removeFolder = () => {
-		//remove notes in folder (Firebase no good for this)
+		//remove notes in folder
+		firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes').orderByChild('folderID').equalTo(this.props.folderID).once('value').then((snap) => {
+			let res = snap.val();
+			for (var prop in res) {
+				if (res.hasOwnProperty(prop)) {
+					// console.log(prop);
+					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${prop}`).remove();
+				}
+			}
+		});
 
 		//remove folder
 		// console.log(this.props.folderID);
