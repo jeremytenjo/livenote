@@ -30,7 +30,7 @@ class LoadingScreen extends React.Component {
 		const Wrapper = styled.div `
 		display: ${props => this.props.status === 'true' ? 'block' : 'none'};
 		position: fixed;
-		background: rgba(13, 13, 13, 0.71);
+		background: rgba(13, 13, 13, 0.8);
 		top: 0;
 		left: 0;
 		height: 100%;

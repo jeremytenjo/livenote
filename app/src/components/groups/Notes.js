@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Set_Playback_Id, Toggle_OptinsMenuHideFile, Show_Snackbar, Set_Snackbar_Name} from '../../state/actions/index';
+import {Set_Playback_Id, Toggle_OptinsMenuHideFile, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../state/actions/index';
 import styled, {keyframes} from 'styled-components'
 import Rename_img from '../../images/icons/rename.svg';
 import Remove_img from '../../images/icons/rubbish-bin.svg';
@@ -17,6 +17,7 @@ function mapDispatchToProps(dispatch) {
 		Set_Playback_Id,
 		Toggle_OptinsMenuHideFile,
 		Show_Snackbar,
+		Hide_Snackbar,
 		Set_Snackbar_Name
 	}, dispatch)
 }
@@ -92,12 +93,13 @@ class Notes extends React.Component {
 			}
 		});
 
-		//remove folder
+		//remove note
 		// console.log(this.props.folderID);
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).remove();
 		this.fetchData();
 		this.props.Toggle_OptinsMenuHideFile();
 		this.props.Set_Snackbar_Name('Note Removed');
+		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
 
 	}

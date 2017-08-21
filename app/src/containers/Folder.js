@@ -94,7 +94,7 @@ class Folder extends React.Component {
 	}
 
 	openRecord = () => {
-		console.log(this.props.folderName);
+		// console.log(this.props.folderName);
 		this.props.FolderSelection_Name(this.props.nameFolder);
 		this.props.FolderSelection_ID(this.props.id);
 		this.props.history.push(`/record`);
@@ -129,6 +129,7 @@ class Folder extends React.Component {
 		this.fetchData();
 		this.props.Toggle_OptinsMenuHideFile();
 		this.props.Set_Snackbar_Name('Note Removed');
+		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
 
 	}

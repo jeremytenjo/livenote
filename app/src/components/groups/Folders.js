@@ -11,7 +11,7 @@ import Close_Icon from '../../images/icons/close.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name} from '../../state/actions/index';
+import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../state/actions/index';
 
 function mapStateToProps(state) {
 	return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename}
@@ -20,7 +20,8 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		Toggle_OptinsMenuHide,
 		Show_Snackbar,
-		Set_Snackbar_Name
+		Set_Snackbar_Name,
+		Hide_Snackbar
 	}, dispatch)
 }
 class Folder extends React.Component {
@@ -131,8 +132,8 @@ class Folder extends React.Component {
 		this.fetchData();
 		this.props.Toggle_OptinsMenuHide();
 		this.props.Set_Snackbar_Name('Folder Deleted');
+		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
-
 	}
 
 	renameFolder = () => {

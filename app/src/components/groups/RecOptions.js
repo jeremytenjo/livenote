@@ -23,6 +23,7 @@ import {
 	FolderSelection_Name,
 	Change_TopBar_Title,
 	Show_Snackbar,
+	Hide_Snackbar,
 	Set_Snackbar_Name,
 	Set_MasterNote_id,
 	FolderSelection_ID,
@@ -54,6 +55,7 @@ function mapDispatchToProps(dispatch) {
 		Start_Time,
 		Set_Current_Time,
 		Reset_Items,
+		Hide_Snackbar,
 		FolderSelection_Name,
 		Change_TopBar_Title,
 		Show_Snackbar,
@@ -224,7 +226,7 @@ class RecOptions extends React.Component {
 					//upload sub notes
 					this.state.data.map((d) => {
 						//upload image
-						console.log(d);
+						// console.log(d);
 						let storageRef = firebase.storage().ref();
 						let mountainsRef = storageRef.child(d.title + 'Title');
 
@@ -267,13 +269,14 @@ class RecOptions extends React.Component {
 					//Reset Folder ID
 					this.props.FolderSelection_ID('');
 
-					//confimration aniamtion
-					this.props.Set_Snackbar_Name('Note Added');
-					this.props.Show_Snackbar();
-
 					//Remove loading screen
 					this.props.Toggle_Loading_Scrren('false');
 
+					//confimration aniamtion
+					this.props.Set_Snackbar_Name('Note Added');
+					this.props.Hide_Snackbar();
+					this.props.Show_Snackbar();
+console.log("HERE!");
 					//redirect to Directory
 					this.props.history.push(`/`);
 				});
