@@ -161,20 +161,14 @@ class RecOptions extends React.Component {
 			// console.log(this.state.transcript);
 
 			//Handle display
-			this.props.Stop_Toggle(true);
-			this.props.Play_Toggle(true);
-			this.props.Pause_Toggle(false);
+			// this.props.Stop_Toggle(true);
+			// this.props.Play_Toggle(true);
+			// this.props.Pause_Toggle(false);
 
 			//Stop Timer
 			clearInterval(this.incrementer);
 
-			//Reset Timer
-			this.props.Start_Time(0);
-
-			//reset notes
-			this.props.Reset_Items();
-
-			//get date
+		  //get date
 			let d = new Date();
 			let months = [
 				'Jan',
@@ -268,6 +262,12 @@ class RecOptions extends React.Component {
 
 					//Reset Folder ID
 					this.props.FolderSelection_ID('');
+
+					//Reset Timer
+					this.props.Start_Time(0);
+
+					//reset notes
+					this.props.Reset_Items();
 
 					//Remove loading screen
 					this.props.Toggle_Loading_Scrren('false');
