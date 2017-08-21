@@ -276,7 +276,7 @@ class RecOptions extends React.Component {
 					this.props.Set_Snackbar_Name('Note Added');
 					this.props.Hide_Snackbar();
 					this.props.Show_Snackbar();
-console.log("HERE!");
+
 					//redirect to Directory
 					this.props.history.push(`/`);
 				});

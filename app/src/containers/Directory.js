@@ -32,10 +32,7 @@ class Directory extends React.Component {
 	//Methods
 componentWillMount(){
 	this.props.Change_TopBar_Title('Directory');
-	this.props.Hide_Snackbar();
 	this.props.folderSelection(false);
-
-
 }
 	openRecord = () => {
 		this.props.history.push(`/record`);
