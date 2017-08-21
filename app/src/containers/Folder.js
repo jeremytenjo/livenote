@@ -149,6 +149,7 @@ class Folder extends React.Component {
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).update({name: this.inputRename.value});
 		// this.setState({title: ''});
 		this.props.Set_Snackbar_Name('File Renamed');
+		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
 		this.setState({list: []});
 
