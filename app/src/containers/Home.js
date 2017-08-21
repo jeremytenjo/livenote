@@ -7,7 +7,6 @@ import Search_icon from '../images/icons/search.svg';
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Snackbar from 'material-ui/Snackbar';
-import LoadingScreen from '../components/LoadingScreen.js';
 
 //State
 import {connect} from 'react-redux';
@@ -86,7 +85,6 @@ class Home extends React.Component {
 					textAlign: 'center',
 					color: '#42EA9C'
 				}}/>
-				<LoadingScreen />
 			</div>
 		);
 	}

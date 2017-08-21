@@ -6,6 +6,7 @@ import RecOptions from '../components/groups/RecOptions.js';
 import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
+import LoadingScreen from '../components/LoadingScreen.js';
 
 class Recording extends React.Component {
 
@@ -32,6 +33,7 @@ class Recording extends React.Component {
 				<NewNote/>
 				<NewNoteImage/>
 				<NotePreview/>
+				<LoadingScreen title="Uploading..."/>
 
 			</Wrapper>
 		);

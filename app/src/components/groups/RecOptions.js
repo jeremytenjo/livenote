@@ -25,7 +25,8 @@ import {
 	Show_Snackbar,
 	Set_Snackbar_Name,
 	Set_MasterNote_id,
-	FolderSelection_ID
+	FolderSelection_ID,
+	Toggle_Loading_Scrren
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -58,7 +59,8 @@ function mapDispatchToProps(dispatch) {
 		Show_Snackbar,
 		Set_Snackbar_Name,
 		Set_MasterNote_id,
-		FolderSelection_ID
+		FolderSelection_ID,
+		Toggle_Loading_Scrren
 	}, dispatch)
 }
 
@@ -136,6 +138,8 @@ class RecOptions extends React.Component {
 		}
 
 		recorder.onstop = (e) => {
+			this.props.Toggle_Loading_Scrren('true');
+
 			this.setState({data: this.props.data});
 			//stop recognition
 			this.state.theRecognition.stop();
@@ -266,6 +270,9 @@ class RecOptions extends React.Component {
 					//confimration aniamtion
 					this.props.Set_Snackbar_Name('Note Added');
 					this.props.Show_Snackbar();
+
+					//Remove loading screen
+					this.props.Toggle_Loading_Scrren('false');
 
 					//redirect to Directory
 					this.props.history.push(`/`);

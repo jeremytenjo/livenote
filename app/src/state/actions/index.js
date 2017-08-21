@@ -125,3 +125,6 @@ export const Set_Folder_Link_Name = (e) => {
 export const Set_Playback_Id = (e) => {
 	return {type: 'SET_PLAYBACK_ID', data: e}
 }
+export const Toggle_Loading_Scrren = (e) => {
+	return {type: 'LOADING_SCREEN_TOGGLE', data: e}
+}
