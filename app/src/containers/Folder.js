@@ -36,7 +36,7 @@ function mapDispatchToProps(dispatch) {
 	}, dispatch)
 }
 function mapStateToProps(state) {
-	return {options: state.OtionsMenu_ToggleFile, id: state.FolderLink_ID, name: state.FolderLink_Name, fileID: state.File_Delete_ID, folderName: state.FileSelection_Rename}
+	return {options: state.OtionsMenu_ToggleFile, id: state.FolderLink_ID, name: state.FolderLink_Name, fileID: state.File_Delete_ID, folderName: state.FileSelection_Rename, nameFolder: state.TopBar_Title}
 }
 class Folder extends React.Component {
 
@@ -94,8 +94,9 @@ class Folder extends React.Component {
 	}
 
 	openRecord = () => {
-		this.props.FolderSelection_Name(this.props.folderName);
-		this.props.FolderSelection_ID(this.props.folderID);
+		console.log(this.props.folderName);
+		this.props.FolderSelection_Name(this.props.nameFolder);
+		this.props.FolderSelection_ID(this.props.id);
 		this.props.history.push(`/record`);
 	}
 

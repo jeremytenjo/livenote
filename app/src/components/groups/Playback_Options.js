@@ -46,31 +46,31 @@ class PlaybackOptions extends React.Component {
 			this.props.history.push(`/`);
 		} else {
 			const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
-			let audioControl = new Audio([audioUrl]);
-			this.setState({audioControl: audioControl});
+				let audioControl = new Audio([audioUrl]);
+				this.setState({audioControl: audioControl});
 
-			audioControl.onended = (e) => {
-				this.setState({playToggle: true, pauseToggle: false});
-				audioControl.currentTime = 0;
-			}
+				audioControl.onended = (e) => {
+					this.setState({playToggle: true, pauseToggle: false});
+					audioControl.currentTime = 0;
+				}
 
-			audioControl.onloadedmetadata = (e) => {
-				if (audioControl.duration === Infinity) {
-					let self = this;
+				audioControl.onloadedmetadata = (e) => {
+					if (audioControl.duration === Infinity) {
+						let self = this;
 
-					audioControl.currentTime = 1e101;
-					audioControl.ontimeupdate = function() {
-						this.ontimeupdate = () => {
-							self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
-							return;
+						audioControl.currentTime = 1e101;
+						audioControl.ontimeupdate = function() {
+							this.ontimeupdate = () => {
+								self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+								return;
+							}
+							audioControl.currentTime = 1;
+							// alert(audioControl.duration)
+							self.setState({max: audioControl.duration});
+
 						}
-						audioControl.currentTime = 1;
-						// alert(audioControl.duration)
-						self.setState({max: audioControl.duration});
-
 					}
 				}
-			}
 
 		}
 
