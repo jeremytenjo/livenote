@@ -7,7 +7,6 @@ import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
 
-
 class Recording extends React.Component {
 
 	//Methods
@@ -57,6 +56,7 @@ const OptionsContainer = styled.div `
  background: #0F2331;
 position: fixed;
 bottom: 0;
+height: 104px;
 max-width: 600px;
 width: 100%;
 left: 0;
