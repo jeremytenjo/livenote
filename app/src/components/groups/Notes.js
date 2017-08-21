@@ -81,12 +81,23 @@ class Notes extends React.Component {
 	}
 
 	removeFile = () => {
+		//remove notes in mastern notes
+		firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/notes').orderByChild('masterNote_id').equalTo(this.props.fileID).once('value').then((snap) => {
+			let res = snap.val();
+			for (var prop in res) {
+				if (res.hasOwnProperty(prop)) {
+					// console.log(prop);
+					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes/${prop}`).remove();
+				}
+			}
+		});
+
 		//remove folder
 		// console.log(this.props.folderID);
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).remove();
 		this.fetchData();
 		this.props.Toggle_OptinsMenuHideFile();
-		this.props.Set_Snackbar_Name('File Deleted');
+		this.props.Set_Snackbar_Name('Note Removed');
 		this.props.Show_Snackbar();
 
 	}

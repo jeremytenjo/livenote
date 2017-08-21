@@ -153,6 +153,7 @@ class PlaybackOptions extends React.Component {
 const Wrapper = styled.div `
 	display: grid;
 	grid-template-rows: 50px 70px;
+	background: #0F2331;
 `;
 const TimeBar = styled.div `
 position: relative;
