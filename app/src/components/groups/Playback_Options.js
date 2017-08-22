@@ -37,8 +37,11 @@ class PlaybackOptions extends React.Component {
 		this.initPlayback(this.props.noteID);
 	}
 	componentWillUnmount() {
-		let audioControl = this.state.audioControl;
-		audioControl.pause();
+		if (this.props.noteID !== '') {
+			let audioControl = this.state.audioControl;
+			audioControl.pause();
+		}
+
 	}
 
 	async initPlayback(id) {
@@ -157,7 +160,7 @@ const Wrapper = styled.div `
 `;
 const TimeBar = styled.div `
 position: relative;
-bottom: 23px;
+
  `;
 const SliderCon = styled.div `
    ${ ''/* background: green; */}
