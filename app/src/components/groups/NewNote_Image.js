@@ -88,7 +88,7 @@ class NewNote_Image extends React.Component {
 
 				<Top>
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
-					New Comment
+					<Header>New Comment</Header>
 				</Top>
 
 				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
@@ -122,13 +122,18 @@ top: 0;
 left: 0;
 grid-row-gap: 10px;
 		   `;
+const Header = styled.h2 `
+font-size: 16px;
+margin: 0;
+			  `;
 const CloseIcon = styled.img `
 width: 17px;
-position: fixed;
+${'' /* position: fixed; */}
 top: 15px;
 right: 15px;
 cursor: pointer;
-
+float: right;
+margin-right: 10px;
 			  `;
 const Top = styled.div `
 text-align: center;
