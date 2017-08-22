@@ -33,7 +33,9 @@ class Notes extends React.Component {
 		this.state = {
 			list: [],
 			renameInput: false,
-			open: false
+			open: false,
+			loading: true,
+			loadingMessage: 'Loading notes...'
 		}
 	}
 
@@ -64,8 +66,12 @@ class Notes extends React.Component {
 				array.push(list);
 				list = {};
 			}
-			// console.log(array);
+			console.log(array);
+			if (array.length === 0) {
+				console.log("HERE!");
+			}
 			this.setState({list: array});
+			this.setState({loading: false});
 		});
 	}
 
@@ -132,6 +138,7 @@ class Notes extends React.Component {
 
 		//Style
 		const Wrapper = styled.div `
+			position: relative;
 		margin-top: 15px;
 padding-bottom: 90px;
 	  `;
@@ -277,7 +284,20 @@ padding: 15px;
 			 	grid-template-columns: 1fr 1fr;
 			 	`;
 
-
+			  const LoadingCon = styled.div `
+			 	display: ${props => this.state.loading ? 'block' : 'none'};
+			 	 position: absolute;
+			 	 left: 0;
+			 	 right: 0;
+			 	 top: 0;
+			 	 margin: auto;
+			 	 width: 100%;
+			 	 height: 110px;
+			 	 ${'' /* background: rgba(0, 0, 0, 0.73); */}
+			 	 `;
+			 	 const Text = styled.p `
+			 text-align: center;
+			 	`;
 
 		//Template
 		return (
@@ -335,6 +355,9 @@ padding: 15px;
 						</ButtonCon>
 					</InnerDialog>
 				</DialogRename>
+				<LoadingCon>
+					<Text>{this.state.loadingMessage}</Text>
+				</LoadingCon>
 			</Wrapper>
 		);
 	}

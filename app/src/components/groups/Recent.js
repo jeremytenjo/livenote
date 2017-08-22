@@ -6,7 +6,6 @@ import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux';
 import {Set_Playback_Id, Change_TopBar_Title} from '../../state/actions/index';
-import CircularProgress from 'material-ui/CircularProgress';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {
@@ -24,7 +23,8 @@ class Recent extends React.Component {
 		super(props)
 		this.state = {
 			list: [],
-			loading: true
+			loading: true,
+			loadingMessage: 'Loading recent files...'
 		}
 	}
 
@@ -94,6 +94,9 @@ height: 120px;
 	 height: 110px;
 	 ${'' /* background: rgba(0, 0, 0, 0.73); */}
 	 `;
+	  const Text = styled.p `
+text-align: center;
+	  `;
 		//Template
 		return (
 			<div style={{position: 'relative'}}>
@@ -101,7 +104,9 @@ height: 120px;
 				<Container>
 					{list}
 				</Container>
-	 <LoadingCon><CircularProgress style={{margin: '0 auto', display: 'block', marginTop:'15px'}} size={80} thickness={5} color="#42EA9C"/></LoadingCon>
+	 <LoadingCon>
+		  <Text>{this.state.loadingMessage}</Text>
+	 </LoadingCon>
 			</div>
 		);
 	}
