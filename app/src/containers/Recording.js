@@ -33,7 +33,7 @@ class Recording extends React.Component {
 				<NewNote/>
 				<NewNoteImage/>
 				<NotePreview/>
-				<LoadingScreen title="Uploading..."/>
+				<LoadingScreen title="Uploading Note..."/>
 
 			</Wrapper>
 		);
