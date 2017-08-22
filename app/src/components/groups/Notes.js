@@ -73,15 +73,13 @@ class Notes extends React.Component {
 			this.setState({loading: false});
 
 			if (array.length === 0) {
-				 this.setState({loadingMessage: 'No notes found. Start By pressing the red button :)'});
-				 this.setState({messageColor: 'grey'});
-				 this.setState({loading: true});
-				 this.setState({marginTop: '80px'});
+				this.setState({loadingMessage: 'No notes found. Start By pressing the red button :)'});
+				this.setState({messageColor: 'grey'});
+				this.setState({loading: true});
+				this.setState({marginTop: '80px'});
 			}
 		});
 	}
-
-
 
 	handleCloseRename = (e) => {
 		this.setState({renameInput: false});
@@ -94,6 +92,17 @@ class Notes extends React.Component {
 	}
 
 	removeFile = () => {
+		//remove images from notes
+		firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/notes').orderByChild('masterNote_id').equalTo(this.props.fileID).once('value').then((snap) => {
+			let snapValue = snap.val();
+			// console.log(snapValue);
+			for (var prop in snapValue) {
+				if (snapValue.hasOwnProperty(prop)) {
+					firebase.storage().ref('images/' + this.props.fileID + snapValue[prop].title).delete();
+				}
+			}
+		});
+
 		//remove notes in mastern notes
 		firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/notes').orderByChild('masterNote_id').equalTo(this.props.fileID).once('value').then((snap) => {
 			let res = snap.val();
@@ -108,12 +117,15 @@ class Notes extends React.Component {
 		//remove note
 		// console.log(this.props.folderID);
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).remove();
+
+		//remove master note recording
+		firebase.storage().ref(`audio/${this.props.fileID}`).delete();
+
 		this.fetchData();
 		this.props.Toggle_OptinsMenuHideFile();
 		this.props.Set_Snackbar_Name('Note Removed');
 		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
-
 	}
 
 	renameFile = () => {
@@ -291,8 +303,10 @@ padding: 15px;
 			 	grid-template-columns: 1fr 1fr;
 			 	`;
 
-			  const LoadingCon = styled.div `
-			 	display: ${props => this.state.loading ? 'block' : 'none'};
+		const LoadingCon = styled.div `
+			 	display: ${props => this.state.loading
+			? 'block'
+			: 'none'};
 			 	 position: absolute;
 			 	 left: 0;
 			 	 right: 0;
@@ -301,7 +315,7 @@ padding: 15px;
 			 	 width: 100%;
 			 	 height: 110px;
 			 	 `;
-			 	 const Text = styled.p `
+		const Text = styled.p `
 			 text-align: center;
 			color:  ${props => this.state.messageColor};
 			margin-top: ${props => this.state.marginTop};

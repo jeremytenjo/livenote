@@ -92,13 +92,13 @@ class RecItemView extends React.Component {
 		//Properties
 		let list = this.state.list.map((item, i) => {
 			// console.log(item);
-			if (item.desc && item.image !== '') {
-				list = <span data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.image}/></span>;
+			if (item.desc && item.imageUrl !== 'none') {
+				list = <span data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/></span>;
 
 			} else if (item.desc === '') {
-				list = <span data-time={item.time} data-title={item.title} data-image={item.image} onClick={this.showPreview} key={i}><ItemOnlyImage time={item.time} title={item.title} image={item.image}/></span>;
+				list = <span data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview} key={i}><ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/></span>;
 
-			} else if (item.image === '') {
+			} else if (item.imageUrl === 'none') {
 				list = <span data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>;
 			}
 			return list

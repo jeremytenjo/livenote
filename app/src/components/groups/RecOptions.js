@@ -222,7 +222,7 @@ class RecOptions extends React.Component {
 						//upload image
 						// console.log(d);
 						let storageRef = firebase.storage().ref();
-						let mountainsRef = storageRef.child(d.title + 'Title');
+						let mountainsRef = storageRef.child('images/' + key + d.title);
 
 						if (d.image !== '') {
 

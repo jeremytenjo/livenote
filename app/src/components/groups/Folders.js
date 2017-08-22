@@ -136,7 +136,7 @@ class Folder extends React.Component {
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).remove();
 		this.fetchData();
 		this.props.Toggle_OptinsMenuHide();
-		this.props.Set_Snackbar_Name('Folder Deleted');
+		this.props.Set_Snackbar_Name('Folder Removed');
 		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
 	}
