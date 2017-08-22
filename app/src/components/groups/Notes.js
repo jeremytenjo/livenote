@@ -73,7 +73,7 @@ class Notes extends React.Component {
 			this.setState({loading: false});
 
 			if (array.length === 0) {
-				 this.setState({loadingMessage: 'No Notes. Start By pressing the red button :)'});
+				 this.setState({loadingMessage: 'No notes found. Start By pressing the red button :)'});
 				 this.setState({messageColor: 'grey'});
 				 this.setState({loading: true});
 				 this.setState({marginTop: '40px'});
@@ -147,6 +147,7 @@ class Notes extends React.Component {
 			position: relative;
 		margin-top: 15px;
 padding-bottom: 90px;
+min-height: 150px;
 	  `;
 		const Title = styled.p `
 	 margin-top: 5px;
