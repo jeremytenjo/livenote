@@ -90,9 +90,10 @@ class NewNote_Image extends React.Component {
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
 					New Comment
 				</Top>
-				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
 				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
+
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 				<ButtonCon>
 					<Button type="submit" color="#42EA9C" text="Add"/>
@@ -112,7 +113,7 @@ overflow-y: scroll;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px 1fr 30px  300px 80px;
+grid-template-rows: 30px  30px 1fr 300px 80px;
 height: 100%;
 width: 100%;
 color: #212121;
