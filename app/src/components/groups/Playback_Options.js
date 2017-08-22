@@ -67,16 +67,14 @@ class PlaybackOptions extends React.Component {
 								self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
 								return;
 							}
-							audioControl.currentTime = 1;
+							audioControl.currentTime = 0.1;
 							// alert(audioControl.duration)
 							self.setState({max: audioControl.duration});
 
 						}
 					}
 				}
-
 		}
-
 	}
 	handleSlider = (event, value) => {
 		this.setState({sliderPos: value});
@@ -173,7 +171,7 @@ position: absolute;
 left: 0;
 top: 50px;
 bottom: 0;
-font-size: 16px;
+font-size: 14px;
 margin: 0;
 left: 10px;
  `;
@@ -182,7 +180,7 @@ position: absolute;
 right: 0;
 top: 50px;
 bottom: 0;
-font-size: 16px;
+font-size: 14px;
 margin: 0;
 right: 10px
  `;
