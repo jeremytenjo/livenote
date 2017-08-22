@@ -36,7 +36,8 @@ class Notes extends React.Component {
 			open: false,
 			loading: true,
 			loadingMessage: 'Loading notes...',
-			messageColor: ''
+			messageColor: '',
+			marginTop: '0px'
 		}
 	}
 
@@ -75,7 +76,7 @@ class Notes extends React.Component {
 				 this.setState({loadingMessage: 'No Notes. Start By pressing the red button :)'});
 				 this.setState({messageColor: 'grey'});
 				 this.setState({loading: true});
-
+				 this.setState({marginTop: '40px'});
 			}
 		});
 	}
@@ -298,11 +299,11 @@ padding: 15px;
 			 	 margin: auto;
 			 	 width: 100%;
 			 	 height: 110px;
-			 	 ${'' /* background: rgba(0, 0, 0, 0.73); */}
 			 	 `;
 			 	 const Text = styled.p `
 			 text-align: center;
 			color:  ${props => this.state.messageColor};
+			margin-top: ${props => this.state.marginTop};
 			 	`;
 
 		//Template
