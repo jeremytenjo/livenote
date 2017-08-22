@@ -35,7 +35,8 @@ class Notes extends React.Component {
 			renameInput: false,
 			open: false,
 			loading: true,
-			loadingMessage: 'Loading notes...'
+			loadingMessage: 'Loading notes...',
+			messageColor: ''
 		}
 	}
 
@@ -66,12 +67,16 @@ class Notes extends React.Component {
 				array.push(list);
 				list = {};
 			}
-			console.log(array);
-			if (array.length === 0) {
-				console.log("HERE!");
-			}
+
 			this.setState({list: array});
 			this.setState({loading: false});
+
+			if (array.length === 0) {
+				 this.setState({loadingMessage: 'No Notes. Start By pressing the red button :)'});
+				 this.setState({messageColor: 'grey'});
+				 this.setState({loading: true});
+
+			}
 		});
 	}
 
@@ -297,6 +302,7 @@ padding: 15px;
 			 	 `;
 			 	 const Text = styled.p `
 			 text-align: center;
+			color:  ${props => this.state.messageColor};
 			 	`;
 
 		//Template
