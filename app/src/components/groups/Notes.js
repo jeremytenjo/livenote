@@ -76,7 +76,7 @@ class Notes extends React.Component {
 				 this.setState({loadingMessage: 'No notes found. Start By pressing the red button :)'});
 				 this.setState({messageColor: 'grey'});
 				 this.setState({loading: true});
-				 this.setState({marginTop: '40px'});
+				 this.setState({marginTop: '80px'});
 			}
 		});
 	}
