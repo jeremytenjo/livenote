@@ -7,6 +7,7 @@ import FolderLink from '../Folder_link.js';
 import firebase from 'firebase';
 import Button from '../Button.js';
 import Close_Icon from '../../images/icons/close.svg';
+import CircularProgress from 'material-ui/CircularProgress';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -33,7 +34,8 @@ class Folder extends React.Component {
 			list: [],
 			open: false,
 			title: '',
-			renameInput: false
+			renameInput: false,
+			loading: true
 		}
 	}
 
@@ -65,6 +67,8 @@ class Folder extends React.Component {
 
 			// console.log(array);
 			this.setState({list: array});
+			this.setState({loading: false});
+
 		});
 	}
 
@@ -240,6 +244,17 @@ color: #0F2331;
 width: 20px;
 padding: 15px;
 			 `;
+			 const LoadingCon = styled.div `
+				display: ${props => this.state.loading ? 'block' : 'none'};
+				 position: absolute;
+				 left: 0;
+				 right: 0;
+				 bottom: 0;
+				 margin: auto;
+				 width: 100%;
+				 height: 110px;
+				 ${'' /* background: rgba(0, 0, 0, 0.73); */}
+				 `;
 		//Template
 		return (
 			<Wrapper>
@@ -301,6 +316,7 @@ padding: 15px;
 						</ButtonCon>
 					</InnerDialog>
 				</DialogRename>
+				<LoadingCon><CircularProgress style={{margin: '0 auto', display: 'block', marginTop:'15px'}} size={80} thickness={5} color="#42EA9C"/></LoadingCon>
 
 			</Wrapper>
 		);
@@ -310,6 +326,7 @@ padding: 15px;
 
 //Style
 const Wrapper = styled.div `
+position: relative;
 
 `;
 const TitleWrappper = styled.div `

@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux';
 import {Set_Playback_Id, Change_TopBar_Title} from '../../state/actions/index';
+import CircularProgress from 'material-ui/CircularProgress';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {
@@ -22,7 +23,8 @@ class Recent extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			list: []
+			list: [],
+			loading: true
 		}
 	}
 
@@ -52,6 +54,7 @@ class Recent extends React.Component {
 			}
 			// console.log(array);
 			this.setState({list: array});
+			this.setState({loading: false});
 		});
 
 	}
@@ -80,14 +83,25 @@ grid-column-gap: 10px;
 white-space: nowrap;
 height: 120px;
  `;
-
+ const LoadingCon = styled.div `
+	display: ${props => this.state.loading ? 'block' : 'none'};
+	 position: absolute;
+	 left: 0;
+	 right: 0;
+	 bottom: 0;
+	 margin: auto;
+	 width: 100%;
+	 height: 110px;
+	 ${'' /* background: rgba(0, 0, 0, 0.73); */}
+	 `;
 		//Template
 		return (
-			<div>
+			<div style={{position: 'relative'}}>
 				<Title>Recent</Title>
 				<Container>
 					{list}
 				</Container>
+	 <LoadingCon><CircularProgress style={{margin: '0 auto', display: 'block', marginTop:'15px'}} size={80} thickness={5} color="#42EA9C"/></LoadingCon>
 			</div>
 		);
 	}
