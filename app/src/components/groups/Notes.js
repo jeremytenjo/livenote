@@ -72,12 +72,12 @@ class Notes extends React.Component {
 			this.setState({list: array});
 			this.setState({loading: false});
 
-			if (array.length === 0) {
-				this.setState({loadingMessage: 'No notes found. Start By pressing the red button :)'});
-				this.setState({messageColor: 'grey'});
-				this.setState({loading: true});
-				this.setState({marginTop: '80px'});
-			}
+			// if (array.length === 0) {
+			// 	this.setState({loadingMessage: 'No notes found. Start By pressing the red button :)'});
+			// 	this.setState({messageColor: 'grey'});
+			// 	this.setState({loading: true});
+			// 	this.setState({marginTop: '80px'});
+			// }
 		});
 	}
 
