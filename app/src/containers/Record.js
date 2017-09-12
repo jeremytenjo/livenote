@@ -155,6 +155,7 @@ border-color: transparent;
 border-width:0px;
 border:none
 width: 243px;
+caret-color: #42EA9C;
 
 &:focus {
 outline: none;
