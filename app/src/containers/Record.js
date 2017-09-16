@@ -119,7 +119,7 @@ class Record extends React.Component {
           <Input autoFocus maxLength="11" type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off"/>
           <Selection onClick={this.showMenu}>{this.props.name}</Selection>
 					<Wrapp>
-						<MicIcon src={iconMic} alt="mic icon" />
+						<MicIcon src={iconMic} alt="mic icon" onClick={this.initRecording}/>
           <InitBtn width="100" height="100" onClick={this.initRecording}>
             <Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
           </InitBtn>
@@ -146,6 +146,7 @@ bottom: 0;
 top: 0;
 margin: auto;
 z-index: 2;
+cursor: pointer;
  `;
 const InitWrapper = styled.div `
 position: absolute;
@@ -213,6 +214,8 @@ const InitBtn = styled.svg `
 display: block;
 margin: 0 auto;
 position: relative;
+cursor: pointer;
+
 `;
 
 const Circle = styled.circle `
