@@ -138,8 +138,7 @@ position: relative;
 height: 100px;
  `;
  const MicIcon = styled.img `
-width: 30px;
-height: 30px;
+width: 25px;
 position: absolute;
 left: 0;
 right: 0;
