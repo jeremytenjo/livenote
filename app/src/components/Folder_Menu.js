@@ -63,6 +63,7 @@ class FolderMenu extends React.Component {
 		const Wrapper = styled.div `
 	background: white;
 	position: fixed;
+	z-index: 3;
 	display: ${props => this.props.status === false
 			? 'none !important'
 			: 'block !important'};
