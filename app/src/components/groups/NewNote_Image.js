@@ -95,6 +95,7 @@ class NewNote_Image extends React.Component {
 				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
+
 				<ButtonCon>
 					<Button type="submit" color="#42EA9C" text="Add"/>
 				</ButtonCon>
@@ -110,10 +111,11 @@ const Wrapper = styled.form `
 background: white;
 position: fixed;
 overflow-y: scroll;
+overflow-x: hidden;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px  30px 1fr 200px 80px;
+grid-template-rows: 30px 30px auto 1fr 80px;
 height: 100%;
 width: 100%;
 color: #212121;
@@ -128,7 +130,6 @@ margin: 0;
 			  `;
 const CloseIcon = styled.img `
 width: 17px;
-${'' /* position: fixed; */}
 top: 15px;
 right: 15px;
 cursor: pointer;
@@ -167,14 +168,13 @@ textDecoration: none;
 border-color: transparent;
 border-width:0px;
 font-size: 15px;
-padding-left: 10px;
-padding-right: 10px;
 margin-top: 10px;
 				 `;
 const ButtonCon = styled.div `
 	width: 200px;
 	display: block;
-	margin: 0 auto;
+	margin: auto;
 	padding-top: 10px;
+	padding-bottom: 20px;
 				 `;
 export default connect(mapStateToProps, mapDispatchToProps)(NewNote_Image);

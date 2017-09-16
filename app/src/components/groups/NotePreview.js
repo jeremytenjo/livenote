@@ -35,6 +35,7 @@ class NotePreview extends React.Component {
 	}
 	render() {
 		//Properties
+
 		//Reactive Styles
 		const Wrapper = styled.form `
 		background: white;
@@ -42,8 +43,7 @@ class NotePreview extends React.Component {
 		overflow-y: scroll;
 		display: ${props => this.props.status === false
 			? 'none'
-			: 'grid'};
-		grid-template-rows: 30px 50px 1fr  1fr;
+			: 'block'};
 		height: 100%;
 		width: 100%;
 		color: #212121;
