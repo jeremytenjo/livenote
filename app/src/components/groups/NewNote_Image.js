@@ -113,7 +113,7 @@ overflow-y: scroll;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px  30px 1fr 1fr 80px;
+grid-template-rows: 30px  30px 1fr 300px 80px;
 height: 100%;
 width: 100%;
 color: #212121;
@@ -140,7 +140,7 @@ text-align: center;
 font-size: 20px;
 			  `;
 const ImgPreview = styled.img `
-	max-width: 100%; 
+	max-width: 100%;
 	display: block;
 	margin: 0 auto;
 				 `;
