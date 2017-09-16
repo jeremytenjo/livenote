@@ -123,6 +123,9 @@ padding-top: 10px;
 top: 0;
 left: 0;
 grid-row-gap: 10px;
+@media (max-height: 300px) {
+    grid-template-rows: 30px 30px auto 200px 80px;
+  }
 		   `;
 const Header = styled.h2 `
 font-size: 16px;
@@ -169,6 +172,7 @@ border-color: transparent;
 border-width:0px;
 font-size: 15px;
 margin-top: 10px;
+padding-bottom: 50px;
 				 `;
 const ButtonCon = styled.div `
 	width: 200px;
