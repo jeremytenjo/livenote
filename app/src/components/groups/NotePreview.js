@@ -43,7 +43,7 @@ class NotePreview extends React.Component {
 		display: ${props => this.props.status === false
 			? 'none'
 			: 'grid'};
-		grid-template-rows: 30px 50px 250px  1fr;
+		grid-template-rows: 30px 50px 1fr  1fr;
 		height: 100%;
 		width: 100%;
 		color: #212121;
@@ -61,8 +61,8 @@ class NotePreview extends React.Component {
 					Preview ({this.props.data.time})
 				</Top>
 				<Title>{this.props.data.title}</Title>
-				<Comment>{this.props.data.desc}</Comment>
 				<ImgPreview id="PreviewImage" src={this.props.data.image} alt=""/>
+				<Comment>{this.props.data.desc}</Comment>
 				{/* <ButtonCon>
 					<Button type="submit" color="#42EA9C" text="Add"/>
 				</ButtonCon> */}
@@ -88,7 +88,10 @@ text-align: center;
 font-size: 20px;
 			  `;
 const ImgPreview = styled.img `
-	width: 100%;
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+
 				 `;
 const Title = styled.p `
 &:focus {

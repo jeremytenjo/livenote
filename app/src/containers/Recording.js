@@ -10,34 +10,43 @@ import LoadingScreen from '../components/LoadingScreen.js';
 
 class Recording extends React.Component {
 
-	//Methods
+  //Methods
+  componentWillUnmount() {
 
-	render() {
+		//remove refresh listner
+    window.onbeforeunload = function() {}
+  }
+  render() {
+		
+		//add refresh listner
+    window.onbeforeunload = function() {
+      return "Refreshing will remove your active note";
+    };
 
-		//Template
-		return (
-			<Wrapper>
+    //Template
+    return (
+      <Wrapper>
 
-				<ItemViewContainer>
-					<RecItemView/>
-				</ItemViewContainer>
+        <ItemViewContainer>
+          <RecItemView/>
+        </ItemViewContainer>
 
-				{/* <TimeBarContainer>
+        {/* <TimeBarContainer>
 					<RecTimteBar/>
 				</TimeBarContainer> */}
 
-				<OptionsContainer>
-					<RecOptions/>
-				</OptionsContainer>
+        <OptionsContainer>
+          <RecOptions/>
+        </OptionsContainer>
 
-				<NewNote/>
-				<NewNoteImage/>
-				<NotePreview/>
-				<LoadingScreen title="Uploading Note..."/>
+        <NewNote/>
+        <NewNoteImage/>
+        <NotePreview/>
+        <LoadingScreen title="Uploading Note..."/>
 
-			</Wrapper>
-		);
-	}
+      </Wrapper>
+    );
+  }
 
 }
 
