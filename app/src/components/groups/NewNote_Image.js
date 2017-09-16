@@ -113,7 +113,7 @@ overflow-y: scroll;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px  30px 1fr 300px 80px;
+grid-template-rows: 30px  30px 1fr 200px 80px;
 height: 100%;
 width: 100%;
 color: #212121;
