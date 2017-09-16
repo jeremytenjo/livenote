@@ -2,135 +2,152 @@ import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
 import FolderMenu from '../components/Folder_Menu.js';
+import iconMic from '../images/icons/mic.svg';
 import firebase from 'firebase';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {
-	folderSelection,
-	Change_TopBar_Title,
-	Note_Name,
-	Reset_Timer,
-	Toggle_NewNote,
-	Reset_Items,
-	Folders_Set,
-	Set_MasterNote_id,
-	Hide_Snackbar
+  folderSelection,
+  Change_TopBar_Title,
+  Note_Name,
+  Reset_Timer,
+  Toggle_NewNote,
+  Reset_Items,
+  Folders_Set,
+  Set_MasterNote_id,
+  Hide_Snackbar
 } from '../state/actions/index';
 
 function mapStateToProps(state) {
-	return {name: state.FolderSelection_Name, noteName: state.Note_Name, FolderSelectionName: state.FolderSelection_Name}
+  return {name: state.FolderSelection_Name, noteName: state.Note_Name, FolderSelectionName: state.FolderSelection_Name}
 }
 
 //define actions to use
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		folderSelection,
-		Change_TopBar_Title,
-		Note_Name,
-		Reset_Timer,
-		Toggle_NewNote,
-		Reset_Items,
-		Folders_Set,
-		Set_MasterNote_id,
-		Hide_Snackbar
-	}, dispatch)
+  return bindActionCreators({
+    folderSelection,
+    Change_TopBar_Title,
+    Note_Name,
+    Reset_Timer,
+    Toggle_NewNote,
+    Reset_Items,
+    Folders_Set,
+    Set_MasterNote_id,
+    Hide_Snackbar
+  }, dispatch)
 }
 
 class Record extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			noteNameee: ''
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      noteNameee: ''
+    }
+  }
 
-	//Methods
-	componentWillMount() {
-		this.props.Change_TopBar_Title('Record');
-		this.props.Hide_Snackbar();
+  //Methods
+  componentWillMount() {
+    this.props.Change_TopBar_Title('Record');
+    this.props.Hide_Snackbar();
 
-	}
+  }
 
-	showMenu = () => {
+  showMenu = () => {
 
-		//get folders from database
-		let array = [];
+    //get folders from database
+    let array = [];
 
-		let userId = firebase.auth().currentUser.uid;
-		firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
-			// console.log(snapshot.val());
-			let list = {},
-				snapValue = snap.val();
+    let userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
+      // console.log(snapshot.val());
+      let list = {},
+        snapValue = snap.val();
 
+      for (var prop in snapValue) {
+        // console.log(snapValue[prop]);
+        list.id = prop;
+        list.name = snapValue[prop].name;
+        array.push(list);
+        list = {};
+      }
 
- 		for (var prop in snapValue) {
-			// console.log(snapValue[prop]);
-					list.id = prop;
-					list.name = snapValue[prop].name;
-					array.push(list);
-					list = {};
-				}
+      this.props.Folders_Set(array);
+    });
 
-			this.props.Folders_Set(array);
-		});
+    //show menu
+    this.props.folderSelection(true);
+  }
 
-		//show menu
-		this.props.folderSelection(true);
-	}
+  initRecording = () => {
+    // console.log(this.state.noteNameee);
+    // let note_name;
+    if (this.state.noteNameee === '') {
+      this.props.Note_Name('Title');
+      this.props.Change_TopBar_Title('Title');
 
-	initRecording = () => {
-		// console.log(this.state.noteNameee);
-		// let note_name;
-		if (this.state.noteNameee === '') {
-			this.props.Note_Name('Title');
-			this.props.Change_TopBar_Title('Title');
+    } else {
+      this.props.Note_Name(this.state.noteNameee);
+      this.props.Change_TopBar_Title(this.state.noteNameee);
 
-		} else {
-			this.props.Note_Name(this.state.noteNameee);
-			this.props.Change_TopBar_Title(this.state.noteNameee);
+    }
 
-		}
+    //hide note
+    this.props.Toggle_NewNote('none');
 
-		//hide note
-		this.props.Toggle_NewNote('none');
+    //reset notes
+    this.props.Reset_Items();
 
-		//reset notes
-		this.props.Reset_Items();
+    //Redirect
+    this.props.history.push(`/recording`);
 
-		//Redirect
-		this.props.history.push(`/recording`);
+  }
+  handleNameInput = (e) => {
+    // console.log(e.target.value);
+    this.setState({noteNameee: e.target.value})
+  }
 
-	}
-	handleNameInput = (e) => {
-		// console.log(e.target.value);
-		this.setState({noteNameee: e.target.value})
-	}
+  render() {
+    //Properties
 
-	render() {
-		//Properties
-
-		//Template
-		return (
-			<div>
-				<InitWrapper>
-
-					<Input autoFocus maxLength="11" type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off"/>
-					<Selection onClick={this.showMenu}>{this.props.name}</Selection>
-					<InitBtn width="100" height="100" onClick={this.initRecording}>
-						<Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
-					</InitBtn>
-				</InitWrapper>
-				<FolderMenu/>
-			</div>
-		);
-	}
+    //Template
+    return (
+      <div>
+        <InitWrapper>
+          <Input autoFocus maxLength="11" type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off"/>
+          <Selection onClick={this.showMenu}>{this.props.name}</Selection>
+					<Wrapp>
+						<MicIcon src={iconMic} alt="mic icon" />
+          <InitBtn width="100" height="100" onClick={this.initRecording}>
+            <Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
+          </InitBtn>
+					</Wrapp>
+        </InitWrapper>
+        <FolderMenu/>
+      </div>
+    );
+  }
 
 }
 
 //Style
+ const Wrapp = styled.div `
+position: relative;
+height: 100px;
+ `;
+ const MicIcon = styled.img `
+width: 30px;
+height: 30px;
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+top: 0;
+margin: auto;
+z-index: 2;
+ `;
 const InitWrapper = styled.div `
 position: absolute;
 left: 0;
@@ -196,7 +213,7 @@ outline: none;
 const InitBtn = styled.svg `
 display: block;
 margin: 0 auto;
-
+position: relative;
 `;
 
 const Circle = styled.circle `
