@@ -123,7 +123,7 @@ padding-top: 10px;
 top: 0;
 left: 0;
 grid-row-gap: 10px;
-@media (max-height: 300px) {
+@media (max-height: 500px) {
     grid-template-rows: 30px 30px auto 200px 80px;
   }
 		   `;
