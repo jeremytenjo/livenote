@@ -14,147 +14,147 @@ import {connect} from 'react-redux';
 import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../state/actions/index';
 
 function mapStateToProps(state) {
-	return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename}
+  return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename}
 }
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		Toggle_OptinsMenuHide,
-		Show_Snackbar,
-		Set_Snackbar_Name,
-		Hide_Snackbar
-	}, dispatch)
+  return bindActionCreators({
+    Toggle_OptinsMenuHide,
+    Show_Snackbar,
+    Set_Snackbar_Name,
+    Hide_Snackbar
+  }, dispatch)
 }
 class Folder extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			list: [],
-			open: false,
-			title: '',
-			renameInput: false,
-			loading: true,
-			loadingMessage: 'Loading folders...'
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: [],
+      open: false,
+      title: '',
+      renameInput: false,
+      loading: true,
+      loadingMessage: 'Loading folders...'
+    }
+  }
 
-	//Methods
-	componentWillMount() {
-		this.fetchData();
-	}
+  //Methods
+  componentWillMount() {
+    this.fetchData();
+  }
 
-	fetchData = () => {
-		let userId = firebase.auth().currentUser.uid;
-		let array = [];
+  fetchData = () => {
+    let userId = firebase.auth().currentUser.uid;
+    let array = [];
 
-		this.setState({list: []});
+    this.setState({list: []});
 
-		return firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
-			let list = {},
-				snapValue = snap.val();
-			// console.log(snapValue);
+    return firebase.database().ref('/users/' + userId + '/folders').once('value').then((snap) => {
+      let list = {},
+        snapValue = snap.val();
+      // console.log(snapValue);
 
-			for (var prop in snapValue) {
-				// console.log(snapValue[prop]);
-				list.id = prop;
-				list.name = snapValue[prop].name;
+      for (var prop in snapValue) {
+        // console.log(snapValue[prop]);
+        list.id = prop;
+        list.name = snapValue[prop].name;
 
-				// console.log(list);
-				array.push(list);
-				list = {};
-			}
+        // console.log(list);
+        array.push(list);
+        list = {};
+      }
 
-			// console.log(array);
-			this.setState({list: array});
-			this.setState({loading: false});
+      // console.log(array);
+      this.setState({list: array});
+      this.setState({loading: false});
 
-		});
-	}
+    });
+  }
 
-	addFolder = () => {
-		this.setState({open: true});
+  addFolder = () => {
+    this.setState({open: true});
 
-	}
-	submit = (e) => {
-		// console.log(this.input.value);
-		e.preventDefault();
-		this.setState({open: false});
-		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders`).push({name: this.input.value});
-		// this.setState({title: ''});
-		this.props.Set_Snackbar_Name('Folder Added');
-		this.props.Show_Snackbar();
-		this.fetchData();
+  }
+  submit = (e) => {
+    // console.log(this.input.value);
+    e.preventDefault();
+    this.setState({open: false});
+    firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders`).push({name: this.input.value});
+    // this.setState({title: ''});
+    this.props.Set_Snackbar_Name('Folder Added');
+    this.props.Show_Snackbar();
+    this.fetchData();
 
-	}
-	submitnewName = (e) => {
-		// console.log(this.inputRename.value);
-		e.preventDefault();
-		// console.log(this.props.folderID);
-		this.setState({renameInput: false});
-		this.props.Toggle_OptinsMenuHide();
+  }
+  submitnewName = (e) => {
+    // console.log(this.inputRename.value);
+    e.preventDefault();
+    // console.log(this.props.folderID);
+    this.setState({renameInput: false});
+    this.props.Toggle_OptinsMenuHide();
 
-		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).update({name: this.inputRename.value});
-		// this.setState({title: ''});
-		this.props.Set_Snackbar_Name('Folder Renamed');
-		this.props.Hide_Snackbar();
-		this.props.Show_Snackbar();
+    firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).update({name: this.inputRename.value});
+    // this.setState({title: ''});
+    this.props.Set_Snackbar_Name('Folder Renamed');
+    this.props.Hide_Snackbar();
+    this.props.Show_Snackbar();
 
-		this.fetchData();
+    this.fetchData();
 
-	}
-	handleClose = (e) => {
-		this.setState({open: false});
-		// this.setState({title: ''});
-		e.preventDefault();
+  }
+  handleClose = (e) => {
+    this.setState({open: false});
+    // this.setState({title: ''});
+    e.preventDefault();
 
-	};
-	handleCloseRename = (e) => {
-		this.setState({renameInput: false});
-		// this.setState({title: ''});
-		e.preventDefault();
+  };
+  handleCloseRename = (e) => {
+    this.setState({renameInput: false});
+    // this.setState({title: ''});
+    e.preventDefault();
 
-	};
-	hideOptions = () => {
-		this.props.Toggle_OptinsMenuHide();
-	}
+  };
+  hideOptions = () => {
+    this.props.Toggle_OptinsMenuHide();
+  }
 
-	removeFolder = () => {
-		//remove notes in folder
-		firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes').orderByChild('folderID').equalTo(this.props.folderID).once('value').then((snap) => {
-			let res = snap.val();
-			for (var prop in res) {
-				if (res.hasOwnProperty(prop)) {
-					// console.log(prop);
-					firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${prop}`).remove();
-				}
-			}
-		});
+  removeFolder = () => {
+    //remove notes in folder
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes').orderByChild('folderID').equalTo(this.props.folderID).once('value').then((snap) => {
+      let res = snap.val();
+      for (var prop in res) {
+        if (res.hasOwnProperty(prop)) {
+          // console.log(prop);
+          firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${prop}`).remove();
+        }
+      }
+    });
 
-		//remove folder
-		// console.log(this.props.folderID);
-		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).remove();
-		this.fetchData();
-		this.props.Toggle_OptinsMenuHide();
-		this.props.Set_Snackbar_Name('Folder Removed');
-		this.props.Hide_Snackbar();
-		this.props.Show_Snackbar();
-	}
+    //remove folder
+    // console.log(this.props.folderID);
+    firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).remove();
+    this.fetchData();
+    this.props.Toggle_OptinsMenuHide();
+    this.props.Set_Snackbar_Name('Folder Removed');
+    this.props.Hide_Snackbar();
+    this.props.Show_Snackbar();
+  }
 
-	renameFolder = () => {
-		//show rename input
-		this.props.Toggle_OptinsMenuHide();
-		this.setState({renameInput: true});
+  renameFolder = () => {
+    //show rename input
+    this.props.Toggle_OptinsMenuHide();
+    this.setState({renameInput: true});
 
-	}
-	render() {
-		//Properties
-		let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} id={item.id} width="140px"/>);
+  }
+  render() {
+    //Properties
+    let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} id={item.id} width="140px"/>);
 
-		const Dialog = styled.form `
+    const Dialog = styled.form `
 			display: ${props => this.state.open
-			? 'block'
-			: 'none'};
+      ? 'block'
+      : 'none'};
 		position: fixed;
 		background: rgba(0, 0, 0, 0.73);
 		height: 100%;
@@ -163,10 +163,10 @@ class Folder extends React.Component {
 		left: 0;
 		z-index: 20;
 		`;
-		const DialogRename = styled.form `
+    const DialogRename = styled.form `
 			display: ${props => this.state.renameInput
-			? 'block'
-			: 'none'};
+      ? 'block'
+      : 'none'};
 		position: fixed;
 		background: rgba(0, 0, 0, 0.73);
 		height: 100%;
@@ -175,29 +175,39 @@ class Folder extends React.Component {
 		left: 0;
 		z-index: 20;
 		`;
-		let inputStyle = {
-			width: '80%',
-			display: 'block',
-			margin: 'auto',
-			height: '30px',
-			fontSize: '16px',
-			borderColor: 'transparent',
-			borderWidth: '0px'
-		}
-		const OptionsMenuWrapper = styled.form `
+    let inputStyle = {
+      width: '80%',
+      display: 'block',
+      margin: 'auto',
+      height: '30px',
+      fontSize: '16px',
+      borderColor: 'transparent',
+      borderWidth: '0px'
+    }
+		const opacity360 = keyframes `
+			 from {
+				 background: transparent;
+			 }
+
+			 to {
+				 background: rgba(0, 0, 0, 0.73);
+			 }
+			`;
+    const OptionsMenuWrapper = styled.form `
 		display: ${props => this.props.options
-			? 'block'
-			: 'none'};
+      ? 'block'
+      : 'none'};
 		position: fixed;
-		background: rgba(0, 0, 0, 0.73);
 		height: 100%;
 		width: 100%;
 		top: 0;
 		left: 0;
 		z-index: 20;
+		animation: ${opacity360} .1s linear;
+
 		`;
 
-		const rotate360 = keyframes `
+    const rotate360 = keyframes `
 			 from {
 				 bottom: -150px;
 			 }
@@ -206,7 +216,7 @@ class Folder extends React.Component {
 				 bottom: 0;
 			 }
 			`;
-		const OptionsMenuInner = styled.div `
+    const OptionsMenuInner = styled.div `
 		position: fixed;
 		background: white;
 		height: 150px;
@@ -216,12 +226,12 @@ class Folder extends React.Component {
 		right: 0;
 		margin: auto;
 		bottom: 0;
-			animation: ${rotate360} .1s linear;
-      display: grid;
-      grid-template-rows: 50px 250px;
+		animation: ${rotate360} .1s linear;
+    display: grid;
+    grid-template-rows: 50px 250px;
 
 		 `;
-		const OptionsMenuTop = styled.div `
+    const OptionsMenuTop = styled.div `
      position: fixed;
      background: rgba(0, 0, 0, 0.73);
       bottom: 150px;
@@ -232,20 +242,22 @@ class Folder extends React.Component {
 			right: 0;
 			margin: auto;
      `;
-		const OtopnsWrapper = styled.div `
+    const OtopnsWrapper = styled.div `
 margin-top: 40px;
 		  `;
-		const OptionsItemCon = styled.div `
+    const OptionsItemCon = styled.div `
 display: grid;
 grid-template-columns: 50px 1fr;
 color: #0F2331;
 		  `;
-		const OptionsItem = styled.img `
+    const OptionsItem = styled.img `
 width: 20px;
 padding: 15px;
 			 `;
-			 const LoadingCon = styled.div `
-				display: ${props => this.state.loading ? 'block' : 'none'};
+    const LoadingCon = styled.div `
+				display: ${props => this.state.loading
+      ? 'block'
+      : 'none'};
 				 position: absolute;
 				 left: 0;
 				 right: 0;
@@ -253,79 +265,79 @@ padding: 15px;
 				 margin: auto;
 				 width: 100%;
 				 height: 110px;
-				 ${'' /* background: rgba(0, 0, 0, 0.73); */}
+				 ${ ''/* background: rgba(0, 0, 0, 0.73); */}
 				 `;
-				 const Text = styled.p `
+    const Text = styled.p `
 		 text-align: center;
 		 	  `;
-		//Template
-		return (
-			<Wrapper>
-				<TitleWrappper>
-					<Title>Folders</Title>
-					<Img onClick={this.addFolder} src={Plus_img} alt="add icon"/>
-				</TitleWrappper>
-				<FolderWrapper>
-					{list}
-				</FolderWrapper>
+    //Template
+    return (
+      <Wrapper>
+        <TitleWrappper>
+          <Title>Folders</Title>
+          <Img onClick={this.addFolder} src={Plus_img} alt="add icon"/>
+        </TitleWrappper>
+        <FolderWrapper>
+          {list}
+        </FolderWrapper>
 
-				<Dialog onSubmit={this.submit}>
-					<InnerDialog>
-						<SubTitle>Name folder</SubTitle>
-						<input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
+        <Dialog onSubmit={this.submit}>
+          <InnerDialog>
+            <SubTitle>Name folder</SubTitle>
+            <input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
 
-						<ButtonCon>
-							<span onClick={this.handleClose}>
-								<Button text="Cancel" color="#9E9E9E"/>
-							</span>
-							<span >
-								<Button type="submit" text="Create" color="#44F6A3"/>
-							</span>
-						</ButtonCon>
-					</InnerDialog>
-				</Dialog>
-				<OptionsMenuWrapper>
-					<OptionsMenuTop onClick={this.hideOptions}/>
-					<OptionsMenuInner>
-						<CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
-						<OtopnsWrapper>
+            <ButtonCon>
+              <span onClick={this.handleClose}>
+                <Button text="Cancel" color="#9E9E9E"/>
+              </span>
+              <span >
+                <Button type="submit" text="Create" color="#44F6A3"/>
+              </span>
+            </ButtonCon>
+          </InnerDialog>
+        </Dialog>
+        <OptionsMenuWrapper>
+          <OptionsMenuTop onClick={this.hideOptions}/>
+          <OptionsMenuInner>
+            <CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
+            <OtopnsWrapper>
 
-							<OptionsItemCon onClick={this.renameFolder}>
-								<OptionsItem src={Rename_img} alt="rename Icon"/>
-								<p>Rename</p>
-							</OptionsItemCon>
-							<OptionsItemCon onClick={this.removeFolder}>
-								<OptionsItem src={Remove_img} alt="rename Icon"/>
-								<p>Remove</p>
-							</OptionsItemCon>
+              <OptionsItemCon onClick={this.renameFolder}>
+                <OptionsItem src={Rename_img} alt="rename Icon"/>
+                <p>Rename</p>
+              </OptionsItemCon>
+              <OptionsItemCon onClick={this.removeFolder}>
+                <OptionsItem src={Remove_img} alt="rename Icon"/>
+                <p>Remove</p>
+              </OptionsItemCon>
 
-						</OtopnsWrapper>
+            </OtopnsWrapper>
 
-					</OptionsMenuInner>
-				</OptionsMenuWrapper>
+          </OptionsMenuInner>
+        </OptionsMenuWrapper>
 
-				<DialogRename onSubmit={this.submitnewName}>
-					<InnerDialog>
-						<SubTitle>Rename folder</SubTitle>
-						<input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
+        <DialogRename onSubmit={this.submitnewName}>
+          <InnerDialog>
+            <SubTitle>Rename folder</SubTitle>
+            <input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
-						<ButtonCon>
-							<span onClick={this.handleCloseRename}>
-								<Button text="Cancel" color="#9E9E9E"/>
-							</span>
-							<span >
-								<Button type="submit" text="Rename" color="#44F6A3"/>
-							</span>
-						</ButtonCon>
-					</InnerDialog>
-				</DialogRename>
-				<LoadingCon>
-					<Text>{this.state.loadingMessage}</Text>
-				</LoadingCon>
+            <ButtonCon>
+              <span onClick={this.handleCloseRename}>
+                <Button text="Cancel" color="#9E9E9E"/>
+              </span>
+              <span >
+                <Button type="submit" text="Rename" color="#44F6A3"/>
+              </span>
+            </ButtonCon>
+          </InnerDialog>
+        </DialogRename>
+        <LoadingCon>
+          <Text>{this.state.loadingMessage}</Text>
+        </LoadingCon>
 
-			</Wrapper>
-		);
-	}
+      </Wrapper>
+    );
+  }
 
 }
 
