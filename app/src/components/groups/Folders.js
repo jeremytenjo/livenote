@@ -203,8 +203,7 @@ class Folder extends React.Component {
 		top: 0;
 		left: 0;
 		z-index: 20;
-		animation: ${opacity360} .1s linear;
-
+		animation: ${opacity360} .2s linear;
 		`;
 
     const rotate360 = keyframes `

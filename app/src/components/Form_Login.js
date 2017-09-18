@@ -83,7 +83,9 @@ class LogForm extends React.Component {
 			textDecoration: 'none',
 			fontSize: '16px',
 			borderColor: 'transparent',
-			outline: 'none'
+			outline: 'none',
+			paddingTop: '10px',
+			paddingBottom: '10px'
 		};
 		const InputSubConStyle = {
 			display: 'grid',
