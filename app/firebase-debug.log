@@ -1,0 +1,72 @@
+[debug] [2017-09-18T21:09:19.984Z] ----------------------------------------------------------------------
+[debug] [2017-09-18T21:09:19.986Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-09-18T21:09:19.987Z] CLI Version:   3.10.1
+[debug] [2017-09-18T21:09:19.987Z] Platform:      win32
+[debug] [2017-09-18T21:09:19.987Z] Node Version:  v8.4.0
+[debug] [2017-09-18T21:09:19.988Z] Time:          Mon Sep 18 2017 17:09:19 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:19.988Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-18T21:09:19.997Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-18T21:09:19.998Z] > authorizing via signed-in user
+[debug] [2017-09-18T21:09:19.999Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Mon Sep 18 2017 17:09:19 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:20.338Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-18T21:09:20.339Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/live-note-ce62c/tokens  
+ Mon Sep 18 2017 17:09:20 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:20.768Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'live-note-ce62c'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] +  database: rules ready to deploy.
+[debug] [2017-09-18T21:09:21.384Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-18T21:09:21.385Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Mon Sep 18 2017 17:09:21 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:21.386Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Mon Sep 18 2017 17:09:21 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:21.930Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-18T21:09:21.970Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-09-18T21:09:21.971Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/live-note-ce62c  
+ Mon Sep 18 2017 17:09:21 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:21.971Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/live-note-ce62c/apiKeys  
+ Mon Sep 18 2017 17:09:21 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:22.337Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-18T21:09:22.399Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-09-18T21:09:36.281Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/live-note-ce62c/configs  
+ Mon Sep 18 2017 17:09:36 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:09:36.551Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing build directory for upload...
+[debug] [2017-09-18T21:09:37.595Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/live-note-ce62c/uploads/-KuLoj4i26WaPJ2IR4Io?fileCount=58&message=  
+ Mon Sep 18 2017 17:09:37 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-18T21:10:17.732Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-18T21:10:17.732Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[error] 
+[error] Error: File upload failed: Deploy failed.
+[debug] [2017-09-18T21:10:49.608Z] Error Context: {
+  "duration": 68340,
+  "fileCount": 58,
+  "ip": "174.114.226.188",
+  "start": 1505768979215,
+  "status": "failed",
+  "statusMessage": "Deploy failed.",
+  "uid": "109129055726094099673",
+  "uploadedCount": 58,
+  "user": {
+    "email": "tenjojeremy@gmail.com",
+    "gaiaId": "109129055726094099673",
+    "image": "https://lh3.googleusercontent.com/-j20vUPHfT2M/AAAAAAAAAAI/AAAAAAAAACs/TLCMvAuQN9U/photo.jpg"
+  }
+}
