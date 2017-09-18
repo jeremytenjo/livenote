@@ -7,7 +7,7 @@ import Reducers from './state/reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 //Firebase Configuration
 var firebase = require("firebase/app");
