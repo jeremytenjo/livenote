@@ -38,4 +38,4 @@ ReactDOM.render(
 		<App/>
 	</MuiThemeProvider>
 </Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
