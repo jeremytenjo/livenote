@@ -12,41 +12,45 @@ import styled from 'styled-components'
 
 class ItemTextImage extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			time: props.time,
-			title: props.title,
-			desc: props.desc,
-			image: props.image
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      time: props.time,
+      title: props.title,
+      desc: props.desc,
+      image: props.image
+    }
+  }
 
-	//Methods
+  //Methods
 
-	render() {
-		//Properties
-		//Reactive Styles
+  render() {
+    //Properties
+    //Reactive Styles
 
-		//Template
-		return (
-			<Wrapper>
-				<ItemCon>
-					<ItemTime>{this.state.time}</ItemTime>
-					<ItemDescCon>
-						<ItemTitle>
-							{this.state.title}
-						</ItemTitle>
-						<ItemDesc>
-							{this.state.desc}
-						</ItemDesc>
-					</ItemDescCon>
-					<ItemImg src={this.state.image} alt="note image"/>
-				</ItemCon>
-			</Wrapper>
-		);
-	}
+    //Template
+    return (
+      <Wrapper>
+        <ItemCon>
+          <ItemTime>{this.state.time}</ItemTime>
+          <ItemDescCon>
+            <ItemTitle>
+              {this.state.title}
+            </ItemTitle>
+            <ItemDesc>
+              {this.state.desc}
+            </ItemDesc>
+          </ItemDescCon>
+          <span style={{
+            position: 'relative'
+          }}>
+            <ItemImg src={this.state.image} alt="note image"/>
+          </span>
+        </ItemCon>
+      </Wrapper>
+    );
+  }
 
 }
 
@@ -55,14 +59,14 @@ const Wrapper = styled.div `
 cursor: pointer;
 
         `;
-				const ItemCon = styled.div `
+const ItemCon = styled.div `
 				background: white;
 				border-radius: 2px;
 				height: 100px;
 				display: grid;
 				grid-template-columns: 70px 1fr 90px;
 				 `;
-				const ItemTime = styled.div `
+const ItemTime = styled.div `
 				${ ''/* background: red; */}
 				font-size: 23px;
 				text-align: center;
@@ -70,18 +74,18 @@ cursor: pointer;
 				color: #0F2331;
 				font-weight: bold;
 				 `;
-				const ItemDescCon = styled.div `
+const ItemDescCon = styled.div `
 				margin-bottom: 10px;
 				height: 65px;
 				 `;
-				const ItemTitle = styled.p `
+const ItemTitle = styled.p `
 				font-weight: bold;
 				color: #0F2331;
 				margin: 0;
 				margin-top: 5px;
 
 				  `;
-				const ItemDesc = styled.p `
+const ItemDesc = styled.p `
 				color: #0F2331;
 				margin-top: 5px;
 				margin-bottom: 5px;
@@ -89,10 +93,14 @@ cursor: pointer;
 				overflow-x: hidden;
 				height: 100%;
 				  `;
-				const ItemImg = styled.img `
+const ItemImg = styled.img `
 				 width: 80px;
-				 margin-top: 5px;
-				 margin-left: 5px;
+				 position: absolute;
+left: 0;
+right: 0;
+margin: auto;
+top: 0;
+bottom: 0;
 				 `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(ItemTextImage);

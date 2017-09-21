@@ -36,7 +36,14 @@ class ItemOnlyImage extends React.Component {
 						<ItemTitle>
 							{this.state.title}
 						</ItemTitle>
+						<div style={{
+	            position: 'relative',
+							height: '100%',
+							marginTop: '-5px'
+	          }}>
 						<ItemImage src={this.state.image} alt="note image"/>
+					</div>
+
 					</ItemDescCon>
 				</ItemCon>
 			</Wrapper>
@@ -78,8 +85,14 @@ const ItemTitle = styled.p `
 
 				  `;
 const ItemImage = styled.img `
-width: 200px;
-
+${'' /* width: 200px; */}
+    max-width: 170px;
+		position: absolute;
+left: 0;
+right: 0;
+margin: auto;
+top: 0;
+bottom: 0;
 				  `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(ItemOnlyImage);
