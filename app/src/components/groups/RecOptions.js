@@ -219,6 +219,7 @@ class RecOptions extends React.Component {
 
 					//upload sub notes
 					this.state.data.map((d) => {
+						alert(d)
 						//upload image
 						// console.log(d);
 						let storageRef = firebase.storage().ref();
