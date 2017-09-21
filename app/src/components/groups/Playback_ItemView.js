@@ -145,6 +145,7 @@ grid-row-gap: 10px;
 `;
 const Item = styled.span `
 position: relative;
+    z-index: -1;
  `;
 const TimeCon = styled.div `
 width: 70px;
