@@ -91,7 +91,7 @@ class RecItemView extends React.Component {
   setTime = (e) => {
     let audioControl = this.props.audioControl;
     console.log(3)
-    audioControl.currentTime = 3
+    audioControl.currentTime = e
   }
   render() {
     //Properties
@@ -103,7 +103,7 @@ class RecItemView extends React.Component {
           <span data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
             <ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>
           </span>
-          <TimeCon onClick={() => (this.setTime(item.time))}></TimeCon>
+          <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.desc === '') {
