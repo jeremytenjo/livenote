@@ -96,7 +96,7 @@ class RecItemView extends React.Component {
   render() {
     //Properties
     let list = this.state.list.map((item, i) => {
-      console.log(item);
+      // console.log(item);
       if (item.desc && item.imageUrl !== 'none') {
 
         list = <Item key={i}>
@@ -145,7 +145,7 @@ grid-row-gap: 10px;
 `;
 const Item = styled.span `
 position: relative;
-    z-index: -1;
+
  `;
 const TimeCon = styled.div `
 width: 70px;

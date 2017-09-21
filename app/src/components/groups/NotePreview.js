@@ -38,6 +38,8 @@ class NotePreview extends React.Component {
 
 		//Reactive Styles
 		const Wrapper = styled.form `
+		z-index: 3;
+			
 		background: white;
 		position: fixed;
 		overflow-y: scroll;

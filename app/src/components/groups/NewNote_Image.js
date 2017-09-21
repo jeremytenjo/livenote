@@ -110,6 +110,7 @@ class NewNote_Image extends React.Component {
 //Style
 const Wrapper = styled.form `
 background: white;
+z-index: 3;
 position: fixed;
 overflow-y: scroll;
 overflow-x: hidden;

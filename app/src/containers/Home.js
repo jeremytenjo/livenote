@@ -108,6 +108,7 @@ ${ ''/* grid-template-columns: 20px 1fr 40px 16px; */}
 grid-template-columns:  1fr 40px ;
 padding: 10px;
 background: #0F2331;
+z-index: 2;
 `;
 const Content = styled.div `
 overflow-x: hidden;
