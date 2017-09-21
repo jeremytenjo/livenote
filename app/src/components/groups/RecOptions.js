@@ -229,7 +229,6 @@ class RecOptions extends React.Component {
 								// console.log(snapshot.metadata.downloadURLs[0]);
 								//write to database
 								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-								// firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/notes/${key}`).push({
 									masterNote_id: key,
 									name: this.props.noteName,
 									title: d.title,
@@ -243,7 +242,6 @@ class RecOptions extends React.Component {
 						} else {
 
 							firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-							// firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/notes/${key}`).push({
 								masterNote_id: key,
 								name: this.props.noteName,
 								title: d.title,
