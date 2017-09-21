@@ -78,6 +78,7 @@ class RecItemView extends React.Component {
         list.image = snapValue[prop].image || '';
         list.name = snapValue[prop].name;
         list.title = snapValue[prop].title;
+        list.timeSeconds = snapValue[prop].timeSeconds;
 
         // console.log(list);
         array.push(list);
@@ -90,13 +91,12 @@ class RecItemView extends React.Component {
 
   setTime = (e) => {
     let audioControl = this.props.audioControl;
-    console.log(3)
     audioControl.currentTime = e
   }
   render() {
     //Properties
     let list = this.state.list.map((item, i) => {
-      // console.log(item);
+      console.log(item);
       if (item.desc && item.imageUrl !== 'none') {
 
         list = <Item key={i}>
@@ -112,7 +112,7 @@ class RecItemView extends React.Component {
           <span data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
             <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>
           </span>
-          <TimeCon onClick={() => (this.setTime(item.time))}></TimeCon>
+          <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.imageUrl === 'none') {
@@ -121,7 +121,7 @@ class RecItemView extends React.Component {
           <span data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview}>
             <ItemOnlyText time={item.time} title={item.title} desc={item.desc}/>
           </span>
-          <TimeCon onClick={() => (this.setTime(item.time))}></TimeCon>
+          <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       }
