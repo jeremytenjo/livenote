@@ -67,7 +67,7 @@ class RecItemView extends React.Component {
       userId = firebase.auth().currentUser.uid;
 
     // firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(this.props.id).once('value').then((snap) => {
-    firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(this.props.id).once('value').then((snap) => {
+    firebase.database().ref('/users/' + userId + '/notes/' + this.props.id).orderByValue().once('value').then((snap) => {
       let snapValue = snap.val();
       console.log(snapValue);
 
