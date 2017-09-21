@@ -219,7 +219,6 @@ class RecOptions extends React.Component {
 
 					//upload sub notes
 					this.state.data.map((d) => {
-						alert(d)
 						//upload image
 						// console.log(d);
 						let storageRef = firebase.storage().ref();
@@ -249,7 +248,9 @@ class RecOptions extends React.Component {
 								title: d.title,
 								comment: d.desc,
 								imageUrl: 'none',
-								time: d.time
+								time: d.time,
+								timeSeconds: d.timeSeconds
+								
 							});
 						}
 
