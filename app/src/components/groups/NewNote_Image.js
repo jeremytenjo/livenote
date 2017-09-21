@@ -52,6 +52,7 @@ class NewNote_Image extends React.Component {
 		item.time = time;
 		item.title = this.state.title;
 		item.desc = this.state.desc;
+		item.timeSeconds = this.props.time;
 
 		//Get image info
 		var preview = document.querySelector('#PreviewImage');

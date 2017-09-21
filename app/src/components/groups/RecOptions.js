@@ -235,7 +235,8 @@ class RecOptions extends React.Component {
 									title: d.title,
 									comment: d.desc,
 									imageUrl: snapshot.metadata.downloadURLs[0],
-									time: d.time
+									time: d.time,
+									timeSeconds: d.timeSeconds
 								});
 							});
 

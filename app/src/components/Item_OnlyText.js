@@ -22,7 +22,7 @@ class ItemOnlyText extends React.Component {
 	}
 
 	//Methods
-	 
+
 	render() {
 		//Properties
 		//Reactive Styles

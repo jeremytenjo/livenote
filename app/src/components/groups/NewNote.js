@@ -53,6 +53,7 @@ class NewNote extends React.Component {
 		item.title = this.state.title;
 		item.desc = this.state.desc;
 		item.image = '';
+		item.timeSeconds = this.props.time;
 
 		//Insert Item
 		this.props.Toggle_NewNote('none');
@@ -62,8 +63,6 @@ class NewNote extends React.Component {
 		this.setState({title: ""});
 		this.setState({desc: ""});
 		time = "";
-
-
 
 	}
 	hide = () => {

@@ -37,10 +37,8 @@ class Directory extends React.Component {
 
     //check if features are available
 		if (window.MediaRecorder === null) {
-			alert('Sorry Audio recording and Voice recognittion are not Supported on your device')
+			alert('Sorry, Audio recording and Voice recognition are not supported on your device')
 		}
-
-
 
     this.props.Change_TopBar_Title('Directory');
     this.props.folderSelection(false);
@@ -48,6 +46,8 @@ class Directory extends React.Component {
   openRecord = () => {
     this.props.history.push(`/record`);
   }
+
+
   render() {
     //Properties
 

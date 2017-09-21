@@ -5,9 +5,9 @@ import PlaybackOptions from '../components/groups/Playback_Options.js';
 import NotePreview from '../components/groups/NotePreview.js';
 
 //State
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Hide_Snackbar} from '../state/actions/index';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Hide_Snackbar } from '../state/actions/index';
 
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -38,14 +38,14 @@ class Playback extends React.Component {
 		return (
 			<Wrapper>
 				<ItemViewContainer>
-					<RecItemView/>
+					<RecItemView />
 				</ItemViewContainer>
 
 				<OptionsContainer>
-					<PlaybackOptions/>
+					<PlaybackOptions />
 				</OptionsContainer>
 
-				<NotePreview/>
+				<NotePreview />
 			</Wrapper>
 		);
 	}
@@ -53,19 +53,19 @@ class Playback extends React.Component {
 }
 
 //Styles
-const Wrapper = styled.div `
+const Wrapper = styled.div`
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 10px;
 
  `;
-const ItemViewContainer = styled.div `
+const ItemViewContainer = styled.div`
 ${ ''/* margin-top: 50px; */}
 margin-bottom: 100px;
 overflow-x: hidden;
  `;
 
-const OptionsContainer = styled.div `
+const OptionsContainer = styled.div`
 max-width: 600px;
 ${ ''/* border: 3px solid red; */}
  margin: 0 auto;

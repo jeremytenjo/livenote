@@ -20,7 +20,7 @@ export default class File extends React.Component {
 
 		//Style
 		const Wrapper = styled.div `
-	 height: 100px;
+	 height: 100px; 
 	 width: ${props => this.state.width};
 	 background: #F5F5F5;
 	 border-radius: 2px 0 2px 2px;

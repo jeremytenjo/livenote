@@ -7,12 +7,19 @@ import Slider from 'material-ui/Slider';
 import {withRouter} from 'react-router-dom'
 
 //State
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {Set_Audio_Control} from '../../state/actions/index';
 
 //define actions
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    Set_Audio_Control
+      }, dispatch)
+ }
 // Set global state to prop
 function mapStateToProps(state) {
-	return {noteID: state.PlaybackSelection_ID}
+	return {noteID: state.PlaybackSelection_ID }
 }
 
 class PlaybackOptions extends React.Component {
@@ -50,6 +57,8 @@ class PlaybackOptions extends React.Component {
 		} else {
 			const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 				let audioControl = new Audio([audioUrl]);
+
+				this.props.Set_Audio_Control(audioControl)
 				this.setState({audioControl: audioControl});
 
 				audioControl.onended = (e) => {
@@ -184,4 +193,4 @@ font-size: 14px;
 margin: 0;
 right: 10px
  `;
-export default connect(mapStateToProps)(withRouter(PlaybackOptions));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlaybackOptions));

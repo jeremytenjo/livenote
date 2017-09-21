@@ -9,72 +9,76 @@ import {Set_Playback_Id, Change_TopBar_Title} from '../../state/actions/index';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		Set_Playback_Id, Change_TopBar_Title
-	}, dispatch)
+  return bindActionCreators({
+    Set_Playback_Id,
+    Change_TopBar_Title 
+  }, dispatch)
 }
 function mapStateToProps(state) {
-	return {notes: state.RecentNotes}
+  return {notes: state.RecentNotes}
 }
 class Recent extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			list: [],
-			loading: true,
-			loadingMessage: 'Loading recent files...'
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: [],
+      loading: true,
+      loadingMessage: 'Loading recent files...'
+    }
+  }
 
-	//Methods
-	componentWillMount() {
-		let userId = firebase.auth().currentUser.uid;
-		let array = [];
+  //Methods
+  componentWillMount() {
+    this.getData()
+  }
 
-		return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('dateAddedSort').limitToLast(6).once('value').then((snap) => {
-			let list = {},
-				snapValue = snap.val();
-			// console.log(snapValue);
+  getData = () => {
+    let userId = firebase.auth().currentUser.uid;
+    let array = [];
 
-			for (var prop in snapValue) {
-				// console.log(snapValue[prop]);
-				list.id = prop;
-				list.dateAdded = snapValue[prop].dateAdded;
-				list.dateAddedSort = snapValue[prop].dateAddedSort;
-				list.folderID = snapValue[prop].folderID;
-				list.folderName = snapValue[prop].folderName;
-				list.name = snapValue[prop].name;
+    return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('dateAddedSort').limitToLast(6).once('value').then((snap) => {
+      let list = {},
+        snapValue = snap.val();
+      // console.log(snapValue);
 
-				// console.log(list);
-				array.push(list);
-				array.reverse();
-				list = {};
-			}
-			// console.log(array);
-			this.setState({list: array});
-			this.setState({loading: false});
-		});
+      for (var prop in snapValue) {
+        // console.log(snapValue[prop]);
+        list.id = prop;
+        list.dateAdded = snapValue[prop].dateAdded;
+        list.dateAddedSort = snapValue[prop].dateAddedSort;
+        list.folderID = snapValue[prop].folderID;
+        list.folderName = snapValue[prop].folderName;
+        list.name = snapValue[prop].name;
 
-	}
+        // console.log(list);
+        array.push(list);
+        array.reverse();
+        list = {};
+      }
+      // console.log(array);
+      this.setState({list: array});
+      this.setState({loading: false});
+    });
+  }
+  openPlayback = (e, n) => {
+    // console.log(e);
+    this.props.Change_TopBar_Title(n);
+    this.props.Set_Playback_Id(e);
+    this.props.history.push(`/playback`);
+  }
 
-	openPlayback = (e ,n) => {
-		// console.log(e);
-		this.props.Change_TopBar_Title(n);
-		this.props.Set_Playback_Id(e);
-		this.props.history.push(`/playback`);
-	}
+  render() {
+    //Properties
+    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)}><File width="140px" title={item.name}/></span>);
 
-	render() {
-		//Properties
-		let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)}><File width="140px" title={item.name}/></span>);
 
-		//Style
-		const Title = styled.p `
+    //Style
+    const Title = styled.p `
 margin-top: 5px;
 		 `;
-		const Container = styled.div `
+    const Container = styled.div `
 overflow-x: scroll;
 overflow-y: hidden;
 display: grid;
@@ -83,8 +87,10 @@ grid-column-gap: 10px;
 white-space: nowrap;
 height: 120px;
  `;
- const LoadingCon = styled.div `
-	display: ${props => this.state.loading ? 'block' : 'none'};
+    const LoadingCon = styled.div `
+	display: ${props => this.state.loading
+      ? 'block'
+      : 'none'};
 	 position: absolute;
 	 left: 0;
 	 right: 0;
@@ -92,24 +98,26 @@ height: 120px;
 	 margin: auto;
 	 width: 100%;
 	 height: 110px;
-	 ${'' /* background: rgba(0, 0, 0, 0.73); */}
+	 ${ ''/* background: rgba(0, 0, 0, 0.73); */}
 	 `;
-	  const Text = styled.p `
+    const Text = styled.p `
 text-align: center;
 	  `;
-		//Template
-		return (
-			<div style={{position: 'relative'}}>
-				<Title>Recent</Title>
-				<Container>
-					{list}
-				</Container>
-	 <LoadingCon>
-		  <Text>{this.state.loadingMessage}</Text>
-	 </LoadingCon>
-			</div>
-		);
-	}
+    //Template
+    return (
+      <div style={{
+        position: 'relative'
+      }}>
+        <Title>Recent</Title>
+        <Container>
+          {list}
+        </Container>
+        <LoadingCon>
+          <Text>{this.state.loadingMessage}</Text>
+        </LoadingCon>
+      </div>
+    );
+  }
 
 }
 
