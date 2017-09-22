@@ -225,7 +225,7 @@ cursor: pointer;
 const Wrapper = styled.div `
 	max-width: 600px;
 	margin: 0 auto;
-	padding: 10px;
+	${'' /* padding: 10px; */}
 
  `;
 const ItemViewContainer = styled.div `

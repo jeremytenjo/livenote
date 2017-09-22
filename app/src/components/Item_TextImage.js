@@ -57,8 +57,8 @@ class ItemTextImage extends React.Component {
 //Style
 const Wrapper = styled.div `
 cursor: pointer;
-
         `;
+        
 const ItemCon = styled.div `
 				background: white;
 				border-radius: 2px;
@@ -77,6 +77,7 @@ const ItemTime = styled.div `
 const ItemDescCon = styled.div `
 				margin-bottom: 10px;
 				height: 65px;
+            ${'' /* max-width: 100px; */}
 				 `;
 const ItemTitle = styled.p `
 				font-weight: bold;
@@ -101,6 +102,8 @@ right: 0;
 margin: auto;
 top: 0;
 bottom: 0;
+max-height: 100%;
+
 				 `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(ItemTextImage);
