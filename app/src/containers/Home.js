@@ -38,6 +38,9 @@ const Folder = Loadable({
 	loader: () => import ('./Folder.js'),
 	loading: () => null
 });
+
+
+
 class Home extends React.Component {
 
 	//initial state

@@ -44,8 +44,8 @@ class PlaybackOptions extends React.Component {
 		this.initPlayback(this.props.noteID);
 	}
 	componentWillUnmount() {
-		if (this.props.noteID !== '') {
-			let audioControl = this.state.audioControl;
+		if (this.props.noteID !== '' && this.state.audioControl) {
+      let audioControl = this.state.audioControl;
 			audioControl.pause();
 		}
 

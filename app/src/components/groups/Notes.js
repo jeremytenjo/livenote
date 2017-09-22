@@ -134,6 +134,7 @@ class Notes extends React.Component {
 		this.setState({renameInput: true});
 
 	}
+	
 	submitnewName = (e) => {
 		// console.log(this.inputRename.value);
 		e.preventDefault();
@@ -143,7 +144,7 @@ class Notes extends React.Component {
 
 		firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).update({name: this.inputRename.value});
 		// this.setState({title: ''});
-		this.props.Set_Snackbar_Name('File Renamed');
+		this.props.Set_Snackbar_Name('Note Renamed');
 		this.props.Hide_Snackbar();
 		this.props.Show_Snackbar();
 
