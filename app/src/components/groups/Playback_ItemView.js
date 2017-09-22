@@ -49,7 +49,7 @@ class RecItemView extends React.Component {
     this.getItems();
   }
   showPreview = (e) => {
-    console.log(e.currentTarget.dataset);
+    // console.log(e.currentTarget.dataset);
     this.props.NotePreview_Show();
     let data = {
       time: e.currentTarget.dataset.time,
@@ -69,7 +69,7 @@ class RecItemView extends React.Component {
     firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(this.props.id).once('value').then((snap) => {
     // firebase.database().ref('/users/' + userId + '/masterNotes/' + this.props.id).orderByValue().once('value').then((snap) => {
       let snapValue = snap.val();
-      console.log(snapValue);
+      // console.log(snapValue);
 
       for (var prop in snapValue) {
         // console.log(snapValue[prop]);

@@ -41,7 +41,7 @@ class ItemOnlyImage extends React.Component {
 							height: '100%',
 							marginTop: '-5px'
 	          }}>
-						<ItemImage src={this.state.image} alt="note image"/>
+						<ItemImage src={this.state.image} alt="Loading..."/>
 					</div>
 
 					</ItemDescCon>
