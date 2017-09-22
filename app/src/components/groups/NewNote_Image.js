@@ -126,7 +126,7 @@ top: 0;
 left: 0;
 grid-row-gap: 10px;
 @media (max-height: 500px) {
-    grid-template-rows: 30px 30px auto 200px 80px;
+    grid-template-rows: 30px 30px auto 100px 80px;
   }
 		   `;
 const Header = styled.h2 `

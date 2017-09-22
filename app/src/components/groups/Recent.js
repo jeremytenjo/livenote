@@ -81,26 +81,28 @@ class Recent extends React.Component {
           userId = firebase.auth().currentUser.uid;
 
         firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(item.id).once('value').then((snap) => {
-         
+
           let snapValue = snap.val();
           // console.log(snapValue);
 
           for (var prop in snapValue) {
             // console.log(snapValue[prop]);
             // console.log(snapValue[prop].imageUrl);
-
+console.log("HERE!")
             if (snapValue[prop].imageUrl !== "none") {
               return imageUrl = snapValue[prop].imageUrl;
+            } else {
+              return 'none'
             }
 
           }
 
         }).then((url) => {
-          // console.log(url);
+          console.log(url);
           localStorage.setItem("url", url);
         });
 
-        // console.log(localStorage.url);
+        console.log(localStorage.url);
         return <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
           cursor: 'pointer'
         }}><File width="140px" title={item.name} backImg={localStorage.url}/></span>
