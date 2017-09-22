@@ -70,8 +70,7 @@ const ItemTime = styled.div `
 const ItemDescCon = styled.div `
 				${ ''/* background: green; */}
 				margin-bottom: 10px;
-				height: 65px;
-				overflow-x: hidden;
+				overflow: hidden;
 		word-wrap: break-word;
 				 `;
 const ItemTitle = styled.p `

@@ -1,52 +1,70 @@
 import React from 'react';
 import styled from 'styled-components'
 import Piece from '../images/icons/NotePiece.svg';
-export default class File extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			width: this.props.width,
-			title: this.props.title
+class File extends React.Component {
 
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      width: this.props.width,
+      title: this.props.title
 
-	//Methods
+    }
+  }
 
-	render() {
-		//Properties
+  //Methods
 
-		//Style
-		const Wrapper = styled.div `
-	 height: 100px; 
-	 width: ${props => this.state.width};
-	 background: #F5F5F5;
-	 border-radius: 2px 0 2px 2px;
-	 cursor: pointer;
-	 position: relative;
-	 z-index: -1;
-	 `;
-		const Image = styled.img `
-		width: 20px;
-		position: absolute;
-		right: 0;
-    bottom: 0;
-    transform: rotate(810deg);
-	  `;
-		const Title = styled.p `
-	margin-left: 5px;
-color: black;
-		 `;
-		//Template
-		return (
-			<Wrapper>
-				<Image src={Piece} alt="piece"/>
-				<Title>{this.state.title}</Title>
-			</Wrapper>
+  render() {
+    //Properties
 
-		);
-	}
+    //Template
+    return (
+      <Wrapper width={this.state.width}>
+
+        <Image src={Piece} alt="piece"/>
+
+        <TitleCon>
+          <Title>{this.state.title}</Title>
+        </TitleCon>
+
+      </Wrapper>
+
+    );
+  }
 
 }
+
+//Style
+const Wrapper = styled.div `
+height: 100px;
+width: ${props => props.width};
+background: #F5F5F5;
+cursor: pointer;
+position: relative;
+z-index: -1;
+`;
+const Image = styled.img `
+width: 20px;
+position: absolute;
+right: 0;
+top: 0;
+`;
+const TitleCon = styled.div `
+background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 43%, rgba(0, 0, 0, 0.7) 100%);
+position: absolute;
+bottom: 0;
+height: 40px;
+width: 100%;
+ `;
+const Title = styled.p `
+margin: 0;
+margin-left: 5px;
+color: white;
+position: absolute;
+bottom: 10px;
+
+ `;
+
+export default File;
