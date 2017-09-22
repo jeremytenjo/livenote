@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Piece from '../images/icons/NotePiece.svg';
+import Sample from '../images/sample.jpg';
 
 class File extends React.Component {
 
@@ -44,6 +45,8 @@ background: #F5F5F5;
 cursor: pointer;
 position: relative;
 z-index: -1;
+background-image: url(${Sample});
+background-size: cover;
 `;
 const Image = styled.img `
 width: 20px;
