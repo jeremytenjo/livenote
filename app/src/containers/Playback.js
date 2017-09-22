@@ -34,15 +34,15 @@ class Playback extends React.Component {
   }
 
   handleTouchTap = (event) => {
-    // This prevents ghost click.
-    event.preventDefault();
+    if (this.state.open === false) {
+      this.setState({open: true});
 
-    this.setState({open: true, anchorEl: event.currentTarget});
+    } else {
+      this.setState({open: false});
+
+    }
   };
 
-  handleRequestClose = () => {
-    this.setState({open: false});
-  };
   close = () => {
     this.setState({open: false});
   };
@@ -80,12 +80,14 @@ class Playback extends React.Component {
 
 //Styles
 const PopupCon = styled.ul `
-	display: ${props => props.state === true ? 'block' : 'none'};
+	display: ${props => props.state === true
+  ? 'block'
+  : 'none'};
 background: white;
 color: black;
 position: fixed;
 top:30px;
-right: 20px;
+right: 13px;
 z-index: 2;
 padding: 0;
 border-radius: 2px;
@@ -96,6 +98,9 @@ li {
 	text-decoration: none;
 	list-style: none;
 cursor: pointer;
+&:hover {
+background-color: #E0E0E0;
+}
 }
  `;
 const OptionsIcon = styled.img `

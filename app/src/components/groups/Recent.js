@@ -11,7 +11,7 @@ import {Set_Playback_Id, Change_TopBar_Title} from '../../state/actions/index';
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_Playback_Id,
-    Change_TopBar_Title 
+    Change_TopBar_Title
   }, dispatch)
 }
 function mapStateToProps(state) {
@@ -71,7 +71,7 @@ class Recent extends React.Component {
 
   render() {
     //Properties
-    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)}><File width="140px" title={item.name}/></span>);
+    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{cursor:'pointer'}}><File width="140px" title={item.name}/></span>);
 
 
     //Style
