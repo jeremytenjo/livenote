@@ -104,7 +104,7 @@ class RecItemView extends React.Component {
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
             <ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>
           </ItemCon>
-          <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
+          <TimeCon data-timeSeconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.desc === '') {
@@ -113,7 +113,7 @@ class RecItemView extends React.Component {
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
             <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>
           </ItemCon>
-          <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
+          <TimeCon data-timeSeconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.imageUrl === 'none') {
@@ -122,7 +122,7 @@ class RecItemView extends React.Component {
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview}>
             <ItemOnlyText time={item.time} title={item.title} desc={item.desc}/>
           </ItemCon>
-          <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
+          <TimeCon data-timeSeconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       }
@@ -148,7 +148,7 @@ display: grid;
 grid-row-gap: 10px;
 `;
 const Item = styled.span `
-${ ''/* position: relative; */}
+position: relative;
     width: 100%;
  `;
 const TimeCon = styled.div `
