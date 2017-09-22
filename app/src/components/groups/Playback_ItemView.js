@@ -67,7 +67,7 @@ class RecItemView extends React.Component {
       userId = firebase.auth().currentUser.uid;
 
     firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(this.props.id).once('value').then((snap) => {
-    // firebase.database().ref('/users/' + userId + '/masterNotes/' + this.props.id).orderByValue().once('value').then((snap) => {
+      // firebase.database().ref('/users/' + userId + '/masterNotes/' + this.props.id).orderByValue().once('value').then((snap) => {
       let snapValue = snap.val();
       // console.log(snapValue);
 
@@ -101,27 +101,27 @@ class RecItemView extends React.Component {
       if (item.desc && item.imageUrl !== 'none') {
 
         list = <Item key={i}>
-          <span data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
+          <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
             <ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>
-          </span>
+          </ItemCon>
           <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.desc === '') {
 
         list = <Item key={i}>
-          <span data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
+          <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
             <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>
-          </span>
+          </ItemCon>
           <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.imageUrl === 'none') {
 
         list = <Item key={i}>
-          <span data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview}>
+          <ItemCon key={i} data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview}>
             <ItemOnlyText time={item.time} title={item.title} desc={item.desc}/>
-          </span>
+          </ItemCon>
           <TimeCon onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
@@ -140,13 +140,16 @@ class RecItemView extends React.Component {
 }
 
 //Style
+const ItemCon = styled.div `
+
+ `;
 const Wrapper = styled.div `
 display: grid;
 grid-row-gap: 10px;
 `;
 const Item = styled.span `
-position: relative;
-
+${ ''/* position: relative; */}
+    width: 100%;
  `;
 const TimeCon = styled.div `
 width: 70px;

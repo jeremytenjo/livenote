@@ -230,8 +230,8 @@ const Wrapper = styled.div `
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* margin-top: 50px; */}
-margin-bottom: 100px;
-overflow-x: hidden;
+margin-bottom: 110px;
+${'' /* overflow-x: hidden; */}
  `;
 
 const OptionsContainer = styled.div `

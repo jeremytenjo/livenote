@@ -58,7 +58,7 @@ class ItemTextImage extends React.Component {
 const Wrapper = styled.div `
 cursor: pointer;
         `;
-        
+
 const ItemCon = styled.div `
 				background: white;
 				border-radius: 2px;
