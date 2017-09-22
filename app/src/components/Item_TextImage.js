@@ -77,6 +77,8 @@ const ItemTime = styled.div `
 const ItemDescCon = styled.div `
 				margin-bottom: 10px;
 				height: 65px;
+        overflow-x: hidden;
+    word-wrap: break-word;
 				 `;
 const ItemTitle = styled.p `
 				font-weight: bold;

@@ -71,6 +71,8 @@ const ItemDescCon = styled.div `
 				${ ''/* background: green; */}
 				margin-bottom: 10px;
 				height: 65px;
+				overflow-x: hidden;
+		word-wrap: break-word;
 				 `;
 const ItemTitle = styled.p `
 				font-weight: bold;
