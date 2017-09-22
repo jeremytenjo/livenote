@@ -25,7 +25,8 @@ class Recent extends React.Component {
     this.state = {
       list: [],
       loading: true,
-      loadingMessage: 'Loading recent files...'
+      loadingMessage: 'Loading recent files...',
+      imageUrl: ''
     }
   }
 
@@ -62,6 +63,7 @@ class Recent extends React.Component {
       this.setState({loading: false});
     });
   }
+
   openPlayback = (e, n) => {
     // console.log(e);
     this.props.Change_TopBar_Title(n);
@@ -71,14 +73,45 @@ class Recent extends React.Component {
 
   render() {
     //Properties
-    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{cursor:'pointer'}}><File width="140px" title={item.name}/></span>);
+    let list = this.state.list.map((item, i) => {
+      //chec if there is an image
+      // console.log(item.id);
+      let imageUrl = ''
+        let data,
+          userId = firebase.auth().currentUser.uid;
 
+        firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(item.id).once('value').then((snap) => {
+         
+          let snapValue = snap.val();
+          // console.log(snapValue);
 
-    //Style
-    const Title = styled.p `
+          for (var prop in snapValue) {
+            // console.log(snapValue[prop]);
+            // console.log(snapValue[prop].imageUrl);
+
+            if (snapValue[prop].imageUrl !== "none") {
+              return imageUrl = snapValue[prop].imageUrl;
+            }
+
+          }
+
+        }).then((url) => {
+          // console.log(url);
+          localStorage.setItem("url", url);
+        });
+
+        // console.log(localStorage.url);
+        return <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
+          cursor: 'pointer'
+        }}><File width="140px" title={item.name} backImg={localStorage.url}/></span>
+
+      });
+
+      //Style
+      const Title = styled.p `
 margin-top: 5px;
 		 `;
-    const Container = styled.div `
+      const Container = styled.div `
 overflow-x: scroll;
 overflow-y: hidden;
 display: grid;
@@ -87,10 +120,10 @@ grid-column-gap: 10px;
 white-space: nowrap;
 height: 120px;
  `;
-    const LoadingCon = styled.div `
+      const LoadingCon = styled.div `
 	display: ${props => this.state.loading
-      ? 'block'
-      : 'none'};
+        ? 'block'
+        : 'none'};
 	 position: absolute;
 	 left: 0;
 	 right: 0;
@@ -100,25 +133,25 @@ height: 120px;
 	 height: 110px;
 	 ${ ''/* background: rgba(0, 0, 0, 0.73); */}
 	 `;
-    const Text = styled.p `
+      const Text = styled.p `
 text-align: center;
 	  `;
-    //Template
-    return (
-      <div style={{
-        position: 'relative'
-      }}>
-        <Title>Recent</Title>
-        <Container>
-          {list}
-        </Container>
-        <LoadingCon>
-          <Text>{this.state.loadingMessage}</Text>
-        </LoadingCon>
-      </div>
-    );
+      //Template
+      return (
+        <div style={{
+          position: 'relative'
+        }}>
+          <Title>Recent</Title>
+          <Container>
+            {list}
+          </Container>
+          <LoadingCon>
+            <Text>{this.state.loadingMessage}</Text>
+          </LoadingCon>
+        </div>
+      );
+    }
+
   }
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Recent));
+  export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Recent));
