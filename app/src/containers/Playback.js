@@ -134,8 +134,8 @@ class Playback extends React.Component {
     firebase.storage().ref(`audio/${this.props.projectId}`).delete();
     this.setState({open: false})
 
-    this.props.Set_Snackbar_Name('Note Deleted')
-		this.props.Hide_Snackbar();		
+    this.props.Set_Snackbar_Name('Note Removed')
+		this.props.Hide_Snackbar();
     this.props.Show_Snackbar()
     this.props.history.push(`/`)
 
@@ -154,7 +154,7 @@ class Playback extends React.Component {
 
         <PopupCon state={this.state.open}>
           <li onClick={this.rename}>Rename</li>
-          <li onClick={this.delete}>Delete</li>
+          <li onClick={this.delete}>Remove</li>
         </PopupCon>
 
         <DialogRename onSubmit={this.submitnewName} state={this.state.renameInput}>
@@ -215,7 +215,7 @@ background-color: #E0E0E0;
  `;
 const OptionsIcon = styled.img `
 width: 20px;
-position: absolute;
+position: fixed;
 z-index: 2;
 right: 5px;
 top: 11px;
