@@ -43,7 +43,7 @@ class File extends React.Component {
 const Wrapper = styled.div `
 height: 100px;
 width: ${props => props.width};
-background: #42EA9C;
+background: white;
 cursor: pointer;
 position: relative;
 z-index: -1;
