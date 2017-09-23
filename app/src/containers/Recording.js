@@ -7,18 +7,29 @@ import NewNote from '../components/groups/NewNote.js';
 import NewNoteImage from '../components/groups/NewNote_Image.js';
 import NotePreview from '../components/groups/NotePreview.js';
 import LoadingScreen from '../components/LoadingScreen.js';
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux';
 
+function mapStateToProps(state) {
+  return {title: state.TopBar_Title}
+}
 class Recording extends React.Component {
 
   //Methods
+  componentWillMount() {
+    if (this.props.title === 'Directory') {
+      this.props.history.push(`/`);
+    }
+  }
+
   componentWillUnmount() {
 
-		//remove refresh listner
+    //remove refresh listner
     window.onbeforeunload = function() {}
   }
   render() {
 
-		//add refresh listner
+    //add refresh listner
     window.onbeforeunload = function() {
       return "Refreshing will remove your active note";
     };
@@ -30,7 +41,7 @@ class Recording extends React.Component {
         <ItemViewContainer>
           <RecItemView/>
         </ItemViewContainer>
- 
+
         <OptionsContainer>
           <RecOptions/>
         </OptionsContainer>
@@ -71,4 +82,4 @@ right: 0;
 margin: auto;
 	 `;
 
-export default Recording;
+export default connect(mapStateToProps)(withRouter(Recording))
