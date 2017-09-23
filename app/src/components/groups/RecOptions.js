@@ -271,42 +271,37 @@ class RecOptions extends React.Component {
           });
 
         }).then(() => {
+	        //Wait until note finihes uploading
+           setTimeout(function(){ alert("Hello"); }, 3000);
 
-          //Wait until note finihes uploading
-          (function waiting() {
+	        //Reset Top Bar Title
+	        this.props.Change_TopBar_Title('Notes');
 
-            setTimeout(function() {
+	        //Reset Folder Selected
+	        this.props.FolderSelection_Name('SELECT FOLDER');
 
-              //Reset Top Bar Title
-              this.props.Change_TopBar_Title('Notes');
+	        //Reset Folder ID
+	        this.props.FolderSelection_ID('');
 
-              //Reset Folder Selected
-              this.props.FolderSelection_Name('SELECT FOLDER');
+	        //Reset Timer
+	        this.props.Start_Time(0);
 
-              //Reset Folder ID
-              this.props.FolderSelection_ID('');
+	        //reset notes
+	        this.props.Reset_Items();
 
-              //Reset Timer
-              this.props.Start_Time(0);
+	        //Remove loading screen
+	        this.props.Toggle_Loading_Scrren('false');
 
-              //reset notes
-              this.props.Reset_Items();
+	        //confimration aniamtion
+	        this.props.Set_Snackbar_Name('Note Added');
+	        this.props.Hide_Snackbar();
+	        this.props.Show_Snackbar();
 
-              //Remove loading screen
-              this.props.Toggle_Loading_Scrren('false');
+	        //redirect to Directory
+          this.props.history.push(`/`);
 
-              //confimration aniamtion
-              this.props.Set_Snackbar_Name('Note Added');
-              this.props.Hide_Snackbar();
-              this.props.Show_Snackbar();
 
-              //redirect to Directory
-              this.props.history.push(`/`);
-
-            }, 6000);
-          })()
-
-        });
+	      });
       })
     }
 
