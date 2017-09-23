@@ -206,7 +206,8 @@ class RecOptions extends React.Component {
 				folderID: folderID,
 				dateAddedSort: currentDateSort,
 				dateAdded: currentDateString,
-				transcript: this.state.transcript
+				transcript: this.state.transcript,
+				backImg: ''
 			}).then((snap) => {
 				const key = snap.key
 				this.setState({newMasterNoteKey: key})
@@ -229,7 +230,7 @@ class RecOptions extends React.Component {
 							mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
 								// console.log(snapshot.metadata.downloadURLs[0]);
 								//write to database
-								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/`).push({
+								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({
 									backImg: snapshot.metadata.downloadURLs[0],
 								});
 
