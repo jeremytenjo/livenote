@@ -271,35 +271,39 @@ class RecOptions extends React.Component {
           });
 
         }).then(() => {
-	        //Wait until note finihes uploading
+          
+          //Wait until note finihes uploading
+          setTimeout(function() {
 
-	        //Reset Top Bar Title
-	        this.props.Change_TopBar_Title('Notes');
+            //Reset Top Bar Title
+            this.props.Change_TopBar_Title('Notes');
 
-	        //Reset Folder Selected
-	        this.props.FolderSelection_Name('SELECT FOLDER');
+            //Reset Folder Selected
+            this.props.FolderSelection_Name('SELECT FOLDER');
 
-	        //Reset Folder ID
-	        this.props.FolderSelection_ID('');
+            //Reset Folder ID
+            this.props.FolderSelection_ID('');
 
-	        //Reset Timer
-	        this.props.Start_Time(0);
+            //Reset Timer
+            this.props.Start_Time(0);
 
-	        //reset notes
-	        this.props.Reset_Items();
+            //reset notes
+            this.props.Reset_Items();
 
-	        //Remove loading screen
-	        this.props.Toggle_Loading_Scrren('false');
+            //Remove loading screen
+            this.props.Toggle_Loading_Scrren('false');
 
-	        //confimration aniamtion
-	        this.props.Set_Snackbar_Name('Note Added');
-	        this.props.Hide_Snackbar();
-	        this.props.Show_Snackbar();
+            //confimration aniamtion
+            this.props.Set_Snackbar_Name('Note Added');
+            this.props.Hide_Snackbar();
+            this.props.Show_Snackbar();
 
-	        //redirect to Playback
-          this.props.history.push(`/`);
+            //redirect to Directory
+            this.props.history.push(`/`);
 
-	      });
+          }, 6000);
+
+        });
       })
     }
 
