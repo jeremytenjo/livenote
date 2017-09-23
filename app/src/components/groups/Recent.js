@@ -73,11 +73,39 @@ class Recent extends React.Component {
   }
 
   render() {
-
     //Properties
-    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
-      cursor: 'pointer'
-    }}><File width="140px" title={item.name} backImg={"none"}/></span>);
+    let list = this.state.list.map((item, i) => {
+
+      //chec if there is an image
+      // console.log(item.id);
+      let imageUrl = 'none';
+      let data,
+        userId = firebase.auth().currentUser.uid;
+
+      firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(item.id).once('value').then((snap) => {
+
+        let snapValue = snap.val();
+        // console.log(snapValue);
+
+        for (var prop in snapValue) {
+          // console.log(snapValue[prop]);
+          // console.log(snapValue[prop].imageUrl);
+
+          if (snapValue[prop].imageUrl !== "none") {
+            imageUrl = snapValue[prop].imageUrl
+          } else {}
+
+        }
+
+
+
+      });
+
+      //last return
+      return <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
+        cursor: 'pointer'
+      }}><File width="140px" title={item.name} backImg={imageUrl}/></span>
+    });
 
     //Template
     return (

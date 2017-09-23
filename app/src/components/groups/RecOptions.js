@@ -209,6 +209,7 @@ class RecOptions extends React.Component {
 				transcript: this.state.transcript
 			}).then((snap) => {
 				const key = snap.key
+				this.setState({newMasterNoteKey: key})
 
 				//upload audio file to firease
 				let blob = new Blob(this.state.recordedChunks, {'type': 'audio/ogg; codecs=opus'});
@@ -228,6 +229,10 @@ class RecOptions extends React.Component {
 							mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
 								// console.log(snapshot.metadata.downloadURLs[0]);
 								//write to database
+								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).push({
+									backImg: snapshot.metadata.downloadURLs[0],
+								});
+
 								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
 									masterNote_id: key,
 									name: this.props.noteName,

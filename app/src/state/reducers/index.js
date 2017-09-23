@@ -33,7 +33,6 @@ import FileLink_Name from './FileLink_Name.js';
 import OtionsMenu_ToggleFile from './OtionsMenu_ToggleFile.js';
 import AudioControl from './AudioControl.js';
 import LoadingScreen from './LoadingScreen.js';
-import SliderPos from './SliderPos.js';
 
 const Reducers = combineReducers({
 	FolderSelection,

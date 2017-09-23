@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 // import firebase from 'firebase';
 // import Menu_icon from '../images/icons/home.svg';
-import Search_icon from '../images/icons/search.svg';
+// import Search_icon from '../images/icons/search.svg';
 // import Options_icon from '../images/icons/OptionsWhite.svg';
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
@@ -126,11 +126,5 @@ outline: none;
 margin: 0;
 ${'' /* margin-left: 10px; */}
 `;
-const Icon = styled.img `
-	width: 20px;
-	cursor: pointer;
-	display: block;
-	margin: auto;
-	margin-top: 2px;
-`;
+ 
 export default connect(mapStateToProps)(withRouter(Home));

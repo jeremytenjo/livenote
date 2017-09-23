@@ -17,7 +17,7 @@ class Recording extends React.Component {
     window.onbeforeunload = function() {}
   }
   render() {
-		
+
 		//add refresh listner
     window.onbeforeunload = function() {
       return "Refreshing will remove your active note";
@@ -30,11 +30,7 @@ class Recording extends React.Component {
         <ItemViewContainer>
           <RecItemView/>
         </ItemViewContainer>
-
-        {/* <TimeBarContainer>
-					<RecTimteBar/>
-				</TimeBarContainer> */}
-
+ 
         <OptionsContainer>
           <RecOptions/>
         </OptionsContainer>
