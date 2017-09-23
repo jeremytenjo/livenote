@@ -77,8 +77,7 @@ class RecOptions extends React.Component {
       recordedChunks: [],
       transcript: '',
       newMasterNoteKey: '',
-      data: '',
-      flag: true
+      data: ''
     }
   }
 
@@ -234,13 +233,12 @@ class RecOptions extends React.Component {
 
               mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
                 // console.log(snapshot.metadata.downloadURLs[0]);
-                //write to database
 
-                if (flag === true) {
-                  firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
-									flag = false
-									alert('1')
-                }
+                //upload backround image if true
+                // if (flag === true) {
+                //   firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
+								// 	flag = false
+                // }
 
                 firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
                   masterNote_id: key,
