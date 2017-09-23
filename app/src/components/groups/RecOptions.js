@@ -224,6 +224,7 @@ class RecOptions extends React.Component {
         ref.put(blob).then((snapshot) => {
 
           //upload sub notes
+					let flag = true;
           this.state.data.map((d) => {
             //upload image
             let storageRef = firebase.storage().ref();
@@ -235,9 +236,9 @@ class RecOptions extends React.Component {
                 // console.log(snapshot.metadata.downloadURLs[0]);
                 //write to database
 
-                if (this.state.flag === true) {
+                if (flag === true) {
                   firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
-                  this.setState({flag: false})
+									flag = false
 									alert('1')
                 }
 
