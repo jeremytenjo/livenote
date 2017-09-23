@@ -270,6 +270,7 @@ class RecOptions extends React.Component {
 
         });
       }).then(() => {
+        //Wait until note finihes uploading
 
         //Reset Top Bar Title
         this.props.Change_TopBar_Title('Notes');
