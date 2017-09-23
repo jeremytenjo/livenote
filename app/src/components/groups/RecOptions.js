@@ -27,7 +27,8 @@ import {
   Set_Snackbar_Name,
   Set_MasterNote_id,
   FolderSelection_ID,
-  Toggle_Loading_Scrren
+  Toggle_Loading_Scrren,
+  Set_Playback_Id
 } from '../../state/actions/index';
 
 //Set global state to prop
@@ -62,7 +63,8 @@ function mapDispatchToProps(dispatch) {
     Set_Snackbar_Name,
     Set_MasterNote_id,
     FolderSelection_ID,
-    Toggle_Loading_Scrren
+    Toggle_Loading_Scrren,
+    Set_Playback_Id
   }, dispatch)
 }
 
@@ -294,8 +296,10 @@ class RecOptions extends React.Component {
 	        this.props.Hide_Snackbar();
 	        this.props.Show_Snackbar();
 
-	        //redirect to Directory
-	        this.props.history.push(`/`);
+	        //redirect to Playback
+          this.props.Change_TopBar_Title(this.props.noteName);
+          this.props.Set_Playback_Id(this.state.newMasterNoteKey);
+          this.props.history.push(`/playback`);
 
 	      });
       })
