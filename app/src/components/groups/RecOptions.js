@@ -231,7 +231,7 @@ class RecOptions extends React.Component {
               mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
                 // console.log(snapshot.metadata.downloadURLs[0]);
                 //write to database
-                if (this.state.flag) {
+                if (this.state.flag === true) {
                   firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
                   this.setState({flag: false})
                 }
