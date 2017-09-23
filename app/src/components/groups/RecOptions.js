@@ -207,7 +207,7 @@ class RecOptions extends React.Component {
 				dateAddedSort: currentDateSort,
 				dateAdded: currentDateString,
 				transcript: this.state.transcript,
-				backImg: ''
+				backImg: 'none'
 			}).then((snap) => {
 				const key = snap.key
 				this.setState({newMasterNoteKey: key})
