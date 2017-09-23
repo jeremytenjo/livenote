@@ -84,8 +84,8 @@ class RecOptions extends React.Component {
   //Methods
   componentWillMount() {
     navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => this.recControl(stream)).catch((err) => {
-			alert('Please enable your microphone to continue - error code: '+ err.name)
-			this.props.history.push(`/`);
+      alert('Please enable your microphone to continue - error code: ' + err.name)
+      this.props.history.push(`/`);
     });
 
     //Start Timer
@@ -223,7 +223,7 @@ class RecOptions extends React.Component {
         ref.put(blob).then((snapshot) => {
 
           //upload sub notes
-					let flag = true;
+          let flag = true;
           this.state.data.map((d) => {
             //upload image
             let storageRef = firebase.storage().ref();
@@ -237,7 +237,7 @@ class RecOptions extends React.Component {
                 //upload backround image if true
                 if (flag === true) {
                   firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
-									flag = false
+                  flag = false
                 }
 
                 firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
@@ -268,32 +268,35 @@ class RecOptions extends React.Component {
             return ''
           });
 
-          //Reset Top Bar Title
-          this.props.Change_TopBar_Title('Notes');
-
-          //Reset Folder Selected
-          this.props.FolderSelection_Name('SELECT FOLDER');
-
-          //Reset Folder ID
-          this.props.FolderSelection_ID('');
-
-          //Reset Timer
-          this.props.Start_Time(0);
-
-          //reset notes
-          this.props.Reset_Items();
-
-          //Remove loading screen
-          this.props.Toggle_Loading_Scrren('false');
-
-          //confimration aniamtion
-          this.props.Set_Snackbar_Name('Note Added');
-          this.props.Hide_Snackbar();
-          this.props.Show_Snackbar();
-
-          //redirect to Directory
-          this.props.history.push(`/`);
         });
+      }).then(() => {
+
+        //Reset Top Bar Title
+        this.props.Change_TopBar_Title('Notes');
+
+        //Reset Folder Selected
+        this.props.FolderSelection_Name('SELECT FOLDER');
+
+        //Reset Folder ID
+        this.props.FolderSelection_ID('');
+
+        //Reset Timer
+        this.props.Start_Time(0);
+
+        //reset notes
+        this.props.Reset_Items();
+
+        //Remove loading screen
+        this.props.Toggle_Loading_Scrren('false');
+
+        //confimration aniamtion
+        this.props.Set_Snackbar_Name('Note Added');
+        this.props.Hide_Snackbar();
+        this.props.Show_Snackbar();
+
+        //redirect to Directory
+        this.props.history.push(`/`);
+
       });
     }
 
