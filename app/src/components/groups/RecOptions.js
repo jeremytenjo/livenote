@@ -84,7 +84,10 @@ class RecOptions extends React.Component {
 
   //Methods
   componentWillMount() {
-    navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => this.recControl(stream));
+    navigator.mediaDevices.getUserMedia({audio: true, video: false}).then((stream) => this.recControl(stream)).catch((err) => {
+			alert('Please enable your microphone to continue - error code: '+ err.name)
+			this.props.history.push(`/`);
+    });
 
     //Start Timer
     let number = 0;
@@ -231,9 +234,11 @@ class RecOptions extends React.Component {
               mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
                 // console.log(snapshot.metadata.downloadURLs[0]);
                 //write to database
+
                 if (this.state.flag === true) {
                   firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
                   this.setState({flag: false})
+									alert('1')
                 }
 
                 firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
