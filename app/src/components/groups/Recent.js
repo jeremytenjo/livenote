@@ -47,6 +47,7 @@ class Recent extends React.Component {
       for (var prop in snapValue) {
         // console.log(snapValue[prop]);
         list.id = prop;
+        list.backImg = snapValue[prop].backImg;
         list.dateAdded = snapValue[prop].dateAdded;
         list.dateAddedSort = snapValue[prop].dateAddedSort;
         list.folderID = snapValue[prop].folderID;
@@ -74,13 +75,9 @@ class Recent extends React.Component {
 
   render() {
     //Properties
-    let list = this.state.list.map((item, i) => {
-      console.log(item);
-
-      return <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
-        cursor: 'pointer'
-      }}><File width="140px" title={item.name} backImg={"none"}/></span>
-    });
+    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
+      cursor: 'pointer'
+    }}><File width="140px" title={item.name} backImg={item.backImg}/></span>);
 
     //Template
     return (
