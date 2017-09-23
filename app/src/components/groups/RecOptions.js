@@ -297,9 +297,7 @@ class RecOptions extends React.Component {
 	        this.props.Show_Snackbar();
 
 	        //redirect to Playback
-          this.props.Change_TopBar_Title(this.props.noteName);
-          this.props.Set_Playback_Id(this.state.newMasterNoteKey);
-          this.props.history.push(`/playback`);
+          this.props.history.push(`/`);
 
 	      });
       })
