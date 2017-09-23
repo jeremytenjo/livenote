@@ -235,10 +235,10 @@ class RecOptions extends React.Component {
                 // console.log(snapshot.metadata.downloadURLs[0]);
 
                 //upload backround image if true
-                // if (flag === true) {
-                //   firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
-								// 	flag = false
-                // }
+                if (flag === true) {
+                  firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
+									flag = false
+                }
 
                 firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
                   masterNote_id: key,
