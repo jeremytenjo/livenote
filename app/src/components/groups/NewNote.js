@@ -79,7 +79,7 @@ class NewNote extends React.Component {
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
 					New Comment
 				</Top>
-				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle} autoFocus/>
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 				<ButtonCon>
 						<Button type="submit" color="#42EA9C" text="Add"/>

@@ -300,7 +300,7 @@ class RecOptions extends React.Component {
               //redirect to Directory
               this.props.history.push(`/`);
 
-            }, 6000);
+            }, 2000);
           })()
 
 
