@@ -296,13 +296,8 @@ class RecOptions extends React.Component {
           this.props.Hide_Snackbar();
           this.props.Show_Snackbar();
 
-          (function myFunction() {
-            setTimeout(function() {
-              //redirect to Directory
-              this.props.history.push(`/`);
-
-            }, 6000);
-          })()
+          //redirect to Directory
+          this.props.history.push(`/`);
 
         });
       })
