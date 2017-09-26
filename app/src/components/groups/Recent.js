@@ -39,7 +39,7 @@ class Recent extends React.Component {
     let userId = firebase.auth().currentUser.uid;
     let array = [];
 
-    return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('dateAddedSort').limitToLast(6).once('value').then((snap) => {
+    return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('dateAddedSort').limitToLast(5).once('value').then((snap) => {
       let list = {},
         snapValue = snap.val();
       // console.log(snapValue);
