@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components'
 import Loadable from 'react-loadable';
 import firebase from 'firebase';
+import CircularProgress from 'material-ui/CircularProgress';
 
 //State
-
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {NotePreview_Show, NotePreview_Set} from '../../state/actions/index';
@@ -40,7 +40,8 @@ class RecItemView extends React.Component {
     super(props)
     this.state = {
       items: 'initial',
-      list: []
+      list: [],
+      loading: true
     }
   }
 
@@ -86,6 +87,7 @@ class RecItemView extends React.Component {
         list = {};
       }
       this.setState({list: array});
+      this.setState({loading: false});
 
     });
   }
@@ -97,6 +99,7 @@ class RecItemView extends React.Component {
   render() {
     //Properties
     let list = this.state.list.map((item, i) => {
+
       // console.log(item);
       if (item.desc && item.imageUrl !== 'none') {
 
@@ -130,11 +133,12 @@ class RecItemView extends React.Component {
 
     });
     //Template
-    return (
-      <Wrapper id="ItemViewCon">
+    return (this.state.loading === true
+      ? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/>
+          Loading...</LoadingCon>
+      : <Wrapper id="ItemViewCon">
         {list}
-      </Wrapper>
-    );
+      </Wrapper>);
   }
 
 }
@@ -159,4 +163,15 @@ z-index: 2;
 bottom: 0;
 cursor: pointer;
  `;
+
+const LoadingCon = styled.div `
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   margin: auto;
+   width: 80px;
+   height: 80px;
+   `;
 export default connect(mapStateToProps, mapDispatchToProps)(RecItemView);
