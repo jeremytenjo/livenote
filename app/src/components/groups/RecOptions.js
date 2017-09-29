@@ -272,8 +272,6 @@ class RecOptions extends React.Component {
 
         }).then(() => {
           //Wait until note finihes uploading
-          setTimeout(function() {
-
             //Reset Top Bar Title
             this.props.Change_TopBar_Title('Notes');
 
@@ -299,7 +297,6 @@ class RecOptions extends React.Component {
 
             //redirect to Directory
             this.props.history.push(`/`);
-          }, 3000);
 
         });
       })
