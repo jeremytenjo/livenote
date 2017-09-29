@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 //State
 //import {bindActionCreators} from 'redux';
-//import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 //import {triggerAction} from '../state/actions/index';
 
 //define actions
@@ -15,7 +15,7 @@ class Transcript extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: 'initial'
+      text: props.text
     }
   }
 
@@ -26,8 +26,9 @@ class Transcript extends React.Component {
 
     //Template
     return (
-      <Wrapper>
-        Transcript
+      <Wrapper id="Transcript">
+        <Title>Transcript</Title>
+        <Text>{this.state.text}</Text>
       </Wrapper>
     );
   }
@@ -37,16 +38,30 @@ class Transcript extends React.Component {
 //Style
 const Wrapper = styled.div `
 background-color: white;
-width: 100%;
+width: 95%;
 height: auto;
 position: fixed;
 top: 45px;
-left: 0;
+left: 100%;
 right: 0;
 bottom: 120px;
 z-index: 2;
 max-width: 600px;
-margin: auto;
-        `;
-//export default connect(mapStateToProps, mapDispatchToProps)(Transcript);
-export default Transcript
+margin: 0 auto;
+border-radius: 2px;
+`;
+
+const Title = styled.h3 `
+text-align: center;
+margin-top: 5px;
+color: #0F2331;
+         `;
+const Text = styled.textarea `
+ color: #0F2331;
+padding: 10px;
+height: calc(100% - 69px);
+width: calc(100% - 22px);
+border-color: transparent;
+ `;
+// export default connect(mapStateToProps)(Transcript);
+export default Transcript;

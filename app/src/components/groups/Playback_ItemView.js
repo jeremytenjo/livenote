@@ -4,6 +4,7 @@ import Loadable from 'react-loadable';
 import firebase from 'firebase';
 import CircularProgress from 'material-ui/CircularProgress';
 import Transcript from './Transcript.js';
+import {TweenMax} from "gsap";
 
 //State
 import {bindActionCreators} from 'redux';
@@ -31,7 +32,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     NotePreview_Show,
-    NotePreview_Set
+    NotePreview_Set,
+
   }, dispatch)
 }
 class RecItemView extends React.Component {
@@ -42,13 +44,17 @@ class RecItemView extends React.Component {
     this.state = {
       items: 'initial',
       list: [],
-      loading: true
+      loading: true,
+      transcript: false,
+      transcriptText: 'transcriptText'
+
     }
   }
 
   //Methods
   componentWillMount() {
     this.getItems();
+
   }
   showPreview = (e) => {
     // console.log(e.currentTarget.dataset);
@@ -97,6 +103,23 @@ class RecItemView extends React.Component {
     let audioControl = this.props.audioControl;
     audioControl.currentTime = e
   }
+  toggleTranscript = () => {
+    let Transcript = document.getElementById("Transcript")
+
+    if (this.state.transcript === false) {
+      //show
+      TweenMax.to(Transcript, .2, {left: "0"});
+
+      this.setState({transcript: true})
+
+    } else {
+      //hide
+      TweenMax.to(Transcript, .2, {left: "100%"});
+
+      this.setState({transcript: false})
+
+    }
+  }
   render() {
     //Properties
     let list = this.state.list.map((item, i) => {
@@ -137,9 +160,12 @@ class RecItemView extends React.Component {
     return (this.state.loading === true
       ? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/>
           Loading...</LoadingCon>
-      : <div style={{position: 'relative'}}>
-        <Transcript/>
-        <Wrapper id="ItemViewCon">          
+      : <div style={{
+        position: 'relative'
+      }}>
+        <TransIcon onClick={this.toggleTranscript}>t</TransIcon>
+        <Transcript text={this.state.transcriptText}/>
+        <Wrapper id="ItemViewCon">
           {list}
         </Wrapper>
       </div>);
@@ -178,4 +204,15 @@ const LoadingCon = styled.div `
    width: 80px;
    height: 80px;
    `;
+const TransIcon = styled.p `
+   width: 20px;
+    font-style: oblique;
+        font-weight: bold;
+       font-size: 33px;
+       position: fixed;
+     top: -33px;
+       z-index: 2;
+       cursor: pointer;
+       right: 40px;
+    `;
 export default connect(mapStateToProps, mapDispatchToProps)(RecItemView);

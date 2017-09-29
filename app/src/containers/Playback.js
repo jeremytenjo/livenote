@@ -10,7 +10,13 @@ import Button from '../components/Button.js';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Hide_Snackbar, Show_Snackbar, Set_Snackbar_Name, Change_TopBar_Title, Toggle_OptinsMenuHideFile} from '../state/actions/index';
+import {
+  Hide_Snackbar,
+  Show_Snackbar,
+  Set_Snackbar_Name,
+  Change_TopBar_Title,
+  Toggle_OptinsMenuHideFile
+} from '../state/actions/index';
 import firebase from 'firebase';
 
 //define actions
@@ -139,6 +145,8 @@ class Playback extends React.Component {
     this.props.history.push(`/`)
 
   };
+
+
   render() {
     //Properties
     //Reactive Styles
@@ -181,7 +189,6 @@ class Playback extends React.Component {
         </OptionsContainer>
 
         <NotePreview/>
-        <TransIcon>t</TransIcon>
       </Wrapper>
     );
   }
@@ -189,16 +196,7 @@ class Playback extends React.Component {
 }
 
 //Styles
-const TransIcon = styled.p `
- font-style: oblique;
-     font-weight: bold;
-    font-size: 33px;
-    position: fixed;
-  top: -33px;
-    z-index: 2;
-    cursor: pointer;
-    right: 40px;
- `;
+
 const PopupCon = styled.ul `
 	display: ${props => props.state === true
   ? 'block'
