@@ -32,8 +32,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     NotePreview_Show,
-    NotePreview_Set,
-
+    NotePreview_Set
   }, dispatch)
 }
 class RecItemView extends React.Component {
@@ -46,7 +45,7 @@ class RecItemView extends React.Component {
       list: [],
       loading: true,
       transcript: false,
-      transcriptText: 'transcriptText'
+      transcriptText: ''
 
     }
   }
@@ -54,7 +53,6 @@ class RecItemView extends React.Component {
   //Methods
   componentWillMount() {
     this.getItems();
-
   }
   showPreview = (e) => {
     // console.log(e.currentTarget.dataset);
@@ -69,6 +67,12 @@ class RecItemView extends React.Component {
     this.props.NotePreview_Set(data);
   }
   getItems = () => {
+
+    //get current transcript
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + this.props.id).once('value').then((snap) => {
+      console.log(snap.val().transcript);
+      this.setState({transcriptText: snap.val().transcript});
+    });
 
     let list = {},
       array = [],

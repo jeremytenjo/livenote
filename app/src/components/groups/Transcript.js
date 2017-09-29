@@ -20,7 +20,9 @@ class Transcript extends React.Component {
   }
 
   //Methods
-
+  componentWillMount() {
+    console.log(this.state.text)
+}
   render() {
     //Properties
 
@@ -28,7 +30,7 @@ class Transcript extends React.Component {
     return (
       <Wrapper id="Transcript">
         <Title>Transcript</Title>
-        <Text>{this.state.text}</Text>
+        <Text defaultValue={this.state.text} />
       </Wrapper>
     );
   }
