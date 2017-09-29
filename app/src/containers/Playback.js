@@ -198,7 +198,6 @@ const TransIcon = styled.p `
     z-index: 2;
     cursor: pointer;
     right: 40px;
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
  `;
 const PopupCon = styled.ul `
 	display: ${props => props.state === true
