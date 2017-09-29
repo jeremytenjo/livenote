@@ -88,3 +88,175 @@
     at Object.onceWrapper (events.js:312:19)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2017-09-29T19:15:15.223Z] ----------------------------------------------------------------------
+[debug] [2017-09-29T19:15:15.224Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-09-29T19:15:15.225Z] CLI Version:   3.12.0
+[debug] [2017-09-29T19:15:15.225Z] Platform:      win32
+[debug] [2017-09-29T19:15:15.225Z] Node Version:  v8.4.0
+[debug] [2017-09-29T19:15:15.225Z] Time:          Fri Sep 29 2017 15:15:15 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:15.225Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-29T19:15:15.236Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-29T19:15:15.236Z] > authorizing via signed-in user
+[debug] [2017-09-29T19:15:15.237Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-09-29T19:15:15.238Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/rR-UsMxd4Ck48z9PWxqsHMxuoSCLxUQUGgFjGvQP2vBOj69mBxS3o_5VA3dlmTVx',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Sep 29 2017 15:15:15 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:15.481Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:15:15.507Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Fri Sep 29 2017 15:15:15 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:16.021Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:15:16.022Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/live-note-ce62c/tokens  
+ Fri Sep 29 2017 15:15:16 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:16.579Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'live-note-ce62c'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] +  database: rules ready to deploy.
+[debug] [2017-09-29T19:15:17.276Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-29T19:15:17.286Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Fri Sep 29 2017 15:15:17 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:17.287Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Fri Sep 29 2017 15:15:17 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:17.771Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-29T19:15:17.791Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-09-29T19:15:17.796Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/live-note-ce62c  
+ Fri Sep 29 2017 15:15:17 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:17.797Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/live-note-ce62c/apiKeys  
+ Fri Sep 29 2017 15:15:17 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:18.181Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:15:18.305Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-09-29T19:15:21.631Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/live-note-ce62c/configs  
+ Fri Sep 29 2017 15:15:21 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:15:22.072Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-09-29T19:15:22.642Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/live-note-ce62c/uploads/-KvE36Sj2leUtvlBIWqH?fileCount=11&message=  
+ Fri Sep 29 2017 15:15:22 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:16:33.211Z] <<< HTTP RESPONSE 502
+[debug] [2017-09-29T19:16:33.212Z] <<< HTTP RESPONSE BODY <html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+[debug] [2017-09-29T19:16:33.215Z] TypeError: Cannot create property 'error' on string '<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+'
+    at module.exports (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:11:16)
+    at Request._callback (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:43:25)
+    at Request.self.callback (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:186:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1163:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1085:12)
+    at Object.onceWrapper (events.js:314:30)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-09-29T19:17:41.890Z] ----------------------------------------------------------------------
+[debug] [2017-09-29T19:17:41.891Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-09-29T19:17:41.892Z] CLI Version:   3.12.0
+[debug] [2017-09-29T19:17:41.892Z] Platform:      win32
+[debug] [2017-09-29T19:17:41.892Z] Node Version:  v8.4.0
+[debug] [2017-09-29T19:17:41.892Z] Time:          Fri Sep 29 2017 15:17:41 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:41.892Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-29T19:17:41.902Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-29T19:17:41.902Z] > authorizing via signed-in user
+[debug] [2017-09-29T19:17:41.904Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Fri Sep 29 2017 15:17:41 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:42.324Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:17:42.326Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/live-note-ce62c/tokens  
+ Fri Sep 29 2017 15:17:42 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:42.771Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'live-note-ce62c'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] +  database: rules ready to deploy.
+[debug] [2017-09-29T19:17:43.511Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-29T19:17:43.519Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Fri Sep 29 2017 15:17:43 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:43.520Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Fri Sep 29 2017 15:17:43 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:44.647Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-29T19:17:44.720Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-09-29T19:17:44.733Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/live-note-ce62c  
+ Fri Sep 29 2017 15:17:44 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:44.735Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/live-note-ce62c/apiKeys  
+ Fri Sep 29 2017 15:17:44 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:45.073Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:17:45.102Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-09-29T19:17:47.898Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/live-note-ce62c/configs  
+ Fri Sep 29 2017 15:17:47 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:17:48.153Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-09-29T19:17:48.914Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/live-note-ce62c/uploads/-KvE3fHfS3igPhPoaSYl?fileCount=11&message=  
+ Fri Sep 29 2017 15:17:48 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:18:29.822Z] <<< HTTP RESPONSE 502
+[debug] [2017-09-29T19:18:29.823Z] <<< HTTP RESPONSE BODY <html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+[debug] [2017-09-29T19:18:29.824Z] TypeError: Cannot create property 'error' on string '<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+'
+    at module.exports (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:11:16)
+    at Request._callback (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:43:25)
+    at Request.self.callback (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:186:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1163:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1085:12)
+    at Object.onceWrapper (events.js:314:30)
+[error] 
+[error] Error: An unexpected error has occurred.

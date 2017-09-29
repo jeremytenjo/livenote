@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Loadable from 'react-loadable';
 import firebase from 'firebase';
 import CircularProgress from 'material-ui/CircularProgress';
+import Transcript from './Transcript.js';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -136,9 +137,12 @@ class RecItemView extends React.Component {
     return (this.state.loading === true
       ? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/>
           Loading...</LoadingCon>
-      : <Wrapper id="ItemViewCon">
-        {list}
-      </Wrapper>);
+      : <div style={{position: 'relative'}}>
+        <Transcript/>
+        <Wrapper id="ItemViewCon">          
+          {list}
+        </Wrapper>
+      </div>);
   }
 
 }
