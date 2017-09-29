@@ -1,0 +1,90 @@
+[debug] [2017-09-29T19:07:43.479Z] ----------------------------------------------------------------------
+[debug] [2017-09-29T19:07:43.486Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\je_re\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-09-29T19:07:43.486Z] CLI Version:   3.9.2
+[debug] [2017-09-29T19:07:43.486Z] Platform:      win32
+[debug] [2017-09-29T19:07:43.486Z] Node Version:  v8.0.0
+[debug] [2017-09-29T19:07:43.488Z] Time:          Fri Sep 29 2017 15:07:43 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:43.488Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-29T19:07:43.587Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-29T19:07:43.588Z] > authorizing via signed-in user
+[debug] [2017-09-29T19:07:43.592Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-09-29T19:07:43.593Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/lSAf294d_fwQ5Z4Pxo5NiceWBRqS79mv7XlBoUtN7HU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Sep 29 2017 15:07:43 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:43.885Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:07:43.932Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Fri Sep 29 2017 15:07:43 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:44.423Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:07:44.424Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/live-note-ce62c/tokens  
+ Fri Sep 29 2017 15:07:44 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:45.056Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'live-note-ce62c'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] +  database: rules ready to deploy.
+[debug] [2017-09-29T19:07:45.883Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-29T19:07:45.889Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Fri Sep 29 2017 15:07:45 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:45.890Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/live-note-ce62c?view=CONSUMER_VIEW  
+ Fri Sep 29 2017 15:07:45 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:46.480Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-09-29T19:07:46.547Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-29T19:07:46.549Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/live-note-ce62c  
+ Fri Sep 29 2017 15:07:46 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:46.550Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/live-note-ce62c/apiKeys  
+ Fri Sep 29 2017 15:07:46 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:07:46.950Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-29T19:07:46.956Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-09-29T19:08:07.880Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/live-note-ce62c/configs  
+ Fri Sep 29 2017 15:08:07 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:08:08.168Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-09-29T19:08:09.069Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/live-note-ce62c/uploads/-KvE1QHAKAF3hkp-jkU0?fileCount=11&message=  
+ Fri Sep 29 2017 15:08:09 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-09-29T19:08:09.448Z] <<< HTTP RESPONSE 502
+[debug] [2017-09-29T19:08:09.448Z] <<< HTTP RESPONSE BODY <html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+[debug] [2017-09-29T19:08:09.451Z] TypeError: Cannot create property 'error' on string '<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+'
+    at module.exports (C:\Users\je_re\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:11:16)
+    at Request._callback (C:\Users\je_re\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:39:25)
+    at Request.self.callback (C:\Users\je_re\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:188:22)
+    at emitTwo (events.js:125:13)
+    at Request.emit (events.js:213:7)
+    at Request.<anonymous> (C:\Users\je_re\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1171:10)
+    at emitOne (events.js:115:13)
+    at Request.emit (events.js:210:7)
+    at IncomingMessage.<anonymous> (C:\Users\je_re\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1091:12)
+    at Object.onceWrapper (events.js:312:19)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -128,7 +128,6 @@ class RecOptions extends React.Component {
 		//hadnle transcript
 		recognition.onresult = (e) => {
 			const transcript = Array.from(e.results).map((result) => result[0]).map((result) => result.transcript).join('')
-			console.log(transcript);
 
 			this.setState({transcript: transcript})
 		}
