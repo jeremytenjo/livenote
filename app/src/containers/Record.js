@@ -56,7 +56,6 @@ class Record extends React.Component {
   }
 
   showMenu = () => {
-
     //get folders from database
     let array = [];
 

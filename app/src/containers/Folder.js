@@ -21,6 +21,7 @@ import Rename_img from '../images/icons/rename.svg';
 import Remove_img from '../images/icons/rubbish-bin.svg';
 import Close_Icon from '../images/icons/close.svg';
 import Button from '../components/Button.js';
+import CircularProgress from 'material-ui/CircularProgress';
 
 //define actions to use
 function mapDispatchToProps(dispatch) {
@@ -48,7 +49,9 @@ class Folder extends React.Component {
 			alert: '',
 			renameInput: false,
 			open: false,
-			inputRename: ''
+			inputRename: '',
+			loading: true
+
 		}
 	}
 
@@ -89,6 +92,8 @@ class Folder extends React.Component {
 			}
 			// console.log(array);
 			this.setState({list: array});
+			this.setState({loading: false});
+			
 		});
 
 	}
@@ -294,6 +299,10 @@ class Folder extends React.Component {
 				`;
 		//Template
 		return (
+			this.state.loading === true
+	      ? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/>
+	          Loading...</LoadingCon>
+	      :
 			<div>
 				<Wrapper>
 					{list}
@@ -371,4 +380,15 @@ position: fixed;
 bottom: 20px;
 right: 0;
 `;
+
+const LoadingCon = styled.div `
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   margin: auto;
+   width: 80px;
+   height: 80px;
+   `;
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Folder));
