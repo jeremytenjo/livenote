@@ -131,9 +131,9 @@ class RecOptions extends React.Component {
 
 			this.setState({transcript: transcript})
 		}
-		recognition.onend = () => {
-			recognition.start();
-		}
+		// recognition.onend = () => {
+		// 	recognition.start();
+		// }
 
 		this.setState({theRecorder: recorder});
 		this.setState({theRecognition: recognition});

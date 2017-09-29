@@ -70,7 +70,6 @@ class RecItemView extends React.Component {
 
     //get current transcript
     firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + this.props.id).once('value').then((snap) => {
-      console.log(snap.val().transcript);
       this.setState({transcriptText: snap.val().transcript});
     });
 

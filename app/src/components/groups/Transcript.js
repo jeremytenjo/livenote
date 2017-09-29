@@ -20,16 +20,14 @@ class Transcript extends React.Component {
   }
 
   //Methods
-  componentWillMount() {
-    console.log(this.state.text)
-}
+ 
   render() {
     //Properties
 
     //Template
     return (
       <Wrapper id="Transcript">
-        <Title>Transcript</Title>
+        <Title title="Transcript">Transcript</Title>
         <Text defaultValue={this.state.text} />
       </Wrapper>
     );
