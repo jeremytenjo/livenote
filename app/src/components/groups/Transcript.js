@@ -42,8 +42,11 @@ height: auto;
 position: fixed;
 top: 45px;
 left: 0;
+right: 0;
 bottom: 120px;
 z-index: 2;
+max-width: 600px;
+margin: auto;
         `;
 //export default connect(mapStateToProps, mapDispatchToProps)(Transcript);
 export default Transcript

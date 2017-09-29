@@ -43,10 +43,10 @@ class Playback extends React.Component {
   //Methods
   componentWillMount() {
 
-		if (this.props.TopBar_Title === 'Directory') {
-			this.props.history.push(`/`)
+    if (this.props.TopBar_Title === 'Directory') {
+      this.props.history.push(`/`)
 
-		}
+    }
 
     this.props.Hide_Snackbar();
   }
@@ -88,8 +88,7 @@ class Playback extends React.Component {
     this.props.Change_TopBar_Title(this.inputRename.value);
     this.props.Set_Snackbar_Name('Note Renamed');
     this.props.Show_Snackbar();
-		this.props.Hide_Snackbar();
-
+    this.props.Hide_Snackbar();
 
   }
 
@@ -135,7 +134,7 @@ class Playback extends React.Component {
     this.setState({open: false})
 
     this.props.Set_Snackbar_Name('Note Removed')
-		this.props.Hide_Snackbar();
+    this.props.Hide_Snackbar();
     this.props.Show_Snackbar()
     this.props.history.push(`/`)
 
@@ -182,6 +181,7 @@ class Playback extends React.Component {
         </OptionsContainer>
 
         <NotePreview/>
+        <TransIcon>t</TransIcon>
       </Wrapper>
     );
   }
@@ -189,6 +189,17 @@ class Playback extends React.Component {
 }
 
 //Styles
+const TransIcon = styled.p `
+ font-style: oblique;
+     font-weight: bold;
+    font-size: 33px;
+    position: fixed;
+  top: -33px;
+    z-index: 2;
+    cursor: pointer;
+    right: 40px;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+ `;
 const PopupCon = styled.ul `
 	display: ${props => props.state === true
   ? 'block'
@@ -225,13 +236,13 @@ cursor: pointer;
 const Wrapper = styled.div `
 	max-width: 600px;
 	margin: 0 auto;
-	${'' /* padding: 10px; */}
+	${ ''/* padding: 10px; */}
 
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* margin-top: 50px; */}
 margin-bottom: 110px;
-${'' /* overflow-x: hidden; */}
+${ ''/* overflow-x: hidden; */}
  `;
 
 const OptionsContainer = styled.div `
