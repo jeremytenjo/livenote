@@ -209,7 +209,7 @@ class RecOptions extends React.Component {
 			}
 
 			//upload master note
-			alert(this.state.transcript);
+			// alert(this.state.transcript);
 			firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
 				name: this.props.noteName,
 				folderName: folderName,
