@@ -131,9 +131,9 @@ class RecOptions extends React.Component {
 
 			this.setState({transcript: transcript})
 		}
-		recognition.onend = () => {
-			recognition.start();
-		}
+		// recognition.onend = () => {
+		// 	recognition.start();
+		// }
 
 		this.setState({theRecorder: recorder});
 		this.setState({theRecognition: recognition});
@@ -209,7 +209,7 @@ class RecOptions extends React.Component {
 			}
 
 			//upload master note
-			console.log(this.state.transcript);
+			alert(this.state.transcript);
 			firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
 				name: this.props.noteName,
 				folderName: folderName,
