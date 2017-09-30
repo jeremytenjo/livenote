@@ -224,7 +224,7 @@ background-color: #E0E0E0;
 const OptionsIcon = styled.img `
 width: 20px;
 position: fixed;
-z-index: 2;
+z-index: 3;
 right: 5px;
 top: 11px;
 cursor: pointer;
