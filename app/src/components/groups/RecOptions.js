@@ -153,26 +153,7 @@ class RecOptions extends React.Component {
 
 			this.setState({data: this.props.data});
 			//stop recognition
-			this.state.theRecognition.stop();
-
-			//handle transcript
-			// let transcript = this.state.transcript;
-			// let partialTranscript = [];
-			// if (transcript) {
-			// 	for (var prop in transcript) {
-			// 		if (transcript.hasOwnProperty(prop)) {
-			// 			partialTranscript.push(transcript[prop][0].transcript);
-			// 		}
-			// 	}
-			// }
-			// let finalTranscript = partialTranscript.join(" ");
-			// this.setState({transcript: finalTranscript});
-			// console.log(this.state.transcript);
-
-			//Handle display
-			// this.props.Stop_Toggle(true);
-			// this.props.Play_Toggle(true);
-			// this.props.Pause_Toggle(false);
+			this.state.theRecognition.stop();		 
 
 			//Stop Timer
 			clearInterval(this.incrementer);
