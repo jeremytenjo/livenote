@@ -51,7 +51,7 @@ background-image: ${props => props.backImg === 'none'
   ? `url(${Sample})`
   : `url(${props.backImg})`};
 background-size: cover;
-
+ 
 `;
 const Image = styled.img `
 width: 20px;

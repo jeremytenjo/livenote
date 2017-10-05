@@ -137,7 +137,7 @@ margin-top: 15px;
 
 		//Template
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form onSubmit={this.handleSubmit} style={{marginBottom: '35px'}}>
 				<div style={WrapperStyle}>
 					{/* <div style={InputSubConStyle}>
 						<Label>Name</Label>

@@ -20,7 +20,7 @@ class Transcript extends React.Component {
   }
 
   //Methods
- 
+
   render() {
     //Properties
 
@@ -45,7 +45,7 @@ top: 45px;
 left: 100%;
 right: 0;
 bottom: 120px;
-z-index: 2;
+z-index: 3;
 max-width: 600px;
 margin: 0 auto;
 border-radius: 2px;

@@ -360,7 +360,6 @@ right: 15px;
 `;
 const FolderWrapper = styled.div `
 margin-top: 15px;
-
 display: grid;
 grid-template-columns: 1fr 1fr;
 grid-column-gap: 5px;
