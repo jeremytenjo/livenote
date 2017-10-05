@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Options_img from '../images/icons/Options.svg';
-import miniNote from '../images/icons/miniNote.svg';
+import iconDocument from '../images/icons/document.svg';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom'
 
@@ -62,15 +62,7 @@ class Folder_Link extends React.Component {
     return (
       <Wrapper >
         <Sub onClick={this.redirect}>
-          {/* <Img src={Folder_img} alt="foler icon"/> */}
-          <Svg src={miniNote}>
-            {/* <rect style={{
-              fill: '#0F2331',
-              width: '18px',
-              height: '18px'
-            }}/> */}
-
-          </Svg>
+          <Svg src={iconDocument}></Svg>
           <Title>{this.state.name}</Title>
         </Sub>
         <Img onClick={this.showOptions} src={Options_img} alt="options icon"/>
@@ -98,8 +90,7 @@ height: 18px;
 padding: 10px;
 `;
 const Svg = styled.img `
-margin-left: -3px;
-width: 35px;
+width: 21px;
 height: 18px;
 padding: 10px;
 border-radius: 12px;
