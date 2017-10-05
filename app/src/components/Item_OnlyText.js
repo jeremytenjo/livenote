@@ -86,7 +86,7 @@ const ItemDesc = styled.p `
 				margin-bottom: 5px;
 overflow: scroll;
 overflow-x: hidden;
-height: 100%;
+height: 65px;
 				  `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(ItemOnlyText);
