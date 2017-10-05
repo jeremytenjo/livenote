@@ -211,9 +211,9 @@ const TransIcon = styled.p `
    width: 20px;
     font-style: oblique;
         font-weight: bold;
-       font-size: 33px;
+       font-size: 28px;
        position: fixed;
-     top: -33px;
+     top: -25px;
        z-index: 2;
        cursor: pointer;
        right: 40px;
