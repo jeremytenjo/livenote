@@ -60,7 +60,8 @@ class NewNote_Image extends React.Component {
 		reader.addEventListener("load", () => {
 			preview.src = reader.result;
 		}, false);
-		// console.log(preview);
+
+		// console.log(preview.src);
 
 		item.image = preview.src;
 

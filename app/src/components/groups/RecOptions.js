@@ -7,6 +7,8 @@ import Stop_icon from '../../images/icons/Stop.svg';
 import Pause_icon from '../../images/icons/Pause.svg';
 import Play_icon from '../../images/icons/Play.svg';
 import firebase from 'firebase';
+import ImageCompressor from '@xkeshi/image-compressor';
+import dataURLtoBlob from 'dataurl-to-blob';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -153,7 +155,7 @@ class RecOptions extends React.Component {
 
 			this.setState({data: this.props.data});
 			//stop recognition
-			this.state.theRecognition.stop();		 
+			this.state.theRecognition.stop();
 
 			//Stop Timer
 			clearInterval(this.incrementer);
@@ -218,27 +220,45 @@ class RecOptions extends React.Component {
 						let mountainsRef = storageRef.child('images/' + key + d.title);
 
 						if (d.image !== '') {
+							// console.log(d.image);
 
-							mountainsRef.putString(d.image, 'data_url').then((snapshot) => {
-								// console.log(snapshot.metadata.downloadURLs[0]);
+							//compress image file
 
-								//upload backround image if true
-								if (flag === true) {
-									firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
-									flag = false
+							//comvert data utl tpo blob
+							let newBlob = dataURLtoBlob(d.image)
+							// console.log(newBlob);
+
+							//compress blob
+							new ImageCompressor(newBlob, {
+								quality: .6,
+								success(compressedImage) {
+									uploadCompressed(compressedImage)
 								}
-
-								firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-									masterNote_id: key,
-									name: this.props.noteName,
-									title: d.title,
-									comment: d.desc,
-									imageUrl: snapshot.metadata.downloadURLs[0],
-									time: d.time,
-									timeSeconds: d.timeSeconds
-								});
 							});
 
+							//upload compressed image
+							let uploadCompressed = (compressedImage) => {
+								// console.log(compressedImage);
+								mountainsRef.put(compressedImage).then((snapshot) => {
+									// console.log(snapshot.metadata.downloadURLs[0]);
+
+									//upload backround image if true
+									if (flag === true) {
+										firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
+										flag = false
+									}
+
+									firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+										masterNote_id: key,
+										name: this.props.noteName,
+										title: d.title,
+										comment: d.desc,
+										imageUrl: snapshot.metadata.downloadURLs[0],
+										time: d.time,
+										timeSeconds: d.timeSeconds
+									});
+								});
+							}
 						} else {
 
 							firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
