@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
-import File from '../File_link.js';
+import File from '../../global/File_link.js';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux';
-import {Set_Playback_Id, Change_TopBar_Title} from '../../state/actions/index';
+import {Set_Playback_Id, Change_TopBar_Title} from '../../../state/actions/index';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {

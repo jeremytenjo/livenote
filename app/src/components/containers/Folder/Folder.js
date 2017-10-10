@@ -3,7 +3,7 @@ import styled, {keyframes} from 'styled-components'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 // import File from '../components/File_link.js';
-import File from '../components/File_link_2.js';
+import File from '../../global/File_link_2.js';
 import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
 import {
@@ -15,12 +15,12 @@ import {
 	Toggle_OptinsMenuHideFile,
 	Set_Snackbar_Name,
 	Show_Snackbar
-} from '../state/actions/index';
-import FloatingButton from '../components/FloatButton.js';
-import Rename_img from '../images/icons/rename.svg';
-import Remove_img from '../images/icons/rubbish-bin.svg';
-import Close_Icon from '../images/icons/close.svg';
-import Button from '../components/Button.js';
+} from '../../../state/actions/index';
+import FloatingButton from '../../global/FloatButton.js';
+import Rename_img from '../../../images/icons/rename.svg';
+import Remove_img from '../../../images/icons/rubbish-bin.svg';
+import Close_Icon from '../../../images/icons/close.svg';
+import Button from '../../global/Button.js';
 import CircularProgress from 'material-ui/CircularProgress';
 
 //define actions to use
@@ -93,7 +93,7 @@ class Folder extends React.Component {
 			// console.log(array);
 			this.setState({list: array});
 			this.setState({loading: false});
-			
+
 		});
 
 	}

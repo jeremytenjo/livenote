@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import Options_img from '../images/icons/Options.svg';
-import iconDocument from '../images/icons/document.svg';
+import Options_img from '../../images/icons/Options.svg';
+import iconDocument from '../../images/icons/document.svg';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom'
 
@@ -16,7 +16,7 @@ import {
   Set_Playback_Id,
   Toggle_OptinsMenuShowFile,
   Change_TopBar_Title
-} from '../state/actions/index';
+} from '../../state/actions/index';
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({

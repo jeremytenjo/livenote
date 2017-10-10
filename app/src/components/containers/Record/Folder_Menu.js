@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
 // import Button from '../components/Button.js';
-import FolderLink from '../components/Folder_link_menu.js';
-// import FolderSubLink from '../components/Folder_Sublink_menu.js';
+import FolderLink from './Folder_link_menu.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderSelection, FolderSelection_Name, FolderSelection_ID} from '../state/actions/index';
+import {folderSelection, FolderSelection_Name, FolderSelection_ID} from '../../../state/actions/index';
 
 function mapStateToProps(state) {
 	return {status: state.FolderSelection, folders: state.FolderList}

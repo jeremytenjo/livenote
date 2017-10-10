@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import Pause_icon from '../../images/icons/Pause.svg';
-import Play_icon from '../../images/icons/PlayWhite.svg';
+import Pause_icon from '../../../images/icons/Pause.svg';
+import Play_icon from '../../../images/icons/PlayWhite.svg';
 import firebase from 'firebase';
 import Slider from 'material-ui/Slider';
 import {withRouter} from 'react-router-dom'
@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom'
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Set_Audio_Control} from '../../state/actions/index';
+import {Set_Audio_Control} from '../../../state/actions/index';
 
 //define actions
 function mapDispatchToProps(dispatch) {

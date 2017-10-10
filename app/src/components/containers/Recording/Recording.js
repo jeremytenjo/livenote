@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import RecItemView from '../components/groups/RecItemView.js';
-// import RecTimteBar from '../components/groups/RecTimteBar.js';
-import RecOptions from '../components/groups/RecOptions.js';
-import NewNote from '../components/groups/NewNote.js';
-import NewNoteImage from '../components/groups/NewNote_Image.js';
-import NotePreview from '../components/groups/NotePreview.js';
-import LoadingScreen from '../components/LoadingScreen.js';
+import RecItemView from './RecItemView.js';
+// import RecTimteBar from './RecTimteBar.js';
+import RecOptions from './RecOptions.js';
+import NewNote from './NewNote.js';
+import NewNoteImage from './NewNote_Image.js';
+import NotePreview from '../../global/NotePreview.js';
+import LoadingScreen from '../../global/LoadingScreen.js';
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 

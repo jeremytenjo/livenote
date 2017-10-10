@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 // import Name_img from '../images/icons/name.svg';
-import Password_img from '../images/icons/password.svg';
-import Mail_img from '../images/icons/mail.svg';
+import Password_img from '../../../images/icons/password.svg';
+import Mail_img from '../../../images/icons/mail.svg';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom';
 class RegForm extends React.Component {

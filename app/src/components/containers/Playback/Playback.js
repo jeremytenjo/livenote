@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
-import RecItemView from '../components/groups/Playback_ItemView.js';
-import OptionsWhite from '../images/icons/OptionsWhite.svg';
-import PlaybackOptions from '../components/groups/Playback_Options.js';
-import NotePreview from '../components/groups/NotePreview.js';
+import RecItemView from './Playback_ItemView.js';
+import OptionsWhite from '../../../images/icons/OptionsWhite.svg';
+import PlaybackOptions from './Playback_Options.js';
+import NotePreview from '../../global/NotePreview.js';
 import {withRouter} from 'react-router-dom'
-import Button from '../components/Button.js';
+import Button from '../../global/Button.js';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -16,7 +16,7 @@ import {
   Set_Snackbar_Name,
   Change_TopBar_Title,
   Toggle_OptinsMenuHideFile
-} from '../state/actions/index';
+} from '../../../state/actions/index';
 import firebase from 'firebase';
 
 //define actions

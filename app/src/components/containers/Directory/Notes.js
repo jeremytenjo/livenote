@@ -1,16 +1,16 @@
 import React from 'react';
 // import File from '../File_link.js';
-import File from '../File_link_2.js';
+import File from '../../global/File_link_2.js';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Set_Playback_Id, Toggle_OptinsMenuHideFile, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../state/actions/index';
+import {Set_Playback_Id, Toggle_OptinsMenuHideFile, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../../state/actions/index';
 import styled, {keyframes} from 'styled-components'
-import Rename_img from '../../images/icons/rename.svg';
-import Remove_img from '../../images/icons/rubbish-bin.svg';
-import Close_Icon from '../../images/icons/close.svg';
-import Button from '../Button.js';
+import Rename_img from '../../../images/icons/rename.svg';
+import Remove_img from '../../../images/icons/rubbish-bin.svg';
+import Close_Icon from '../../../images/icons/close.svg';
+import Button from '../../global/Button.js';
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
@@ -134,7 +134,7 @@ class Notes extends React.Component {
 		this.setState({renameInput: true});
 
 	}
-	
+
 	submitnewName = (e) => {
 		// console.log(this.inputRename.value);
 		e.preventDefault();

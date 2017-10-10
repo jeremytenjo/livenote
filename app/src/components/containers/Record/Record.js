@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
-import FolderMenu from '../components/Folder_Menu.js';
-import iconMic from '../images/icons/mic.svg';
+import FolderMenu from './Folder_Menu.js';
+import iconMic from '../../../images/icons/mic.svg';
 import firebase from 'firebase';
 //State
 import {bindActionCreators} from 'redux';
@@ -17,7 +17,7 @@ import {
   Folders_Set,
   Set_MasterNote_id,
   Hide_Snackbar
-} from '../state/actions/index';
+} from '../../../state/actions/index';
 
 function mapStateToProps(state) {
   return {name: state.FolderSelection_Name, noteName: state.Note_Name, FolderSelectionName: state.FolderSelection_Name}

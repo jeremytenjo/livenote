@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
-import Folder_img from '../images/icons/Folder.svg';
-import Options_img from '../images/icons/Options.svg';
+import Folder_img from '../../images/icons/Folder.svg';
+import Options_img from '../../images/icons/Options.svg';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import {Toggle_OptinsMenuShow, Set_Delete_Folder_ID, Set_Delete_Folder_Name, Set_Folder_Link_Id, Set_Folder_Link_Name} from '../state/actions/index';
+import {Toggle_OptinsMenuShow, Set_Delete_Folder_ID, Set_Delete_Folder_Name, Set_Folder_Link_Id, Set_Folder_Link_Name} from '../../state/actions/index';
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({

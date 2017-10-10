@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Piece from '../images/icons/NotePiece.svg';
+import Piece from '../../images/icons/NotePiece.svg';
 // import Sample from '../images/sample.jpg';
-import Sample from '../images/defaults/recentNote2.svg';
+import Sample from '../../images/defaults/recentNote2.svg';
 
 class File extends React.Component {
 
@@ -51,7 +51,7 @@ background-image: ${props => props.backImg === 'none'
   ? `url(${Sample})`
   : `url(${props.backImg})`};
 background-size: cover;
- 
+
 `;
 const Image = styled.img `
 width: 20px;

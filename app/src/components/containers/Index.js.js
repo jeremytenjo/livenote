@@ -1,9 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-// import firebase from 'firebase';
-// import Menu_icon from '../images/icons/home.svg';
-// import Search_icon from '../images/icons/search.svg';
-// import Options_icon from '../images/icons/OptionsWhite.svg';
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Snackbar from 'material-ui/Snackbar';
@@ -18,24 +14,24 @@ function mapStateToProps(state) {
 //define actions
 
 const Record = Loadable({
-	loader: () => import ('./Record.js'),
+	loader: () => import ('./Record/Record.js'),
 	loading: () => null
 });
 const Directory = Loadable({
-	loader: () => import ('./Directory.js'),
+	loader: () => import ('./Directory/Directory.js'),
 	loading: () => null
 });
 const Recording = Loadable({
-	loader: () => import ('./Recording.js'),
+	loader: () => import ('./Recording/Recording.js'),
 	loading: () => null
 });
 
 const Playback = Loadable({
-	loader: () => import ('./Playback.js'),
+	loader: () => import ('./Playback/Playback.js'),
 	loading: () => null
 });
 const Folder = Loadable({
-	loader: () => import ('./Folder.js'),
+	loader: () => import ('./Folder/Folder.js'),
 	loading: () => null
 });
 
@@ -126,5 +122,5 @@ outline: none;
 margin: 0;
 ${'' /* margin-left: 10px; */}
 `;
- 
+
 export default connect(mapStateToProps)(withRouter(Home));

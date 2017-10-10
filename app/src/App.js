@@ -7,15 +7,15 @@ import styled from 'styled-components'
 import CircularProgress from 'material-ui/CircularProgress';
 
 const Login = Loadable({
-	loader: () => import ('./containers/Login.js'),
+	loader: () => import ('./components/containers/Login/Login.js'),
 	loading: () => null
 });
 const Register = Loadable({
-	loader: () => import ('./containers/Register.js'),
+	loader: () => import ('./components/containers/Register/Register.js'),
 	loading: () => null
 });
 const Home = Loadable({
-	loader: () => import ('./containers/Home.js'),
+	loader: () => import ('./components/containers/Index.js'),
 	loading: () => null
 });
 

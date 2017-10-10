@@ -1,17 +1,17 @@
 import React from 'react';
 import styled, {keyframes} from 'styled-components'
-import Plus_img from '../../images/icons/plus.svg';
-import Rename_img from '../../images/icons/rename.svg';
-import Remove_img from '../../images/icons/rubbish-bin.svg';
-import FolderLink from '../Folder_link.js';
+import Plus_img from '../../../images/icons/plus.svg';
+import Rename_img from '../../../images/icons/rename.svg';
+import Remove_img from '../../../images/icons/rubbish-bin.svg';
+import FolderLink from '../../global/Folder_link.js';
 import firebase from 'firebase';
-import Button from '../Button.js';
-import Close_Icon from '../../images/icons/close.svg';
+import Button from '../../global/Button.js';
+import Close_Icon from '../../../images/icons/close.svg';
 
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../state/actions/index';
+import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../../state/actions/index';
 
 function mapStateToProps(state) {
   return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename}

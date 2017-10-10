@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
-import Note_icon from '../../images/icons/Note.svg';
-import Camera_icon from '../../images/icons/Camara.svg';
-import Stop_icon from '../../images/icons/Stop.svg';
-import Pause_icon from '../../images/icons/Pause.svg';
-import Play_icon from '../../images/icons/Play.svg';
+import Note_icon from '../../../images/icons/Note.svg';
+import Camera_icon from '../../../images/icons/Camara.svg';
+import Stop_icon from '../../../images/icons/Stop.svg';
+import Pause_icon from '../../../images/icons/Pause.svg';
+import Play_icon from '../../../images/icons/Play.svg';
 import firebase from 'firebase';
 import ImageCompressor from '@xkeshi/image-compressor';
 import dataURLtoBlob from 'dataurl-to-blob';
@@ -31,7 +31,7 @@ import {
 	FolderSelection_ID,
 	Toggle_Loading_Scrren,
 	Set_Playback_Id
-} from '../../state/actions/index';
+} from '../../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {

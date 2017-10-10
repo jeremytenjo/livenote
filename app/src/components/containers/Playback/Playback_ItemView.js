@@ -9,18 +9,18 @@ import {TweenMax} from "gsap";
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {NotePreview_Show, NotePreview_Set} from '../../state/actions/index';
+import {NotePreview_Show, NotePreview_Set} from '../../../state/actions/index';
 
 const ItemOnlyText = Loadable({
-  loader: () => import ('../Item_OnlyText.js'),
+  loader: () => import ('../../global/Item_OnlyText.js'),
   loading: () => null
 });
 const ItemOnlyImage = Loadable({
-  loader: () => import ('../Item_OnlyImage.js'),
+  loader: () => import ('../../global/Item_OnlyImage.js'),
   loading: () => null
 });
 const ItemTextImage = Loadable({
-  loader: () => import ('../Item_TextImage.js'),
+  loader: () => import ('../../global/Item_TextImage.js'),
   loading: () => null
 });
 

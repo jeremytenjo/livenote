@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
-import Logo_img from '../images/icons/Logo.png';
-import Facebook_img from '../images/icons/facebook.svg';
-import Google_img from '../images/icons/google.png';
-import Form from '../components/Form_Login.js';
+import Logo_img from '../../../images/icons/Logo.png';
+import Facebook_img from '../../../images/icons/facebook.svg';
+import Google_img from '../../../images/icons/google.png';
+import Form from './Form_Login.js';
 import firebase from 'firebase';
 import {Link, withRouter} from 'react-router-dom'
 
