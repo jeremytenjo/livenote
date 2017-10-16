@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import CircularProgress from 'material-ui/CircularProgress';
 import Transcript from './Transcript.js';
 import {TweenMax} from "gsap";
+import {withRouter} from 'react-router-dom'
 
 //State
 import {bindActionCreators} from 'redux';
@@ -46,13 +47,13 @@ class RecItemView extends React.Component {
       loading: true,
       transcript: false,
       transcriptText: ''
-
     }
   }
 
   //Methods
   componentWillMount() {
-    this.getItems();
+    let id = window.location.pathname.substr(10)
+    this.getItems(id);
   }
   showPreview = (e) => {
     // console.log(e.currentTarget.dataset);
@@ -66,18 +67,20 @@ class RecItemView extends React.Component {
     // console.log(data);
     this.props.NotePreview_Set(data);
   }
-  getItems = () => {
+  getItems = (id) => {
 
     //get current transcript
-    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + this.props.id).once('value').then((snap) => {
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + id).once('value').then((snap) => {
       this.setState({transcriptText: snap.val().transcript});
+    }).catch((err) => {
+      this.props.history.push(`/`);
     });
 
     let list = {},
       array = [],
       userId = firebase.auth().currentUser.uid;
 
-    firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(this.props.id).once('value').then((snap) => {
+    firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(id).once('value').then((snap) => {
       // firebase.database().ref('/users/' + userId + '/masterNotes/' + this.props.id).orderByValue().once('value').then((snap) => {
       let snapValue = snap.val();
       // console.log(snapValue);
@@ -134,7 +137,7 @@ class RecItemView extends React.Component {
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
             <ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>
           </ItemCon>
-          <TimeCon data-timeSeconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
+          <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.desc === '') {
@@ -143,7 +146,7 @@ class RecItemView extends React.Component {
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
             <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>
           </ItemCon>
-          <TimeCon data-timeSeconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
+          <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       } else if (item.imageUrl === 'none') {
@@ -152,7 +155,7 @@ class RecItemView extends React.Component {
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview}>
             <ItemOnlyText time={item.time} title={item.title} desc={item.desc}/>
           </ItemCon>
-          <TimeCon data-timeSeconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
+          <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
       }
@@ -218,4 +221,4 @@ const TransIcon = styled.p `
        cursor: pointer;
        right: 40px;
     `;
-export default connect(mapStateToProps, mapDispatchToProps)(RecItemView);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RecItemView));

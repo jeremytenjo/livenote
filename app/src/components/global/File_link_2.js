@@ -53,7 +53,7 @@ class Folder_Link extends React.Component {
     this.props.Set_File_Link_Id(this.state.id);
     this.props.Change_TopBar_Title(this.state.name);
     this.props.Set_Playback_Id(this.state.id);
-    this.props.history.push(`/playback`);
+    this.props.history.push(`/playback/${this.state.id}`);
   }
   render() {
     //Properties

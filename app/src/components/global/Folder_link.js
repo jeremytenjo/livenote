@@ -37,7 +37,7 @@ class Folder_Link extends React.Component {
 	redirect = () => {
 		this.props.Set_Folder_Link_Name(this.state.name);
 		this.props.Set_Folder_Link_Id(this.state.id);
-		this.props.history.push(`/folder`);
+		this.props.history.push(`/folder/${this.state.id}`);
 	}
 	render() {
 		//Properties

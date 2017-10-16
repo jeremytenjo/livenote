@@ -74,7 +74,9 @@ class Home extends React.Component {
 								<Route exact path='/record' component={Record}/>
 								<Route exact path='/recording' component={Recording}/>
 								<Route exact path='/playback' component={Playback}/>
+								<Route exact path='/playback/:id' component={Playback}/>
 								<Route exact path='/folder' component={Folder}/>
+								<Route exact path='/folder/:id' component={Folder}/>
 							</Switch>
 						</Content>
 					</BrowserRouter>

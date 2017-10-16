@@ -49,10 +49,9 @@ class Playback extends React.Component {
   //Methods
   componentWillMount() {
 
-    if (this.props.TopBar_Title === 'Directory') {
-      this.props.history.push(`/`)
-
-    }
+    // if (this.props.TopBar_Title === 'Directory') {
+    //   this.props.history.push(`/`)
+    // }
 
     this.props.Hide_Snackbar();
   }

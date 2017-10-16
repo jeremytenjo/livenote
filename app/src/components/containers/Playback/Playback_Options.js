@@ -41,7 +41,10 @@ class PlaybackOptions extends React.Component {
 
 	//Methods
 	componentWillMount() {
-		this.initPlayback(this.props.noteID);
+    let id = window.location.pathname.substr(10)
+
+		this.initPlayback(id);
+		// this.initPlayback(this.props.noteID);
 	}
 	componentWillUnmount() {
 		if (this.props.noteID !== '' && this.state.audioControl) {
@@ -54,6 +57,7 @@ class PlaybackOptions extends React.Component {
 	async initPlayback(id) {
 		if (id === '') {
 			this.props.history.push(`/`);
+
 		} else {
 			const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
 				let audioControl = new Audio([audioUrl]);

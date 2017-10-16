@@ -70,7 +70,7 @@ class Recent extends React.Component {
     // console.log(e);
     this.props.Change_TopBar_Title(n);
     this.props.Set_Playback_Id(e);
-    this.props.history.push(`/playback`);
+    this.props.history.push(`/playback/${e}`);
   }
 
   render() {
