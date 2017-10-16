@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 //Set global state to prop
 //define actions
 function mapStateToProps(state) {
-  return {status: state.LoadingScreen, title: state.Change_TopBar_Title}
+  return {status: state.LoadingScreen}
  }
 class LoadingScreen extends React.Component {
 
@@ -43,7 +43,6 @@ class LoadingScreen extends React.Component {
 				<InnerWrapper>
 				<LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/></LoadingCon>
 				<Title>{this.state.title}</Title>
-				<Title>{this.props.title}</Title>
 				</InnerWrapper>
 			</Wrapper>
 		);

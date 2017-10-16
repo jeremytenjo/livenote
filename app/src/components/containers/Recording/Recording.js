@@ -49,7 +49,7 @@ class Recording extends React.Component {
         <NewNote/>
         <NewNoteImage/>
         <NotePreview/>
-        <LoadingScreen title="Uploading Note..."/>
+        <LoadingScreen title={`Uploading ${this.props.title}`}/>
 
       </Wrapper>
     );
