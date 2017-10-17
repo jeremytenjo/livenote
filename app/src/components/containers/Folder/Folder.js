@@ -2,8 +2,9 @@ import React from 'react';
 import styled, {keyframes} from 'styled-components'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
-// import File from '../components/File_link.js';
 import File from '../../global/File_link_2.js';
+import BtnAudioInput from '../../global/BtnAudioInput.js';
+
 import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
 import {
@@ -312,6 +313,8 @@ class Folder extends React.Component {
       ? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/>
           Loading...</LoadingCon>
       : <div>
+        <BtnAudioInput location="folder"/>
+
         <Wrapper>
           {list}
         </Wrapper>
