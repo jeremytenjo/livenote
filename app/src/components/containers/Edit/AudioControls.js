@@ -121,21 +121,21 @@ class PlaybackOptions extends React.Component {
           <EndTime>{this.getMinutesFinal()}:{this.getSecondsFinal()}</EndTime>
         </TimeBar>
         <OptionsCon>
-        <OptionsConInner>
+          <OptionsConInner>
 
-          <Noteicon src={Note_icon}/>
+            <Noteicon src={Note_icon}/>
 
-          <PauseIcon onClick={this.pause} src={Pause_icon} pauseToggle={this.state.pauseToggle}/>
-          <PlayIcon onClick={this.resume} src={Play_icon} playToggle={this.state.playToggle}/>
+            <PauseIcon onClick={this.pause} src={Pause_icon} pauseToggle={this.state.pauseToggle}/>
+            <PlayIcon onClick={this.resume} src={Play_icon} playToggle={this.state.playToggle}/>
 
-          <CamaraIcon >
-            <label htmlFor="file-input">
-              <Icon src={Camera_icon}/>
-            </label>
-            <FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
-          </CamaraIcon>
+            <CamaraIcon >
+              <label htmlFor="file-input">
+                <Icon src={Camera_icon}/>
+              </label>
+              <FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
+            </CamaraIcon>
 
-        </OptionsConInner>
+          </OptionsConInner>
         </OptionsCon>
       </Wrapper>
     );
@@ -151,8 +151,7 @@ const PauseIcon = styled.img `
   ? 'block'
   : 'none'};
 			cursor: pointer;
-			${'' /* margin: 0 auto; */}
-			${'' /* margin-top: 50px; */}
+      margin-top: 5px;
 
 		`;
 const PlayIcon = styled.img `
@@ -161,8 +160,7 @@ const PlayIcon = styled.img `
   ? 'block'
   : 'none'};
 			cursor: pointer;
-			${'' /* margin: 0 auto; */}
-			${'' /* margin-top: 50px; */}
+      margin-top: 5px;
 
 		`;
 
@@ -191,7 +189,6 @@ grid-template-columns: 50px 40px 50px;
 grid-column-gap: 20px;
 margin-top: 20px;
  `;
-
 
 const StartTime = styled.p `
 position: absolute;
