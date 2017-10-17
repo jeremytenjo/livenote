@@ -128,4 +128,6 @@ export const Set_Playback_Id = (e) => {
 export const Toggle_Loading_Scrren = (e) => {
   return {type: 'LOADING_SCREEN_TOGGLE', data: e}
 }
- 
+export const Set_local_Note_Name = (e) => {
+  return {type: 'SET_LOCAL_NOTE_NAME', data: e}
+}

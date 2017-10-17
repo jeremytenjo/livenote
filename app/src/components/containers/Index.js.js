@@ -34,6 +34,10 @@ const Folder = Loadable({
 	loader: () => import ('./Folder/Folder.js'),
 	loading: () => null
 });
+const Edit = Loadable({
+	loader: () => import ('./Edit'),
+	loading: () => null
+});
 
 
 
@@ -47,7 +51,7 @@ class Home extends React.Component {
 		}
 	}
 
-	//Methods	 
+	//Methods
 	new = () => {
 		this.props.history.push(`/record`);
 	}
@@ -77,6 +81,7 @@ class Home extends React.Component {
 								<Route exact path='/playback/:id' component={Playback}/>
 								<Route exact path='/folder' component={Folder}/>
 								<Route exact path='/folder/:id' component={Folder}/>
+								<Route exact path='/edit/' component={Edit}/>
 							</Switch>
 						</Content>
 					</BrowserRouter>

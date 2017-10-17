@@ -103,6 +103,7 @@ export default class App extends Component {
 							<PrivateRoute authed={this.state.authed} exact path='/files' component={Home}/>
 							<PrivateRoute authed={this.state.authed} exact path='/folder' component={Home}/>
 							<PrivateRoute authed={this.state.authed} exact path='/folder/:id' component={Home}/>
+							<PrivateRoute authed={this.state.authed} exact path='/edit/' component={Home}/>
 							<PublicRoute authed={this.state.authed} path='/login' component={Login}/>
 							<PublicRoute authed={this.state.authed} path='/register' component={Register}/>
 							<Route render={() => <h3>No Match 404</h3>}/>

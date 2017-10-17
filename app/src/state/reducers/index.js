@@ -33,6 +33,7 @@ import FileLink_Name from './FileLink_Name.js'
 import OtionsMenu_ToggleFile from './OtionsMenu_ToggleFile.js'
 import AudioControl from './AudioControl.js'
 import LoadingScreen from './LoadingScreen.js'
+import LocalNoteName from './LocalNoteName.js'
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -69,6 +70,7 @@ const Reducers = combineReducers({
 	OtionsMenu_ToggleFile,
 	AudioControl,
 	LoadingScreen,
+	LocalNoteName,
 
 })
 
