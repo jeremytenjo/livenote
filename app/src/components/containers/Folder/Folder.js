@@ -65,20 +65,16 @@ class Folder extends React.Component {
   //Methods
   componentWillMount() {
     let id = window.location.pathname.substr(8)
-    // console.log(id);
-    this.fetchData(id)
+		firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/folders/' + id).once('value').then((snap) => {
+      let snapValue = snap.val();
+			this.props.Change_TopBar_Title(snapValue.name);
+			this.props.Hide_Snackbar();
+	    this.fetchData(id)
+    })
+
 
   }
   fetchData = (id) => {
-    // console.log(firebase.auth().currentUser.uid);
-
-    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/folders').equalTo(id).once('value').then((snap) => {
-      let snapValue = snap.val();
-      console.log(snapValue);
-    })
-		
-    this.props.Change_TopBar_Title(this.props.name);
-    this.props.Hide_Snackbar();
 
     if (this.props.id === '') {
       this.setState({alert: 'No Notes in this folder'});
