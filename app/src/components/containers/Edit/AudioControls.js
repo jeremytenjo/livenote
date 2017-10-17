@@ -41,20 +41,19 @@ class PlaybackOptions extends React.Component {
 
   //Methods
   componentWillMount() {
-    //get audio
     // console.log(this.state.audioSrc);
     this.initPlayback(this.state.audioSrc);
     // this.initPlayback(this.props.noteID);
   }
   componentWillUnmount() {
-    if (this.props.noteID !== '' && this.state.audioControl) {
+    if (this.state.audioControl) {
       let audioControl = this.state.audioControl;
       audioControl.pause();
     }
 
   }
 
-  async initPlayback(audioSrc) {
+  initPlayback = (audioSrc) => {
 
     let audioControl = new Audio([audioSrc]);
     // audioControl.play()
@@ -68,23 +67,15 @@ class PlaybackOptions extends React.Component {
     }
 
     audioControl.onloadedmetadata = (e) => {
-      if (audioControl.duration === Infinity) {
-        let self = this;
+      // console.log(audioControl.duration);
+      this.setState({max: audioControl.duration});
+    }
 
-        audioControl.currentTime = 1e101;
-        audioControl.ontimeupdate = function() {
-          this.ontimeupdate = () => {
-            self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
-            return;
-          }
-          audioControl.currentTime = 0.1;
-          // alert(audioControl.duration)
-          self.setState({max: audioControl.duration});
-
-        }
-      }
+    audioControl.ontimeupdate = (e) => {
+      this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
     }
   }
+
   handleSlider = (event, value) => {
     this.setState({sliderPos: value});
     let audioControl = this.state.audioControl;

@@ -33,12 +33,12 @@ class BtnAudioInput extends React.Component {
 
   //Methods
   audioSelected = (e) => {
-    let audio = document.querySelector('#audio-input');
     let target = e.currentTarget;
     let file = e.target.files[0]
-    let reader = new FileReader();
-    console.log(file.name);
-    this.setState({name: file.name});
+    // console.log(file.name);
+    this.setState({
+      name: file.name.slice(0, -4)
+    });
 
     if (target.files && file) {
       let reader = new FileReader();
