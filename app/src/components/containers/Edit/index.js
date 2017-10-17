@@ -54,13 +54,16 @@ const Wrapper = styled.div `
 
         `;
 const Save = styled.p `
-color: #69f0ae;
+color: lightgrey;
 position: fixed;
 top: 10px;
 right: 10px;
 z-index: 3;
 margin: 0;
 cursor: pointer;
+&:active  {
+  color: #69f0ae;
+}
  `;
 const OptionsContainer = styled.div `
         max-width: 600px;
