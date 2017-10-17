@@ -107,7 +107,7 @@ class BtnAudioInput extends React.Component {
                 <Button text="Cancel" color="#9E9E9E"/>
               </span>
               <span >
-                <Button type="submit" text="Create" color="#44F6A3"/>
+                <Button type="submit" text="Start" color="#44F6A3"/>
               </span>
             </ButtonCon>
           </InnerDialog>

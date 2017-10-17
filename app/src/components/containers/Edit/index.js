@@ -31,9 +31,7 @@ class Edit extends React.Component {
     }
     // console.log(this.props.audioSrc);
   }
-  saveNote = () => {
-
-  }
+  saveNote = () => {}
   render() {
     //Properties
 
@@ -66,7 +64,6 @@ cursor: pointer;
  `;
 const OptionsContainer = styled.div `
         max-width: 600px;
-        ${ ''/* border: 3px solid red; */}
          margin: 0 auto;
          padding: 0;
          position: fixed;
@@ -74,6 +71,6 @@ const OptionsContainer = styled.div `
          left: 0;
          right: 0;
          width: 100%;
-         height: 150px;
+         height: 130px;
         	 `;
 export default connect(mapStateToProps, null)(withRouter(Edit));

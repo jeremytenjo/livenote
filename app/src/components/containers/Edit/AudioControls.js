@@ -121,10 +121,12 @@ class PlaybackOptions extends React.Component {
           <EndTime>{this.getMinutesFinal()}:{this.getSecondsFinal()}</EndTime>
         </TimeBar>
         <OptionsCon>
-          <PauseIcon onClick={this.pause} src={Pause_icon} pauseToggle={this.state.pauseToggle}/>
-          <PlayIcon onClick={this.resume} src={Play_icon} playToggle={this.state.playToggle}/>
+        <OptionsConInner>
 
           <Noteicon src={Note_icon}/>
+
+          <PauseIcon onClick={this.pause} src={Pause_icon} pauseToggle={this.state.pauseToggle}/>
+          <PlayIcon onClick={this.resume} src={Play_icon} playToggle={this.state.playToggle}/>
 
           <CamaraIcon >
             <label htmlFor="file-input">
@@ -133,6 +135,7 @@ class PlaybackOptions extends React.Component {
             <FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
           </CamaraIcon>
 
+        </OptionsConInner>
         </OptionsCon>
       </Wrapper>
     );
@@ -143,29 +146,29 @@ class PlaybackOptions extends React.Component {
 //Style
 
 const PauseIcon = styled.img `
-		width: 35px;
+		width: 40px;
 		display: ${props => props.pauseToggle
   ? 'block'
   : 'none'};
 			cursor: pointer;
-			margin: 0 auto;
-			margin-top: 50px;
+			${'' /* margin: 0 auto; */}
+			${'' /* margin-top: 50px; */}
 
 		`;
 const PlayIcon = styled.img `
-		width: 35px;
+		width: 40px;
 		display: ${props => props.playToggle
   ? 'block'
   : 'none'};
 			cursor: pointer;
-			margin: 0 auto;
-			margin-top: 50px;
+			${'' /* margin: 0 auto; */}
+			${'' /* margin-top: 50px; */}
 
 		`;
 
 const Wrapper = styled.div `
 	display: grid;
-	grid-template-rows: 50px 70px;
+	grid-template-rows: 50px 100px;
 	background: #0F2331;
 `;
 const TimeBar = styled.div `
@@ -175,10 +178,21 @@ position: relative;
 const SliderCon = styled.div `
    ${ ''/* background: green; */}
   `;
+
 const OptionsCon = styled.div `
-position: relative;
+width: 100%;
 
  `;
+const OptionsConInner = styled.div `
+width: 180px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 50px 40px 50px;
+grid-column-gap: 20px;
+margin-top: 20px;
+ `;
+
+
 const StartTime = styled.p `
 position: absolute;
 left: 0;
@@ -199,15 +213,9 @@ right: 10px
  `;
 
 const CamaraIcon = styled.div `
-position: fixed;
-bottom: 10px;
-right: 10px;
 width: 50px;
   `;
 const Noteicon = styled.img `
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
   width: 50px;
   `;
 const Icon = styled.img `
