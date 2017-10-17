@@ -31,13 +31,16 @@ class Edit extends React.Component {
     }
     // console.log(this.props.audioSrc);
   }
+  saveNote = () => {
+
+  }
   render() {
     //Properties
 
     //Template
     return (
       <Wrapper>
-
+        <Save onClick={this.saveNote}>Save</Save>
         <OptionsContainer>
           <AudioControls audioSrc={this.props.audioSrc}/>
         </OptionsContainer>
@@ -52,6 +55,15 @@ class Edit extends React.Component {
 const Wrapper = styled.div `
 
         `;
+const Save = styled.p `
+color: #69f0ae;
+position: fixed;
+top: 10px;
+right: 10px;
+z-index: 3;
+margin: 0;
+cursor: pointer;
+ `;
 const OptionsContainer = styled.div `
         max-width: 600px;
         ${ ''/* border: 3px solid red; */}
@@ -62,6 +74,6 @@ const OptionsContainer = styled.div `
          left: 0;
          right: 0;
          width: 100%;
-         height: 120px;
+         height: 150px;
         	 `;
 export default connect(mapStateToProps, null)(withRouter(Edit));

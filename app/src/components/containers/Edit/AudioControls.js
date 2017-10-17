@@ -4,6 +4,8 @@ import Pause_icon from '../../../images/icons/Pause.svg';
 import Play_icon from '../../../images/icons/PlayWhite.svg';
 import Slider from 'material-ui/Slider';
 import {withRouter} from 'react-router-dom'
+import Note_icon from '../../../images/icons/Note.svg';
+import Camera_icon from '../../../images/icons/Camara.svg';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -121,6 +123,16 @@ class PlaybackOptions extends React.Component {
         <OptionsCon>
           <PauseIcon onClick={this.pause} src={Pause_icon} pauseToggle={this.state.pauseToggle}/>
           <PlayIcon onClick={this.resume} src={Play_icon} playToggle={this.state.playToggle}/>
+
+          <Noteicon src={Note_icon}/>
+
+          <CamaraIcon >
+            <label htmlFor="file-input">
+              <Icon src={Camera_icon}/>
+            </label>
+            <FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
+          </CamaraIcon>
+
         </OptionsCon>
       </Wrapper>
     );
@@ -137,7 +149,7 @@ const PauseIcon = styled.img `
   : 'none'};
 			cursor: pointer;
 			margin: 0 auto;
-			margin-top: 15px;
+			margin-top: 50px;
 
 		`;
 const PlayIcon = styled.img `
@@ -147,7 +159,7 @@ const PlayIcon = styled.img `
   : 'none'};
 			cursor: pointer;
 			margin: 0 auto;
-			margin-top: 15px;
+			margin-top: 50px;
 
 		`;
 
@@ -164,6 +176,7 @@ const SliderCon = styled.div `
    ${ ''/* background: green; */}
   `;
 const OptionsCon = styled.div `
+position: relative;
 
  `;
 const StartTime = styled.p `
@@ -184,4 +197,23 @@ font-size: 14px;
 margin: 0;
 right: 10px
  `;
+
+const CamaraIcon = styled.div `
+position: fixed;
+bottom: 10px;
+right: 10px;
+width: 50px;
+  `;
+const Noteicon = styled.img `
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 50px;
+  `;
+const Icon = styled.img `
+
+   `;
+const FileInput = styled.input `
+  display: none;
+  	  `;
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlaybackOptions));
