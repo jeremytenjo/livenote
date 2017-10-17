@@ -7,13 +7,14 @@ import {withRouter} from 'react-router-dom'
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Set_local_Note_Name, Change_TopBar_Title} from '../../state/actions/index';
+import {Set_local_Note_Name, Change_TopBar_Title, Set_Audio_Src} from '../../state/actions/index';
 
 //define actions
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_local_Note_Name,
-    Change_TopBar_Title
+    Change_TopBar_Title,
+    Set_Audio_Src
   }, dispatch)
 }
 //Set global state to prop
@@ -32,19 +33,28 @@ class BtnAudioInput extends React.Component {
 
   //Methods
   audioSelected = (e) => {
-    var audio = document.querySelector('#audio-input');
-    var file = e.target.files[0]
-    var reader = new FileReader();
-    reader.onload = () => {
-      audio.src = reader.result;
-      this.setState({open: true});
-    }
+    let audio = document.querySelector('#audio-input');
+    let target = e.currentTarget;
+    let file = e.target.files[0]
+    let reader = new FileReader();
+    console.log(file.name);
+    this.setState({name: file.name});
 
-    if (file) {
+    if (target.files && file) {
+      let reader = new FileReader();
+
+      reader.onload = (e) => {
+        // console.log(e.target.result);
+        this.props.Set_Audio_Src(e.target.result)
+        this.setState({open: true});
+
+        // audio.attr('src', e.target.result);
+        // audio.play();
+      }
       reader.readAsDataURL(file);
     }
 
-    if (this.state.location === 'directory') {} else if (this.state.location === 'folder') {}
+    // if (this.state.location === 'directory') {} else if (this.state.location === 'folder') {}
   }
 
   submit = (e) => {
@@ -90,7 +100,7 @@ class BtnAudioInput extends React.Component {
         <Dialog onSubmit={this.submit} open={this.state.open}>
           <InnerDialog>
             <SubTitle>Name Note</SubTitle>
-            <input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." onChange={this.handleChange}/>
+            <input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." onChange={this.handleChange} value={this.state.name}/>
 
             <ButtonCon>
               <span onClick={this.cancel}>

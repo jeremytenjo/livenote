@@ -131,3 +131,6 @@ export const Toggle_Loading_Scrren = (e) => {
 export const Set_local_Note_Name = (e) => {
   return {type: 'SET_LOCAL_NOTE_NAME', data: e}
 }
+export const Set_Audio_Src = (e) => {
+  return {type: 'SET_AUDIO_SRC', data: e}
+}
