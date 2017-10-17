@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
 import AudioControls from './AudioControls';
+import ItemView from './ItemView';
+import NewNote_Image from './NewNote_Image';
+import NewNote from './NewNote';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -38,6 +41,11 @@ class Edit extends React.Component {
     //Template
     return (
       <Wrapper>
+
+        <ItemViewContainer>
+          <ItemView/>
+        </ItemViewContainer>
+
         <Save onClick={this.saveNote}>Save</Save>
         <OptionsContainer>
           <AudioControls audioSrc={this.props.audioSrc}/>
@@ -76,4 +84,8 @@ const OptionsContainer = styled.div `
          width: 100%;
          height: 130px;
         	 `;
+const ItemViewContainer = styled.div `
+           margin-bottom: 105px;
+           overflow-x: hidden;
+            `;
 export default connect(mapStateToProps, null)(withRouter(Edit));

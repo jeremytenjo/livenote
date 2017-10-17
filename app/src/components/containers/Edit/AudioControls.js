@@ -96,6 +96,12 @@ class PlaybackOptions extends React.Component {
     let audioControl = this.state.audioControl;
     audioControl.pause()
   }
+  
+  showNote = () => {
+    //set current time
+    this.props.Set_Current_Time(this.props.recTime);
+    this.props.Toggle_NewNote('show');
+  }
   getMinutes = () => Math.floor(this.state.sliderPos / 60);
 
   getSeconds = () => ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2);
@@ -123,7 +129,7 @@ class PlaybackOptions extends React.Component {
         <OptionsCon>
           <OptionsConInner>
 
-            <Noteicon src={Note_icon}/>
+            <Noteicon src={Note_icon} onClick={this.showNote}/>
 
             <PauseIcon onClick={this.pause} src={Pause_icon} pauseToggle={this.state.pauseToggle}/>
             <PlayIcon onClick={this.resume} src={Play_icon} playToggle={this.state.playToggle}/>
