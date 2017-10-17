@@ -4,6 +4,7 @@ import Recent from './Recent.js';
 import Folders from './Folders.js';
 import Notes from './Notes.js';
 import FloatingButton from '../../global/FloatButton.js';
+import uploadIcon from '../../../images/icons/upload.svg';
 import {withRouter} from 'react-router-dom'
 // import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
@@ -36,9 +37,9 @@ class Directory extends React.Component {
   componentWillMount() {
 
     //check if features are available
-		if (window.MediaRecorder === null) {
-			alert('Sorry, Audio recording and Voice recognition are not supported on your device')
-		}
+    if (window.MediaRecorder === null) {
+      alert('Sorry, Audio recording and Voice recognition are not supported in your device')
+    }
 
     this.props.Change_TopBar_Title('Directory');
     this.props.folderSelection(false);
@@ -46,7 +47,6 @@ class Directory extends React.Component {
   openRecord = () => {
     this.props.history.push(`/record`);
   }
-
 
   render() {
     //Properties
@@ -60,6 +60,12 @@ right: 0;
     //Template
     return (
       <div>
+        <ImgCon>
+          <label htmlFor="file-input">
+            <UploadIcon src={uploadIcon} alt="upload icon"/>
+          </label>
+          <input id="file-input" type="file"/>
+        </ImgCon>
         <Recent/>
         <Folders/>
         <Notes/>
@@ -71,4 +77,19 @@ right: 0;
   }
 
 }
+
+const ImgCon = styled.div `
+ width: 20px;
+     position: fixed;
+     z-index: 3;
+     right: 15px;
+     top: 11px;
+     cursor: pointer;
+     > input {
+       display: none;
+     }
+ `;
+const UploadIcon = styled.img `
+ width: 20px;
+ `;
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Directory));

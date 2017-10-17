@@ -47,7 +47,7 @@ class Home extends React.Component {
 		}
 	}
 
-	//Methods
+	//Methods	 
 	new = () => {
 		this.props.history.push(`/record`);
 	}
