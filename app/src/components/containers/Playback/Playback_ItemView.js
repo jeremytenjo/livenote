@@ -10,7 +10,7 @@ import {withRouter} from 'react-router-dom'
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {NotePreview_Show, NotePreview_Set} from '../../../state/actions/index';
+import {NotePreview_Show, NotePreview_Set, Change_TopBar_Title} from '../../../state/actions/index';
 
 const ItemOnlyText = Loadable({
   loader: () => import ('../../global/Item_OnlyText.js'),
@@ -33,7 +33,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     NotePreview_Show,
-    NotePreview_Set
+    NotePreview_Set, Change_TopBar_Title
   }, dispatch)
 }
 class RecItemView extends React.Component {
@@ -71,6 +71,7 @@ class RecItemView extends React.Component {
 
     //get current transcript
     firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + id).once('value').then((snap) => {
+      this.props.Change_TopBar_Title(snap.val().name);
       this.setState({transcriptText: snap.val().transcript});
     }).catch((err) => {
       this.props.history.push(`/`);
