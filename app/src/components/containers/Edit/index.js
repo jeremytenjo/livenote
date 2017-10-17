@@ -56,7 +56,7 @@ const Wrapper = styled.div `
 const Save = styled.p `
 color: lightgrey;
 position: fixed;
-top: 10px;
+top: 15px;
 right: 10px;
 z-index: 3;
 margin: 0;
