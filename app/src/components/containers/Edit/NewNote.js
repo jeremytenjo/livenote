@@ -105,6 +105,9 @@ padding-top: 10px;
 top: 0;
 left: 0;
 z-index: 3;
+@media (max-height: 382px) {
+height: 100%;
+ }
 		   `;
 const CloseIcon = styled.img `
 width: 17px;
