@@ -45,7 +45,6 @@ class NewNote extends React.Component {
 
 		//Create new object
 		let item = {};
-
 		let getMinutes = Math.floor(this.props.time / 60);
 		let getSeconds = ('0' + this.props.time % 60).slice(-2);
 		let time = getMinutes + ':' + getSeconds;
@@ -99,7 +98,7 @@ display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
 grid-template-rows: 30px 50px 1fr 80px;
-height: 100%;
+height: calc(100% - 130px);
 width: 100%;
 color: #212121;
 padding-top: 10px;

@@ -30,7 +30,7 @@ class Edit extends React.Component {
   //Methods
   componentWillMount() {
     //redirect if nothing added
-    if (this.props.TopBar_Title === 'Note') {
+    if (this.props.audioSrc === '') {
       // this.props.history.push(`/`);
     }
     // console.log(this.props.audioSrc);

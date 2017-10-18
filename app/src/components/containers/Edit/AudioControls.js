@@ -10,17 +10,18 @@ import Camera_icon from '../../../images/icons/Camara.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Set_Audio_Control} from '../../../state/actions/index';
+import {Set_Audio_Control, Set_Current_Time, Toggle_NewNote} from '../../../state/actions/index';
 
 //define actions
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    Set_Audio_Control
+    Set_Audio_Control,
+    Set_Current_Time, Toggle_NewNote
   }, dispatch)
 }
 // Set global state to prop
 function mapStateToProps(state) {
-  return {noteID: state.PlaybackSelection_ID}
+  return {noteID: state.PlaybackSelection_ID, recTime: state.RecTime}
 }
 
 class PlaybackOptions extends React.Component {
@@ -74,6 +75,7 @@ class PlaybackOptions extends React.Component {
     }
 
     audioControl.ontimeupdate = (e) => {
+      this.props.Set_Current_Time(audioControl.currentTime)
       this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
     }
   }
@@ -96,12 +98,13 @@ class PlaybackOptions extends React.Component {
     let audioControl = this.state.audioControl;
     audioControl.pause()
   }
-  
+
   showNote = () => {
     //set current time
     this.props.Set_Current_Time(this.props.recTime);
     this.props.Toggle_NewNote('show');
   }
+
   getMinutes = () => Math.floor(this.state.sliderPos / 60);
 
   getSeconds = () => ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2);
