@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import {withRouter} from 'react-router-dom'
 import AudioControls from './AudioControls';
 import ItemView from './ItemView';
-import NewNote_Image from './NewNote_Image';
+import NewNoteImage from './NewNote_Image';
 import NewNote from './NewNote';
+import NotePreview from '../../global/NotePreview.js';
 
 //State
 //import {bindActionCreators} from 'redux';
@@ -51,6 +52,9 @@ class Edit extends React.Component {
           <AudioControls audioSrc={this.props.audioSrc}/>
         </OptionsContainer>
 
+        <NewNote/>
+        <NewNoteImage/>
+        <NotePreview/>
       </Wrapper>
     );
   }
@@ -88,4 +92,5 @@ const ItemViewContainer = styled.div `
            margin-bottom: 105px;
            overflow-x: hidden;
             `;
+
 export default connect(mapStateToProps, null)(withRouter(Edit));
