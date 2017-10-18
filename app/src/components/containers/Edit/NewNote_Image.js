@@ -10,98 +10,104 @@ import {Toggle_NewNote_Image, Insert_Item} from '../../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {status: state.NewNoteToggleImage, time: state.CurrentTime}
+  return {status: state.NewNoteToggleImage, time: state.CurrentTime}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		Toggle_NewNote_Image,
-		Insert_Item
-	}, dispatch)
+  return bindActionCreators({
+    Toggle_NewNote_Image,
+    Insert_Item
+  }, dispatch)
 }
 class NewNote_Image extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			display: props.display,
-			title: '',
-			desc: ''
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      display: props.display,
+      title: '',
+      desc: ''
+    }
+  }
 
-	//Methods
-	handleTitle = (e) => {
-		// console.log(e.target.value);
-		this.setState({title: e.target.value})
-	}
-	handleDesc = (e) => {
-		// console.log(e.target.value);
-		this.setState({desc: e.target.value})
-	}
-	handleSubmit = (e) => {
-		e.preventDefault();
+  //Methods
+  handleTitle = (e) => {
+    // console.log(e.target.value);
+    this.setState({title: e.target.value})
+  }
+  handleDesc = (e) => {
+    // console.log(e.target.value);
+    this.setState({desc: e.target.value})
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-		//Create new object
-		let item = {};
+    //Create new object
+    let item = {};
 
-		item.time = this.props.time.time;
-		item.title = this.state.title;
-		item.desc = this.state.desc;
-		item.image = '';
-		item.timeSeconds = this.props.time.timeSeconds;
+    item.time = this.props.time.time;
+    item.title = this.state.title;
+    item.desc = this.state.desc;
+    item.image = '';
+    item.timeSeconds = this.props.time.timeSeconds;
 
-		//Get image info
-		var preview = document.querySelector('#PreviewImage');
-		var reader = new FileReader();
-		reader.addEventListener("load", () => {
-			preview.src = reader.result;
-		}, false);
+    //Get image info
+    var preview = document.querySelector('#PreviewImage');
+    var reader = new FileReader();
+    reader.addEventListener("load", () => {
+      preview.src = reader.result;
+    }, false);
 
-		// console.log(preview.src);
+    // console.log(preview.src);
 
-		item.image = preview.src;
+    item.image = preview.src;
 
-		preview.src = '';
+    preview.src = '';
 
-		console.log(item);
-		//Insert Item
-		this.props.Toggle_NewNote_Image('none');
-		this.props.Insert_Item(item);
+    // console.log(item);
+    //Insert Item
+    this.props.Toggle_NewNote_Image('none');
+    this.props.Insert_Item(item);
 
-		//reset vlaues
-		this.setState({title: ""});
-		this.setState({desc: ""});
+    //reset vlaues
+    document.getElementById("file-input").value = "";
+    this.setState({title: ""});
+    this.setState({desc: ""});
 
-	}
-	hide = () => {
-		this.props.Toggle_NewNote_Image('none');
-	}
-	render() {
-		//Properties
+  }
+  cancel = () => {
+    this.props.Toggle_NewNote_Image('none');
 
-		//Template
-		return (
-			<Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
+    //reset vlaues
+    document.getElementById("file-input").value = "";
+    this.setState({title: ""});
+    this.setState({desc: ""});
+  }
+  render() {
+    //Properties
 
-				<Top>
-					<CloseIcon onClick={this.hide} src={Close_Icon}/>
-					<Header>New Comment</Header>
-				</Top>
+    //Template
+    return (
+      <Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
 
-				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
-				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
+        <Top>
+          <CloseIcon onClick={this.cancel} src={Close_Icon}/>
+          <Header>New Comment</Header>
+        </Top>
 
-				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
+        <Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+        <ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
-				<ButtonCon>
-					<Button type="submit" color="#42EA9C" text="Add"/>
-				</ButtonCon>
+        <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 
-			</Wrapper>
-		);
-	}
+        <ButtonCon>
+          <Button type="submit" color="#42EA9C" text="Add"/>
+        </ButtonCon>
+
+      </Wrapper>
+    );
+  }
 
 }
 
@@ -113,8 +119,8 @@ position: fixed;
 overflow-y: scroll;
 overflow-x: hidden;
 display: ${props => props.display === 'none'
-	? 'none'
-	: 'grid'};
+  ? 'none'
+  : 'grid'};
 grid-template-rows: 30px 30px auto 1fr 80px;
 height: calc(100% - 130px);
 width: 100%;

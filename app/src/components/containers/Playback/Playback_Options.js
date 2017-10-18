@@ -15,151 +15,174 @@ import {Set_Audio_Control} from '../../../state/actions/index';
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_Audio_Control
-      }, dispatch)
- }
+  }, dispatch)
+}
 // Set global state to prop
 function mapStateToProps(state) {
-	return {noteID: state.PlaybackSelection_ID }
+  return {noteID: state.PlaybackSelection_ID}
 }
 
 class PlaybackOptions extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			pauseToggle: false,
-			playToggle: true,
-			audioControl: '',
-			sliderPos: 0,
-			min: 0,
-			minValue: 0,
-			max: 10000
-		}
-		this.initPlayback = this.initPlayback.bind(this);
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      pauseToggle: false,
+      playToggle: true,
+      audioControl: '',
+      sliderPos: 0,
+      min: 0,
+      minValue: 0,
+      max: 10000
+    }
+    this.initPlayback = this.initPlayback.bind(this);
+  }
 
-	//Methods
-	componentWillMount() {
+  //Methods
+  componentWillMount() {
     let id = window.location.pathname.substr(10)
 
-		this.initPlayback(id);
-		// this.initPlayback(this.props.noteID);
-	}
-	componentWillUnmount() {
-		if (this.props.noteID !== '' && this.state.audioControl) {
+    this.initPlayback(id);
+    // this.initPlayback(this.props.noteID);
+  }
+  componentWillUnmount() {
+    if (this.props.noteID !== '' && this.state.audioControl) {
       let audioControl = this.state.audioControl;
-			audioControl.pause();
-		}
+      audioControl.pause();
+    }
 
-	}
+  }
 
-	async initPlayback(id) {
-		if (id === '') {
-			this.props.history.push(`/`);
+  async initPlayback(id) {
+    if (id === '') {
+      this.props.history.push(`/`);
 
-		} else {
-			const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
-				let audioControl = new Audio([audioUrl]);
+    } else {
+      const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
+      let audioControl = new Audio([audioUrl]);
 
-				this.props.Set_Audio_Control(audioControl)
-				this.setState({audioControl: audioControl});
+      this.props.Set_Audio_Control(audioControl)
+      this.setState({audioControl: audioControl});
 
-				audioControl.onended = (e) => {
-					this.setState({playToggle: true, pauseToggle: false});
-					audioControl.currentTime = 0;
-				}
+      audioControl.onended = (e) => {
+        this.setState({playToggle: true, pauseToggle: false});
+        audioControl.currentTime = 0;
+      }
 
-				audioControl.onloadedmetadata = (e) => {
-					if (audioControl.duration === Infinity) {
-						let self = this;
+      // audioControl.onloadedmetadata = (e) => {
+      //   if (audioControl.duration === Infinity) {
+      //     let self = this;
+      //
+      //     audioControl.currentTime = 1e101;
+      //     audioControl.ontimeupdate = function() {
+      //       this.ontimeupdate = () => {
+      //         self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+      //         return;
+      //       }
+      //       audioControl.currentTime = 0.1;
+      //       // alert(audioControl.duration)
+      //       self.setState({max: audioControl.duration});
+      //
+      //     }
+      //   }
+      // }
 
-						audioControl.currentTime = 1e101;
-						audioControl.ontimeupdate = function() {
-							this.ontimeupdate = () => {
-								self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
-								return;
-							}
-							audioControl.currentTime = 0.1;
-							// alert(audioControl.duration)
-							self.setState({max: audioControl.duration});
+      audioControl.onloadedmetadata = (e) => {
+        if (audioControl.duration === Infinity) {
+          let self = this;
 
-						}
-					}
-				}
-		}
-	}
-	handleSlider = (event, value) => {
-		this.setState({sliderPos: value});
-		let audioControl = this.state.audioControl;
-		audioControl.currentTime = value;
-	};
+          audioControl.currentTime = 1e101;
+          audioControl.ontimeupdate = function() {
+            this.ontimeupdate = () => {
+              self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+              return;
+            }
+            audioControl.currentTime = 0.1;
+            self.setState({max: audioControl.duration});
+          }
+        } else {
+          this.setState({max: audioControl.duration});
+        }
+      }
 
-	resume = () => {
-		this.setState({playToggle: false, pauseToggle: true});
-		let audioControl = this.state.audioControl;
-		audioControl.play()
+      audioControl.ontimeupdate = (e) => {
+        this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+      }
 
-	}
+    }
+  }
+  handleSlider = (event, value) => {
+    this.setState({sliderPos: value});
+    let audioControl = this.state.audioControl;
+    audioControl.currentTime = value;
+  };
 
-	pause = () => {
-		this.setState({playToggle: true, pauseToggle: false});
-		let audioControl = this.state.audioControl;
-		audioControl.pause()
-	}
-	getMinutes = () => Math.floor(this.state.sliderPos / 60);
+  resume = () => {
+    this.setState({playToggle: false, pauseToggle: true});
+    let audioControl = this.state.audioControl;
+    audioControl.play()
 
-	getSeconds = () => ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2);
+  }
 
-	getMinutesFinal = () => Math.floor(this.state.max / 60);
+  pause = () => {
+    this.setState({playToggle: true, pauseToggle: false});
+    let audioControl = this.state.audioControl;
+    audioControl.pause()
+  }
+  getMinutes = () => Math.floor(this.state.sliderPos / 60);
 
-	getSecondsFinal = () => ('0' + Math.floor(this.state.max) % 60).slice(-2);
+  getSeconds = () => ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2);
 
-	render() {
-		//Properties
+  getMinutesFinal = () => Math.floor(this.state.max / 60);
 
-		//Reactive Styles
-		const PauseIcon = styled.img `
+  getSecondsFinal = () => ('0' + Math.floor(this.state.max) % 60).slice(-2);
+
+  render() {
+    //Properties
+
+    //Reactive Styles
+    const PauseIcon = styled.img `
 		width: 35px;
 		display: ${props => this.state.pauseToggle
-			? 'block'
-			: 'none'};
+      ? 'block'
+      : 'none'};
 			cursor: pointer;
 			margin: 0 auto;
 			margin-top: 15px;
 
 		`;
-		const PlayIcon = styled.img `
+    const PlayIcon = styled.img `
 		width: 35px;
 		display: ${props => this.state.playToggle
-			? 'block'
-			: 'none'};
+      ? 'block'
+      : 'none'};
 			cursor: pointer;
 			margin: 0 auto;
 			margin-top: 15px;
 
 		`;
 
-		//Template
-		return (
-			<Wrapper>
-				<TimeBar>
-					<SliderCon>
-						<Slider style={{
-							paddingLeft: '10px',
-							paddingRight: '10px'
-						}} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
-					</SliderCon>
-					<StartTime>{this.getMinutes()}:{this.getSeconds()}</StartTime>
-					<EndTime>{this.getMinutesFinal()}:{this.getSecondsFinal()}</EndTime>
-				</TimeBar>
-				<OptionsCon>
-					<PauseIcon onClick={this.pause} src={Pause_icon}/>
-					<PlayIcon onClick={this.resume} src={Play_icon}/>
-				</OptionsCon>
-			</Wrapper>
-		);
-	}
+    //Template
+    return (
+      <Wrapper>
+        <TimeBar>
+          <SliderCon>
+            <Slider style={{
+              paddingLeft: '10px',
+              paddingRight: '10px'
+            }} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
+          </SliderCon>
+          <StartTime>{this.getMinutes()}:{this.getSeconds()}</StartTime>
+          <EndTime>{this.getMinutesFinal()}:{this.getSecondsFinal()}</EndTime>
+        </TimeBar>
+        <OptionsCon>
+          <PauseIcon onClick={this.pause} src={Pause_icon}/>
+          <PlayIcon onClick={this.resume} src={Play_icon}/>
+        </OptionsCon>
+      </Wrapper>
+    );
+  }
 
 }
 

@@ -278,8 +278,7 @@ class RecOptions extends React.Component {
 
 				}).then(() => {
 					//Wait until note finihes uploading
-					//Reset Top Bar Title
-					this.props.Change_TopBar_Title('Notes');
+
 
 					//Reset Folder Selected
 					this.props.FolderSelection_Name('SELECT FOLDER');
@@ -297,9 +296,12 @@ class RecOptions extends React.Component {
 					this.props.Toggle_Loading_Scrren('false');
 
 					//confimration aniamtion
-					this.props.Set_Snackbar_Name('Note Added');
+					this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
 					this.props.Hide_Snackbar();
 					this.props.Show_Snackbar();
+
+					//Reset Top Bar Title
+					this.props.Change_TopBar_Title('Notes');
 
 					//redirect to Directory
 					this.props.history.push(`/`);
@@ -346,7 +348,7 @@ class RecOptions extends React.Component {
 		clearInterval(this.incrementer);
 
 	}
-	
+
 	imageSelected = (event) => {
 
 		//Preview image
