@@ -46,13 +46,11 @@ class NewNote_Image extends React.Component {
 		//Create new object
 		let item = {};
 
-		let getMinutes = Math.floor(this.props.time / 60);
-		let getSeconds = ('0' + this.props.time % 60).slice(-2);
-		let time = getMinutes + ':' + getSeconds;
-		item.time = time;
+		item.time = this.props.time.time;
 		item.title = this.state.title;
 		item.desc = this.state.desc;
-		item.timeSeconds = this.props.time;
+		item.image = '';
+		item.timeSeconds = this.props.time.timeSeconds;
 
 		//Get image info
 		var preview = document.querySelector('#PreviewImage');
@@ -67,7 +65,7 @@ class NewNote_Image extends React.Component {
 
 		preview.src = '';
 
-		// console.log(item);
+		console.log(item);
 		//Insert Item
 		this.props.Toggle_NewNote_Image('none');
 		this.props.Insert_Item(item);
@@ -75,7 +73,6 @@ class NewNote_Image extends React.Component {
 		//reset vlaues
 		this.setState({title: ""});
 		this.setState({desc: ""});
-		time = "";
 
 	}
 	hide = () => {
@@ -119,7 +116,7 @@ display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
 grid-template-rows: 30px 30px auto 1fr 80px;
-height: 100%;
+height: calc(100% - 130px);
 width: 100%;
 color: #212121;
 padding-top: 10px;
@@ -129,6 +126,9 @@ grid-row-gap: 10px;
 @media (max-height: 500px) {
     grid-template-rows: 30px 30px auto 100px 80px;
   }
+	@media (max-height: 382px) {
+	height: 100%;
+	 }
 		   `;
 const Header = styled.h2 `
 font-size: 16px;

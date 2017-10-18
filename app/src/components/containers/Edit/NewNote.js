@@ -42,18 +42,17 @@ class NewNote extends React.Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault();
-
+		// console.log(this.props.time);
 		//Create new object
 		let item = {};
-		let getMinutes = Math.floor(this.props.time / 60);
-		let getSeconds = ('0' + this.props.time % 60).slice(-2);
-		let time = getMinutes + ':' + getSeconds;
-		item.time = time;
+
+		item.time = this.props.time.time;
 		item.title = this.state.title;
 		item.desc = this.state.desc;
 		item.image = '';
-		item.timeSeconds = this.props.time;
+		item.timeSeconds = this.props.time.timeSeconds;
 
+		// console.log(item);
 		//Insert Item
 		this.props.Toggle_NewNote('none');
 		this.props.Insert_Item(item);
@@ -61,10 +60,12 @@ class NewNote extends React.Component {
 		//reset vlaues
 		this.setState({title: ""});
 		this.setState({desc: ""});
-		time = "";
 
 	}
 	hide = () => {
+		//reset vlaues
+		this.setState({title: ""});
+		this.setState({desc: ""});
 		this.props.Toggle_NewNote('none');
 	}
 	render() {

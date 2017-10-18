@@ -332,6 +332,7 @@ class RecOptions extends React.Component {
 			this.props.Start_Time(number);
 		}, 1000)
 	}
+
 	pause = () => {
 		//Handle display
 		this.props.Play_Toggle(true);
@@ -345,6 +346,7 @@ class RecOptions extends React.Component {
 		clearInterval(this.incrementer);
 
 	}
+	
 	imageSelected = (event) => {
 
 		//Preview image

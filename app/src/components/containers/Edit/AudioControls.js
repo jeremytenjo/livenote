@@ -10,13 +10,14 @@ import Camera_icon from '../../../images/icons/Camara.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Set_Audio_Control, Set_Current_Time, Toggle_NewNote} from '../../../state/actions/index';
+import {Set_Audio_Control, Set_Current_Time, Toggle_NewNote, Toggle_NewNote_Image} from '../../../state/actions/index';
 
 //define actions
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_Audio_Control,
-    Set_Current_Time, Toggle_NewNote
+    Set_Current_Time,
+    Toggle_NewNote, Toggle_NewNote_Image
   }, dispatch)
 }
 // Set global state to prop
@@ -75,7 +76,6 @@ class PlaybackOptions extends React.Component {
     }
 
     audioControl.ontimeupdate = (e) => {
-      this.props.Set_Current_Time(audioControl.currentTime)
       this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
     }
   }
@@ -84,6 +84,8 @@ class PlaybackOptions extends React.Component {
     this.setState({sliderPos: value});
     let audioControl = this.state.audioControl;
     audioControl.currentTime = value;
+    this.props.Set_Current_Time(audioControl.currentTime)
+
   };
 
   resume = () => {
@@ -101,8 +103,46 @@ class PlaybackOptions extends React.Component {
 
   showNote = () => {
     //set current time
-    this.props.Set_Current_Time(this.props.recTime);
-    this.props.Toggle_NewNote('show');
+    // console.log(this.state.sliderPos);
+    let getMinutes = Math.floor(this.state.sliderPos / 60)
+    let getSeconds = ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2)
+    let time = {
+      time: getMinutes + ':' + getSeconds,
+      timeSeconds: this.state.sliderPos
+    }
+
+    // console.log(time)
+    this.props.Set_Current_Time(time)
+    this.props.Toggle_NewNote('show')
+  }
+
+  imageSelected = (event) => {
+
+    //Preview image
+    if (event.target.value !== '') {
+      //set current time
+      let getMinutes = Math.floor(this.state.sliderPos / 60)
+      let getSeconds = ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2)
+      let time = {
+        time: getMinutes + ':' + getSeconds,
+        timeSeconds: this.state.sliderPos
+      }
+      this.props.Set_Current_Time(time);
+      this.props.Toggle_NewNote_Image('show');
+
+      var preview = document.querySelector('#PreviewImage');
+      var file = event.target.files[0]
+      var reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        preview.src = reader.result;
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+
+    }
   }
 
   getMinutes = () => Math.floor(this.state.sliderPos / 60);
