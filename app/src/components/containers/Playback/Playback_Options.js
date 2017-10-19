@@ -70,36 +70,21 @@ class PlaybackOptions extends React.Component {
         audioControl.currentTime = 0;
       }
 
-      // audioControl.onloadedmetadata = (e) => {
-      //   if (audioControl.duration === Infinity) {
-      //     let self = this;
-      //
-      //     audioControl.currentTime = 1e101;
-      //     audioControl.ontimeupdate = function() {
-      //       this.ontimeupdate = () => {
-      //         self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
-      //         return;
-      //       }
-      //       audioControl.currentTime = 0.1;
-      //       // alert(audioControl.duration)
-      //       self.setState({max: audioControl.duration});
-      //
-      //     }
-      //   }
-      // }
-
+   
       audioControl.onloadedmetadata = (e) => {
         if (audioControl.duration === Infinity) {
           let self = this;
 
           audioControl.currentTime = 1e101;
           audioControl.ontimeupdate = function() {
+
             this.ontimeupdate = () => {
               self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
               return;
             }
-            audioControl.currentTime = 0.1;
             self.setState({max: audioControl.duration});
+            audioControl.currentTime = 0.1;
+
           }
         } else {
           this.setState({max: audioControl.duration});
