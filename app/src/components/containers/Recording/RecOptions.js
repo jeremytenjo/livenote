@@ -206,7 +206,7 @@ class RecOptions extends React.Component {
 				this.setState({newMasterNoteKey: key})
 
 				//upload audio file to firease
-				let blob = new Blob(this.state.recordedChunks, {'type': 'audio/wav; codecs=opus'});
+				let blob = new Blob(this.state.recordedChunks, {'type': 'audio/mpeg; codecs=opus'});
 				this.setState({recordedChunks: []})
 				let storageRef = firebase.storage().ref();
 				let ref = storageRef.child('audio/' + key);
