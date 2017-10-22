@@ -144,7 +144,7 @@ class RecItemView extends React.Component {
           <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
         </Item>;
 
-      } else if (item.desc === '') {
+      } else if (item.desc === '' && item.imageUrl !== 'none') {
         list = <Item key={i}>
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
             <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>
