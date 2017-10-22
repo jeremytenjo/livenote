@@ -142,7 +142,6 @@ class RecItemView extends React.Component {
         </Item>;
 
       } else if (item.desc === '') {
-
         list = <Item key={i}>
           <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
             <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>

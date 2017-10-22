@@ -50,7 +50,6 @@ class ItemOnlyText extends React.Component {
 //Style
 const Wrapper = styled.div `
 cursor: pointer;
-
         `;
 const ItemCon = styled.div `
 				background: white;
@@ -60,7 +59,7 @@ const ItemCon = styled.div `
 				grid-template-columns: 70px 1fr;
 				 `;
 const ItemTime = styled.div `
-				${ ''/* background: red; */}
+				${'' /* background: red;  */}
 				font-size: 20px;
 				text-align: center;
 				padding-top: 35px;

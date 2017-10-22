@@ -121,6 +121,7 @@ class BtnAudioInput extends React.Component {
 
 //Style
 const Wrapper = styled.div `
+cursor: pointer;
 
          `;
 const IconCon = styled.div `
@@ -136,6 +137,8 @@ const IconCon = styled.div `
          `;
 const UploadIcon = styled.img `
          width: 20px;
+         cursor: pointer;
+         
          `;
 
 const Dialog = styled.form `

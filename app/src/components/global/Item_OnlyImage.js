@@ -11,44 +11,46 @@ import styled from 'styled-components'
 
 class ItemOnlyImage extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			time: props.time,
-			title: props.title,
-			image: props.image
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      time: props.time,
+      title: props.title,
+      image: props.image
+    }
+  }
 
-	//Methods
+  //Methods
 
-	render() {
-		//Properties
-		//Reactive Styles
+  render() {
+    //Properties
+    //Reactive Styles
 
-		//Template
-		return (
-			<Wrapper>
-				<ItemCon>
-					<ItemTime>{this.state.time}</ItemTime>
-					<ItemDescCon>
-						<ItemTitle>
-							{this.state.title}
-						</ItemTitle>
-						<div style={{
-	            position: 'relative',
-							height: '100%',
-							marginTop: '-5px'
-	          }}>
-						<ItemImage src={this.state.image} alt="Loading..."/>
-					</div>
+    //Template
+    return (
+      <Wrapper>
+        <ItemCon>
+          <ItemTime>
+            <p>{this.state.time}</p>
+          </ItemTime>
+          <ItemDescCon>
+            <ItemTitle>
+              {this.state.title}
+            </ItemTitle>
+            <div style={{
+              position: 'relative',
+              height: '100%',
+              marginTop: '-5px'
+            }}>
+              <ItemImage src={this.state.image} alt="Loading..."/>
+            </div>
 
-					</ItemDescCon>
-				</ItemCon>
-			</Wrapper>
-		);
-	}
+          </ItemDescCon>
+        </ItemCon>
+      </Wrapper>
+    );
+  }
 
 }
 
@@ -63,7 +65,9 @@ const ItemCon = styled.div `
 				height: 180px;
 				display: grid;
 				grid-template-columns: 70px 1fr;
+
 				 `;
+
 const ItemTime = styled.div `
 				${ ''/* background: red; */}
 				font-size: 20px;
@@ -71,12 +75,15 @@ const ItemTime = styled.div `
 				padding-top: 35px;
 				color: #0F2331;
 				font-weight: bold;
+				position: relative;
 				 `;
+
 const ItemDescCon = styled.div `
 				${ ''/* background: green; */}
 				overflow: hidden;
 
 				 `;
+				 
 const ItemTitle = styled.p `
 				font-weight: bold;
 				color: #0F2331;
@@ -85,7 +92,7 @@ const ItemTitle = styled.p `
 
 				  `;
 const ItemImage = styled.img `
-${'' /* width: 200px; */}
+${ ''/* width: 200px; */}
     max-width: 170px;
 		position: absolute;
 left: 0;
