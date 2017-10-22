@@ -10,7 +10,7 @@ import {withRouter} from 'react-router-dom'
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {NotePreview_Show, NotePreview_Set, Change_TopBar_Title} from '../../../state/actions/index';
+import {NotePreview_Show, NotePreview_Set, Change_TopBar_Title, NotePreview_Hide} from '../../../state/actions/index';
 
 const ItemOnlyText = Loadable({
   loader: () => import ('../../global/Item_OnlyText.js'),
@@ -33,7 +33,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     NotePreview_Show,
-    NotePreview_Set, Change_TopBar_Title
+    NotePreview_Set, Change_TopBar_Title, NotePreview_Hide
   }, dispatch)
 }
 class RecItemView extends React.Component {
@@ -54,6 +54,9 @@ class RecItemView extends React.Component {
   componentWillMount() {
     let id = window.location.pathname.substr(10)
     this.getItems(id);
+  }
+  componentWillUnmount() {
+    this.props.NotePreview_Hide();
   }
   showPreview = (e) => {
     // console.log(e.currentTarget.dataset);
