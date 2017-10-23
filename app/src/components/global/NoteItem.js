@@ -161,9 +161,9 @@ margin: auto;
 top: 0;
 bottom: 0;
 max-height: 100%;
-transform: ${props => props.yesTitleNoDesc
+${'' /* transform: ${props => props.yesTitleNoDesc
   ? 'translateX(-330px)'
-  : 'none'};
+  : 'none'}; */}
 				 `;
 
 
