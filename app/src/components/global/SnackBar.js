@@ -3,12 +3,14 @@ import styled from 'styled-components'
 
 //State
 //import {bindActionCreators} from 'redux';
-//import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 //import {triggerAction} from '../state/actions/index';
 
 //define actions
 //Set global state to prop
-
+function mapStateToProps(state) {
+  return {snackbarName: state.SnackBar_Message}
+}
 class SnackBar extends React.Component {
 
   //initial state
@@ -26,8 +28,8 @@ class SnackBar extends React.Component {
 
     //Template
     return (
-      <Wrapper>
-        <p>Notification</p>
+      <Wrapper id="MySnackBar">
+        <p>{this.props.snackbarName}fff</p>
       </Wrapper>
     );
   }
@@ -47,10 +49,9 @@ margin: auto;
 border-radius: 50px;
 color: white;
 text-align: center;
-
+box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 p {
   font-weight: 400;
 }
         `;
-//export default connect(mapStateToProps, mapDispatchToProps)(SnackBar);
-export default SnackBar
+export default connect(mapStateToProps, null)(SnackBar);
