@@ -64,9 +64,11 @@ export default class App extends Component {
 			}
 		})
 	}
+
 	componentWillUnmount() {
 		this.removeListener()
 	}
+	
 	render() {
 		//Style
 		const MasterWrapper = styled.div `

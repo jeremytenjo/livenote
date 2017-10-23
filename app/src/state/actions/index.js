@@ -134,3 +134,12 @@ export const Set_local_Note_Name = (e) => {
 export const Set_Audio_Src = (e) => {
   return {type: 'SET_AUDIO_SRC', data: e}
 }
+export const Fetch_Recent_Flag = (e) => {
+  return {type: 'FETCH_RECENT_FLAG', data: e}
+}
+export const Fetch_Folders_Flag = (e) => {
+  return {type: 'FETCH_FOLDERS_FLAG', data: e}
+}
+export const Fetch_Notes_Flag = (e) => {
+  return {type: 'FETCH_NOTES_FLAG', data: e}
+}

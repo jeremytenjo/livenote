@@ -34,6 +34,9 @@ import OtionsMenu_ToggleFile from './OtionsMenu_ToggleFile.js'
 import AudioControl from './AudioControl.js'
 import LoadingScreen from './LoadingScreen.js'
 import AudioSrc from './AudioSrc.js'
+import FetchRecentFlag from './FetchRecentFlag.js'
+import FetchFoldersFlag from './FetchFoldersFlag.js'
+import FetchNotesFlag from './FetchNotesFlag.js'
 
 const Reducers = combineReducers({
 	FolderSelection,
@@ -71,6 +74,9 @@ const Reducers = combineReducers({
 	AudioControl,
 	LoadingScreen,
 	AudioSrc,
+	FetchRecentFlag,
+	FetchFoldersFlag,
+	FetchNotesFlag,
 
 })
 

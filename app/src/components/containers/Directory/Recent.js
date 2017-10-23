@@ -5,17 +5,17 @@ import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux';
-import {Set_Playback_Id, Change_TopBar_Title} from '../../../state/actions/index';
+import {Set_Playback_Id, Change_TopBar_Title, Fetch_Recent_Flag} from '../../../state/actions/index';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_Playback_Id,
-    Change_TopBar_Title
+    Change_TopBar_Title, Fetch_Recent_Flag
   }, dispatch)
 }
 function mapStateToProps(state) {
-  return {notes: state.RecentNotes}
+  return {notes: state.RecentNotes, flag: state.FetchRecentFlag}
 }
 class Recent extends React.Component {
 
@@ -32,10 +32,20 @@ class Recent extends React.Component {
 
   //Methods
   componentWillMount() {
-    this.getData()
+    if (this.props.flag === false) {
+      this.getDataOnline()
+    } else {
+      this.getDataLocal()
+    }
   }
 
-  getData = () => {
+  getDataLocal = () => {
+    var recent = JSON.parse(localStorage.getItem("recent"))
+    this.setState({list: recent});
+    this.setState({loading: false});
+  }
+
+  getDataOnline = () => {
     let userId = firebase.auth().currentUser.uid;
     let array = [];
 
@@ -60,14 +70,19 @@ class Recent extends React.Component {
         list = {};
       }
       // console.log(array);
+      localStorage.setItem('recent', JSON.stringify(array));
+
       this.setState({list: array});
       this.setState({loading: false});
 
+      this.props.Fetch_Recent_Flag(true);
     });
+
   }
 
   openPlayback = (e, n) => {
     // console.log(e);
+
     this.props.Change_TopBar_Title(n);
     this.props.Set_Playback_Id(e);
     this.props.history.push(`/playback/${e}`);

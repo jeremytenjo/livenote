@@ -11,17 +11,18 @@ import Close_Icon from '../../../images/icons/close.svg';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar} from '../../../state/actions/index';
+import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar, Fetch_Folders_Flag} from '../../../state/actions/index';
 
 function mapStateToProps(state) {
-  return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename}
+  return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename, flag: state.FetchFoldersFlag}
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Toggle_OptinsMenuHide,
     Show_Snackbar,
     Set_Snackbar_Name,
-    Hide_Snackbar
+    Hide_Snackbar,
+    Fetch_Folders_Flag
   }, dispatch)
 }
 class Folder extends React.Component {
@@ -41,10 +42,20 @@ class Folder extends React.Component {
 
   //Methods
   componentWillMount() {
-    this.fetchData();
+    if (this.props.flag === false) {
+			this.getDataOnline()
+		} else {
+			this.getDataLocal()
+		}
   }
 
-  fetchData = () => {
+  getDataLocal = () => {
+    var recent = JSON.parse(localStorage.getItem("folders"))
+    this.setState({list: recent});
+    this.setState({loading: false});
+  }
+
+  getDataOnline = () => {
     let userId = firebase.auth().currentUser.uid;
     let array = [];
 
@@ -64,10 +75,13 @@ class Folder extends React.Component {
         array.push(list);
         list = {};
       }
-
       // console.log(array);
+
+      localStorage.setItem('folders', JSON.stringify(array));
+
       this.setState({list: array});
       this.setState({loading: false});
+      this.props.Fetch_Folders_Flag(true);
 
     });
   }
@@ -84,7 +98,7 @@ class Folder extends React.Component {
     // this.setState({title: ''});
     this.props.Set_Snackbar_Name('Folder Added');
     this.props.Show_Snackbar();
-    this.fetchData();
+    this.getDataOnline();
 
   }
   submitnewName = (e) => {
@@ -100,7 +114,7 @@ class Folder extends React.Component {
     this.props.Hide_Snackbar();
     this.props.Show_Snackbar();
 
-    this.fetchData();
+    this.getDataOnline();
 
   }
   handleClose = (e) => {
@@ -134,7 +148,7 @@ class Folder extends React.Component {
     //remove folder
     // console.log(this.props.folderID);
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).remove();
-    this.fetchData();
+    this.getDataOnline();
     this.props.Toggle_OptinsMenuHide();
     this.props.Set_Snackbar_Name('Folder Removed');
     this.props.Hide_Snackbar();
@@ -184,7 +198,7 @@ class Folder extends React.Component {
       borderColor: 'transparent',
       borderWidth: '0px'
     }
-		const opacity360 = keyframes `
+    const opacity360 = keyframes `
 			 from {
 				 background: transparent;
 			 }
