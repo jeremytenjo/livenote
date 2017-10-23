@@ -32,9 +32,15 @@ class NoteItem extends React.Component {
     if (this.state.title === '' && this.state.desc === '') {
       noTitleNoDesc = true
     }
+
     let yesTitleNoDesc = false
     if (this.state.title !== '' && this.state.desc === '') {
       yesTitleNoDesc = true
+    }
+
+    let noDescNoImage = false
+    if (this.state.desc === '' && this.state.image === 'none') {
+      noDescNoImage = true
     }
 
     let yesTitleNoDescYesIMG = false
@@ -64,7 +70,7 @@ class NoteItem extends React.Component {
 
         <ItemDescCon noTitleNoDesc={noTitleNoDesc}>
 
-          <ItemTitle state={this.state.title} stateDesc={this.state.desc}>
+          <ItemTitle state={this.state.title} stateDesc={this.state.desc} noDescNoImage={noDescNoImage}>
             {this.state.title}
           </ItemTitle>
 
@@ -98,7 +104,7 @@ const Wrapper = styled.div `
   : '100px'}; */}
   height: 100px;
 				display: grid;
-				grid-template-columns: 112px 1fr 90px;		 
+				grid-template-columns: 112px 1fr 90px;
         cursor: pointer;
         padding: 5px;
             box-sizing: border-box;
@@ -145,6 +151,9 @@ const ItemTitle = styled.p `
     ? '5px'
     : '0'};
 
+transform: ${props => props.noDescNoImage
+      ? 'translateY(31px)'
+      : 'none'};
 				  `;
 
 const ItemDesc = styled.p `
