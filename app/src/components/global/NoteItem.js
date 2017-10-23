@@ -25,18 +25,19 @@ class NoteItem extends React.Component {
 
   //Methods
 
+
   render() {
     //Properties
-    console.log(this.state.time);
-    console.log(this.state.title);
-    console.log(this.state.desc);
-    console.log(this.state.image);
 
     let noTitleNoDesc = false
     if (this.state.title === '' && this.state.desc === '') {
       noTitleNoDesc = true
     }
-
+    let yesTitleNoDesc = false
+    if (this.state.title !== '' && this.state.desc === '') {
+      yesTitleNoDesc = true
+    }
+console.log(yesTitleNoDesc);
     //Template
     return (
       <Wrapper stateIMG={this.state.image} noTitleNoDesc={noTitleNoDesc}>
@@ -54,12 +55,14 @@ class NoteItem extends React.Component {
           <ItemDesc state={this.state.desc}>
             {this.state.desc}
           </ItemDesc>
+
+
         </ItemDescCon>
 
         <span style={{
           position: 'relative'
         }}>
-          <ItemImg state={this.state.image} noTitleNoDesc={noTitleNoDesc} src={this.state.image} alt="note image"/>
+          <ItemImg state={this.state.image} noTitleNoDesc={noTitleNoDesc} yesTitleNoDesc={yesTitleNoDesc} src={this.state.image} alt="note image"/>
         </span>
 
       </Wrapper>
@@ -74,12 +77,15 @@ const Wrapper = styled.div `
 				border-radius: 2px;
 				height: ${props => props.stateIMG === 'none'
   ? 'auto'
-  : '100px'};
+  : '130px'};
 				display: grid;
 				grid-template-columns: 70px 1fr 90px;
 				grid-template-columns: ${props => props.noTitleNoDesc
     ? '70px 1fr'
-    : '70px 1fr 90px'};;
+    : '70px 1fr 90px'};
+				grid-template-columns: ${props => props.stateIMG === 'none'
+    ? '70px 1fr'
+    : '70px 1fr 90px'};
         cursor: pointer;
         padding: 10px;
             box-sizing: border-box;
@@ -125,31 +131,41 @@ const ItemTitle = styled.p `
     : '0'};
 
 				  `;
+
 const ItemDesc = styled.p `
   display: ${props => props.state === ''
   ? 'none'
   : 'block'};
 				color: #0F2331;
 				margin-top: 5px;
-				margin-bottom: 5px;
+				margin-bottom: 0;
 				overflow: scroll;
 				overflow-x: hidden;
         height: 65px;
         max-height: 65px;
 				  `;
+
 const ItemImg = styled.img `
+display: ${props => props.state === 'none'
+? 'none'
+: 'block'};
+
 				 width: 80px;
+				 max-width: 80px;
 				 position: absolute;
 left: 0;
 right: ${props => props.noTitleNoDesc
   ? 'auto'
-  : '0'};;
+  : '0'};
 margin: auto;
 top: 0;
 bottom: 0;
 max-height: 100%;
-
+transform: ${props => props.yesTitleNoDesc
+  ? 'translateX(-330px)'
+  : 'none'};
 				 `;
+
 
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
 export default NoteItem
