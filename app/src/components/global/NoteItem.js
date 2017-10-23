@@ -37,7 +37,7 @@ class NoteItem extends React.Component {
     if (this.state.title !== '' && this.state.desc === '') {
       yesTitleNoDesc = true
     }
-    
+
     //Template
     return (
       <Wrapper stateIMG={this.state.image} noTitleNoDesc={noTitleNoDesc}>
@@ -87,7 +87,7 @@ const Wrapper = styled.div `
     ? '70px 1fr'
     : '70px 1fr 90px'};
         cursor: pointer;
-        padding: 10px;
+        padding: 5px;
             box-sizing: border-box;
             grid-gap: 10px;
 				 `;

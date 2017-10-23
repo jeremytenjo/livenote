@@ -70,6 +70,7 @@ class RecItemView extends React.Component {
       list = <span key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
         <NoteItem time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>
       </span>
+      return list
 
       // if (item.desc && item.image !== '') {
       // 	list = <span data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.image}/></span>;
