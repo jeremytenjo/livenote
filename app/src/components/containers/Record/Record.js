@@ -174,6 +174,8 @@ border-width:0px;
 border:none
 width: 243px;
 caret-color: #42EA9C;
+position: relative;
+z-index: 6;
 
 &:focus {
 outline: none;
