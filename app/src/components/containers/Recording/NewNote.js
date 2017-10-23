@@ -105,7 +105,7 @@ color: #212121;
 padding-top: 10px;
 top: 0;
 left: 0;
-z-index: 3;
+z-index: 6;
 		   `;
 const CloseIcon = styled.img `
 width: 17px;
