@@ -115,6 +115,7 @@ grid-template-columns:  1fr 40px ;
 padding: 10px;
 background: #0F2331;
 z-index: 2;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 `;
 const Content = styled.div `
 overflow-x: hidden;
