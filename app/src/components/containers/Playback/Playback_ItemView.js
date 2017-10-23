@@ -189,8 +189,8 @@ const TransIcon = styled.p `
        font-size: 28px;
        position: fixed;
      top: -24px;
-       z-index: 2;
        cursor: pointer;
        right: 40px;
+       z-index: 5;
     `;
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RecItemView));

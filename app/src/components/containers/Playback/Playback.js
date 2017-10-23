@@ -227,7 +227,7 @@ z-index: 3;
 right: 5px;
 top: 11px;
 cursor: pointer;
-
+z-index: 5;
  `;
 const Wrapper = styled.div `
 	max-width: 600px;
@@ -252,6 +252,7 @@ ${ ''/* border: 3px solid red; */}
  right: 0;
  width: 100%;
  height: 120px;
+ z-index: 5;
 	 `;
 const DialogRename = styled.form `
  	display: ${props => props.state

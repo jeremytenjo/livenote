@@ -89,28 +89,22 @@ class NoteItem extends React.Component {
 }
 
 //Style
-const Circle = styled.svg `
- width: 90px;
- height: 90px;
- position: absolute;
- left: 10px;
- z-index: 2;
- `;
+
 const Wrapper = styled.div `
 				background: white;
 				border-radius: 2px;
-				${'' /* height: ${props => props.stateIMG === 'none'
+				${ ''/* height: ${props => props.stateIMG === 'none'
   ? 'auto'
   : '100px'}; */}
   height: 100px;
 				display: grid;
-				grid-template-columns: 70px 1fr 90px;
+				grid-template-columns: 112px 1fr 90px;
 				grid-template-columns: ${props => props.noTitleNoDesc
-    ? '70px 1fr'
-    : '70px 1fr 90px'};
+  ? '112px 1fr'
+  : '112px 1fr 90px'};
 				grid-template-columns: ${props => props.stateIMG === 'none'
-      ? '70px 1fr'
-      : '70px 1fr 90px'};
+    ? '112px 1fr'
+    : '112px 1fr 90px'};
         cursor: pointer;
         padding: 5px;
             box-sizing: border-box;
@@ -134,6 +128,7 @@ const ItemTime = styled.div `
           margin: auto;
           height: 25px;
           z-index: 3;
+          font-size: 21px;
         }
 				 `;
 const ItemDescCon = styled.div `
@@ -205,5 +200,12 @@ display: ${props => props.yesTitleNoDescYesIMG
 max-height: 100%;
 				 `;
 
+const Circle = styled.svg `
+          width: 90px;
+          height: 90px;
+          position: absolute;
+          left: 10px;
+          z-index: 2;
+          `;
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
 export default NoteItem
