@@ -159,14 +159,8 @@ transform: ${props => props.noDescNoImage
 
 
       transform: ${props => props.yesTitleNoDescYesIMG
-            ? 'translateY(31px) !important'
-            : 'none'};
-
-
-
-
-
-
+        ? 'translateY(31px) !important'
+        : 'none'};
 
 				  `;
 

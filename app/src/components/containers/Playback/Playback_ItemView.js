@@ -164,10 +164,10 @@ position: relative;
     width: 100%;
  `;
 const TimeCon = styled.div `
-width: 70px;
+width: 86px;
 height: 100%;
 position: absolute;
-z-index: 2;
+z-index: 7;
 bottom: 0;
 cursor: pointer;
  `;
