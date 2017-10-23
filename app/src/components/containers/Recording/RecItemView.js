@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import Loadable from 'react-loadable';
+// import Loadable from 'react-loadable';
 //State
 
 import {bindActionCreators} from 'redux';
@@ -58,19 +58,17 @@ class RecItemView extends React.Component {
   getItems = () => {
     //Listen to items Array
     let items = '',
-      list = '',
       itemList = '';
 
     items = this.props.items;
     // console.log(items);
-    list = '';
     itemList = '';
     itemList = items.map((item, i) => {
       // console.log(item);
       alert(item);
-      itemList = <span key={i} data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview}>
+      itemList = <div key={i} data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview}>
         <NoteItem time={item.time} title={item.title} desc={item.desc} image={item.image}/>
-      </span>
+      </div>
 
       return itemList
 

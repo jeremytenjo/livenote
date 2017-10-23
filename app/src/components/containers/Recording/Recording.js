@@ -61,8 +61,8 @@ class Recording extends React.Component {
 const Wrapper = styled.div `
 	max-width: 600px;
 	margin: auto;
-	padding: 10px;
-
+	padding: 5px;
+box-sizing: border-box;
  `;
 const ItemViewContainer = styled.div `
 margin-bottom: 105px;
