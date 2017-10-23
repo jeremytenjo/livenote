@@ -128,7 +128,7 @@ const ItemTime = styled.div `
           margin: auto;
           height: 25px;
           z-index: 3;
-          font-size: 21px;
+          font-size: 16px;
         }
 				 `;
 const ItemDescCon = styled.div `
