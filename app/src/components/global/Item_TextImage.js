@@ -33,20 +33,26 @@ class ItemTextImage extends React.Component {
     return (
       <Wrapper>
         <ItemCon>
-          <ItemTime>{this.state.time}</ItemTime>
+
+          <ItemTime  state={this.state.time}>{this.state.time}</ItemTime>
+
           <ItemDescCon>
-            <ItemTitle>
+
+            <ItemTitle state={this.state.title}>
               {this.state.title}
             </ItemTitle>
-            <ItemDesc>
+
+            <ItemDesc state={this.state.desc}>
               {this.state.desc}
             </ItemDesc>
           </ItemDescCon>
+
           <span style={{
             position: 'relative'
           }}>
-            <ItemImg src={this.state.image} alt="note image"/>
+            <ItemImg state={this.state.image} src={this.state.image} alt="note image"/>
           </span>
+
         </ItemCon>
       </Wrapper>
     );
