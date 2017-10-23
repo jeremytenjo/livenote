@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import {TweenMax} from 'gsap';
 //State
 //import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';

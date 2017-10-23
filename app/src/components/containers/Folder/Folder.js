@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 import File from '../../global/File_link_2.js';
 import BtnAudioInput from '../../global/BtnAudioInput.js';
-
+import {TweenMax} from 'gsap';
 import firebase from 'firebase';
 import {bindActionCreators} from 'redux';
 import {
@@ -145,8 +145,16 @@ class Folder extends React.Component {
     this.fetchData();
     this.props.Toggle_OptinsMenuHideFile();
     this.props.Set_Snackbar_Name('Note Removed');
-    this.props.Hide_Snackbar();
-    this.props.Show_Snackbar();
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
+    // this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar();
 
   }
 
@@ -156,6 +164,7 @@ class Folder extends React.Component {
     this.setState({renameInput: true});
 
   }
+  
   submitnewName = (e) => {
     // console.log(this.inputRename.value);
     e.preventDefault();
@@ -165,13 +174,22 @@ class Folder extends React.Component {
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).update({name: this.inputRename.value});
     // this.setState({title: ''});
     this.props.Set_Snackbar_Name('File Renamed');
-    this.props.Hide_Snackbar();
-    this.props.Show_Snackbar();
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
+    // this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar();
     this.setState({list: []});
 
     this.fetchData();
 
   }
+
   render() {
     //Properties
     let list = this.state.list.map((item, i) => <span key={item.id}><File key={item.id} id={item.id} width="auto" name={item.name}/></span>);

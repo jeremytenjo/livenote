@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
-import Snackbar from 'material-ui/Snackbar';
+// import Snackbar from 'material-ui/Snackbar';
 import Snackbar2 from '../global/SnackBar';
 
 //State
