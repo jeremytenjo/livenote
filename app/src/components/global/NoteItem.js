@@ -104,7 +104,7 @@ const Wrapper = styled.div `
   : '100px'}; */}
   height: 100px;
 				display: grid;
-				grid-template-columns: 96px 1fr 90px;
+				grid-template-columns: 80px 1fr 90px;
         cursor: pointer;
         padding: 5px;
             box-sizing: border-box;
@@ -207,7 +207,7 @@ const Circle = styled.svg `
           width: 77px;
           height: 95px;
           position: absolute;
-          left: 10px;
+          left: 2px;
           z-index: 2;
           bottom: 1px;
           `;
