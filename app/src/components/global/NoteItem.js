@@ -204,12 +204,11 @@ max-height: 100%;
 				 `;
 
 const Circle = styled.svg `
-          width: 90px;
-          height: 90px;
+          width: 95px;
+          height: 95px;
           position: absolute;
           left: 10px;
           z-index: 2;
-          bottom: 3px;
           `;
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
 export default NoteItem
