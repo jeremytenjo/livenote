@@ -154,12 +154,12 @@ const ItemTitle = styled.p `
 
 
 transform: ${props => props.noDescNoImage
-      ? 'translateY(31px) !important'
+      ? 'translateY(28px) !important'
       : 'none'};
 
 
       transform: ${props => props.yesTitleNoDescYesIMG
-        ? 'translateY(31px) !important'
+        ? 'translateY(28px) !important'
         : 'none'};
 
 				  `;
