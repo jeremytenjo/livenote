@@ -37,7 +37,7 @@ class NoteItem extends React.Component {
     if (this.state.title !== '' && this.state.desc === '') {
       yesTitleNoDesc = true
     }
-console.log(yesTitleNoDesc);
+    
     //Template
     return (
       <Wrapper stateIMG={this.state.image} noTitleNoDesc={noTitleNoDesc}>
