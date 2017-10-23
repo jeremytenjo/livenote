@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {Route, BrowserRouter, Switch, withRouter} from 'react-router-dom'
 import Loadable from 'react-loadable';
 import Snackbar from 'material-ui/Snackbar';
+import Snackbar2 from '../global/SnackBar';
 
 //State
 import {connect} from 'react-redux';
@@ -89,8 +90,9 @@ class Home extends React.Component {
 				<Snackbar open={this.props.snackbarToggle} message={this.props.snackbarName} autoHideDuration={3000} style={{
 					background: '#0F2331',
 					textAlign: 'center',
-					color: '#42EA9C'
+					color: '#42EA9C',
 				}}/>
+				<Snackbar2 />
 			</div>
 		);
 	}
