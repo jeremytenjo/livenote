@@ -44,7 +44,7 @@ bottom: 20px;
 left: 0;
 right: 0;
 margin: auto;
-border-radius: 20px;
+border-radius: 50px;
 color: white;
 text-align: center;
 
