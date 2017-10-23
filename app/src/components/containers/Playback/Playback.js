@@ -6,7 +6,7 @@ import PlaybackOptions from './Playback_Options.js';
 import NotePreview from '../../global/NotePreview.js';
 import {withRouter} from 'react-router-dom'
 import Button from '../../global/Button.js';
-
+import {TweenMax} from 'gsap';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -92,6 +92,14 @@ class Playback extends React.Component {
 
     this.props.Change_TopBar_Title(this.inputRename.value);
     this.props.Set_Snackbar_Name('Note Renamed');
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
     this.props.Show_Snackbar();
     this.props.Hide_Snackbar();
 
@@ -139,6 +147,14 @@ class Playback extends React.Component {
     this.setState({open: false})
 
     this.props.Set_Snackbar_Name('Note Removed')
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
     this.props.Hide_Snackbar();
     this.props.Show_Snackbar()
     this.props.history.push(`/`)

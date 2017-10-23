@@ -18,6 +18,7 @@ import Rename_img from '../../../images/icons/rename.svg';
 import Remove_img from '../../../images/icons/rubbish-bin.svg';
 import Close_Icon from '../../../images/icons/close.svg';
 import Button from '../../global/Button.js';
+import {TweenMax} from 'gsap';
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
@@ -139,6 +140,14 @@ class Notes extends React.Component {
 
     this.getDataOnline();
     this.props.Toggle_OptinsMenuHideFile();
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
     this.props.Set_Snackbar_Name('Note Removed');
     this.props.Hide_Snackbar();
     this.props.Show_Snackbar();

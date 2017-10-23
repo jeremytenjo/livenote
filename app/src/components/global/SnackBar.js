@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-
+import {TweenMax} from 'gsap';
 //State
 //import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -26,10 +26,11 @@ class SnackBar extends React.Component {
   render() {
     //Properties
 
+
     //Template
     return (
       <Wrapper id="MySnackBar">
-        <p>{this.props.snackbarName}fff</p>
+        <p>{this.props.snackbarName}</p>
       </Wrapper>
     );
   }
@@ -42,7 +43,7 @@ background: rgba(66,66,66 , .9);
 height: 50px;
 width: 300px;
 position: fixed;
-bottom: 20px;
+bottom: -50px;
 left: 0;
 right: 0;
 margin: auto;

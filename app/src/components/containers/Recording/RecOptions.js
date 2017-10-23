@@ -9,6 +9,7 @@ import Play_icon from '../../../images/icons/Play.svg';
 import firebase from 'firebase';
 import ImageCompressor from '@xkeshi/image-compressor';
 import dataURLtoBlob from 'dataurl-to-blob';
+import {TweenMax} from 'gsap';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -297,6 +298,14 @@ class RecOptions extends React.Component {
 
 					//confimration aniamtion
 					this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
+					let SnackBar = document.querySelector('#MySnackBar')
+					TweenMax.to(SnackBar, .5, {
+						bottom: "50px"
+					});
+					TweenMax.to(SnackBar, .5, {
+						delay: 2,
+						bottom: "-50px"
+					});
 					this.props.Hide_Snackbar();
 					this.props.Show_Snackbar();
 

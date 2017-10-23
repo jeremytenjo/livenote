@@ -87,11 +87,13 @@ class Home extends React.Component {
 						</Content>
 					</BrowserRouter>
 				</HomeContainer>
-				<Snackbar open={this.props.snackbarToggle} message={this.props.snackbarName} autoHideDuration={3000} style={{
+
+				{/* <Snackbar open={this.props.snackbarToggle} message={this.props.snackbarName} autoHideDuration={3000} style={{
 					background: '#0F2331',
 					textAlign: 'center',
 					color: '#42EA9C',
-				}}/>
+				}}/> */}
+
 				<Snackbar2 />
 			</div>
 		);

@@ -7,6 +7,7 @@ import FolderLink from '../../global/Folder_link.js';
 import firebase from 'firebase';
 import Button from '../../global/Button.js';
 import Close_Icon from '../../../images/icons/close.svg';
+import {TweenMax} from 'gsap';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -101,6 +102,7 @@ class Folder extends React.Component {
     this.getDataOnline();
 
   }
+
   submitnewName = (e) => {
     // console.log(this.inputRename.value);
     e.preventDefault();
@@ -110,6 +112,17 @@ class Folder extends React.Component {
 
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).update({name: this.inputRename.value});
     // this.setState({title: ''});
+
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
+
+
     this.props.Set_Snackbar_Name('Folder Renamed');
     this.props.Hide_Snackbar();
     this.props.Show_Snackbar();
@@ -117,18 +130,21 @@ class Folder extends React.Component {
     this.getDataOnline();
 
   }
+
   handleClose = (e) => {
     this.setState({open: false});
     // this.setState({title: ''});
     e.preventDefault();
 
   };
+
   handleCloseRename = (e) => {
     this.setState({renameInput: false});
     // this.setState({title: ''});
     e.preventDefault();
 
   };
+
   hideOptions = () => {
     this.props.Toggle_OptinsMenuHide();
   }
@@ -150,6 +166,14 @@ class Folder extends React.Component {
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/folders/${this.props.folderID}`).remove();
     this.getDataOnline();
     this.props.Toggle_OptinsMenuHide();
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
     this.props.Set_Snackbar_Name('Folder Removed');
     this.props.Hide_Snackbar();
     this.props.Show_Snackbar();
@@ -161,6 +185,7 @@ class Folder extends React.Component {
     this.setState({renameInput: true});
 
   }
+
   render() {
     //Properties
     let list = this.state.list.map((item, i) => <FolderLink name={item.name} key={item.id} id={item.id} width="140px"/>);
