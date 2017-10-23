@@ -57,7 +57,7 @@ class NoteItem extends React.Component {
           <Circle>
             <defs>
               <filter id="shadow">
-                <feDropShadow dx="0" dy="4" stdDeviation="2"/>
+                <feDropShadow dx="0" dy="3" stdDeviation="0"/>
               </filter>
             </defs>
 
