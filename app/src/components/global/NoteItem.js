@@ -48,6 +48,18 @@ class NoteItem extends React.Component {
 
         <ItemTime state={this.state.time}>
           <span>{this.state.time}</span>
+          <Circle>
+            <defs>
+              <filter id="shadow">
+                <feDropShadow dx="0" dy="4" stdDeviation="2"/>
+              </filter>
+            </defs>
+
+            <circle cx="50%" cy="50%" r="40" style={{
+              fill: '#0F2331',
+              filter: 'url(#shadow)'
+            }}/>
+          </Circle>
         </ItemTime>
 
         <ItemDescCon noTitleNoDesc={noTitleNoDesc}>
@@ -77,12 +89,20 @@ class NoteItem extends React.Component {
 }
 
 //Style
+const Circle = styled.svg `
+ width: 90px;
+ height: 90px;
+ position: absolute;
+ left: 10px;
+ z-index: 2;
+ `;
 const Wrapper = styled.div `
 				background: white;
 				border-radius: 2px;
-				height: ${props => props.stateIMG === 'none'
+				${'' /* height: ${props => props.stateIMG === 'none'
   ? 'auto'
-  : '100px'};
+  : '100px'}; */}
+  height: 100px;
 				display: grid;
 				grid-template-columns: 70px 1fr 90px;
 				grid-template-columns: ${props => props.noTitleNoDesc
@@ -101,7 +121,7 @@ const ItemTime = styled.div `
 				${ ''/* background: red; */}
 				font-size: 23px;
 				text-align: center;
-				color: #0F2331;
+				color: white;
 				font-weight: bold;
         position: relative;
 
@@ -113,6 +133,7 @@ const ItemTime = styled.div `
           bottom: 0;
           margin: auto;
           height: 25px;
+          z-index: 3;
         }
 				 `;
 const ItemDescCon = styled.div `
@@ -165,8 +186,8 @@ display: ${props => props.state === 'none'
 				 position: absolute;
 left: 0;
 right: ${props => props.noTitleNoDesc
-    ? 'auto'
-    : '0'};
+      ? 'auto'
+      : '0'};
 margin: auto;
 top: 0;
 bottom: 0;
