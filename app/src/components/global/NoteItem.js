@@ -70,7 +70,7 @@ class NoteItem extends React.Component {
 
         <ItemDescCon noTitleNoDesc={noTitleNoDesc}>
 
-          <ItemTitle state={this.state.title} stateDesc={this.state.desc} noDescNoImage={noDescNoImage}>
+          <ItemTitle state={this.state.title} stateDesc={this.state.desc} noDescNoImage={noDescNoImage} yesTitleNoDescYesIMG={yesTitleNoDescYesIMG}>
             {this.state.title}
           </ItemTitle>
 
@@ -78,7 +78,7 @@ class NoteItem extends React.Component {
             {this.state.desc}
           </ItemDesc>
 
-          <ItemImg2 src={this.state.image} yesTitleNoDescYesIMG={yesTitleNoDescYesIMG}/>
+          {/* <ItemImg2 src={this.state.image} yesTitleNoDescYesIMG={yesTitleNoDescYesIMG}/> */}
 
         </ItemDescCon>
 
@@ -109,6 +109,7 @@ const Wrapper = styled.div `
         padding: 5px;
             box-sizing: border-box;
             grid-gap: 10px;
+
 				 `;
 
 const ItemTime = styled.div `
@@ -151,9 +152,22 @@ const ItemTitle = styled.p `
     ? '5px'
     : '0'};
 
+
 transform: ${props => props.noDescNoImage
-      ? 'translateY(31px)'
+      ? 'translateY(31px) !important'
       : 'none'};
+
+
+      transform: ${props => props.yesTitleNoDescYesIMG
+            ? 'translateY(31px) !important'
+            : 'none'};
+
+
+
+
+
+
+
 				  `;
 
 const ItemDesc = styled.p `
@@ -174,9 +188,9 @@ const ItemImg = styled.img `
 display: ${props => props.state === 'none'
   ? 'none'
   : 'block'};
-  display: ${props => props.yesTitleNoDescYesIMG
+  ${ ''/* display: ${props => props.yesTitleNoDescYesIMG
     ? 'none'
-    : 'block'};
+    : 'block'}; */}
 
 
 				 width: 80px;
@@ -184,24 +198,24 @@ display: ${props => props.state === 'none'
 				 position: absolute;
 left: 0;
 right: ${props => props.noTitleNoDesc
-      ? 'auto'
-      : '0'};
+    ? 'auto'
+    : '0'};
 margin: auto;
 top: 0;
 bottom: 0;
 max-height: 100%;
 				 `;
 
-const ItemImg2 = styled.img `
-display: ${props => props.yesTitleNoDescYesIMG
-  ? 'block'
-  : 'none'};
-
-				 width: 80px;
-				 max-width: 80px;
-				 position: absolute;
-max-height: 100%;
-				 `;
+// const ItemImg2 = styled.img `
+// display: ${props => props.yesTitleNoDescYesIMG
+//   ? 'block'
+//   : 'none'};
+//
+// 				 width: 80px;
+// 				 max-width: 80px;
+// 				 position: absolute;
+// max-height: 100%;
+// 				 `;
 
 const Circle = styled.svg `
           width: 77px;
