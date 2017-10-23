@@ -165,8 +165,11 @@ margin:auto;
 width: 100%;
 height: 200px;
 z-index: 3;
-
+@media (max-height: 292px) {
+top: auto;
+ }
 `;
+
 const Input = styled.input `
 margin: 0 auto;
 text-align: center;
