@@ -127,7 +127,7 @@ cursor: pointer;
 const IconCon = styled.div `
   width: 20px;
   position: fixed;
-  z-index: 3;
+  z-index: 9;
   right: 10px;
   top: 11px;
   cursor: pointer;
@@ -138,7 +138,7 @@ const IconCon = styled.div `
 const UploadIcon = styled.img `
          width: 20px;
          cursor: pointer;
-         
+
          `;
 
 const Dialog = styled.form `
