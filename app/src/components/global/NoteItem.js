@@ -61,7 +61,7 @@ class NoteItem extends React.Component {
               </filter>
             </defs>
 
-            <circle cx="50%" cy="50%" r="35" style={{
+            <circle cx="50%" cy="50%" r="30" style={{
               fill: '#0F2331',
               filter: 'url(#shadow)'
             }}/>
