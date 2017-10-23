@@ -86,7 +86,7 @@ class RecItemView extends React.Component {
       //
       // }
 
-      return itemList
+      // return itemList
     });
 
     //delay so that has time to scroll to end
