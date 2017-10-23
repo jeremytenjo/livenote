@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-// import Loadable from 'react-loadable';
 import firebase from 'firebase';
 import CircularProgress from 'material-ui/CircularProgress';
 import Transcript from './Transcript.js';
@@ -13,18 +12,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {NotePreview_Show, NotePreview_Set, Change_TopBar_Title, NotePreview_Hide} from '../../../state/actions/index';
 
-// const ItemOnlyText = Loadable({
-//   loader: () => import ('../../global/Item_OnlyText.js'),
-//   loading: () => null
-// });
-// const ItemOnlyImage = Loadable({
-//   loader: () => import ('../../global/Item_OnlyImage.js'),
-//   loading: () => null
-// });
-// const ItemTextImage = Loadable({
-//   loader: () => import ('../../global/Item_TextImage.js'),
-//   loading: () => null
-// });
 
 //Set global state to prop
 function mapStateToProps(state) {
@@ -143,35 +130,6 @@ class RecItemView extends React.Component {
         </ItemCon>
         <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
       </Item>;
-
-      // console.log(item);
-      // if (item.desc && item.imageUrl !== 'none') {
-      //
-      //   list = <Item key={i}>
-      //     <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
-      //       <ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>
-      //     </ItemCon>
-      //     <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
-      //   </Item>;
-      //
-      // } else if (item.desc === '' && item.imageUrl !== 'none') {
-      //   list = <Item key={i}>
-      //     <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} onClick={this.showPreview}>
-      //       <ItemOnlyImage time={item.time} title={item.title} image={item.imageUrl}/>
-      //     </ItemCon>
-      //     <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
-      //   </Item>;
-      //
-      // } else if (item.imageUrl === 'none') {
-      //
-      //   list = <Item key={i}>
-      //     <ItemCon key={i} data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview}>
-      //       <ItemOnlyText time={item.time} title={item.title} desc={item.desc}/>
-      //     </ItemCon>
-      //     <TimeCon data-timeseconds={item.timeSeconds} onClick={() => (this.setTime(item.timeSeconds))}></TimeCon>
-      //   </Item>;
-      //
-      // }
 
       return list
 
