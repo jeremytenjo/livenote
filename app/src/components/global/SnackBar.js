@@ -26,7 +26,9 @@ class SnackBar extends React.Component {
 
     //Template
     return (
-      <Wrapper>dd</Wrapper>
+      <Wrapper>
+        <p>Notification</p>
+      </Wrapper>
     );
   }
 
@@ -34,7 +36,7 @@ class SnackBar extends React.Component {
 
 //Style
 const Wrapper = styled.div `
-background: rgba(97,97,97, .9);
+background: rgba(66,66,66 , .9);
 height: 50px;
 width: 300px;
 position: fixed;
@@ -45,6 +47,10 @@ margin: auto;
 border-radius: 20px;
 color: white;
 text-align: center;
+
+p {
+  font-weight: 400;
+}
         `;
 //export default connect(mapStateToProps, mapDispatchToProps)(SnackBar);
 export default SnackBar
