@@ -170,8 +170,16 @@ class Notes extends React.Component {
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).update({name: this.inputRename.value});
     // this.setState({title: ''});
     this.props.Set_Snackbar_Name('Note Renamed');
-    this.props.Hide_Snackbar();
-    this.props.Show_Snackbar();
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
+    // this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar();
 
     this.getDataOnline();
 
