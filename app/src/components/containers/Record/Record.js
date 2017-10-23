@@ -53,6 +53,14 @@ class Record extends React.Component {
     this.props.Change_TopBar_Title('Record');
     this.props.Hide_Snackbar();
 
+    document.querySelector('#TopBarMain').style.boxShadow = 'none'
+    document.querySelector('#TopBarMain').style.zIndex = 2
+
+  }
+
+  componentWillUnmount() {
+    document.querySelector('#TopBarMain').style.boxShadow = '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+    document.querySelector('#TopBarMain').style.zIndex = 5
   }
 
   showMenu = () => {
@@ -117,12 +125,12 @@ class Record extends React.Component {
         <InitWrapper>
           <Input autoFocus maxLength="11" type="text" placeholder="NAME" value={this.state.name} onChange={this.handleNameInput} autoComplete="off"/>
           <Selection onClick={this.showMenu}>{this.props.name}</Selection>
-					<Wrapp>
-						<MicIcon src={iconMic} alt="mic icon" onClick={this.initRecording}/>
-          <InitBtn width="100" height="100" onClick={this.initRecording}>
-            <Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
-          </InitBtn>
-					</Wrapp>
+          <Wrapp>
+            <MicIcon src={iconMic} alt="mic icon" onClick={this.initRecording}/>
+            <InitBtn width="100" height="100" onClick={this.initRecording}>
+              <Circle cx="50" cy="50" r="35" stroke="rgba(247, 23, 53, .5)" strokeWidth="20" fill="#F71735"/>
+            </InitBtn>
+          </Wrapp>
         </InitWrapper>
         <FolderMenu/>
       </div>
@@ -132,11 +140,11 @@ class Record extends React.Component {
 }
 
 //Style
- const Wrapp = styled.div `
+const Wrapp = styled.div `
 position: relative;
 height: 100px;
  `;
- const MicIcon = styled.img `
+const MicIcon = styled.img `
 width: 25px;
 position: absolute;
 left: 0;

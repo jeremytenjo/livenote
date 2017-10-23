@@ -66,7 +66,7 @@ class Home extends React.Component {
 		return (
 			<div>
 				<HomeContainer>
-					<TopBar>
+					<TopBar id="TopBarMain">
 						{/* <Icon src={Menu_icon} alt="Menu Icon" onClick={this.toHome}/> */}
 						<TitlePage>{this.props.title}</TitlePage>
 						{/* <Icon src={Search_icon} alt="Search Icon"/>   */}
