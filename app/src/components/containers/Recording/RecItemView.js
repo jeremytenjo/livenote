@@ -65,7 +65,6 @@ class RecItemView extends React.Component {
     itemList = '';
     itemList = items.map((item, i) => {
       // console.log(item);
-      alert(item);
       itemList = <div key={i} data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview}>
         <NoteItem time={item.time} title={item.title} desc={item.desc} image={item.image}/>
       </div>

@@ -77,7 +77,7 @@ const Wrapper = styled.div `
 				border-radius: 2px;
 				height: ${props => props.stateIMG === 'none'
   ? 'auto'
-  : '130px'};
+  : '100px'};
 				display: grid;
 				grid-template-columns: 70px 1fr 90px;
 				grid-template-columns: ${props => props.noTitleNoDesc
@@ -141,8 +141,8 @@ const ItemDesc = styled.p `
 				margin-bottom: 0;
 				overflow: scroll;
 				overflow-x: hidden;
-        height: 65px;
-        max-height: 65px;
+        height: 50px;
+        max-height: 50px;
 				  `;
 
 const ItemImg = styled.img `
