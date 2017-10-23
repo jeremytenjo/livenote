@@ -61,7 +61,7 @@ class NoteItem extends React.Component {
               </filter>
             </defs>
 
-            <circle cx="50%" cy="50%" r="40" style={{
+            <circle cx="50%" cy="50%" r="35" style={{
               fill: '#0F2331',
               filter: 'url(#shadow)'
             }}/>
@@ -209,6 +209,7 @@ const Circle = styled.svg `
           position: absolute;
           left: 10px;
           z-index: 2;
+          bottom: 1px;
           `;
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
 export default NoteItem
