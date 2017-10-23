@@ -25,7 +25,6 @@ class NoteItem extends React.Component {
 
   //Methods
 
-
   render() {
     //Properties
 
@@ -36,6 +35,11 @@ class NoteItem extends React.Component {
     let yesTitleNoDesc = false
     if (this.state.title !== '' && this.state.desc === '') {
       yesTitleNoDesc = true
+    }
+
+    let yesTitleNoDescYesIMG = false
+    if (this.state.title !== '' && this.state.desc === '' && this.state.image !== 'none') {
+      yesTitleNoDescYesIMG = true
     }
 
     //Template
@@ -56,13 +60,14 @@ class NoteItem extends React.Component {
             {this.state.desc}
           </ItemDesc>
 
+          <ItemImg2 src={this.state.image} yesTitleNoDescYesIMG={yesTitleNoDescYesIMG}/>
 
         </ItemDescCon>
 
         <span style={{
           position: 'relative'
         }}>
-          <ItemImg state={this.state.image} noTitleNoDesc={noTitleNoDesc} yesTitleNoDesc={yesTitleNoDesc} src={this.state.image} alt="note image"/>
+          <ItemImg state={this.state.image} noTitleNoDesc={noTitleNoDesc} yesTitleNoDesc={yesTitleNoDesc} yesTitleNoDescYesIMG={yesTitleNoDescYesIMG} src={this.state.image} alt=""/>
         </span>
 
       </Wrapper>
@@ -84,8 +89,8 @@ const Wrapper = styled.div `
     ? '70px 1fr'
     : '70px 1fr 90px'};
 				grid-template-columns: ${props => props.stateIMG === 'none'
-    ? '70px 1fr'
-    : '70px 1fr 90px'};
+      ? '70px 1fr'
+      : '70px 1fr 90px'};
         cursor: pointer;
         padding: 5px;
             box-sizing: border-box;
@@ -146,26 +151,38 @@ const ItemDesc = styled.p `
 				  `;
 
 const ItemImg = styled.img `
+
 display: ${props => props.state === 'none'
-? 'none'
-: 'block'};
+  ? 'none'
+  : 'block'};
+  display: ${props => props.yesTitleNoDescYesIMG
+    ? 'none'
+    : 'block'};
+
 
 				 width: 80px;
 				 max-width: 80px;
 				 position: absolute;
 left: 0;
 right: ${props => props.noTitleNoDesc
-  ? 'auto'
-  : '0'};
+    ? 'auto'
+    : '0'};
 margin: auto;
 top: 0;
 bottom: 0;
 max-height: 100%;
-${'' /* transform: ${props => props.yesTitleNoDesc
-  ? 'translateX(-330px)'
-  : 'none'}; */}
 				 `;
 
+const ItemImg2 = styled.img `
+display: ${props => props.yesTitleNoDescYesIMG
+  ? 'block'
+  : 'none'};
+
+				 width: 80px;
+				 max-width: 80px;
+				 position: absolute;
+max-height: 100%;
+				 `;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
 export default NoteItem
