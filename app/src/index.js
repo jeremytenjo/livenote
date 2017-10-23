@@ -7,7 +7,7 @@ import Reducers from './state/reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 //Firebase Configuration
 var firebase = require("firebase/app");
@@ -32,10 +32,11 @@ const muiTheme = getMuiTheme({
     handleFillColor: '#69f0ae'
   }
 });
+
 ReactDOM.render(
 	<Provider store={store}>
 	<MuiThemeProvider muiTheme={muiTheme}>
 		<App/>
 	</MuiThemeProvider>
 </Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
