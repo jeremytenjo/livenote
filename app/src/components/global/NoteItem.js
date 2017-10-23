@@ -98,13 +98,7 @@ const Wrapper = styled.div `
   : '100px'}; */}
   height: 100px;
 				display: grid;
-				grid-template-columns: 112px 1fr 90px;
-				grid-template-columns: ${props => props.noTitleNoDesc
-  ? '112px 1fr'
-  : '112px 1fr 90px'};
-				grid-template-columns: ${props => props.stateIMG === 'none'
-    ? '112px 1fr'
-    : '112px 1fr 90px'};
+				grid-template-columns: 112px 1fr 90px;		 
         cursor: pointer;
         padding: 5px;
             box-sizing: border-box;
@@ -206,6 +200,7 @@ const Circle = styled.svg `
           position: absolute;
           left: 10px;
           z-index: 2;
+          bottom: 3px;
           `;
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
 export default NoteItem
