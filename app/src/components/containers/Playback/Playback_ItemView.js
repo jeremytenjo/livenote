@@ -12,10 +12,9 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {NotePreview_Show, NotePreview_Set, Change_TopBar_Title, NotePreview_Hide} from '../../../state/actions/index';
 
-
 //Set global state to prop
 function mapStateToProps(state) {
-  return {items: state.NewNote_Items, id: state.PlaybackSelection_ID, audioControl: state.AudioControl}
+  return {items: state.NewNote_Items, id: state.PlaybackSelection_ID, audioControl: state.AudioControl, title: state.TopBar_Title}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
@@ -136,8 +135,14 @@ class RecItemView extends React.Component {
     });
     //Template
     return (this.state.loading === true
-      ? <LoadingCon><CircularProgress size={80} thickness={5} color="#42EA9C"/>
-          Loading...</LoadingCon>
+      ? <LoadingCon>
+          <div style={{
+            width: '80px',
+            display: 'block',
+            margin: '0 auto'
+          }}><CircularProgress size={80} thickness={5} color="#42EA9C"/></div>
+          <p>{`Loading ${this.props.title}`}</p>
+        </LoadingCon>
       : <div style={{
         position: 'relative'
       }}>
@@ -179,8 +184,12 @@ const LoadingCon = styled.div `
    top: 0;
    bottom: 0;
    margin: auto;
-   width: 80px;
+   width: 100%;
    height: 80px;
+
+   p {
+     text-align: center;
+   }
    `;
 const TransIcon = styled.p `
    width: 20px;
