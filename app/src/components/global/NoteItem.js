@@ -104,7 +104,8 @@ const Wrapper = styled.div `
   : '100px'}; */}
   height: 100px;
 				display: grid;
-				grid-template-columns: 80px 1fr 90px;
+				${'' /* grid-template-columns: 80px 1fr 90px; */}
+				grid-template-columns: ${props => props.stateIMG !== 'none' ? '80px 1fr 90px' : '80px 1fr'};
         cursor: pointer;
         padding: 5px;
             box-sizing: border-box;
@@ -119,6 +120,7 @@ const ItemTime = styled.div `
 				color: white;
 				font-weight: bold;
         position: relative;
+        height: ${props => props.stateIMG !== 'none' ? '88px' : 'auto'};
 
         span {
           position: absolute;
