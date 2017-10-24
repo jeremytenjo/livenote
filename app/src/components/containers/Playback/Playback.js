@@ -94,6 +94,7 @@ class Playback extends React.Component {
     this.props.Set_Snackbar_Name('Note Renamed');
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
+      delay: 1,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {
