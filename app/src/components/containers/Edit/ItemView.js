@@ -1,24 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import Loadable from 'react-loadable';
+import NoteItem from '../../global/NoteItem.js';
+
 //State
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {NotePreview_Show, NotePreview_Set} from '../../../state/actions/index';
-
-const ItemOnlyText = Loadable({
-	loader: () => import ('../../global/Item_OnlyText.js'),
-	loading: () => null
-});
-const ItemOnlyImage = Loadable({
-	loader: () => import ('../../global/Item_OnlyImage.js'),
-	loading: () => null
-});
-const ItemTextImage = Loadable({
-	loader: () => import ('../../global/Item_TextImage.js'),
-	loading: () => null
-});
 
 //Set global state to prop
 function mapStateToProps(state) {
@@ -64,23 +52,19 @@ class RecItemView extends React.Component {
 		// console.log(items);
 		list = '';
 		itemList = '';
-		itemList = items.map((item, i) => {
-			// console.log(item);
-			if (item.desc && item.image !== '') {
-				list = <span data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemTextImage time={item.time} title={item.title} desc={item.desc} image={item.image}/></span>;
-				return list
 
-			} else if (item.desc === '') {
-				list = <span data-time={item.time} data-title={item.title} data-image={item.image} onClick={this.showPreview} key={i}><ItemOnlyImage time={item.time} title={item.title} image={item.image}/></span>;
-				return list
+	 
+		 itemList = items.map((item, i) => {
 
-			} else if (item.image === '') {
-				list = <span data-time={item.time} data-title={item.title} data-desc={item.desc} onClick={this.showPreview} key={i}><ItemOnlyText time={item.time} title={item.title} desc={item.desc}/></span>;
-				return list
+			list = <Item key={i}>
+				<ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.image} data-desc={item.desc} onClick={this.showPreview}>
+					<NoteItem time={item.time} title={item.title} desc={item.desc} image={item.image}/>
+				</ItemCon>
 
-			}
+			</Item>;
 
-			return itemList
+			return list
+
 		});
 
 		//delay so that has time to scroll to end
@@ -113,4 +97,12 @@ display: grid;
 grid-row-gap: 10px;
 `;
 
+const Item = styled.span `
+position: relative;
+    width: 100%;
+ `;
+
+	const ItemCon = styled.div `
+
+	 `;
 export default connect(mapStateToProps, mapDispatchToProps)(RecItemView);

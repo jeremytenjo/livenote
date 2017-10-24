@@ -133,6 +133,7 @@ class RecItemView extends React.Component {
       return list
 
     });
+    
     //Template
     return (this.state.loading === true
       ? <LoadingCon>
