@@ -12,10 +12,17 @@ import {TweenMax} from 'gsap';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Toggle_OptinsMenuHide, Show_Snackbar, Set_Snackbar_Name, Hide_Snackbar, Fetch_Folders_Flag} from '../../../state/actions/index';
+import {
+  Toggle_OptinsMenuHide,
+  Show_Snackbar,
+  Set_Snackbar_Name,
+  Hide_Snackbar,
+  Fetch_Folders_Flag,
+  Set_Folders_Local
+} from '../../../state/actions/index';
 
 function mapStateToProps(state) {
-  return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename, flag: state.FetchFoldersFlag}
+  return {options: state.OtionsMenu_Toggle, folderID: state.Folder_Delete_ID, folderName: state.FolderSelection_Rename, flag: state.FetchFoldersFlag, folders: state.Folders}
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
@@ -23,7 +30,8 @@ function mapDispatchToProps(dispatch) {
     Show_Snackbar,
     Set_Snackbar_Name,
     Hide_Snackbar,
-    Fetch_Folders_Flag
+    Fetch_Folders_Flag,
+    Set_Folders_Local
   }, dispatch)
 }
 class Folder extends React.Component {
@@ -44,16 +52,17 @@ class Folder extends React.Component {
   //Methods
   componentWillMount() {
     if (this.props.flag === false) {
-			this.getDataOnline()
-		} else {
-			this.getDataLocal()
-		}
+      this.getDataOnline()
+    } else {
+      this.getDataLocal()
+    }
   }
 
   getDataLocal = () => {
-    var recent = JSON.parse(localStorage.getItem("folders"))
-    this.setState({list: recent});
+    // var recent = JSON.parse(localStorage.getItem("folders"))
+    // this.setState({list: recent});
     this.setState({loading: false});
+    this.setState({list: this.props.folders})
   }
 
   getDataOnline = () => {
@@ -78,10 +87,10 @@ class Folder extends React.Component {
       }
       // console.log(array);
 
-      localStorage.setItem('folders', JSON.stringify(array));
-
+      // localStorage.setItem('folders', JSON.stringify(array));
       this.setState({list: array});
       this.setState({loading: false});
+      this.props.Set_Folders_Local(array)
       this.props.Fetch_Folders_Flag(true);
 
     });
@@ -99,9 +108,7 @@ class Folder extends React.Component {
     // this.setState({title: ''});
     this.props.Set_Snackbar_Name('Folder Added');
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {
-      bottom: "50px"
-    });
+    TweenMax.to(SnackBar, .5, {bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
@@ -122,14 +129,11 @@ class Folder extends React.Component {
     // this.setState({title: ''});
 
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {
-      bottom: "50px"
-    });
+    TweenMax.to(SnackBar, .5, {bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
     });
-
 
     this.props.Set_Snackbar_Name('Folder Renamed');
     this.props.Hide_Snackbar();
@@ -177,9 +181,7 @@ class Folder extends React.Component {
 
     this.props.Set_Snackbar_Name('Folder Removed');
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {
-      bottom: "50px"
-    });
+    TweenMax.to(SnackBar, .5, {bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
@@ -292,7 +294,7 @@ class Folder extends React.Component {
     const OtopnsWrapper = styled.div `
 margin-top: 40px;
 		  `;
- 
+
     const OptionsItemCon = styled.div `
 display: grid;
 grid-template-columns: 50px 1fr;

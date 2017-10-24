@@ -143,3 +143,13 @@ export const Fetch_Folders_Flag = (e) => {
 export const Fetch_Notes_Flag = (e) => {
   return {type: 'FETCH_NOTES_FLAG', data: e}
 }
+
+export const Set_Folders_Local = (e) => {
+  return {type: 'FETCH_FOLDERS_LOCAL', data: e}
+}
+export const Set_Notes_Local = (e) => {
+  return {type: 'FETCH_NOTES_LOCAL', data: e}
+}
+export const Set_Recent_Local = (e) => {
+  return {type: 'FETCH_RECENT_LOCAL', data: e}
+}

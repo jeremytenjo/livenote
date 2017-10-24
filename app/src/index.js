@@ -14,17 +14,17 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 var config = {
-	apiKey: "AIzaSyAyJgNWwD3cJZGNTwPuZXA4cDc2iHqVk3s",
-	authDomain: "live-note-ce62c.firebaseapp.com",
-	databaseURL: "https://live-note-ce62c.firebaseio.com",
-	projectId: "live-note-ce62c",
-	storageBucket: "live-note-ce62c.appspot.com",
-	messagingSenderId: "1009089907270"
+  apiKey: "AIzaSyAyJgNWwD3cJZGNTwPuZXA4cDc2iHqVk3s",
+  authDomain: "live-note-ce62c.firebaseapp.com",
+  databaseURL: "https://live-note-ce62c.firebaseio.com",
+  projectId: "live-note-ce62c",
+  storageBucket: "live-note-ce62c.appspot.com",
+  messagingSenderId: "1009089907270"
 };
 firebase.initializeApp(config);
 
 //State
-const store = createStore(Reducers);
+const store = createStore(Reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const muiTheme = getMuiTheme({
   slider: {
@@ -34,9 +34,9 @@ const muiTheme = getMuiTheme({
 });
 
 ReactDOM.render(
-	<Provider store={store}>
-	<MuiThemeProvider muiTheme={muiTheme}>
-		<App/>
-	</MuiThemeProvider>
+  <Provider store={store}>
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <App/>
+  </MuiThemeProvider>
 </Provider>, document.getElementById('root'));
 // registerServiceWorker();
