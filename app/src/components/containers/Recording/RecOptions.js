@@ -31,7 +31,10 @@ import {
 	Set_MasterNote_id,
 	FolderSelection_ID,
 	Toggle_Loading_Scrren,
-	Set_Playback_Id
+	Set_Playback_Id,
+	Fetch_Recent_Flag,
+	Fetch_Folders_Flag,
+	Fetch_Notes_Flag
 } from '../../../state/actions/index';
 
 //Set global state to prop
@@ -67,7 +70,10 @@ function mapDispatchToProps(dispatch) {
 		Set_MasterNote_id,
 		FolderSelection_ID,
 		Toggle_Loading_Scrren,
-		Set_Playback_Id
+		Set_Playback_Id,
+		Fetch_Recent_Flag,
+		Fetch_Folders_Flag,
+		Fetch_Notes_Flag
 	}, dispatch)
 }
 
@@ -280,6 +286,10 @@ class RecOptions extends React.Component {
 				}).then(() => {
 					//Wait until note finihes uploading
 
+					//set to load fetch online
+					this.props.Fetch_Recent_Flag(false)
+					this.props.Fetch_Folders_Flag(false)
+					this.props.Fetch_Notes_Flag(false)
 
 					//Reset Folder Selected
 					this.props.FolderSelection_Name('SELECT FOLDER');
@@ -306,8 +316,8 @@ class RecOptions extends React.Component {
 						delay: 2,
 						bottom: "-50px"
 					});
-					this.props.Hide_Snackbar();
-					this.props.Show_Snackbar();
+					// this.props.Hide_Snackbar();
+					// this.props.Show_Snackbar();
 
 					//Reset Top Bar Title
 					this.props.Change_TopBar_Title('Notes');

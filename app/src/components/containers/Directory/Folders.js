@@ -292,11 +292,13 @@ class Folder extends React.Component {
     const OtopnsWrapper = styled.div `
 margin-top: 40px;
 		  `;
+ 
     const OptionsItemCon = styled.div `
 display: grid;
 grid-template-columns: 50px 1fr;
 color: #0F2331;
 		  `;
+
     const OptionsItem = styled.img `
 width: 20px;
 padding: 15px;
