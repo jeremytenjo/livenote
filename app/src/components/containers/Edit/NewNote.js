@@ -105,7 +105,7 @@ color: #212121;
 padding-top: 10px;
 top: 0;
 left: 0;
-z-index: 3;
+z-index: 11;
 @media (max-height: 382px) {
 height: 100%;
  }

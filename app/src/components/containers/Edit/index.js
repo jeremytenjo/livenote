@@ -232,7 +232,7 @@ color: lightgrey;
 position: fixed;
 top: 15px;
 right: 10px;
-z-index: 3;
+z-index: 10;
 margin: 0;
 cursor: pointer;
 &:active  {
