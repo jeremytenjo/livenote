@@ -36,7 +36,7 @@ class PlaybackOptions extends React.Component {
       minValue: 0,
       max: 10000
     }
-    this.initPlayback = this.initPlayback.bind(this);
+    // this.initPlayback = this.initPlayback.bind(this);
   }
 
   //Methods
@@ -46,6 +46,7 @@ class PlaybackOptions extends React.Component {
     this.initPlayback(id);
     // this.initPlayback(this.props.noteID);
   }
+
   componentWillUnmount() {
     if (this.props.noteID !== '' && this.state.audioControl) {
       let audioControl = this.state.audioControl;
@@ -54,7 +55,8 @@ class PlaybackOptions extends React.Component {
 
   }
 
-  async initPlayback(id) {
+  initPlayback = async(id) => {
+
     if (id === '') {
       this.props.history.push(`/`);
 
@@ -70,7 +72,6 @@ class PlaybackOptions extends React.Component {
         audioControl.currentTime = 0;
       }
 
-   
       audioControl.onloadedmetadata = (e) => {
         if (audioControl.duration === Infinity) {
           let self = this;
