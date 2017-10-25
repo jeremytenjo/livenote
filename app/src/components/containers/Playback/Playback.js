@@ -48,7 +48,7 @@ class Playback extends React.Component {
     //   this.props.history.push(`/`)
     // }
 
-    this.getAudio()
+    // this.getAudio()
     // gsutil cors set cors.json gs://live-note-ce62c.appspot.com
   }
 
@@ -56,16 +56,6 @@ class Playback extends React.Component {
     let id = window.location.pathname.substr(10)
     const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
     // console.log(audioUrl);
-
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function(event) {
-      var blob = xhr.response;
-      console.log(blob);
-    };
-    xhr.open('GET', audioUrl);
-    xhr.send();
-
 
     this.state.audioUrl = audioUrl
   }
@@ -187,9 +177,9 @@ class Playback extends React.Component {
         </span>
 
         <PopupCon state={this.state.open}>
-          <li>
-            <a href={this.state.audioUrl}>Download Audio</a>
-          </li>
+          {/* <li> */}
+            {/* <a href={this.state.audioUrl} target="_blank">Download Audio</a> */}
+          {/* </li> */}
           <li onClick={this.rename}>Rename</li>
           <li onClick={this.delete}>Remove</li>
         </PopupCon>
