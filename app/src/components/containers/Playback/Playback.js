@@ -284,6 +284,8 @@ ${ ''/* border: 3px solid red; */}
  width: 100%;
  height: 120px;
  z-index: 5;
+ box-shadow: 0px -7px 15px -5px rgba(0,0,0,0.42);
+
 	 `;
 const DialogRename = styled.form `
  	display: ${props => props.state

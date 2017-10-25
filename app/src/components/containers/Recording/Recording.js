@@ -80,6 +80,8 @@ width: 100%;
 left: 0;
 right: 0;
 margin: auto;
+box-shadow: 0px -7px 15px -5px rgba(0,0,0,0.42);
+
 	 `;
 
 export default connect(mapStateToProps)(withRouter(Recording))
