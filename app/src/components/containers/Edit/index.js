@@ -177,7 +177,7 @@ class Edit extends React.Component {
 
         });
       }
-
+      return ''
     })
 
     //Wait until note finihes uploading
