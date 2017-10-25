@@ -454,6 +454,7 @@ const Wrapper = styled.div `
 display: grid;
 height: 100%;
 grid-template-columns: 100px 1fr 100px;
+z-index: 5;
  `;
 const Left = styled.div `
   `;
