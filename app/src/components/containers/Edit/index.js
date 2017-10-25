@@ -249,6 +249,7 @@ const OptionsContainer = styled.div `
          right: 0;
          width: 100%;
          height: 130px;
+         z-index: 3;
         	 `;
 const ItemViewContainer = styled.div `
            margin-bottom: 105px;
