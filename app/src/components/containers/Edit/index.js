@@ -21,7 +21,10 @@ import {
   Reset_Items,
   Set_Snackbar_Name,
   Hide_Snackbar,
-  Show_Snackbar
+  Show_Snackbar,
+  Fetch_Recent_Flag,
+  Fetch_Folders_Flag,
+  Fetch_Notes_Flag
 } from '../../../state/actions/index';
 
 //define actions
@@ -32,7 +35,10 @@ function mapDispatchToProps(dispatch) {
     Reset_Items,
     Set_Snackbar_Name,
     Hide_Snackbar,
-    Show_Snackbar
+    Show_Snackbar,
+    Fetch_Recent_Flag,
+    Fetch_Folders_Flag,
+    Fetch_Notes_Flag
   }, dispatch)
 }
 //Set global state to prop
@@ -100,15 +106,15 @@ class Edit extends React.Component {
       backImg: 'none'
     })
 
-    console.log(MasterNote.key);
+    // console.log(MasterNote.key);
     this.setState({newMasterNoteKey: MasterNote.key})
 
     //upload audio file to firease
     // console.log(this.props.audioSrc);
     let storageRef = firebase.storage().ref()
     let ref = storageRef.child('audio/' + MasterNote.key)
-    let audioRef = await ref.putString(this.props.audioSrc, 'data_url')
-    console.log(audioRef);
+    ref.putString(this.props.audioSrc, 'data_url')
+    // console.log(audioRef);
 
     //upload sub notes
     let flag = true;
@@ -177,6 +183,11 @@ class Edit extends React.Component {
     //Wait until note finihes uploading
     //reset notes
     this.props.Reset_Items();
+
+    //set to load fetch online
+    this.props.Fetch_Recent_Flag(false)
+    this.props.Fetch_Folders_Flag(false)
+    this.props.Fetch_Notes_Flag(false)
 
     //Remove loading screen
     this.props.Toggle_Loading_Scrren('false');
