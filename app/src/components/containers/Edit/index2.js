@@ -63,7 +63,7 @@ class Edit extends React.Component {
 
   }
 
-  saveNote = async() => {
+  saveNote = () => {
     // console.log(this.props.noteItems);
     this.props.Toggle_Loading_Scrren('true');
     //get date
@@ -91,116 +91,122 @@ class Edit extends React.Component {
 
     //upload master note
     // alert(this.state.transcript);
-    let MasterNote = await firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
+    firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes`).push({
       name: this.props.TopBar_Title,
       folderName: folderName,
       folderID: folderID,
       dateAddedSort: currentDateSort,
       dateAdded: currentDateString,
       backImg: 'none'
-    })
+    }).then((snap) => {
+      const key = snap.key
+      this.setState({newMasterNoteKey: key})
 
-    console.log(MasterNote.key);
-    this.setState({newMasterNoteKey: MasterNote.key})
+      //upload audio file to firease
+      // console.log(this.props.audioSrc);
+      let storageRef = firebase.storage().ref()
+      let ref = storageRef.child('audio/' + key)
+      ref.putString(this.props.audioSrc, 'data_url').then((snapshot) => {
 
-    //upload audio file to firease
-    // console.log(this.props.audioSrc);
-    let storageRef = firebase.storage().ref()
-    let ref = storageRef.child('audio/' + MasterNote.key)
-    let audioRef = await ref.putString(this.props.audioSrc, 'data_url')
-    console.log(audioRef);
+        //upload sub notes
+        let flag = true;
+        // this.state.data.map((d) => {
+        this.props.noteItems.map((d) => {
+          //upload image
+          let storageRef = firebase.storage().ref();
+          let mountainsRef = storageRef.child('images/' + key + d.title);
 
-    //upload sub notes
-    let flag = true;
+          if (d.image !== '') {
+            // console.log(d.image);
 
-    this.props.noteItems.map((d) => {
-      //upload image
-      let storageRef = firebase.storage().ref();
-      let mountainsRef = storageRef.child('images/' + MasterNote.key + d.title);
+            //compress image file
 
-      if (d.image !== '') {
-        // console.log(d.image);
+            //comvert data utl tpo blob
+            let newBlob = dataURLtoBlob(d.image)
+            // console.log(newBlob);
 
-        //compress image file
+            //compress blob
+            new ImageCompressor(newBlob, {
+              quality: .6,
+              success(compressedImage) {
+                uploadCompressed(compressedImage)
+              }
+            });
 
-        //comvert data utl tpo blob
-        let newBlob = dataURLtoBlob(d.image)
-        // console.log(newBlob);
+            //upload compressed image
+            let uploadCompressed = (compressedImage) => {
+              // console.log(compressedImage);
+              mountainsRef.put(compressedImage).then((snapshot) => {
+                // console.log(snapshot.metadata.downloadURLs[0]);
 
-        //compress blob
-        new ImageCompressor(newBlob, {
-          quality: .6,
-          success(compressedImage) {
-            uploadCompressed(compressedImage)
-          }
-        });
+                //upload backround image if true
+                if (flag === true) {
+                  firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
+                  flag = false
+                }
 
-        //upload compressed image
-        let uploadCompressed = (compressedImage) => {
-          // console.log(compressedImage);
-          mountainsRef.put(compressedImage).then((snapshot) => {
-            // console.log(snapshot.metadata.downloadURLs[0]);
-
-            //upload backround image if true
-            if (flag === true) {
-              firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.state.newMasterNoteKey}`).update({backImg: snapshot.metadata.downloadURLs[0]});
-              flag = false
+                firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
+                  masterNote_id: key,
+                  name: this.props.TopBar_Title,
+                  title: d.title,
+                  comment: d.desc,
+                  imageUrl: snapshot.metadata.downloadURLs[0],
+                  time: d.time,
+                  timeSeconds: d.timeSeconds
+                });
+              });
             }
+          } else {
 
             firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-              masterNote_id: MasterNote.key,
+              masterNote_id: key,
               name: this.props.TopBar_Title,
               title: d.title,
               comment: d.desc,
-              imageUrl: snapshot.metadata.downloadURLs[0],
+              imageUrl: 'none',
               time: d.time,
               timeSeconds: d.timeSeconds
+
             });
-          });
-        }
-      } else {
+          }
 
-        firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
-          masterNote_id: MasterNote.key,
-          name: this.props.TopBar_Title,
-          title: d.title,
-          comment: d.desc,
-          imageUrl: 'none',
-          time: d.time,
-          timeSeconds: d.timeSeconds
-
+          return ''
         });
-      }
 
+      }).then(() => {
+        //Wait until note finihes uploading
+
+
+        //reset notes
+        this.props.Reset_Items();
+
+        //Remove loading screen
+        this.props.Toggle_Loading_Scrren('false');
+
+        //confimration aniamtion
+        this.props.Set_Snackbar_Name(this.props.TopBar_Title + ' Uploaded');
+        let SnackBar = document.querySelector('#MySnackBar')
+        TweenMax.to(SnackBar, .5, {
+          delay: .5,
+          bottom: "50px"
+        });
+        TweenMax.to(SnackBar, .5, {
+          delay: 2,
+          bottom: "-50px"
+        });
+        // this.props.Hide_Snackbar();
+        // this.props.Show_Snackbar();
+
+        //Reset Top Bar Title
+        this.props.Change_TopBar_Title('Directory');
+
+        //redirect to Directory
+        this.props.history.push(`/`);
+
+      });
     })
 
-    //Wait until note finihes uploading
-    //reset notes
-    this.props.Reset_Items();
-
-    //Remove loading screen
-    this.props.Toggle_Loading_Scrren('false');
-
-    //confimration aniamtion
-    this.props.Set_Snackbar_Name(this.props.TopBar_Title + ' Uploaded');
-    let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {
-      delay: .5,
-      bottom: "50px"
-    });
-    TweenMax.to(SnackBar, .5, {
-      delay: 2,
-      bottom: "-50px"
-    });
-
-    //Reset Top Bar Title
-    this.props.Change_TopBar_Title('Directory');
-
-    //redirect to Directory
-    this.props.history.push(`/`);
-
   }
-
   render() {
     //Properties
 
@@ -255,7 +261,7 @@ const OptionsContainer = styled.div `
          height: 130px;
          z-index: 3;
          box-shadow: 0px -7px 15px -5px rgba(0,0,0,0.42);
-
+         
         	 `;
 const ItemViewContainer = styled.div `
            margin-bottom: 105px;

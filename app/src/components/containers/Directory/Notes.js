@@ -136,6 +136,7 @@ class Notes extends React.Component {
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/masterNotes/${this.props.fileID}`).remove();
 
     //remove master note recording
+    console.log(this.props.fileID);
     firebase.storage().ref(`audio/${this.props.fileID}`).delete();
 
     this.getDataOnline();
