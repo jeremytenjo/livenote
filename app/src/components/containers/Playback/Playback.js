@@ -98,7 +98,7 @@ class Playback extends React.Component {
     this.props.Set_Snackbar_Name('Note Renamed');
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
-      delay: 1,
+      delay: .5,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {
@@ -153,7 +153,10 @@ class Playback extends React.Component {
 
     this.props.Set_Snackbar_Name('Note Removed')
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {bottom: "50px"});
+    TweenMax.to(SnackBar, .5, {
+      delay: .5,
+      bottom: "50px"
+    });
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
@@ -178,7 +181,7 @@ class Playback extends React.Component {
 
         <PopupCon state={this.state.open}>
           {/* <li> */}
-            {/* <a href={this.state.audioUrl} target="_blank">Download Audio</a> */}
+          {/* <a href={this.state.audioUrl} target="_blank">Download Audio</a> */}
           {/* </li> */}
           <li onClick={this.rename}>Rename</li>
           <li onClick={this.delete}>Remove</li>

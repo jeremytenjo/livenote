@@ -108,7 +108,7 @@ class Folder extends React.Component {
     // this.setState({title: ''});
     this.props.Set_Snackbar_Name('Folder Added');
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {delay: 1,bottom: "50px"});
+    TweenMax.to(SnackBar, .5, {delay: .5,bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
@@ -129,7 +129,7 @@ class Folder extends React.Component {
     // this.setState({title: ''});
 
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {bottom: "50px"});
+    TweenMax.to(SnackBar, .5, {delay: .5, bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
@@ -181,7 +181,7 @@ class Folder extends React.Component {
 
     this.props.Set_Snackbar_Name('Folder Removed');
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {delay: 1,bottom: "50px"});
+    TweenMax.to(SnackBar, .5, {delay: .5,bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"

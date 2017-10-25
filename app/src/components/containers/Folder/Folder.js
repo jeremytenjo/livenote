@@ -147,6 +147,7 @@ class Folder extends React.Component {
     this.props.Set_Snackbar_Name('Note Removed');
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
+      delay: .5,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {
@@ -164,7 +165,7 @@ class Folder extends React.Component {
     this.setState({renameInput: true});
 
   }
-  
+
   submitnewName = (e) => {
     // console.log(this.inputRename.value);
     e.preventDefault();
@@ -176,6 +177,7 @@ class Folder extends React.Component {
     this.props.Set_Snackbar_Name('File Renamed');
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
+      delay: .5,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {

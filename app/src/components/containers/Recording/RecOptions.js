@@ -310,7 +310,7 @@ class RecOptions extends React.Component {
 					this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
 					let SnackBar = document.querySelector('#MySnackBar')
 					TweenMax.to(SnackBar, .5, {
-						delay: 1,
+						delay: .5,
 						bottom: "50px"
 					});
 					TweenMax.to(SnackBar, .5, {

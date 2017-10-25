@@ -10,6 +10,7 @@ import LoadingScreen from '../../global/LoadingScreen.js';
 import firebase from 'firebase';
 import ImageCompressor from '@xkeshi/image-compressor';
 import dataURLtoBlob from 'dataurl-to-blob';
+import {TweenMax} from 'gsap';
 
 //State
 import {bindActionCreators} from 'redux';
@@ -184,8 +185,17 @@ class Edit extends React.Component {
 
         //confimration aniamtion
         this.props.Set_Snackbar_Name(this.props.TopBar_Title + ' Uploaded');
-        this.props.Hide_Snackbar();
-        this.props.Show_Snackbar();
+        let SnackBar = document.querySelector('#MySnackBar')
+        TweenMax.to(SnackBar, .5, {
+          delay: .5,
+          bottom: "50px"
+        });
+        TweenMax.to(SnackBar, .5, {
+          delay: 2,
+          bottom: "-50px"
+        });
+        // this.props.Hide_Snackbar();
+        // this.props.Show_Snackbar();
 
         //Reset Top Bar Title
         this.props.Change_TopBar_Title('Directory');

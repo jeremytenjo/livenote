@@ -142,7 +142,7 @@ class Notes extends React.Component {
     this.props.Toggle_OptinsMenuHideFile();
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
-      delay: 1,
+    delay: .5,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {
@@ -173,7 +173,7 @@ class Notes extends React.Component {
     this.props.Set_Snackbar_Name('Note Renamed');
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
-      delay: 1,
+      delay: .5,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {
