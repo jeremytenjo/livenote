@@ -5,17 +5,19 @@ import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux';
-import {Set_Playback_Id, Change_TopBar_Title, Fetch_Recent_Flag} from '../../../state/actions/index';
+import {Set_Playback_Id, Change_TopBar_Title, Fetch_Recent_Flag, Set_RecentNotes} from '../../../state/actions/index';
 
 // import CircularProgress from 'material-ui/CircularProgress';
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_Playback_Id,
-    Change_TopBar_Title, Fetch_Recent_Flag
+    Change_TopBar_Title,
+    Fetch_Recent_Flag,
+    Set_RecentNotes
   }, dispatch)
 }
 function mapStateToProps(state) {
-  return {notes: state.RecentNotes, flag: state.FetchRecentFlag}
+  return {notes: state.RecentNotes, flag: state.FetchRecentFlag, RecentNotes: state.RecentNotes}
 }
 class Recent extends React.Component {
 
@@ -72,10 +74,13 @@ class Recent extends React.Component {
       // console.log(array);
       localStorage.setItem('recent', JSON.stringify(array));
 
-      this.setState({list: array});
-      this.setState({loading: false});
+      this.props.Set_RecentNotes(array);
 
+      // this.setState({list: array});
+      this.setState({loading: false});
       this.props.Fetch_Recent_Flag(true);
+
+
     });
 
   }
@@ -90,7 +95,7 @@ class Recent extends React.Component {
 
   render() {
     //Properties
-    let list = this.state.list.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
+    let list = this.props.RecentNotes.map((item, i) => <span key={item.id} onClick={() => this.openPlayback(item.id, item.name)} style={{
       cursor: 'pointer'
     }}><File width="140px" title={item.name} backImg={item.backImg}/></span>);
 

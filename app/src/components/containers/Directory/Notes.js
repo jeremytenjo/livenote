@@ -11,7 +11,8 @@ import {
   Show_Snackbar,
   Set_Snackbar_Name,
   Hide_Snackbar,
-  Fetch_Notes_Flag
+  Fetch_Notes_Flag,
+  Set_RecentNotes
 } from '../../../state/actions/index';
 import styled, {keyframes} from 'styled-components'
 import Rename_img from '../../../images/icons/rename.svg';
@@ -27,7 +28,8 @@ function mapDispatchToProps(dispatch) {
     Show_Snackbar,
     Hide_Snackbar,
     Set_Snackbar_Name,
-    Fetch_Notes_Flag
+    Fetch_Notes_Flag,
+    Set_RecentNotes
   }, dispatch)
 }
 
@@ -52,11 +54,11 @@ class Notes extends React.Component {
 
   //Methods
   componentWillMount() {
-		if (this.props.flag === false) {
-			this.getDataOnline()
-		} else {
-			this.getDataLocal()
-		}
+    if (this.props.flag === false) {
+      this.getDataOnline()
+    } else {
+      this.getDataLocal()
+    }
 
   }
 
@@ -93,7 +95,7 @@ class Notes extends React.Component {
       this.setState({list: array});
       this.setState({loading: false});
 
-			this.props.Fetch_Notes_Flag(true);
+      this.props.Fetch_Notes_Flag(true);
 
     });
   }
@@ -138,21 +140,52 @@ class Notes extends React.Component {
     //remove master note recording
     // console.log(this.props.fileID);
     firebase.storage().ref(`audio/${this.props.fileID}`).delete();
+    this.props.Set_Snackbar_Name('Note Removed');
 
     this.getDataOnline();
     this.props.Toggle_OptinsMenuHideFile();
     let SnackBar = document.querySelector('#MySnackBar')
     TweenMax.to(SnackBar, .5, {
-    delay: .5,
+      delay: .5,
       bottom: "50px"
     });
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
     });
-    this.props.Set_Snackbar_Name('Note Removed');
-    this.props.Hide_Snackbar();
-    this.props.Show_Snackbar();
+    // this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar();
+
+    //refresh Recent List
+    let userId = firebase.auth().currentUser.uid;
+    let array = [];
+
+    return firebase.database().ref('/users/' + userId + '/masterNotes').orderByChild('dateAddedSort').limitToLast(5).once('value').then((snap) => {
+      let list = {},
+        snapValue = snap.val();
+      // console.log(snapValue);
+
+      for (var prop in snapValue) {
+        // console.log(snapValue[prop]);
+        list.id = prop;
+        list.backImg = snapValue[prop].backImg;
+        list.dateAdded = snapValue[prop].dateAdded;
+        list.dateAddedSort = snapValue[prop].dateAddedSort;
+        list.folderID = snapValue[prop].folderID;
+        list.folderName = snapValue[prop].folderName;
+        list.name = snapValue[prop].name;
+
+        // console.log(list);
+        array.push(list);
+        array.reverse();
+        list = {};
+      }
+      // console.log(array);
+      localStorage.setItem('recent', JSON.stringify(array));
+      this.props.Set_RecentNotes(array)
+      this.setState({loading: false});
+
+    });
   }
 
   renameFile = () => {
