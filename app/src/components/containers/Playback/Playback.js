@@ -10,13 +10,7 @@ import {TweenMax} from 'gsap';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-  Hide_Snackbar,
-  Show_Snackbar,
-  Set_Snackbar_Name,
-  Change_TopBar_Title,
-  Toggle_OptinsMenuHideFile
-} from '../../../state/actions/index';
+import {Hide_Snackbar, Show_Snackbar, Set_Snackbar_Name, Change_TopBar_Title, Toggle_OptinsMenuHideFile} from '../../../state/actions/index';
 import firebase from 'firebase';
 
 //define actions
@@ -41,7 +35,8 @@ class Playback extends React.Component {
     this.state = {
       data: 'initial',
       open: false,
-      renameInput: false
+      renameInput: false,
+      audioUrl: ''
 
     }
   }
@@ -53,7 +48,14 @@ class Playback extends React.Component {
     //   this.props.history.push(`/`)
     // }
 
-    this.props.Hide_Snackbar();
+    this.getAudio()
+
+  }
+
+  getAudio = async() => {
+    let id = window.location.pathname.substr(10)
+    const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
+    this.state.audioUrl = audioUrl
   }
 
   handleTouchTap = (event) => {
@@ -149,9 +151,7 @@ class Playback extends React.Component {
 
     this.props.Set_Snackbar_Name('Note Removed')
     let SnackBar = document.querySelector('#MySnackBar')
-    TweenMax.to(SnackBar, .5, {
-      bottom: "50px"
-    });
+    TweenMax.to(SnackBar, .5, {bottom: "50px"});
     TweenMax.to(SnackBar, .5, {
       delay: 2,
       bottom: "-50px"
@@ -161,7 +161,6 @@ class Playback extends React.Component {
     this.props.history.push(`/`)
 
   };
-
 
   render() {
     //Properties
@@ -176,6 +175,9 @@ class Playback extends React.Component {
         </span>
 
         <PopupCon state={this.state.open}>
+          <li>
+            <a href={this.state.audioUrl}>Download Audio</a>
+          </li>
           <li onClick={this.rename}>Rename</li>
           <li onClick={this.delete}>Remove</li>
         </PopupCon>
@@ -235,6 +237,13 @@ cursor: pointer;
 &:hover {
 background-color: #E0E0E0;
 }
+a {
+   color: black !important;
+   &:visited {
+     color: black !important;
+   }
+}
+
 }
  `;
 const OptionsIcon = styled.img `

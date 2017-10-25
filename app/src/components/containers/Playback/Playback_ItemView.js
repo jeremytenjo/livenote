@@ -62,7 +62,7 @@ class RecItemView extends React.Component {
   getItems = (id) => {
 
     //get current transcript
-    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + id).once('value').then((snap) => {
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + id).once('value').then((snap) => {      
       this.props.Change_TopBar_Title(snap.val().name);
       this.setState({transcriptText: snap.val().transcript});
     }).catch((err) => {
@@ -133,7 +133,7 @@ class RecItemView extends React.Component {
       return list
 
     });
-    
+
     //Template
     return (this.state.loading === true
       ? <LoadingCon>
