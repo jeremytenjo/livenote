@@ -49,12 +49,24 @@ class Playback extends React.Component {
     // }
 
     this.getAudio()
-
+    // gsutil cors set cors.json gs://live-note-ce62c.appspot.com
   }
 
   getAudio = async() => {
     let id = window.location.pathname.substr(10)
     const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
+    // console.log(audioUrl);
+
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function(event) {
+      var blob = xhr.response;
+      console.log(blob);
+    };
+    xhr.open('GET', audioUrl);
+    xhr.send();
+
+
     this.state.audioUrl = audioUrl
   }
 
