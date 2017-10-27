@@ -98,7 +98,7 @@ class NewNote_Image extends React.Component {
 
         <ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
-        <Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+        <Title autoFocus autocomplete="off" placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
 
         <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 

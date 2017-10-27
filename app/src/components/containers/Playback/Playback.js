@@ -264,7 +264,6 @@ const Wrapper = styled.div `
 	max-width: 600px;
 	margin: 0 auto;
 	${ ''/* padding: 10px; */}
-
  `;
 const ItemViewContainer = styled.div `
 ${ ''/* margin-top: 50px; */}
