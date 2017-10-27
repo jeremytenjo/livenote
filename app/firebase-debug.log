@@ -1,0 +1,20 @@
+[debug] [2017-10-27T15:19:18.376Z] ----------------------------------------------------------------------
+[debug] [2017-10-27T15:19:18.380Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jeremy\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-10-27T15:19:18.381Z] CLI Version:   3.13.1
+[debug] [2017-10-27T15:19:18.381Z] Platform:      win32
+[debug] [2017-10-27T15:19:18.381Z] Node Version:  v8.4.0
+[debug] [2017-10-27T15:19:18.381Z] Time:          Fri Oct 27 2017 11:19:18 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-10-27T15:19:18.381Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-27T15:19:18.393Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-27T15:19:18.393Z] > authorizing via signed-in user
+[debug] [2017-10-27T15:19:18.395Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-27T15:19:18.395Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/rR-UsMxd4Ck48z9PWxqsHMxuoSCLxUQUGgFjGvQP2vBOj69mBxS3o_5VA3dlmTVx',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Oct 27 2017 11:19:18 GMT-0400 (Eastern Daylight Time)
+[debug] [2017-10-27T15:19:18.808Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-27T15:19:18.868Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/live-note-ce62c  
+ Fri Oct 27 2017 11:19:18 GMT-0400 (Eastern Daylight Time)
