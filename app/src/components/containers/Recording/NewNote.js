@@ -31,13 +31,7 @@ class NewNote extends React.Component {
     }
   }
 
-  //Methods
-  componentWillMount = () => {
-    document.querySelector('#TitleNewNote').autofocus = true;
-    document.querySelector('#TitleNewNote').addAttribute("focus", 'true')
-		document.querySelector('input').setAttribute('autofocus', 'autofocus');
-
-  }
+  //Methods   
 
   handleTitle = (e) => {
     // console.log(e.target.value);
