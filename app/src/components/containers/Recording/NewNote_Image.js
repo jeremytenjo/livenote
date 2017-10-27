@@ -92,9 +92,10 @@ class NewNote_Image extends React.Component {
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
 					<Header>New Comment</Header>
 				</Top>
+				
+				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
 				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
-				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 
