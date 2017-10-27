@@ -224,6 +224,7 @@ class RecOptions extends React.Component {
             position = 0
 
           this.state.data.map((d) => {
+						position = position + 1
 
             //upload image
             let storageRef = firebase.storage().ref();
@@ -271,7 +272,6 @@ class RecOptions extends React.Component {
                   });
                 });
               }
-							position = position + 1
 
             } else {
 
@@ -286,7 +286,6 @@ class RecOptions extends React.Component {
 								position: position
               });
             }
-						position = position + 1
 
             return ''
           });
