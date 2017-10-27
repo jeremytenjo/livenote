@@ -130,7 +130,7 @@ const ItemTime = styled.div `
           bottom: 0;
           margin: auto;
           height: 25px;
-          z-index: 3;
+          z-index: 2;
           font-size: 16px;
         }
 				 `;
@@ -202,7 +202,7 @@ bottom: 0;
 max-height: 100%;
 				 `;
 
- 
+
 const Circle = styled.svg `
           width: 77px;
           height: 95px;
