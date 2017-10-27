@@ -62,12 +62,9 @@ class NotePreview extends React.Component {
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
 					Preview ({this.props.data.time})
 				</Top>
-				<Title>{this.props.data.title}</Title>
 				<ImgPreview id="PreviewImage" src={this.props.data.image} alt=""/>
+				<Title>{this.props.data.title}</Title>
 				<Comment>{this.props.data.desc}</Comment>
-				{/* <ButtonCon>
-					<Button type="submit" color="#42EA9C" text="Add"/>
-				</ButtonCon> */}
 
 			</Wrapper>
 		);
@@ -93,7 +90,7 @@ const ImgPreview = styled.img `
 	max-width: 100%;
 	display: block;
 	margin: 0 auto;
-
+    margin-top: 12px;
 				 `;
 const Title = styled.p `
 &:focus {
