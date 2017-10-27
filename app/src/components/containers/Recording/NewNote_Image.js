@@ -119,7 +119,7 @@ overflow-x: hidden;
 display: ${props => props.display === 'none'
 	? 'none'
 	: 'grid'};
-grid-template-rows: 30px auto 30px 1fr 80px;
+grid-template-rows: 20px auto 30px 1fr 80px;
 height: 100%;
 width: 100%;
 color: #212121;
@@ -128,7 +128,7 @@ top: 0;
 left: 0;
 grid-row-gap: 10px;
 @media (max-height: 500px) {
-    grid-template-rows: 30px  auto 30px 100px 80px;
+    grid-template-rows: 20px  auto 30px 100px 80px;
   }
 		   `;
 const Header = styled.h2 `
@@ -174,8 +174,10 @@ textDecoration: none;
 border-color: transparent;
 border-width:0px;
 font-size: 15px;
-margin-top: 10px;
 padding-bottom: 50px;
+padding-left: 10px;
+padding-right: 10px;
+
 				 `;
 const ButtonCon = styled.div `
 	width: 200px;
