@@ -117,7 +117,7 @@ class Edit extends React.Component {
     // console.log(audioRef);
 
     //upload sub notes
-    let flag = true;
+    let flag = true 
 
     this.props.noteItems.map((d) => {
       //upload image
@@ -160,7 +160,7 @@ class Edit extends React.Component {
               comment: d.desc,
               imageUrl: snapshot.metadata.downloadURLs[0],
               time: d.time,
-              timeSeconds: d.timeSeconds
+              timeSeconds: d.timeSeconds,
             });
           });
         }
@@ -173,7 +173,7 @@ class Edit extends React.Component {
           comment: d.desc,
           imageUrl: 'none',
           time: d.time,
-          timeSeconds: d.timeSeconds
+          timeSeconds: d.timeSeconds,
 
         });
       }

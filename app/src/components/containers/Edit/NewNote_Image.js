@@ -96,8 +96,8 @@ class NewNote_Image extends React.Component {
           <Header>New Comment</Header>
         </Top>
 
-        <Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
         <ImgPreview id="PreviewImage" src="" alt="Loading..."/>
+        <Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
 
         <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 
@@ -121,7 +121,7 @@ overflow-x: hidden;
 display: ${props => props.display === 'none'
   ? 'none'
   : 'grid'};
-grid-template-rows: 30px 30px auto 1fr 80px;
+grid-template-rows: 30px  auto 30px 1fr 80px;
 height: calc(100% - 130px);
 width: 100%;
 color: #212121;
@@ -130,7 +130,7 @@ top: 0;
 left: 0;
 grid-row-gap: 10px;
 @media (max-height: 500px) {
-    grid-template-rows: 30px 30px auto 100px 80px;
+    grid-template-rows: 30px  auto 30px 100px 80px;
   }
 	@media (max-height: 382px) {
 	height: 100%;

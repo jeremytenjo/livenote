@@ -73,15 +73,13 @@ class RecItemView extends React.Component {
       array = [],
       userId = firebase.auth().currentUser.uid;
 
-    firebase.database().ref('/users/' + userId + '/notes').orderByChild("position").once('value').then((snap) => {
-    // firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(id).once('value').then((snap) => {
+    firebase.database().ref('/users/' + userId + '/notes').orderByKey().once('value').then((snap) => {
+      // firebase.database().ref('/users/' + userId + '/notes').orderByChild('masterNote_id').equalTo(id).once('value').then((snap) => {
       // firebase.database().ref('/users/' + userId + '/masterNotes/' + this.props.id).orderByValue().once('value').then((snap) => {
       let snapValue = snap.val();
-      // console.log(snapValue);
 
       for (var prop in snapValue) {
         // console.log(snapValue[prop]);
-        list.position = snapValue[prop].position;        
         list.desc = snapValue[prop].comment;
         list.time = snapValue[prop].time;
         list.imageUrl = snapValue[prop].imageUrl;
@@ -94,8 +92,13 @@ class RecItemView extends React.Component {
         array.push(list);
         list = {};
       }
-      console.log(array);
-      this.setState({list: array});
+      // console.log(array);
+      let nlist = array.sort(function(a, b) {
+        return parseFloat(a.timeSeconds) - parseFloat(b.timeSeconds);
+      });
+
+      // console.log(nlist);
+      this.setState({list: nlist});
       this.setState({loading: false});
 
     });

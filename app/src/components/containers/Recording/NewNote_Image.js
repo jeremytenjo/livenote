@@ -163,7 +163,6 @@ border-width:0px;
 padding-left: 10px;
 font-size: 17px;
 padding-right: 10px;
-margin-bottom: 10px;
 font-weight: bold;
 				 `;
 const Comment = styled.textarea `
