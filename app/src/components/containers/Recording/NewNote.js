@@ -10,84 +10,91 @@ import {Toggle_NewNote, Insert_Item} from '../../../state/actions/index';
 
 //Set global state to prop
 function mapStateToProps(state) {
-	return {status: state.NewNoteToggle, time: state.CurrentTime}
+  return {status: state.NewNoteToggle, time: state.CurrentTime}
 }
 //define actions
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		Toggle_NewNote,
-		Insert_Item
-	}, dispatch)
+  return bindActionCreators({
+    Toggle_NewNote,
+    Insert_Item
+  }, dispatch)
 }
 class NewNote extends React.Component {
 
-	//initial state
-	constructor(props) {
-		super(props)
-		this.state = {
-			display: props.display,
-			title: '',
-			desc: ''
-		}
-	}
+  //initial state
+  constructor(props) {
+    super(props)
+    this.state = {
+      display: props.display,
+      title: '',
+      desc: ''
+    }
+  }
 
-	//Methods
-	handleTitle = (e) => {
-		// console.log(e.target.value);
-		this.setState({title: e.target.value})
-	}
-	handleDesc = (e) => {
-		// console.log(e.target.value);
-		this.setState({desc: e.target.value})
-	}
-	handleSubmit = (e) => {
-		e.preventDefault();
+  //Methods
+  componentWillMount = () => {
+    document.querySelector('#TitleNewNote').autofocus = true;
+    document.querySelector('#TitleNewNote').addAttribute("focus", 'true')
+		document.querySelector('input').setAttribute('autofocus', 'autofocus');
 
-		//Create new object
-		let item = {};
+  }
 
-		let getMinutes = Math.floor(this.props.time / 60);
-		let getSeconds = ('0' + this.props.time % 60).slice(-2);
-		let time = getMinutes + ':' + getSeconds;
-		item.time = time;
-		item.title = this.state.title;
-		item.desc = this.state.desc;
-		item.image = '';
-		item.timeSeconds = this.props.time;
+  handleTitle = (e) => {
+    // console.log(e.target.value);
+    this.setState({title: e.target.value})
+  }
+  handleDesc = (e) => {
+    // console.log(e.target.value);
+    this.setState({desc: e.target.value})
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-		//Insert Item
-		this.props.Toggle_NewNote('none');
-		this.props.Insert_Item(item);
+    //Create new object
+    let item = {};
 
-		//reset vlaues
-		this.setState({title: ""});
-		this.setState({desc: ""});
-		time = "";
+    let getMinutes = Math.floor(this.props.time / 60);
+    let getSeconds = ('0' + this.props.time % 60).slice(-2);
+    let time = getMinutes + ':' + getSeconds;
+    item.time = time;
+    item.title = this.state.title;
+    item.desc = this.state.desc;
+    item.image = '';
+    item.timeSeconds = this.props.time;
 
-	}
-	hide = () => {
-		this.props.Toggle_NewNote('none');
-	}
-	render() {
-		//Properties
+    //Insert Item
+    this.props.Toggle_NewNote('none');
+    this.props.Insert_Item(item);
 
-		//Template
-		return (
-			<Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
+    //reset vlaues
+    this.setState({title: ""});
+    this.setState({desc: ""});
+    time = "";
 
-				<Top>
-					<CloseIcon onClick={this.hide} src={Close_Icon}/>
-					New Comment
-				</Top>
-				<Title autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
-				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
-				<ButtonCon>
-						<Button type="submit" color="#42EA9C" text="Add"/>
-				</ButtonCon>
+  }
+  hide = () => {
+    this.props.Toggle_NewNote('none');
+  }
+  render() {
+    //Properties
 
-			</Wrapper>
-		);
-	}
+    //Template
+    return (
+      <Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
+
+        <Top>
+          <CloseIcon onClick={this.hide} src={Close_Icon}/>
+          New Comment
+        </Top>
+        <Title id="TitleNewNote" autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+        <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
+        <ButtonCon>
+          <Button type="submit" color="#42EA9C" text="Add"/>
+        </ButtonCon>
+
+      </Wrapper>
+    );
+  }
 
 }
 
@@ -96,8 +103,8 @@ const Wrapper = styled.form `
 background: white;
 position: fixed;
 display: ${props => props.display === 'none'
-	? 'none'
-	: 'grid'};
+  ? 'none'
+  : 'grid'};
 grid-template-rows: 30px 50px 1fr 80px;
 height: 100%;
 width: 100%;
