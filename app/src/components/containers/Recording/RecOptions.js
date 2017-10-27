@@ -230,7 +230,6 @@ class RecOptions extends React.Component {
             let mountainsRef = storageRef.child('images/' + key + d.title);
 
             if (d.image !== '') {
-							position = position + 1
 
               // console.log(d.image);
 
@@ -272,8 +271,9 @@ class RecOptions extends React.Component {
                   });
                 });
               }
-            } else {
 							position = position + 1
+
+            } else {
 
               firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
                 masterNote_id: key,
@@ -286,6 +286,7 @@ class RecOptions extends React.Component {
 								position: position
               });
             }
+						position = position + 1
 
             return ''
           });
