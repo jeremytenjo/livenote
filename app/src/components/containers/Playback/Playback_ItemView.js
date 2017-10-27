@@ -81,6 +81,7 @@ class RecItemView extends React.Component {
 
       for (var prop in snapValue) {
         // console.log(snapValue[prop]);
+        list.position = snapValue[prop].position;        
         list.desc = snapValue[prop].comment;
         list.time = snapValue[prop].time;
         list.imageUrl = snapValue[prop].imageUrl;

@@ -224,13 +224,14 @@ class RecOptions extends React.Component {
             position = 0
 
           this.state.data.map((d) => {
-            position = position + 1
 
             //upload image
             let storageRef = firebase.storage().ref();
             let mountainsRef = storageRef.child('images/' + key + d.title);
 
             if (d.image !== '') {
+							position = position + 1
+
               // console.log(d.image);
 
               //compress image file
@@ -272,6 +273,7 @@ class RecOptions extends React.Component {
                 });
               }
             } else {
+							position = position + 1
 
               firebase.database().ref(`users/${firebase.auth().currentUser.uid}/notes`).push({
                 masterNote_id: key,
@@ -282,7 +284,6 @@ class RecOptions extends React.Component {
                 time: d.time,
                 timeSeconds: d.timeSeconds,
 								position: position
-
               });
             }
 

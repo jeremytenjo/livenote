@@ -202,23 +202,13 @@ bottom: 0;
 max-height: 100%;
 				 `;
 
-// const ItemImg2 = styled.img `
-// display: ${props => props.yesTitleNoDescYesIMG
-//   ? 'block'
-//   : 'none'};
-//
-// 				 width: 80px;
-// 				 max-width: 80px;
-// 				 position: absolute;
-// max-height: 100%;
-// 				 `;
-
+ 
 const Circle = styled.svg `
           width: 77px;
           height: 95px;
           position: absolute;
           left: 2px;
-          z-index: 2;
+          z-index: 1;
           bottom: 1px;
           `;
 //export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
