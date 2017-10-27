@@ -62,7 +62,7 @@ class RecItemView extends React.Component {
   getItems = (id) => {
 
     //get current transcript
-    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + id).once('value').then((snap) => {      
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/masterNotes/' + id).once('value').then((snap) => {
       this.props.Change_TopBar_Title(snap.val().name);
       this.setState({transcriptText: snap.val().transcript});
     }).catch((err) => {
@@ -92,6 +92,7 @@ class RecItemView extends React.Component {
         array.push(list);
         list = {};
       }
+      console.log(array);
       this.setState({list: array});
       this.setState({loading: false});
 
@@ -122,7 +123,7 @@ class RecItemView extends React.Component {
   render() {
     //Properties
     let list = this.state.list.map((item, i) => {
-
+      // console.log(item);
       list = <Item key={i}>
         <ItemCon key={i} data-time={item.time} data-title={item.title} data-image={item.imageUrl} data-desc={item.desc} onClick={this.showPreview}>
           <NoteItem time={item.time} title={item.title} desc={item.desc} image={item.imageUrl}/>

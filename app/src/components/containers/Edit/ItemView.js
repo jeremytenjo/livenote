@@ -53,7 +53,7 @@ class RecItemView extends React.Component {
 		list = '';
 		itemList = '';
 
-	 
+
 		 itemList = items.map((item, i) => {
 
 			list = <Item key={i}>
