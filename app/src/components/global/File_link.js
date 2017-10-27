@@ -65,6 +65,7 @@ position: absolute;
 bottom: 0;
 height: 40px;
 width: 100%;
+word-wrap: break-word;
  `;
 const Title = styled.p `
 margin: 0;
