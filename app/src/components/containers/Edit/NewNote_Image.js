@@ -183,6 +183,7 @@ font-size: 15px;
 padding-bottom: 50px;
 padding-left: 10px;
 padding-right: 10px;
+height: 150px;
 
 				 `;
 const ButtonCon = styled.div `
