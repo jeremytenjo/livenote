@@ -121,6 +121,7 @@ class Recent extends React.Component {
 const Title = styled.p `
   margin-top: 5px;
   		 `;
+
 const Container = styled.div `
   overflow-x: scroll;
   overflow-y: hidden;
@@ -130,6 +131,7 @@ const Container = styled.div `
   white-space: nowrap;
   height: 120px;
    `;
+
 const LoadingCon = styled.div `
   	display: ${props => props.state
   ? 'block'
@@ -142,7 +144,9 @@ const LoadingCon = styled.div `
   	 width: 100%;
   	 height: 110px;
   	 `;
+
 const Text = styled.p `
   text-align: center;
   	  `;
+      
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Recent));
