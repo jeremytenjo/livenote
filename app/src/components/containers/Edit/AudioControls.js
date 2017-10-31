@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import Pause_icon from '../../../images/icons/Pause.svg';
-import Play_icon from '../../../images/icons/PlayWhite.svg';
+import Pause_icon from '../../../images/icons/PauseCircle.svg';
+import Play_icon from '../../../images/icons/PlayCircle.svg';
 import Slider from 'material-ui/Slider';
 import {withRouter} from 'react-router-dom'
 import Note_icon from '../../../images/icons/Note.svg';
@@ -17,7 +17,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     Set_Audio_Control,
     Set_Current_Time,
-    Toggle_NewNote, Toggle_NewNote_Image
+    Toggle_NewNote,
+    Toggle_NewNote_Image
   }, dispatch)
 }
 // Set global state to prop
@@ -195,21 +196,23 @@ class PlaybackOptions extends React.Component {
 //Style
 
 const PauseIcon = styled.img `
-		width: 40px;
+		width: 90px;
 		display: ${props => props.pauseToggle
   ? 'block'
   : 'none'};
 			cursor: pointer;
-      margin-top: 5px;
+      margin-top: -15px;
+      transform: translateX(-19px);
 
 		`;
 const PlayIcon = styled.img `
-		width: 40px;
+		width: 90px;
 		display: ${props => props.playToggle
   ? 'block'
   : 'none'};
 			cursor: pointer;
-      margin-top: 5px;
+      margin-top: -15px;
+      transform: translateX(-19px);
 
 		`;
 
