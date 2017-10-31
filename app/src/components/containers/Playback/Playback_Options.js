@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Pause_icon from '../../../images/icons/Pause.svg';
-import Play_icon from '../../../images/icons/PlayWhite.svg';
+import Play_icon from '../../../images/icons/PlayCircle.svg';
 import firebase from 'firebase';
 import Slider from 'material-ui/Slider';
 import {withRouter} from 'react-router-dom'
@@ -139,13 +139,13 @@ class PlaybackOptions extends React.Component {
 
 		`;
     const PlayIcon = styled.img `
-		width: 35px;
+		width: 105px;
 		display: ${props => this.state.playToggle
       ? 'block'
       : 'none'};
 			cursor: pointer;
 			margin: 0 auto;
-			margin-top: 15px;
+			margin-top: -18px;
 
 		`;
 
