@@ -81,12 +81,16 @@ class NewNote_Image extends React.Component {
 	hide = () => {
 		this.props.Toggle_NewNote_Image('none');
 	}
+	scrollToBottom = () => {
+    var objDiv = document.getElementById("NewNoteImageCon");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
 	render() {
 		//Properties
 
 		//Template
 		return (
-			<Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
+			<Wrapper Wrapper id="NewNoteImageCon" onSubmit={this.handleSubmit} display={this.props.status}>
 
 				<Top>
 					<CloseIcon onClick={this.hide} src={Close_Icon}/>
@@ -95,7 +99,7 @@ class NewNote_Image extends React.Component {
 
 				<ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
-				<Title autoFocus autocomplete="off" placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+				<Title autoFocus autocomplete="off" placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle} onClick={this.scrollToBottom}/>
 
 				<Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 

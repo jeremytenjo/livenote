@@ -84,30 +84,33 @@ class NewNote_Image extends React.Component {
     this.setState({title: ""});
     this.setState({desc: ""});
   }
+
+  scrollToBottom = () => {
+    var objDiv = document.getElementById("NewNoteImageCon");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
   render() {
     //Properties
 
     //Template
-    return (
-      <Wrapper onSubmit={this.handleSubmit} display={this.props.status}>
+    return (<Wrapper id="NewNoteImageCon" onSubmit={this.handleSubmit} display={this.props.status}>
 
-        <Top>
-          <CloseIcon onClick={this.cancel} src={Close_Icon}/>
-          <Header>New Comment</Header>
-        </Top>
+      <Top>
+        <CloseIcon onClick={this.cancel} src={Close_Icon}/>
+        <Header>New Comment</Header>
+      </Top>
 
-        <ImgPreview id="PreviewImage" src="" alt="Loading..."/>
+      <ImgPreview id="PreviewImage" src="" alt="Loading..."/>
 
-        <Title autoFocus autocomplete="off" placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+      <Title autoFocus="autoFocus" autocomplete="off" placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle} onClick={this.scrollToBottom}/>
 
-        <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
+      <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
 
-        <ButtonCon>
-          <Button type="submit" color="#42EA9C" text="Add"/>
-        </ButtonCon>
+      <ButtonCon>
+        <Button type="submit" color="#42EA9C" text="Add"/>
+      </ButtonCon>
 
-      </Wrapper>
-    );
+    </Wrapper>);
   }
 
 }
