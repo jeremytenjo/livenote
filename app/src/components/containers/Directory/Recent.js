@@ -148,5 +148,5 @@ const LoadingCon = styled.div `
 const Text = styled.p `
   text-align: center;
   	  `;
-      
+
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Recent));

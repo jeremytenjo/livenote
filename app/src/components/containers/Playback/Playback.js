@@ -161,8 +161,8 @@ class Playback extends React.Component {
       delay: 2,
       bottom: "-50px"
     });
-    this.props.Hide_Snackbar();
-    this.props.Show_Snackbar()
+    // this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar()
     this.props.history.push(`/`)
 
   };
