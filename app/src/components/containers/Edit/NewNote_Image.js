@@ -104,7 +104,7 @@ class NewNote_Image extends React.Component {
 
       <Title autoFocus="autoFocus" autocomplete="off" placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle} onClick={this.scrollToBottom}/>
 
-      <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
+      <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc} onClick={this.scrollToBottom}/>
 
       <ButtonCon>
         <Button type="submit" color="#42EA9C" text="Add"/>
