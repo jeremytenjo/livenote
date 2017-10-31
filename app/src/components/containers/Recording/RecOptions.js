@@ -106,6 +106,7 @@ class RecOptions extends React.Component {
       this.props.Start_Time(number);
     }, 1000)
   }
+
   componentWillUnmount() {
     //Stop Timer
     clearInterval(this.incrementer);
@@ -117,6 +118,7 @@ class RecOptions extends React.Component {
     this.props.Start_Time(0);
 
   }
+
   recControl = (stream) => {
 
     var recorder = new MediaRecorder(stream);
@@ -224,7 +226,7 @@ class RecOptions extends React.Component {
             position = 0
 
           this.state.data.map((d) => {
-						position = position + 1
+            position = position + 1
 
             //upload image
             let storageRef = firebase.storage().ref();
@@ -268,8 +270,10 @@ class RecOptions extends React.Component {
                     imageUrl: snapshot.metadata.downloadURLs[0],
                     time: d.time,
                     timeSeconds: d.timeSeconds,
-										position: position
-                  });
+                    position: position
+                  }).then(() => {
+                    this.state.redirectIndex()
+                  })
                 });
               }
 
@@ -283,61 +287,107 @@ class RecOptions extends React.Component {
                 imageUrl: 'none',
                 time: d.time,
                 timeSeconds: d.timeSeconds,
-								position: position
-              });
+                position: position
+              }).then(() => {
+                this.state.redirectIndex()
+              })
+
             }
 
             return ''
           });
 
-        }).then(() => {
-          //Wait until note finihes uploading
-
-          //set to load fetch online
-          this.props.Fetch_Recent_Flag(false)
-          this.props.Fetch_Folders_Flag(false)
-          this.props.Fetch_Notes_Flag(false)
-
-          //Reset Folder Selected
-          this.props.FolderSelection_Name('SELECT FOLDER');
-
-          //Reset Folder ID
-          this.props.FolderSelection_ID('');
-
-          //Reset Timer
-          this.props.Start_Time(0);
-
-          //reset notes
-          this.props.Reset_Items();
-
-          //Remove loading screen
-          this.props.Toggle_Loading_Scrren('false');
-
-          //confimration aniamtion
-          this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
-          let SnackBar = document.querySelector('#MySnackBar')
-          TweenMax.to(SnackBar, .5, {
-            delay: .5,
-            bottom: "50px"
-          });
-          TweenMax.to(SnackBar, .5, {
-            delay: 2,
-            bottom: "-50px"
-          });
-          // this.props.Hide_Snackbar();
-          // this.props.Show_Snackbar();
-
-          //Reset Top Bar Title
-          this.props.Change_TopBar_Title('Notes');
-
-          //redirect to Directory
-          this.props.history.push(`/`);
-
-        });
+        })
+        // .then(() => {
+        //   //Wait until note finihes uploading
+        //
+        //   //set to load fetch online
+        //   this.props.Fetch_Recent_Flag(false)
+        //   this.props.Fetch_Folders_Flag(false)
+        //   this.props.Fetch_Notes_Flag(false)
+        //
+        //   //Reset Folder Selected
+        //   this.props.FolderSelection_Name('SELECT FOLDER');
+        //
+        //   //Reset Folder ID
+        //   this.props.FolderSelection_ID('');
+        //
+        //   //Reset Timer
+        //   this.props.Start_Time(0);
+        //
+        //   //reset notes
+        //   this.props.Reset_Items();
+        //
+        //   //Remove loading screen
+        //   this.props.Toggle_Loading_Scrren('false');
+        //
+        //   //confimration aniamtion
+        //   this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
+        //   let SnackBar = document.querySelector('#MySnackBar')
+        //   TweenMax.to(SnackBar, .5, {
+        //     delay: .5,
+        //     bottom: "50px"
+        //   });
+        //   TweenMax.to(SnackBar, .5, {
+        //     delay: 2,
+        //     bottom: "-50px"
+        //   });
+        //   // this.props.Hide_Snackbar();
+        //   // this.props.Show_Snackbar();
+        //
+        //   //Reset Top Bar Title
+        //   this.props.Change_TopBar_Title('Notes');
+        //
+        //   //redirect to Directory
+        //   this.props.history.push(`/`);
+        //
+        // });
       })
     }
 
   }
+
+    redirectIndex = () => {
+      //set to load fetch online
+      this.props.Fetch_Recent_Flag(false)
+      this.props.Fetch_Folders_Flag(false)
+      this.props.Fetch_Notes_Flag(false)
+
+      //Reset Folder Selected
+      this.props.FolderSelection_Name('SELECT FOLDER');
+
+      //Reset Folder ID
+      this.props.FolderSelection_ID('');
+
+      //Reset Timer
+      this.props.Start_Time(0);
+
+      //reset notes
+      this.props.Reset_Items();
+
+      //Remove loading screen
+      this.props.Toggle_Loading_Scrren('false');
+
+      //confimration aniamtion
+      this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
+      let SnackBar = document.querySelector('#MySnackBar')
+      TweenMax.to(SnackBar, .5, {
+        delay: .5,
+        bottom: "50px"
+      });
+      TweenMax.to(SnackBar, .5, {
+        delay: 2,
+        bottom: "-50px"
+      });
+      // this.props.Hide_Snackbar();
+      // this.props.Show_Snackbar();
+
+      //Reset Top Bar Title
+      this.props.Change_TopBar_Title('Notes');
+
+      //redirect to Directory
+      this.props.history.push(`/`);
+    }
   showNote = () => {
     //set current time
     this.props.Set_Current_Time(this.props.recTime);
@@ -429,29 +479,27 @@ class RecOptions extends React.Component {
 				 cursor: pointer;
 				 `;
     //Template
-    return (
-      <Wrapper>
-        <Left><Icon onClick={this.showNote} src={Note_icon} alt="Note icon"/></Left>
-        <Center>
-          <Top>{this.getMinutes()}:{this.getSeconds()}</Top>
-          <Bottom>
-            <BottomIconCon>
-              <StopIcon onClick={this.stop} src={Stop_icon} alt="Stop icon"/>
-              <PlayIcon onClick={this.play} src={Play_icon} alt="Play icon"/>
-              <PauseIcon onClick={this.pause} src={Pause_icon} alt="Pause icon"/>
-            </BottomIconCon>
-          </Bottom>
-        </Center>
-        <Right>
-          {/* <Icon src={Camera_icon} alt="Camara Icon"/> */}
-          <label htmlFor="file-input">
-            <Icon src={Camera_icon}/>
-          </label>
-          <FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
-        </Right>
+    return (<Wrapper>
+      <Left><Icon onClick={this.showNote} src={Note_icon} alt="Note icon"/></Left>
+      <Center>
+        <Top>{this.getMinutes()}:{this.getSeconds()}</Top>
+        <Bottom>
+          <BottomIconCon>
+            <StopIcon onClick={this.stop} src={Stop_icon} alt="Stop icon"/>
+            <PlayIcon onClick={this.play} src={Play_icon} alt="Play icon"/>
+            <PauseIcon onClick={this.pause} src={Pause_icon} alt="Pause icon"/>
+          </BottomIconCon>
+        </Bottom>
+      </Center>
+      <Right>
+        {/* <Icon src={Camera_icon} alt="Camara Icon"/> */}
+        <label htmlFor="file-input">
+          <Icon src={Camera_icon}/>
+        </label>
+        <FileInput id="file-input" type="file" accept="image/*" onChange={this.imageSelected}/>
+      </Right>
 
-      </Wrapper>
-    );
+    </Wrapper>);
   }
 
 }
