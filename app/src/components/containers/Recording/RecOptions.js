@@ -299,29 +299,29 @@ class RecOptions extends React.Component {
 
         })
         // .then(() => {
-        //   //Wait until note finihes uploading
+        //   Wait until note finihes uploading
         //
-        //   //set to load fetch online
+        //   set to load fetch online
         //   this.props.Fetch_Recent_Flag(false)
         //   this.props.Fetch_Folders_Flag(false)
         //   this.props.Fetch_Notes_Flag(false)
         //
-        //   //Reset Folder Selected
+        //   Reset Folder Selected
         //   this.props.FolderSelection_Name('SELECT FOLDER');
         //
-        //   //Reset Folder ID
+        //   Reset Folder ID
         //   this.props.FolderSelection_ID('');
         //
-        //   //Reset Timer
+        //   Reset Timer
         //   this.props.Start_Time(0);
         //
-        //   //reset notes
+        //   reset notes
         //   this.props.Reset_Items();
         //
-        //   //Remove loading screen
+        //   Remove loading screen
         //   this.props.Toggle_Loading_Scrren('false');
         //
-        //   //confimration aniamtion
+        //   confimration aniamtion
         //   this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
         //   let SnackBar = document.querySelector('#MySnackBar')
         //   TweenMax.to(SnackBar, .5, {
@@ -332,13 +332,13 @@ class RecOptions extends React.Component {
         //     delay: 2,
         //     bottom: "-50px"
         //   });
-        //   // this.props.Hide_Snackbar();
-        //   // this.props.Show_Snackbar();
+        //    this.props.Hide_Snackbar();
+        //    this.props.Show_Snackbar();
         //
-        //   //Reset Top Bar Title
+        //   Reset Top Bar Title
         //   this.props.Change_TopBar_Title('Notes');
         //
-        //   //redirect to Directory
+        //   redirect to Directory
         //   this.props.history.push(`/`);
         //
         // });
@@ -347,52 +347,55 @@ class RecOptions extends React.Component {
 
   }
 
-    redirectIndex = () => {
-      //set to load fetch online
-      this.props.Fetch_Recent_Flag(false)
-      this.props.Fetch_Folders_Flag(false)
-      this.props.Fetch_Notes_Flag(false)
+  redirectIndex = () => {
+    alert('alert')
+    //set to load fetch online
+    this.props.Fetch_Recent_Flag(false)
+    this.props.Fetch_Folders_Flag(false)
+    this.props.Fetch_Notes_Flag(false)
 
-      //Reset Folder Selected
-      this.props.FolderSelection_Name('SELECT FOLDER');
+    //Reset Folder Selected
+    this.props.FolderSelection_Name('SELECT FOLDER');
 
-      //Reset Folder ID
-      this.props.FolderSelection_ID('');
+    //Reset Folder ID
+    this.props.FolderSelection_ID('');
 
-      //Reset Timer
-      this.props.Start_Time(0);
+    //Reset Timer
+    this.props.Start_Time(0);
 
-      //reset notes
-      this.props.Reset_Items();
+    //reset notes
+    this.props.Reset_Items();
 
-      //Remove loading screen
-      this.props.Toggle_Loading_Scrren('false');
+    //Remove loading screen
+    this.props.Toggle_Loading_Scrren('false');
 
-      //confimration aniamtion
-      this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
-      let SnackBar = document.querySelector('#MySnackBar')
-      TweenMax.to(SnackBar, .5, {
-        delay: .5,
-        bottom: "50px"
-      });
-      TweenMax.to(SnackBar, .5, {
-        delay: 2,
-        bottom: "-50px"
-      });
-      // this.props.Hide_Snackbar();
-      // this.props.Show_Snackbar();
+    //confimration aniamtion
+    this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
+    let SnackBar = document.querySelector('#MySnackBar')
+    TweenMax.to(SnackBar, .5, {
+      delay: .5,
+      bottom: "50px"
+    });
+    TweenMax.to(SnackBar, .5, {
+      delay: 2,
+      bottom: "-50px"
+    });
+    // this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar();
 
-      //Reset Top Bar Title
-      this.props.Change_TopBar_Title('Notes');
+    //Reset Top Bar Title
+    this.props.Change_TopBar_Title('Notes');
 
-      //redirect to Directory
-      this.props.history.push(`/`);
-    }
+    //redirect to Directory
+    this.props.history.push(`/`);
+  }
+
   showNote = () => {
     //set current time
     this.props.Set_Current_Time(this.props.recTime);
     this.props.Toggle_NewNote('show');
   }
+
   stop = () => this.state.theRecorder.stop();
 
   play = () => {
