@@ -60,34 +60,35 @@ class PlaybackOptions extends React.Component {
 
   initPlayback = (audioSrc) => {
 
-    let audioControl = new Audio([audioSrc]);
+    let audioControl = new Audio([audioSrc])
     // audioControl.play()
 
     this.props.Set_Audio_Control(audioControl)
-    this.setState({audioControl: audioControl});
+
+    this.setState({audioControl: audioControl})
 
     audioControl.onended = (e) => {
       this.setState({playToggle: true, pauseToggle: false});
-      audioControl.currentTime = 0;
+      audioControl.currentTime = 0
     }
 
     audioControl.onloadedmetadata = (e) => {
       // console.log(audioControl.duration);
-      this.setState({max: audioControl.duration});
+      this.setState({max: audioControl.duration})
     }
 
     audioControl.ontimeupdate = (e) => {
-      this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+      this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime})
     }
   }
 
   handleSlider = (event, value) => {
-    this.setState({sliderPos: value});
-    let audioControl = this.state.audioControl;
-    audioControl.currentTime = value;
+    this.setState({sliderPos: value})
+    let audioControl = this.state.audioControl
+    audioControl.currentTime = value
     this.props.Set_Current_Time(audioControl.currentTime)
 
-  };
+  }
 
   resume = () => {
     this.setState({playToggle: false, pauseToggle: true});
@@ -97,8 +98,8 @@ class PlaybackOptions extends React.Component {
   }
 
   pause = () => {
-    this.setState({playToggle: true, pauseToggle: false});
-    let audioControl = this.state.audioControl;
+    this.setState({playToggle: true, pauseToggle: false})
+    let audioControl = this.state.audioControl
     audioControl.pause()
   }
 
@@ -136,11 +137,11 @@ class PlaybackOptions extends React.Component {
       var reader = new FileReader();
 
       reader.addEventListener("load", () => {
-        preview.src = reader.result;
+        preview.src = reader.result
       }, false);
 
       if (file) {
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file)
       }
 
     }
