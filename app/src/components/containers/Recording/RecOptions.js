@@ -271,8 +271,6 @@ class RecOptions extends React.Component {
                     time: d.time,
                     timeSeconds: d.timeSeconds,
                     position: position
-                  }).then(() => {
-                    this.state.redirectIndex()
                   })
                 });
               }
@@ -288,14 +286,13 @@ class RecOptions extends React.Component {
                 time: d.time,
                 timeSeconds: d.timeSeconds,
                 position: position
-              }).then(() => {
-                this.state.redirectIndex()
               })
 
             }
-
             return ''
-          });
+          })
+
+          this.state.redirectIndex()
 
         })
         // .then(() => {
@@ -348,7 +345,7 @@ class RecOptions extends React.Component {
   }
 
   redirectIndex = () => {
-    alert('alert')
+
     //set to load fetch online
     this.props.Fetch_Recent_Flag(false)
     this.props.Fetch_Folders_Flag(false)
