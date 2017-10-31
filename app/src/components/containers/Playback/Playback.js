@@ -10,7 +10,15 @@ import {TweenMax} from 'gsap';
 //State
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Hide_Snackbar, Show_Snackbar, Set_Snackbar_Name, Change_TopBar_Title, Toggle_OptinsMenuHideFile} from '../../../state/actions/index';
+import {
+  Hide_Snackbar,
+  Show_Snackbar,
+  Set_Snackbar_Name,
+  Change_TopBar_Title,
+  Toggle_OptinsMenuHideFile,
+  Fetch_Notes_Flag,
+  Fetch_Recent_Flag
+} from '../../../state/actions/index';
 import firebase from 'firebase';
 
 //define actions
@@ -20,7 +28,9 @@ function mapDispatchToProps(dispatch) {
     Show_Snackbar,
     Set_Snackbar_Name,
     Change_TopBar_Title,
-    Toggle_OptinsMenuHideFile
+    Toggle_OptinsMenuHideFile,
+    Fetch_Notes_Flag,
+    Fetch_Recent_Flag
   }, dispatch)
 }
 
@@ -52,7 +62,7 @@ class Playback extends React.Component {
     // gsutil cors set cors.json gs://live-note-ce62c.appspot.com
   }
 
-  getAudio = async() => {
+  getAudio = async () => {
     let id = window.location.pathname.substr(10)
     const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
     // console.log(audioUrl);
@@ -105,8 +115,8 @@ class Playback extends React.Component {
       delay: 2,
       bottom: "-50px"
     });
-    this.props.Show_Snackbar();
-    this.props.Hide_Snackbar();
+    // this.props.Show_Snackbar();
+    // this.props.Hide_Snackbar();
 
   }
 
@@ -116,6 +126,9 @@ class Playback extends React.Component {
     //show rename input
     this.props.Toggle_OptinsMenuHideFile();
     this.setState({renameInput: true});
+    this.props.Fetch_Notes_Flag(false);
+    this.props.Fetch_Recent_Flag(false);
+
   };
 
   //Delete
@@ -163,6 +176,8 @@ class Playback extends React.Component {
     });
     // this.props.Hide_Snackbar();
     // this.props.Show_Snackbar()
+    this.props.Fetch_Notes_Flag(false);
+    this.props.Fetch_Recent_Flag(false);
     this.props.history.push(`/`)
 
   };
@@ -172,48 +187,46 @@ class Playback extends React.Component {
     //Reactive Styles
 
     //Template
-    return (
-      <Wrapper>
+    return (<Wrapper>
 
-        <span onClick={this.handleTouchTap}>
-          <OptionsIcon src={OptionsWhite}/>
-        </span>
+      <span onClick={this.handleTouchTap}>
+        <OptionsIcon src={OptionsWhite}/>
+      </span>
 
-        <PopupCon state={this.state.open}>
-          {/* <li> */}
-          {/* <a href={this.state.audioUrl} target="_blank">Download Audio</a> */}
-          {/* </li> */}
-          <li onClick={this.rename}>Rename</li>
-          <li onClick={this.delete}>Remove</li>
-        </PopupCon>
+      <PopupCon state={this.state.open}>
+        {/* <li> */}
+        {/* <a href={this.state.audioUrl} target="_blank">Download Audio</a> */}
+        {/* </li> */}
+        <li onClick={this.rename}>Rename</li>
+        <li onClick={this.delete}>Remove</li>
+      </PopupCon>
 
-        <DialogRename onSubmit={this.submitnewName} state={this.state.renameInput}>
-          <InnerDialog>
-            <SubTitle>Rename file</SubTitle>
-            <input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.TopBar_Title} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
+      <DialogRename onSubmit={this.submitnewName} state={this.state.renameInput}>
+        <InnerDialog>
+          <SubTitle>Rename file</SubTitle>
+          <input autoFocus="autoFocus" maxLength="11" style={inputStyle} type="text" defaultValue={this.props.TopBar_Title} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
-            <ButtonCon>
-              <span onClick={this.handleCloseRename}>
-                <Button text="Cancel" color="#9E9E9E"/>
-              </span>
-              <span >
-                <Button type="submit" text="Rename" color="#44F6A3"/>
-              </span>
-            </ButtonCon>
-          </InnerDialog>
-        </DialogRename>
+          <ButtonCon>
+            <span onClick={this.handleCloseRename}>
+              <Button text="Cancel" color="#9E9E9E"/>
+            </span>
+            <span >
+              <Button type="submit" text="Rename" color="#44F6A3"/>
+            </span>
+          </ButtonCon>
+        </InnerDialog>
+      </DialogRename>
 
-        <ItemViewContainer>
-          <RecItemView/>
-        </ItemViewContainer>
+      <ItemViewContainer>
+        <RecItemView/>
+      </ItemViewContainer>
 
-        <OptionsContainer>
-          <PlaybackOptions/>
-        </OptionsContainer>
+      <OptionsContainer>
+        <PlaybackOptions/>
+      </OptionsContainer>
 
-        <NotePreview/>
-      </Wrapper>
-    );
+      <NotePreview/>
+    </Wrapper>);
   }
 
 }

@@ -54,6 +54,7 @@ class Notes extends React.Component {
 
   //Methods
   componentWillMount() {
+    
     if (this.props.flag === false) {
       this.getDataOnline()
     } else {
