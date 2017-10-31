@@ -117,7 +117,7 @@ class Edit extends React.Component {
     // console.log(audioRef);
 
     //upload sub notes
-    let flag = true 
+    let flag = true
 
     this.props.noteItems.map((d) => {
       //upload image
@@ -251,6 +251,9 @@ z-index: 10;
 margin: 0;
 cursor: pointer;
 &:active  {
+  color: #69f0ae;
+}
+&:hover  {
   color: #69f0ae;
 }
  `;
