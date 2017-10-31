@@ -136,7 +136,7 @@ class PlaybackOptions extends React.Component {
 			cursor: pointer;
 			margin: 0 auto;
       margin-top: -18px;
-
+    transform: translateX(6px);
 
 		`;
     const PlayIcon = styled.img `
@@ -147,7 +147,7 @@ class PlaybackOptions extends React.Component {
 			cursor: pointer;
 			margin: 0 auto;
 			margin-top: -18px;
-
+    transform: translateX(6px);
 		`;
 
     //Template
