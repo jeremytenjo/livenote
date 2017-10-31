@@ -101,7 +101,6 @@ margin-top: -31px;
 margin-left: 40px;
 color: #0F2331;
 overflow: hidden;
-width: 100%;
 word-break: break-all;
 `;
 
