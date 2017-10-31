@@ -292,7 +292,46 @@ class RecOptions extends React.Component {
             return ''
           })
 
-          this.state.redirectIndex()
+          // this.state.redirectIndex()
+          //set to load fetch online
+          this.props.Fetch_Recent_Flag(false)
+          this.props.Fetch_Folders_Flag(false)
+          this.props.Fetch_Notes_Flag(false)
+
+          //Reset Folder Selected
+          this.props.FolderSelection_Name('SELECT FOLDER');
+
+          //Reset Folder ID
+          this.props.FolderSelection_ID('');
+
+          //Reset Timer
+          this.props.Start_Time(0);
+
+          //reset notes
+          this.props.Reset_Items();
+
+          //Remove loading screen
+          this.props.Toggle_Loading_Scrren('false');
+
+          //confimration aniamtion
+          this.props.Set_Snackbar_Name(this.props.noteName + ' Uploaded');
+          let SnackBar = document.querySelector('#MySnackBar')
+          TweenMax.to(SnackBar, .5, {
+            delay: .5,
+            bottom: "50px"
+          });
+          TweenMax.to(SnackBar, .5, {
+            delay: 2,
+            bottom: "-50px"
+          });
+          // this.props.Hide_Snackbar();
+          // this.props.Show_Snackbar();
+
+          //Reset Top Bar Title
+          this.props.Change_TopBar_Title('Notes');
+
+          //redirect to Directory
+          this.props.history.push(`/`);
 
         })
         // .then(() => {
