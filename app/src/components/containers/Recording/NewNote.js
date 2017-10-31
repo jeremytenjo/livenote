@@ -31,7 +31,7 @@ class NewNote extends React.Component {
     }
   }
 
-  //Methods   
+  //Methods
 
   handleTitle = (e) => {
     // console.log(e.target.value);
@@ -80,7 +80,7 @@ class NewNote extends React.Component {
           <CloseIcon onClick={this.hide} src={Close_Icon}/>
           New Comment
         </Top>
-        <Title id="TitleNewNote" autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
+        <Title id="TitleNewNote" autocomplete="off" autoFocus placeholder="Title" type="text" value={this.state.title} onChange={this.handleTitle}/>
         <Comment placeholder="Write comment..." value={this.state.desc} onChange={this.handleDesc}/>
         <ButtonCon>
           <Button type="submit" color="#42EA9C" text="Add"/>
