@@ -147,7 +147,10 @@ class RecOptions extends React.Component {
     recognition.onresult = function(event) {
       if (event.results.length > 0) {
         var test1 = document.getElementById("text");
-        test1.innerHTML = event.results[0][0].transcript;
+        if (test1) {
+          test1.innerHTML = event.results[0][0].transcript;
+          
+        }
       }
     };
     recognition.start();
