@@ -128,26 +128,35 @@ class RecOptions extends React.Component {
     if (SpeechRecognition === null) {
       alert('Speech Recognition not Supported, Please try Chrome.');
     }
-
-    let recognition = new SpeechRecognition();
-
-    recognition.continuous = true;
-    recognition.interimResults = false;
-    recognition.lang = 'en-US';
-    recognition.start();
-
-    //hadnle transcript
-    recognition.onresult = (e) => {
-      const transcript = Array.from(e.results).map((result) => result[0]).map((result) => result.transcript).join('')
-
-      this.setState({transcript: transcript})
-    }
-    // recognition.onend = () => {
-    // 	recognition.start();
+    //
+    // let recognition = new SpeechRecognition();
+    //
+    // recognition.continuous = true;
+    // recognition.interimResults = false;
+    // recognition.lang = 'en-US';
+    // recognition.start();
+    //
+    // //hadnle transcript
+    // recognition.onresult = (e) => {
+    //   const transcript = Array.from(e.results).map((result) => result[0]).map((result) => result.transcript).join('')
+    //
+    //   this.setState({transcript: transcript})
     // }
 
+    var recognition = new SpeechRecognition();
+    recognition.onresult = function(event) {
+      if (event.results.length > 0) {
+        var test1 = document.getElementById("test1");
+        test1.innerHTML = event.results[0][0].transcript;
+      }
+    };
+    recognition.start();
+
+    // this.setState({theRecognition: recognition});
+
+
     this.setState({theRecorder: recorder});
-    this.setState({theRecognition: recognition});
+
 
     //start recording
     recorder.start()
@@ -434,6 +443,7 @@ class RecOptions extends React.Component {
 				 `;
     //Template
     return (<Wrapper>
+      <p id="text" style={{color: 'red'}}>TEXT</p>
       <Left><Icon onClick={this.showNote} src={Note_icon} alt="Note icon"/></Left>
       <Center>
         <Top>{this.getMinutes()}:{this.getSeconds()}</Top>
