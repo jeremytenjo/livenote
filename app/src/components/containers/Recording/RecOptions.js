@@ -128,36 +128,33 @@ class RecOptions extends React.Component {
     if (SpeechRecognition === null) {
       alert('Speech Recognition not Supported, Please try Chrome.');
     }
-    //
-    // let recognition = new SpeechRecognition();
-    //
-    // recognition.continuous = true;
-    // recognition.interimResults = false;
-    // recognition.lang = 'en-US';
-    // recognition.start();
-    //
-    // //hadnle transcript
-    // recognition.onresult = (e) => {
-    //   const transcript = Array.from(e.results).map((result) => result[0]).map((result) => result.transcript).join('')
-    //
-    //   this.setState({transcript: transcript})
-    // }
 
-    var recognition = new SpeechRecognition();
-    recognition.onresult = function(event) {
-      if (event.results.length > 0) {
-        var test1 = document.getElementById("text");
-        if (test1) {
-          test1.innerHTML = event.results[0][0].transcript;
-          
-        }
-      }
-    };
+    let recognition = new SpeechRecognition();
+
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
     recognition.start();
 
-    // this.setState({theRecognition: recognition});
+    //hadnle transcript
+    recognition.onresult = (e) => {
+      const transcript = Array.from(e.results).map((result) => result[0]).map((result) => result.transcript).join('')
+      console.log(transcript);
+      this.setState({transcript: transcript})
+    }
 
+    // var recognition = new SpeechRecognition();
+    // recognition.onresult = function(event) {
+    //   if (event.results.length > 0) {
+    //     var test1 = document.getElementById("text");
+    //     if (test1) {
+    //       test1.innerHTML = event.results[0][0].transcript;
+    //     }
+    //   }
+    // };
+    // recognition.start();
 
+    this.setState({theRecognition: recognition});
     this.setState({theRecorder: recorder});
 
 
