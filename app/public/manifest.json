@@ -2,7 +2,7 @@
   "name": "Live Note ",
   "short_name": "LiveNote ",
   "theme_color": "#0F2331",
-  "background_color": "#0F2331",
+  "background_color": "white",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",

@@ -146,7 +146,7 @@ class RecOptions extends React.Component {
     var recognition = new SpeechRecognition();
     recognition.onresult = function(event) {
       if (event.results.length > 0) {
-        var test1 = document.getElementById("test1");
+        var test1 = document.getElementById("text");
         test1.innerHTML = event.results[0][0].transcript;
       }
     };
