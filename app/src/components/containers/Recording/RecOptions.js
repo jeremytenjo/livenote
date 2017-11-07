@@ -141,18 +141,7 @@ class RecOptions extends React.Component {
       const transcript = Array.from(e.results).map((result) => result[0]).map((result) => result.transcript).join('')
       console.log(transcript);
       this.setState({transcript: transcript})
-    }
-
-    // var recognition = new SpeechRecognition();
-    // recognition.onresult = function(event) {
-    //   if (event.results.length > 0) {
-    //     var test1 = document.getElementById("text");
-    //     if (test1) {
-    //       test1.innerHTML = event.results[0][0].transcript;
-    //     }
-    //   }
-    // };
-    // recognition.start();
+    } 
 
     this.setState({theRecognition: recognition});
     this.setState({theRecorder: recorder});
@@ -443,7 +432,6 @@ class RecOptions extends React.Component {
 				 `;
     //Template
     return (<Wrapper>
-      <p id="text" style={{color: 'red'}}>TEXT</p>
       <Left><Icon onClick={this.showNote} src={Note_icon} alt="Note icon"/></Left>
       <Center>
         <Top>{this.getMinutes()}:{this.getSeconds()}</Top>
