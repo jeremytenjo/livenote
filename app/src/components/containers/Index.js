@@ -125,7 +125,7 @@ const Content = styled.div `
 overflow-x: hidden;
 margin-top: 46px;
 padding: 10px;
-
+box-sizing: border-box;
 `;
 const TitlePage = styled.p `
 font-size: 20px;

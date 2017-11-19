@@ -54,7 +54,7 @@ class Notes extends React.Component {
 
   //Methods
   componentWillMount() {
-    
+
     if (this.props.flag === false) {
       this.getDataOnline()
     } else {
@@ -238,8 +238,8 @@ min-height: 150px;
     const Container = styled.div `
 	 display: grid;
 	 grid-template-columns: 1fr 1fr;
-	 grid-column-gap: 10px;
-	 grid-row-gap: 10px;
+	 grid-column-gap: 5px;
+	 grid-row-gap: 5px;
 	 `;
     const Dialog = styled.form `
 	 	display: ${props => this.state.open
@@ -266,13 +266,13 @@ min-height: 150px;
 	 z-index: 40;
 	 `;
     let inputStyle = {
-      width: '80%',
-      display: 'block',
+      width: '100%',
       margin: 'auto',
       height: '30px',
       fontSize: '16px',
       borderColor: 'transparent',
-      borderWidth: '0px'
+      borderWidth: '0px',
+      overflow: 'hidden'
     }
     const OptionsMenuWrapper = styled.form `
 	 display: ${props => this.props.options
@@ -355,12 +355,15 @@ padding: 15px;
 			 margin: auto;
 			 display: grid;
 			 grid-template-rows: 50px 50px 50px;
-			 grid-row-gap: 24px;
+			 grid-row-gap: 10px;
+       padding:20px;
+       box-sizing: border-box;
+
 			  `;
 
     const SubTitle = styled.h2 `
 			 	color: #0F2331;
-			 width: 80%;
+			 width: 100%;
 			 display: block;
 			 margin: auto;
 			 margin-top: 20px;
@@ -393,66 +396,64 @@ padding: 15px;
 			 	`;
 
     //Template
-    return (
-      <Wrapper>
-        <Title>Notes</Title>
-        <Container>
-          {list}
-        </Container>
-        <Dialog onSubmit={this.submit}>
-          <InnerDialog>
-            <SubTitle>Name file</SubTitle>
-            <input autoFocus maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
+    return (<Wrapper>
+      <Title>Notes</Title>
+      <Container>
+        {list}
+      </Container>
+      <Dialog onSubmit={this.submit}>
+        <InnerDialog>
+          <SubTitle>Name file</SubTitle>
+          <input autoFocus="autoFocus" maxLength="11" style={inputStyle} type="text" placeholder="Type here..." ref={(input) => this.input = input}/>
 
-            <ButtonCon>
-              <span onClick={this.handleClose}>
-                <Button text="Cancel" color="#9E9E9E"/>
-              </span>
-              <span >
-                <Button type="submit" text="Create" color="#44F6A3"/>
-              </span>
-            </ButtonCon>
-          </InnerDialog>
-        </Dialog>
-        <OptionsMenuWrapper>
-          <OptionsMenuTop onClick={this.hideOptions}/>
-          <OptionsMenuInner>
-            <CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
-            <OtopnsWrapper>
+          <ButtonCon>
+            <span onClick={this.handleClose}>
+              <Button text="Cancel" color="#9E9E9E"/>
+            </span>
+            <span >
+              <Button type="submit" text="Create" color="#44F6A3"/>
+            </span>
+          </ButtonCon>
+        </InnerDialog>
+      </Dialog>
+      <OptionsMenuWrapper>
+        <OptionsMenuTop onClick={this.hideOptions}/>
+        <OptionsMenuInner>
+          <CloseIcon onClick={this.hideOptions} src={Close_Icon} alt="close Icon"/>
+          <OtopnsWrapper>
 
-              <OptionsItemCon onClick={this.renameFile}>
-                <OptionsItem src={Rename_img} alt="rename Icon"/>
-                <p>Rename</p>
-              </OptionsItemCon>
-              <OptionsItemCon onClick={this.removeFile}>
-                <OptionsItem src={Remove_img} alt="rename Icon"/>
-                <p>Remove</p>
-              </OptionsItemCon>
+            <OptionsItemCon onClick={this.renameFile}>
+              <OptionsItem src={Rename_img} alt="rename Icon"/>
+              <p>Rename</p>
+            </OptionsItemCon>
+            <OptionsItemCon onClick={this.removeFile}>
+              <OptionsItem src={Remove_img} alt="rename Icon"/>
+              <p>Remove</p>
+            </OptionsItemCon>
 
-            </OtopnsWrapper>
+          </OtopnsWrapper>
 
-          </OptionsMenuInner>
-        </OptionsMenuWrapper>
-        <DialogRename onSubmit={this.submitnewName}>
-          <InnerDialog>
-            <SubTitle>Rename file</SubTitle>
-            <input autoFocus maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
+        </OptionsMenuInner>
+      </OptionsMenuWrapper>
+      <DialogRename onSubmit={this.submitnewName}>
+        <InnerDialog>
+          <SubTitle>Rename file</SubTitle>
+          <input autoFocus="autoFocus" maxLength="11" style={inputStyle} type="text" defaultValue={this.props.folderName} placeholder="Type here..." ref={(input) => this.inputRename = input}/>
 
-            <ButtonCon>
-              <span onClick={this.handleCloseRename}>
-                <Button text="Cancel" color="#9E9E9E"/>
-              </span>
-              <span >
-                <Button type="submit" text="Rename" color="#44F6A3"/>
-              </span>
-            </ButtonCon>
-          </InnerDialog>
-        </DialogRename>
-        <LoadingCon>
-          <Text>{this.state.loadingMessage}</Text>
-        </LoadingCon>
-      </Wrapper>
-    );
+          <ButtonCon>
+            <span onClick={this.handleCloseRename}>
+              <Button text="Cancel" color="#9E9E9E"/>
+            </span>
+            <span >
+              <Button type="submit" text="Rename" color="#44F6A3"/>
+            </span>
+          </ButtonCon>
+        </InnerDialog>
+      </DialogRename>
+      <LoadingCon>
+        <Text>{this.state.loadingMessage}</Text>
+      </LoadingCon>
+    </Wrapper>);
   }
 
 }

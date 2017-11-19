@@ -232,7 +232,9 @@ class Folder extends React.Component {
       height: '30px',
       fontSize: '16px',
       borderColor: 'transparent',
-      borderWidth: '0px'
+      borderWidth: '0px',
+      overflow: 'hidden'
+      
     }
     const opacity360 = keyframes `
 			 from {

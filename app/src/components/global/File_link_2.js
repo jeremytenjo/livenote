@@ -102,6 +102,7 @@ margin-left: 40px;
 color: #0F2331;
 overflow: hidden;
 word-break: break-all;
+height: 20px;
 `;
 
 export default connect(null, mapDispatchToProps)(withRouter(Folder_Link));
