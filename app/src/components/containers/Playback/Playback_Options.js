@@ -61,7 +61,7 @@ class PlaybackOptions extends React.Component {
       //Notification controls
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: this.props.TopBar_Title
+          title: 'this.props.TopBar_Title'
         })
         navigator.mediaSession.setActionHandler('play', () => this.resume())
         navigator.mediaSession.setActionHandler('pause', () => this.pause())
