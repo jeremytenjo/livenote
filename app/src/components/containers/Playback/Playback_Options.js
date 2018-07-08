@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 //Images
 import Pause_icon from '../../../images/icons/PauseCircle.svg'
 import Play_icon from '../../../images/icons/PlayCircle.svg'
-import Logo_icon from '../../../images/icons/Logo.png'
+import backgroundColor_icon from '../../../images/icons/mediaNotification.png'
 //State
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -66,7 +66,7 @@ class PlaybackOptions extends React.Component {
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: this.props.TopBar_Title,
-          artwork: [{ src: Logo_icon, sizes: '96x96' }]
+          artwork: [{ src: backgroundColor_icon }]
         })
         navigator.mediaSession.setActionHandler('play', () => this.resume())
         navigator.mediaSession.setActionHandler('pause', () => this.pause())
