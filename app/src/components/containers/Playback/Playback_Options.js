@@ -61,9 +61,6 @@ class PlaybackOptions extends React.Component {
       this.props.history.push(`/`)
     } else {
       //Notification controls
-      navigator.mediaSession = navigator.mediaSession || {}
-      navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {}
-      window.MediaMetadata = window.MediaMetadata || function() {}
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: 'Never Gonna Give You Up',
