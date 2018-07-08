@@ -61,8 +61,7 @@ class PlaybackOptions extends React.Component {
       //Notification controls
       navigator.mediaSession = navigator.mediaSession || {}
       navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {}
-      window.MediaMetadata = window.MediaMetadata || function() {}
-      let MediaMetadata
+      let MediaMetadata = window.MediaMetadata || function() {}
 
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
