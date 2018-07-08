@@ -44,9 +44,7 @@ class PlaybackOptions extends React.Component {
   //Methods
   componentWillMount() {
     let id = window.location.pathname.substr(10)
-
     this.initPlayback(id)
-    // this.initPlayback(this.props.noteID);
   }
 
   componentWillUnmount() {
@@ -65,7 +63,7 @@ class PlaybackOptions extends React.Component {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: this.props.TopBar_Title
         })
-        navigator.mediaSession.setActionHandler('play', () => this.play())
+        navigator.mediaSession.setActionHandler('play', () => this.resume())
         navigator.mediaSession.setActionHandler('pause', () => this.pause())
       }
 
