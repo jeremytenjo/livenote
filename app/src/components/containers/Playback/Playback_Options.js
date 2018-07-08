@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 //Images
 import Pause_icon from '../../../images/icons/PauseCircle.svg'
 import Play_icon from '../../../images/icons/PlayCircle.svg'
-import Logo_icon from '../../../images/icons/Logo-192.png'
+import Logo_icon from '../../../images/icons/Logo.png'
 //State
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
