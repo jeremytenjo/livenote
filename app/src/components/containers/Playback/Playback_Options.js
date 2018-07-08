@@ -66,7 +66,7 @@ class PlaybackOptions extends React.Component {
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: this.props.TopBar_Title,
-          artwork: [{ src: Logo_icon }]
+          artwork: [{ src: Logo_icon, sizes: '128x128' }]
         })
         navigator.mediaSession.setActionHandler('play', () => this.resume())
         navigator.mediaSession.setActionHandler('pause', () => this.pause())
