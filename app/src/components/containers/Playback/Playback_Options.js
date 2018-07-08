@@ -1,29 +1,31 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
-import Pause_icon from '../../../images/icons/PauseCircle.svg';
-import Play_icon from '../../../images/icons/PlayCircle.svg';
-import firebase from 'firebase';
-import Slider from 'material-ui/Slider';
-import {withRouter} from 'react-router-dom'
+import Pause_icon from '../../../images/icons/PauseCircle.svg'
+import Play_icon from '../../../images/icons/PlayCircle.svg'
+import firebase from 'firebase'
+import Slider from 'material-ui/Slider'
+import { withRouter } from 'react-router-dom'
 
 //State
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Set_Audio_Control} from '../../../state/actions/index';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Set_Audio_Control } from '../../../state/actions/index'
 
 //define actions
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    Set_Audio_Control
-  }, dispatch)
+  return bindActionCreators(
+    {
+      Set_Audio_Control
+    },
+    dispatch
+  )
 }
 // Set global state to prop
 function mapStateToProps(state) {
-  return {noteID: state.PlaybackSelection_ID}
+  return { noteID: state.PlaybackSelection_ID }
 }
 
 class PlaybackOptions extends React.Component {
-
   //initial state
   constructor(props) {
     super(props)
@@ -43,168 +45,191 @@ class PlaybackOptions extends React.Component {
   componentWillMount() {
     let id = window.location.pathname.substr(10)
 
-    this.initPlayback(id);
+    this.initPlayback(id)
     // this.initPlayback(this.props.noteID);
   }
 
   componentWillUnmount() {
     if (this.props.noteID !== '' && this.state.audioControl) {
-      let audioControl = this.state.audioControl;
-      audioControl.pause();
+      let audioControl = this.state.audioControl
+      audioControl.pause()
     }
-
   }
 
-  initPlayback = async(id) => {
-
+  initPlayback = async (id) => {
     if (id === '') {
-      this.props.history.push(`/`);
-
+      this.props.history.push(`/`)
     } else {
-      const audioUrl = await firebase.storage().ref(`audio/${id}`).getDownloadURL();
-      let audioControl = new Audio([audioUrl]);
+      //Notification controls
+      navigator.mediaSession = navigator.mediaSession || {}
+      navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {}
+      window.MediaMetadata = window.MediaMetadata || function() {}
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: 'Never Gonna Give You Up',
+          artist: 'Rick Astley',
+          album: 'Whenever You Need Somebody',
+          artwork: [
+            { src: 'https://dummyimage.com/96x96', sizes: '96x96', type: 'image/png' },
+            { src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png' },
+            { src: 'https://dummyimage.com/192x192', sizes: '192x192', type: 'image/png' },
+            { src: 'https://dummyimage.com/256x256', sizes: '256x256', type: 'image/png' },
+            { src: 'https://dummyimage.com/384x384', sizes: '384x384', type: 'image/png' },
+            { src: 'https://dummyimage.com/512x512', sizes: '512x512', type: 'image/png' }
+          ]
+        })
+        navigator.mediaSession.setActionHandler('play', () => this.play())
+        navigator.mediaSession.setActionHandler('pause', () => this.pause())
+      }
+
+      const audioUrl = await firebase
+        .storage()
+        .ref(`audio/${id}`)
+        .getDownloadURL()
+      let audioControl = new Audio([audioUrl])
 
       this.props.Set_Audio_Control(audioControl)
-      this.setState({audioControl: audioControl});
+      this.setState({ audioControl: audioControl })
 
       audioControl.onended = (e) => {
-        this.setState({playToggle: true, pauseToggle: false});
-        audioControl.currentTime = 0;
+        this.setState({ playToggle: true, pauseToggle: false })
+        audioControl.currentTime = 0
       }
 
       audioControl.onloadedmetadata = (e) => {
         if (audioControl.duration === Infinity) {
-          let self = this;
+          let self = this
 
-          audioControl.currentTime = 1e101;
+          audioControl.currentTime = 1e101
           audioControl.ontimeupdate = function() {
-
             this.ontimeupdate = () => {
-              self.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
-              return;
+              self.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
+              return
             }
-            self.setState({max: audioControl.duration});
-            audioControl.currentTime = 0.1;
-
+            self.setState({ max: audioControl.duration })
+            audioControl.currentTime = 0.1
           }
         } else {
-          this.setState({max: audioControl.duration});
+          this.setState({ max: audioControl.duration })
         }
       }
 
       audioControl.ontimeupdate = (e) => {
-        this.setState({sliderPos: audioControl.currentTime, minValue: audioControl.currentTime});
+        this.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
       }
-
     }
   }
   handleSlider = (event, value) => {
-    this.setState({sliderPos: value});
-    let audioControl = this.state.audioControl;
-    audioControl.currentTime = value;
-  };
+    this.setState({ sliderPos: value })
+    let audioControl = this.state.audioControl
+    audioControl.currentTime = value
+  }
 
   resume = () => {
-    this.setState({playToggle: false, pauseToggle: true});
-    let audioControl = this.state.audioControl;
+    this.setState({ playToggle: false, pauseToggle: true })
+    let audioControl = this.state.audioControl
     audioControl.play()
-
   }
 
   pause = () => {
-    this.setState({playToggle: true, pauseToggle: false});
-    let audioControl = this.state.audioControl;
+    this.setState({ playToggle: true, pauseToggle: false })
+    let audioControl = this.state.audioControl
     audioControl.pause()
   }
-  getMinutes = () => Math.floor(this.state.sliderPos / 60);
+  getMinutes = () => Math.floor(this.state.sliderPos / 60)
 
-  getSeconds = () => ('0' + Math.floor(this.state.sliderPos) % 60).slice(-2);
+  getSeconds = () => ('0' + (Math.floor(this.state.sliderPos) % 60)).slice(-2)
 
-  getMinutesFinal = () => Math.floor(this.state.max / 60);
+  getMinutesFinal = () => Math.floor(this.state.max / 60)
 
-  getSecondsFinal = () => ('0' + Math.floor(this.state.max) % 60).slice(-2);
+  getSecondsFinal = () => ('0' + (Math.floor(this.state.max) % 60)).slice(-2)
 
   render() {
     //Properties
 
     //Reactive Styles
-    const PauseIcon = styled.img `
-		width: 105px;
-		display: ${props => this.state.pauseToggle
-      ? 'block'
-      : 'none'};
-			cursor: pointer;
-			margin: 0 auto;
+    const PauseIcon = styled.img`
+      width: 105px;
+      display: ${(props) => (this.state.pauseToggle ? 'block' : 'none')};
+      cursor: pointer;
+      margin: 0 auto;
       margin-top: -18px;
-    transform: translateX(6px);
-
-		`;
-    const PlayIcon = styled.img `
-		width: 105px;
-		display: ${props => this.state.playToggle
-      ? 'block'
-      : 'none'};
-			cursor: pointer;
-			margin: 0 auto;
-			margin-top: -18px;
-    transform: translateX(6px);
-		`;
+      transform: translateX(6px);
+    `
+    const PlayIcon = styled.img`
+      width: 105px;
+      display: ${(props) => (this.state.playToggle ? 'block' : 'none')};
+      cursor: pointer;
+      margin: 0 auto;
+      margin-top: -18px;
+      transform: translateX(6px);
+    `
 
     //Template
     return (
       <Wrapper>
         <TimeBar>
           <SliderCon>
-            <Slider style={{
-              paddingLeft: '10px',
-              paddingRight: '10px'
-            }} value={this.state.sliderPos} onChange={this.handleSlider} min={this.state.min} max={this.state.max} step={1}/>
+            <Slider
+              style={{
+                paddingLeft: '10px',
+                paddingRight: '10px'
+              }}
+              value={this.state.sliderPos}
+              onChange={this.handleSlider}
+              min={this.state.min}
+              max={this.state.max}
+              step={1}
+            />
           </SliderCon>
-          <StartTime>{this.getMinutes()}:{this.getSeconds()}</StartTime>
-          <EndTime>{this.getMinutesFinal()}:{this.getSecondsFinal()}</EndTime>
+          <StartTime>
+            {this.getMinutes()}:{this.getSeconds()}
+          </StartTime>
+          <EndTime>
+            {this.getMinutesFinal()}:{this.getSecondsFinal()}
+          </EndTime>
         </TimeBar>
         <OptionsCon>
-          <PauseIcon onClick={this.pause} src={Pause_icon}/>
-          <PlayIcon onClick={this.resume} src={Play_icon}/>
+          <PauseIcon onClick={this.pause} src={Pause_icon} />
+          <PlayIcon onClick={this.resume} src={Play_icon} />
         </OptionsCon>
       </Wrapper>
-    );
+    )
   }
-
 }
 
 //Style
-const Wrapper = styled.div `
-	display: grid;
-	grid-template-rows: 50px 70px;
-	background: #0F2331;
-`;
-const TimeBar = styled.div `
-position: relative;
-
- `;
-const SliderCon = styled.div `
-   ${ ''/* background: green; */}
-  `;
-const OptionsCon = styled.div `
-
- `;
-const StartTime = styled.p `
-position: absolute;
-left: 0;
-top: 50px;
-bottom: 0;
-font-size: 14px;
-margin: 0;
-left: 10px;
- `;
-const EndTime = styled.p `
-position: absolute;
-right: 0;
-top: 50px;
-bottom: 0;
-font-size: 14px;
-margin: 0;
-right: 10px
- `;
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlaybackOptions));
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-rows: 50px 70px;
+  background: #0f2331;
+`
+const TimeBar = styled.div`
+  position: relative;
+`
+const SliderCon = styled.div`
+  ${'' /* background: green; */};
+`
+const OptionsCon = styled.div``
+const StartTime = styled.p`
+  position: absolute;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  font-size: 14px;
+  margin: 0;
+  left: 10px;
+`
+const EndTime = styled.p`
+  position: absolute;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  font-size: 14px;
+  margin: 0;
+  right: 10px;
+`
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(PlaybackOptions))
