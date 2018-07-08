@@ -59,6 +59,11 @@ class PlaybackOptions extends React.Component {
       this.props.history.push(`/`)
     } else {
       //Notification controls
+      navigator.mediaSession = navigator.mediaSession || {}
+      navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {}
+      window.MediaMetadata = window.MediaMetadata || function() {}
+      let MediaMetadata
+
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: this.props.TopBar_Title
