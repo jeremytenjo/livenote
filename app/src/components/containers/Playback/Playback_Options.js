@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import Pause_icon from '../../../images/icons/PauseCircle.svg'
-import Play_icon from '../../../images/icons/PlayCircle.svg'
 import firebase from 'firebase'
 import Slider from 'material-ui/Slider'
 import { withRouter } from 'react-router-dom'
 
+//Images
+import Pause_icon from '../../../images/icons/PauseCircle.svg'
+import Play_icon from '../../../images/icons/PlayCircle.svg'
+import Logo_icon from '../../../images/icons/Logo.png'
 //State
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -63,7 +65,8 @@ class PlaybackOptions extends React.Component {
 
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: this.props.TopBar_Title
+          title: this.props.TopBar_Title,
+          artwork: [{ src: Logo_icon }]
         })
         navigator.mediaSession.setActionHandler('play', () => this.resume())
         navigator.mediaSession.setActionHandler('pause', () => this.pause())
