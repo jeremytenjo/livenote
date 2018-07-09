@@ -40,13 +40,13 @@ class PlaybackOptions extends React.Component {
       sliderPos: 0,
       min: 0,
       minValue: 0,
-      max: 10000
+      max: 0
     }
     // this.initPlayback = this.initPlayback.bind(this);
   }
 
   //Methods
-  componentWillMount() {
+  componentDidMount() {
     let id = window.location.pathname.substr(10)
     this.initPlayback(id)
   }
@@ -94,11 +94,11 @@ class PlaybackOptions extends React.Component {
 
           audioControl.currentTime = 1e101
           audioControl.ontimeupdate = function() {
+            self.setState({ max: audioControl.duration })
             this.ontimeupdate = () => {
               self.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
               return
             }
-            self.setState({ max: audioControl.duration })
             audioControl.currentTime = 0.1
           }
         } else {
@@ -132,20 +132,22 @@ class PlaybackOptions extends React.Component {
   rewind = () => {
     this.setState({ playToggle: false, pauseToggle: true })
     let audioControl = this.state.audioControl
-    if (audioControl.currentTime > 30) {
-      this.setState({ sliderPos: audioControl.currentTime - 30 })
-      audioControl.currentTime = audioControl.currentTime - 30
+    if (audioControl.currentTime > 10) {
+      this.setState({ sliderPos: audioControl.currentTime - 10 })
+      audioControl.currentTime = audioControl.currentTime - 10
     }
+    audioControl.paused ? this.pause() : this.resume()
   }
 
   forward = () => {
     this.setState({ playToggle: false, pauseToggle: true })
     let audioControl = this.state.audioControl
-    let forwardLimit = audioControl.duration - 30
+    let forwardLimit = audioControl.duration - 10
     if (audioControl.currentTime <= forwardLimit) {
-      this.setState({ sliderPos: audioControl.currentTime + 30 })
-      audioControl.currentTime = audioControl.currentTime + 30
+      this.setState({ sliderPos: audioControl.currentTime + 10 })
+      audioControl.currentTime = audioControl.currentTime + 10
     }
+    audioControl.paused ? this.pause() : this.resume()
   }
 
   getMinutes = () => Math.floor(this.state.sliderPos / 60)
@@ -223,6 +225,7 @@ const SliderCon = styled.div`
 `
 const OptionsCon = styled.div`
   position: relative;
+  use-select: none;
 `
 const StartTime = styled.p`
   position: absolute;
@@ -249,7 +252,7 @@ const RewindIcon = styled.img`
   bottom: 0;
   margin: auto;
   position: absolute;
-  left: 110px;
+  left: calc(50% - 100px);
 `
 const ForwardIcon = styled.img`
   cursor: pointer;
@@ -258,7 +261,7 @@ const ForwardIcon = styled.img`
   bottom: 0;
   margin: auto;
   position: absolute;
-  right: 110px;
+  right: calc(50% - 100px);
 `
 
 export default connect(
