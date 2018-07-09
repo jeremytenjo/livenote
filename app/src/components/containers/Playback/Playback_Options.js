@@ -8,6 +8,8 @@ import { withRouter } from 'react-router-dom'
 import Pause_icon from '../../../images/icons/PauseCircle.svg'
 import Play_icon from '../../../images/icons/PlayCircle.svg'
 import backgroundColor_icon from '../../../images/icons/mediaNotification.png'
+import forward_icon from '../../../images/icons/forward.svg'
+import rewind_icon from '../../../images/icons/rewind.svg'
 //State
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -126,6 +128,26 @@ class PlaybackOptions extends React.Component {
     let audioControl = this.state.audioControl
     audioControl.pause()
   }
+
+  rewind = () => {
+    this.setState({ playToggle: false, pauseToggle: true })
+    let audioControl = this.state.audioControl
+    if (audioControl.currentTime > 30) {
+      this.setState({ sliderPos: audioControl.currentTime - 30 })
+      audioControl.currentTime = audioControl.currentTime - 30
+    }
+  }
+
+  forward = () => {
+    this.setState({ playToggle: false, pauseToggle: true })
+    let audioControl = this.state.audioControl
+    let forwardLimit = audioControl.duration - 30
+    if (audioControl.currentTime <= forwardLimit) {
+      this.setState({ sliderPos: audioControl.currentTime + 30 })
+      audioControl.currentTime = audioControl.currentTime + 30
+    }
+  }
+
   getMinutes = () => Math.floor(this.state.sliderPos / 60)
 
   getSeconds = () => ('0' + (Math.floor(this.state.sliderPos) % 60)).slice(-2)
@@ -161,10 +183,7 @@ class PlaybackOptions extends React.Component {
         <TimeBar>
           <SliderCon>
             <Slider
-              style={{
-                paddingLeft: '10px',
-                paddingRight: '10px'
-              }}
+              style={{ paddingLeft: '10px', paddingRight: '10px' }}
               value={this.state.sliderPos}
               onChange={this.handleSlider}
               min={this.state.min}
@@ -182,6 +201,8 @@ class PlaybackOptions extends React.Component {
         <OptionsCon>
           <PauseIcon onClick={this.pause} src={Pause_icon} />
           <PlayIcon onClick={this.resume} src={Play_icon} />
+          <RewindIcon onClick={this.rewind} src={rewind_icon} />
+          <ForwardIcon onClick={this.forward} src={forward_icon} />
         </OptionsCon>
       </Wrapper>
     )
@@ -200,7 +221,9 @@ const TimeBar = styled.div`
 const SliderCon = styled.div`
   ${'' /* background: green; */};
 `
-const OptionsCon = styled.div``
+const OptionsCon = styled.div`
+  position: relative;
+`
 const StartTime = styled.p`
   position: absolute;
   left: 0;
@@ -219,6 +242,25 @@ const EndTime = styled.p`
   margin: 0;
   right: 10px;
 `
+const RewindIcon = styled.img`
+  cursor: pointer;
+  top: 0;
+  width: 20px;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  left: 110px;
+`
+const ForwardIcon = styled.img`
+  cursor: pointer;
+  top: 0;
+  width: 20px;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  right: 110px;
+`
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

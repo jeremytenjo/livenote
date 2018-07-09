@@ -5,7 +5,6 @@ import Note_icon from '../../../images/icons/Note.svg'
 import Camera_icon from '../../../images/icons/Camara.svg'
 import Stop_icon from '../../../images/icons/Stop.svg'
 import Pause_icon from '../../../images/icons/Pause.svg'
-import backgroundColor_icon from '../../../images/icons/mediaNotification.png'
 import Play_icon from '../../../images/icons/Play.svg'
 import firebase from 'firebase'
 import ImageCompressor from '@xkeshi/image-compressor'
@@ -126,18 +125,6 @@ class RecOptions extends React.Component {
   }
 
   recControl = (stream) => {
-    //Notification controls
-    let MediaMetadata = window.MediaMetadata || function() {}
-
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: this.props.TopBar_Title,
-        artwork: [{ src: backgroundColor_icon }]
-      })
-      navigator.mediaSession.setActionHandler('play', () => this.play())
-      navigator.mediaSession.setActionHandler('pause', () => this.pause())
-    }
-
     var recorder = new MediaRecorder(stream)
 
     const SpeechRecognition =
