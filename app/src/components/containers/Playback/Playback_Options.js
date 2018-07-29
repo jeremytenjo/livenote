@@ -40,15 +40,14 @@ class PlaybackOptions extends React.Component {
       sliderPos: 0,
       min: 0,
       minValue: 0,
-      max: 0
+      max: 1
     }
-    // this.initPlayback = this.initPlayback.bind(this);
   }
 
   //Methods
   componentDidMount() {
     let id = window.location.pathname.substr(10)
-    this.initPlayback(id)
+    id === '' ? this.props.history.push(`/`) : (this.initPlayback(id), this.handleCast())
   }
 
   componentWillUnmount() {
@@ -59,58 +58,82 @@ class PlaybackOptions extends React.Component {
   }
 
   initPlayback = async (id) => {
-    if (id === '') {
-      this.props.history.push(`/`)
-    } else {
-      //Notification controls
-      let MediaMetadata = window.MediaMetadata || function() {}
+    //Notification controls
+    let MediaMetadata = window.MediaMetadata || function() {}
 
-      if ('mediaSession' in navigator) {
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: this.props.TopBar_Title,
-          artwork: [{ src: backgroundColor_icon }]
-        })
-        navigator.mediaSession.setActionHandler('play', () => this.resume())
-        navigator.mediaSession.setActionHandler('pause', () => this.pause())
-      }
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: this.props.TopBar_Title,
+        artwork: [{ src: backgroundColor_icon }]
+      })
+      navigator.mediaSession.setActionHandler('play', () => this.resume())
+      navigator.mediaSession.setActionHandler('pause', () => this.pause())
+    }
+    const audioFileInfo = await firebase
+      .storage()
+      .ref(`audio/${id}`)
+      .getMetadata()
 
-      const audioUrl = await firebase
-        .storage()
-        .ref(`audio/${id}`)
-        .getDownloadURL()
-      let audioControl = new Audio([audioUrl])
+    this.setState({ audioUrl: audioFileInfo.downloadURLs[0], audioContentType: audioFileInfo.contentType })
 
-      this.props.Set_Audio_Control(audioControl)
-      this.setState({ audioControl: audioControl })
+    let audioControl = new Audio([audioFileInfo.downloadURLs[0]])
 
-      audioControl.onended = (e) => {
-        this.setState({ playToggle: true, pauseToggle: false })
-        audioControl.currentTime = 0
-      }
+    this.props.Set_Audio_Control(audioControl)
+    this.setState({ audioControl: audioControl })
 
-      audioControl.onloadedmetadata = (e) => {
-        if (audioControl.duration === Infinity) {
-          let self = this
+    audioControl.onended = (e) => {
+      this.setState({ playToggle: true, pauseToggle: false })
+      audioControl.currentTime = 0
+    }
 
-          audioControl.currentTime = 1e101
-          audioControl.ontimeupdate = function() {
-            self.setState({ max: audioControl.duration })
-            this.ontimeupdate = () => {
-              self.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
-              return
-            }
-            audioControl.currentTime = 0.1
+    audioControl.onloadedmetadata = (e) => {
+      if (audioControl.duration === Infinity) {
+        let self = this
+
+        audioControl.currentTime = 1e101
+        audioControl.ontimeupdate = function() {
+          self.setState({ max: audioControl.duration })
+          this.ontimeupdate = () => {
+            self.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
+            return
           }
-        } else {
-          this.setState({ max: audioControl.duration })
+          audioControl.currentTime = 0.1
         }
+      } else {
+        this.setState({ max: audioControl.duration })
       }
+    }
 
-      audioControl.ontimeupdate = (e) => {
-        this.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
+    audioControl.ontimeupdate = (e) => {
+      this.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
+    }
+  }
+
+  handleCast = () => {
+    if (window.GOOGLE_CAST) {
+      let cast = window.cast
+      let chrome = window.chrome
+      let castSession = cast.framework.CastContext.getInstance().getCurrentSession()
+      let mediaInfo = new chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
+      let request = new chrome.cast.media.LoadRequest(mediaInfo)
+
+      if (castSession) {
+        castSession.loadMedia(request).then(
+          function() {
+            console.log('Load succeed')
+          },
+          function(errorCode) {
+            console.log('Error code: ' + errorCode)
+          }
+        )
+
+        var player = new cast.framework.RemotePlayer()
+        var playerController = new cast.framework.RemotePlayerController(player)
+        this.setState({ playerController })
       }
     }
   }
+
   handleSlider = (event, value) => {
     this.setState({ sliderPos: value })
     let audioControl = this.state.audioControl
@@ -121,12 +144,14 @@ class PlaybackOptions extends React.Component {
     this.setState({ playToggle: false, pauseToggle: true })
     let audioControl = this.state.audioControl
     audioControl.play()
+    this.state.playerController && this.state.playerController.playOrPause()
   }
 
   pause = () => {
     this.setState({ playToggle: true, pauseToggle: false })
     let audioControl = this.state.audioControl
     audioControl.pause()
+    this.state.playerController && this.state.playerController.playOrPause()
   }
 
   rewind = () => {
