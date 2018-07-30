@@ -114,23 +114,29 @@ class PlaybackOptions extends React.Component {
       let cast = window.cast
       let chrome = window.chrome
       let castSession = cast.framework.CastContext.getInstance().getCurrentSession()
-      let mediaInfo = new chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
-      let request = new chrome.cast.media.LoadRequest(mediaInfo)
+      var player = new cast.framework.RemotePlayer()
+      var playerController = new cast.framework.RemotePlayerController(player)
 
-      if (castSession) {
-        castSession.loadMedia(request).then(
-          function() {
-            console.log('Load succeed')
-          },
-          function(errorCode) {
-            console.log('Error code: ' + errorCode)
-          }
-        )
+      playerController.addEventListener(cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED, () => {
+        if (!player.isConnected) {
+          this.pause()
+        } else {
+          let mediaInfo = new chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
+          let request = new chrome.cast.media.LoadRequest(mediaInfo)
+          console.log(request)
 
-        var player = new cast.framework.RemotePlayer()
-        var playerController = new cast.framework.RemotePlayerController(player)
-        this.setState({ playerController })
-      }
+          castSession.loadMedia(request).then(
+            function() {
+              console.log('Load succeed')
+            },
+            function(errorCode) {
+              console.log('Error code: ' + errorCode)
+            }
+          )
+        }
+      })
+
+      this.setState({ playerController })
     }
   }
 
