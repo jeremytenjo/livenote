@@ -34,6 +34,9 @@ class PlaybackOptions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      cast: window.cast,
+      chrome: window.chrome,
+      chromecastConnect: false,
       pauseToggle: false,
       playToggle: true,
       audioControl: '',
@@ -111,36 +114,39 @@ class PlaybackOptions extends React.Component {
 
   handleCast = () => {
     if (window.GOOGLE_CAST) {
-      let cast = window.cast
-      let chrome = window.chrome
-      let castSession = cast.framework.CastContext.getInstance().getCurrentSession()
-      var player = new cast.framework.RemotePlayer()
-      var playerController = new cast.framework.RemotePlayerController(player)
+      var player = new this.state.cast.framework.RemotePlayer()
+      var playerController = new this.state.cast.framework.RemotePlayerController(player)
 
-      // Load media to chromecast
-      let mediaInfo = new chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
-      let request = new chrome.cast.media.LoadRequest(mediaInfo)
+      this.loadMedia()
 
-      castSession &&
-        castSession.loadMedia(request).then(
-          function() {
-            console.log('Load succeed')
-          },
-          function(errorCode) {
-            console.log('Error code: ' + errorCode)
-          }
-        )
-
-      playerController.addEventListener(cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED, () => {
-        console.log(player)
-
+      playerController.addEventListener(this.state.cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED, () => {
         if (!player.isConnected) {
           this.pause()
+          this.setState({ chromecastConnect: false })
+        } else {
+          this.loadMedia()
         }
       })
 
       this.setState({ playerController })
     }
+  }
+
+  loadMedia = () => {
+    // Load media to chromecast
+    let castSession = this.state.cast.framework.CastContext.getInstance().getCurrentSession()
+    let mediaInfo = new this.state.chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
+    let request = new this.state.chrome.cast.media.LoadRequest(mediaInfo)
+
+    castSession &&
+      castSession.loadMedia(request).then(
+        () => {
+          this.setState({ chromecastConnect: true })
+        },
+        (errorCode) => {
+          console.log('Error code: ' + errorCode)
+        }
+      )
   }
 
   handleSlider = (event, value) => {
@@ -152,18 +158,22 @@ class PlaybackOptions extends React.Component {
   resume = () => {
     this.setState({ playToggle: false, pauseToggle: true })
     let audioControl = this.state.audioControl
-    audioControl.play()
-    this.state.playerController && this.state.playerController.playOrPause()
+    let player = new this.state.cast.framework.RemotePlayer()
+    let playerController = new this.state.cast.framework.RemotePlayerController(player)
+    this.state.chromecastConnect ? playerController.playOrPause() : audioControl.play()
   }
 
   pause = () => {
     this.setState({ playToggle: true, pauseToggle: false })
     let audioControl = this.state.audioControl
     audioControl.pause()
-    this.state.playerController && this.state.playerController.playOrPause()
+    let player = new this.state.cast.framework.RemotePlayer()
+    let playerController = new this.state.cast.framework.RemotePlayerController(player)
+    this.state.chromecastConnect ? playerController.playOrPause() : audioControl.pause()
   }
 
   rewind = () => {
+    // TODO:Chromecast Sync
     this.setState({ playToggle: false, pauseToggle: true })
     let audioControl = this.state.audioControl
     if (audioControl.currentTime > 10) {
