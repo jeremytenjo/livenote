@@ -47,7 +47,7 @@ class PlaybackOptions extends React.Component {
   //Methods
   componentDidMount() {
     let id = window.location.pathname.substr(10)
-    id === '' ? this.props.history.push(`/`) : (this.initPlayback(id), this.handleCast())
+    id === '' ? this.props.history.push(`/`) : this.initPlayback(id)
   }
 
   componentWillUnmount() {
@@ -103,10 +103,10 @@ class PlaybackOptions extends React.Component {
         this.setState({ max: audioControl.duration })
       }
     }
-
     audioControl.ontimeupdate = (e) => {
       this.setState({ sliderPos: audioControl.currentTime, minValue: audioControl.currentTime })
     }
+    this.handleCast()
   }
 
   handleCast = () => {
@@ -117,22 +117,25 @@ class PlaybackOptions extends React.Component {
       var player = new cast.framework.RemotePlayer()
       var playerController = new cast.framework.RemotePlayerController(player)
 
+      // Load media to chromecast
+      let mediaInfo = new chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
+      let request = new chrome.cast.media.LoadRequest(mediaInfo)
+
+      castSession &&
+        castSession.loadMedia(request).then(
+          function() {
+            console.log('Load succeed')
+          },
+          function(errorCode) {
+            console.log('Error code: ' + errorCode)
+          }
+        )
+
       playerController.addEventListener(cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED, () => {
+        console.log(player)
+
         if (!player.isConnected) {
           this.pause()
-        } else {
-          let mediaInfo = new chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
-          let request = new chrome.cast.media.LoadRequest(mediaInfo)
-          console.log(request)
-
-          castSession.loadMedia(request).then(
-            function() {
-              console.log('Load succeed')
-            },
-            function(errorCode) {
-              console.log('Error code: ' + errorCode)
-            }
-          )
         }
       })
 

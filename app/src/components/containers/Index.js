@@ -67,7 +67,6 @@ class Home extends React.Component {
           <TopBar id="TopBarMain">
             <TitlePage>{this.props.title}</TitlePage>
             <google-cast-launcher id="cast-button" />
-            {/* <Icon src={Search_icon} alt="Search Icon"/>   */}
           </TopBar>
           <BrowserRouter>
             <Content>
