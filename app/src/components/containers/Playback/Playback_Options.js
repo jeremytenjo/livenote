@@ -123,14 +123,11 @@ class PlaybackOptions extends React.Component {
         if (!player.isConnected) {
           this.pause()
           this.setState({ chromecastConnect: false })
-          this.state.audioControl.muted = false
+          let audioControl = this.state.audioControl
+          audioControl.muted = false
         } else {
           this.loadMedia()
         }
-      })
-      playerController.addEventListener(this.state.cast.framework.RemotePlayerEventType.ANY_CHANGE, () => {
-        console.log('HERasdfasdfE!')
-        this.pause()
       })
 
       this.setState({ playerController })
@@ -142,10 +139,10 @@ class PlaybackOptions extends React.Component {
     let castSession = this.state.cast.framework.CastContext.getInstance().getCurrentSession()
     let mediaInfo = new this.state.chrome.cast.media.MediaInfo(this.state.audioUrl, this.state.audioContentType)
     let request = new this.state.chrome.cast.media.LoadRequest(mediaInfo)
-    let player = new this.state.cast.framework.RemotePlayer()
 
     // this.state.cast.framework.RemotePlayer().duration(this.state.max)
-    this.state.audioControl.muted = true
+    let audioControl = this.state.audioControl
+    audioControl.muted = false
 
     castSession &&
       castSession.loadMedia(request).then(
