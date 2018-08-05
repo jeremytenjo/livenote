@@ -176,7 +176,6 @@ class PlaybackOptions extends React.Component {
   }
 
   pause = () => {
-    console.log('HERE!')
     this.setState({ playToggle: true, pauseToggle: false })
     let audioControl = this.state.audioControl
     let player = new this.state.cast.framework.RemotePlayer()
